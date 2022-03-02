@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Okey Puan Tablosu</string>
+
+    <string name="yeniOyun_button">Yeni Oyun</string>
+    <string name="gecmisOyunlar_button">Kaydedilen Oyunlar</string>
+
+    <string name="yeniOyun_text">Yeni Oyun</string>
+    <string name="oyunIsmi_text">Oyun İsmi</string>
+    <string name="oyuncu1_adi">Oyuncu-1 Adı</string>
+    <string name="oyuncu2_adi">Oyuncu-2 Adı</string>
+    <string name="oyuncu3_adi">Oyuncu-3 Adı</string>
+    <string name="oyuncu4_adi">Oyuncu-4 Adı</string>
+    <string name="oyuncuSayisi_text">Oyuncu Sayısı:</string>
+    <string name="ikiOyunculu_text">2</string>
+    <string name="ucOyunculu_text">3</string>
+    <string name="dortOyunculu_text">4</string>
+    <string name="oyunTuru_text">Oyun Türü:</string>
+    <string name="tekli_text">Tekli</string>
+    <string name="esli_text">Eşli</string>
+    <string name="basla">Başla</string>
+
+    <string name="puanTablosu_topBar">Puan Tablosu</string>
+
+    <string name="oyuncu1_text">Oyuncu 1</string>
+    <string name="oyuncu2_text">Oyuncu 2</string>
+    <string name="oyuncu3_text">Oyuncu 3</string>
+    <string name="oyuncu4_text">Oyuncu 4</string>
+    <string name="puanTablosu_text">Puan \nTablosu</string>
+    <string name="skorEkle_text">Skor \nEkle</string>
+    <string name="oyunuBitir_text">Oyunu \nBitir</string>
+    <string name="skor_text">0000</string>
+    <string name="skor_editText">Skor</string>
+
+    <string name="skorTablosu_bottom_menu">Skor Tablosu</string>
+    <string name="puanEkle_bottom_menu">Puan Ekle</string>
+    <string name="sil_bottom_menu">Sil</string>
+    <string name="add_button">Ekle</string>
+    <string name="anlikSkor_text">0000</string>
+    <string name="kazananOyuncu_text">Oyuncu Kazandı</string>
+    <string name="cizgi_text">___</string>
+    <string name="skorEkle_title">Skor Ekle</string>
+    <string name="puanTablosu_title">Puan Tablosu</string>
+    <string name="yenidenZarAt_text">Yeniden At</string>
+    <string name="tamam_text">Tamam</string>
+
+</resources>

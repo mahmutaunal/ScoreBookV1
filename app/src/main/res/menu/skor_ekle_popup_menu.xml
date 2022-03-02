@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/skorEkle_oyuncu1_popup"
+        android:title="Oyuncu 1: ">
+
+    </item>
+
+    <item
+        android:id="@+id/skorEkle_oyuncu2_popup"
+        android:title="Oyuncu 2: ">
+
+    </item>
+
+    <item
+        android:id="@+id/skorEkle_oyuncu3_popup"
+        android:title="Oyuncu 3: ">
+
+    </item>
+
+    <item
+        android:id="@+id/skorEkle_oyuncu4_popup"
+        android:title="Oyuncu 4: ">
+
+    </item>
+
+</menu>
