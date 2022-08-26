@@ -18,6 +18,8 @@ import com.example.okeypuantablosu.anamenu.AnaMenuActivity
 import com.example.okeypuantablosu.data.SkorData2Kisi
 import com.example.okeypuantablosu.databinding.ActivityPuanTablosu2KisiBinding
 import com.example.okeypuantablosu.takimislemleri.TakimIslemleri
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 
 //operations such as entering scores, deleting players.
 class PuanTablosu2Kisi : AppCompatActivity() {
@@ -44,6 +46,11 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPuanTablosu2KisiBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //set admob banner
+        MobileAds.initialize(this) {}
+        val adRequest = AdRequest.Builder().build()
+        binding.takimIslemleriAdView.loadAd(adRequest)
 
         //game name
         oyunIsmi = intent.getStringExtra("Oyun İsmi").toString()
@@ -373,7 +380,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 finish()
 
                 //animation
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
                 dialog.dismiss()
             }

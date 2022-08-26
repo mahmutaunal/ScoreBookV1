@@ -11,16 +11,24 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.okeypuantablosu.R
 import com.example.okeypuantablosu.databinding.ActivityAnaMenuBinding
 import com.example.okeypuantablosu.takimislemleri.TakimIslemleri
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 
 class AnaMenuActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAnaMenuBinding
+
 
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAnaMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //set admob banner
+        MobileAds.initialize(this) {}
+        val adRequest = AdRequest.Builder().build()
+        binding.mainMenuAdView.loadAd(adRequest)
 
         //dark and night mode
         val appSettingPreferences: SharedPreferences = getSharedPreferences("AppSettingsPreferences", 0)
@@ -42,11 +50,6 @@ class AnaMenuActivity : AppCompatActivity() {
 
             //animation
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        }
-
-        //navigate KaydedilenOyunlar Activity
-        binding.gecmisOyunlarButton.setOnClickListener {
-            Toast.makeText(applicationContext, "Kaydedilen oyunlar kısmı geliştirilme aşamasındadır!", Toast.LENGTH_SHORT).show()
         }
 
         //info about app

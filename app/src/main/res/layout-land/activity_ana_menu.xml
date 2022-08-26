@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:fontFamily="@font/comfortaa_bold"
+        android:fontFamily="@font/comfortaa"
         android:gravity="center_horizontal"
         android:text="@string/app_name"
         android:textAlignment="center"
@@ -69,31 +69,29 @@
             android:layout_height="55dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             app:cornerRadius="25dp"
             app:strokeWidth="2dp"
             app:strokeColor="@color/teal_700"
-            android:fontFamily="@font/comfortaa_bold"
+            android:fontFamily="@font/comfortaa"
             android:text="@string/yeniOyun_button"
             android:textSize="14sp"
             android:textColor="?android:attr/textColorPrimary"
             android:textStyle="bold" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/gecmisOyunlar_button"
-            android:layout_width="250dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="30dp"
-            app:cornerRadius="25dp"
-            app:strokeWidth="2dp"
-            app:strokeColor="@color/teal_700"
-            android:fontFamily="@font/comfortaa_bold"
-            android:text="@string/gecmisOyunlar_button"
-            android:textSize="14sp"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textStyle="bold" />
-
     </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main_menu_adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-5963947262278027/1072179297"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

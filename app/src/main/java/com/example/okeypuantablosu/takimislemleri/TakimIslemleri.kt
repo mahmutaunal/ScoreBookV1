@@ -8,10 +8,13 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.okeypuantablosu.MainActivity
 import com.example.okeypuantablosu.R
+import com.example.okeypuantablosu.anamenu.AnaMenuActivity
 import com.example.okeypuantablosu.databinding.ActivityTakimIslemleriBinding
 import com.example.okeypuantablosu.puantablosu.PuanTablosu2Kisi
 import com.example.okeypuantablosu.puantablosu.PuanTablosu3Kisi
 import com.example.okeypuantablosu.puantablosu.PuanTablosu4Kisi
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 
 class TakimIslemleri : AppCompatActivity() {
 
@@ -24,10 +27,16 @@ class TakimIslemleri : AppCompatActivity() {
 
     private var oyunIsmi: EditText? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTakimIslemleriBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //set admob banner
+        MobileAds.initialize(this) {}
+        val adRequest = AdRequest.Builder().build()
+        binding.takimIslemleriAdView.loadAd(adRequest)
 
         val intentPuanTablosu2 = Intent(applicationContext, PuanTablosu2Kisi::class.java)
         val intentPuanTablosu3 = Intent(applicationContext, PuanTablosu3Kisi::class.java)
@@ -133,7 +142,7 @@ class TakimIslemleri : AppCompatActivity() {
 
         //on back pressed turn back to main menu
         binding.backButton.setOnClickListener {
-            val intentMain = Intent(applicationContext, MainActivity::class.java)
+            val intentMain = Intent(applicationContext, AnaMenuActivity::class.java)
             startActivity(intentMain)
             finish()
 
@@ -212,7 +221,7 @@ class TakimIslemleri : AppCompatActivity() {
 
     //on back pressed turn back to main menu
     override fun onBackPressed() {
-        val intentMain = Intent(applicationContext, MainActivity::class.java)
+        val intentMain = Intent(applicationContext, AnaMenuActivity::class.java)
         startActivity(intentMain)
         finish()
 
