@@ -48,16 +48,6 @@
             tools:ignore="ContentDescription,RtlHardcoded" />
 
         <ImageView
-            android:id="@+id/save_icon"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_gravity="right"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/save"
-            android:background="?attr/selectableItemBackground"
-            tools:ignore="ContentDescription,RtlHardcoded" />
-
-        <ImageView
             android:id="@+id/dice_icon"
             android:layout_width="16dp"
             android:layout_height="16dp"
@@ -211,7 +201,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="95dp"
+        android:layout_marginTop="105dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="110dp"
         app:layout_constraintBottom_toTopOf="@+id/skorTablosu_button"
