@@ -202,10 +202,10 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         val oyuncu2Skor = oyuncu2ToplamSkor.toInt()
 
         when {
-            ( (oyuncu1Skor > oyuncu2Skor) )-> {
+            ( (oyuncu1Skor < oyuncu2Skor) )-> {
                 kazananTakim.text = "$oyuncu1Ad Önde."
             }
-            ( (oyuncu2Skor > oyuncu1Skor) )-> {
+            ( (oyuncu2Skor < oyuncu1Skor) )-> {
                 kazananTakim.text = "$oyuncu2Ad Önde."
             }
             else -> {
@@ -254,10 +254,10 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         val oyuncu2Skor = oyuncu2ToplamSkor.toInt()
 
         when {
-            ( (oyuncu1Skor > oyuncu2Skor) )-> {
+            ( (oyuncu1Skor < oyuncu2Skor) )-> {
                 kazananTakim.text = "$oyuncu1Ad Kazandı."
             }
-            ( (oyuncu2Skor > oyuncu1Skor) )-> {
+            ( (oyuncu2Skor < oyuncu1Skor) )-> {
                 kazananTakim.text = "$oyuncu2Ad Kazandı."
             }
             else -> {

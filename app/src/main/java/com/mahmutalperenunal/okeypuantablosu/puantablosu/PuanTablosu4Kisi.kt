@@ -235,16 +235,16 @@ class PuanTablosu4Kisi : AppCompatActivity() {
         val oyuncu4Skor = oyuncu4ToplamSkor.toInt()
 
         when {
-            ( (oyuncu1Skor > oyuncu2Skor) && (oyuncu1Skor > oyuncu3Skor) && (oyuncu1Skor > oyuncu4Skor) )-> {
+            ( (oyuncu1Skor < oyuncu2Skor) && (oyuncu1Skor < oyuncu3Skor) && (oyuncu1Skor < oyuncu4Skor) )-> {
                 kazananTakim.text = "$oyuncu1Ad Önde."
             }
-            ( (oyuncu2Skor > oyuncu1Skor) && (oyuncu2Skor > oyuncu3Skor) && (oyuncu2Skor > oyuncu4Skor) )-> {
+            ( (oyuncu2Skor < oyuncu1Skor) && (oyuncu2Skor < oyuncu3Skor) && (oyuncu2Skor < oyuncu4Skor) )-> {
                 kazananTakim.text = "$oyuncu2Ad Önde."
             }
-            ( (oyuncu3Skor > oyuncu1Skor) && (oyuncu3Skor > oyuncu2Skor) && (oyuncu3Skor > oyuncu4Skor) )-> {
+            ( (oyuncu3Skor < oyuncu1Skor) && (oyuncu3Skor < oyuncu2Skor) && (oyuncu3Skor < oyuncu4Skor) )-> {
                 kazananTakim.text = "$oyuncu3Ad Önde."
             }
-            ( (oyuncu4Skor > oyuncu1Skor) && (oyuncu4Skor > oyuncu2Skor) && (oyuncu4Skor > oyuncu3Skor) )-> {
+            ( (oyuncu4Skor < oyuncu1Skor) && (oyuncu4Skor < oyuncu2Skor) && (oyuncu4Skor < oyuncu3Skor) )-> {
                 kazananTakim.text = "$oyuncu4Ad Önde."
             }
             else -> {

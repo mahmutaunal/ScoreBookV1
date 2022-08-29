@@ -218,13 +218,13 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         val oyuncu3Skor = oyuncu3ToplamSkor.toInt()
 
         when {
-            ( (oyuncu1Skor > oyuncu2Skor) && (oyuncu1Skor > oyuncu3Skor) )-> {
+            ( (oyuncu1Skor < oyuncu2Skor) && (oyuncu1Skor < oyuncu3Skor) )-> {
                 kazananTakim.text = "$oyuncu1Ad Önde."
             }
-            ( (oyuncu2Skor > oyuncu1Skor) && (oyuncu2Skor > oyuncu3Skor) )-> {
+            ( (oyuncu2Skor < oyuncu1Skor) && (oyuncu2Skor < oyuncu3Skor) )-> {
                 kazananTakim.text = "$oyuncu2Ad Önde."
             }
-            ( (oyuncu3Skor > oyuncu1Skor) && (oyuncu3Skor > oyuncu2Skor) )-> {
+            ( (oyuncu3Skor < oyuncu1Skor) && (oyuncu3Skor < oyuncu2Skor) )-> {
                 kazananTakim.text = "$oyuncu3Ad Önde."
             }
             else -> {
@@ -279,13 +279,13 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         val oyuncu3Skor = oyuncu3ToplamSkor.toInt()
 
         when {
-            ( (oyuncu1Skor > oyuncu2Skor) && (oyuncu1Skor > oyuncu3Skor) )-> {
+            ( (oyuncu1Skor < oyuncu2Skor) && (oyuncu1Skor < oyuncu3Skor) )-> {
                 kazananTakim.text = "$oyuncu1Ad Kazandı."
             }
-            ( (oyuncu2Skor > oyuncu1Skor) && (oyuncu2Skor > oyuncu3Skor) )-> {
+            ( (oyuncu2Skor < oyuncu1Skor) && (oyuncu2Skor < oyuncu3Skor) )-> {
                 kazananTakim.text = "$oyuncu2Ad Kazandı."
             }
-            ( (oyuncu3Skor > oyuncu1Skor) && (oyuncu3Skor > oyuncu2Skor) )-> {
+            ( (oyuncu3Skor < oyuncu1Skor) && (oyuncu3Skor < oyuncu2Skor) )-> {
                 kazananTakim.text = "$oyuncu3Ad Kazandı."
             }
             else -> {
