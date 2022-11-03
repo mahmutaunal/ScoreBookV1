@@ -20,6 +20,7 @@ import com.mahmutalperenunal.okeypuantablosu.data.SkorData3Kisi
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.mahmutalperenunal.okeypuantablosu.anamenu.AnaMenu
+import com.mahmutalperenunal.okeypuantablosu.calculator.Calculator
 
 //operations such as entering scores, deleting players.
 class PuanTablosu3Kisi : AppCompatActivity() {
@@ -107,6 +108,9 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
         //dice roller
         binding.diceIcon.setOnClickListener { diceRoller() }
+
+        //calculator
+        binding.calculatorIcon.setOnClickListener { openCalculator() }
     }
 
 
@@ -334,6 +338,16 @@ class PuanTablosu3Kisi : AppCompatActivity() {
     private fun diceRoller() {
         val intentDiceRoller = Intent(applicationContext, DiceRoller::class.java)
         startActivity(intentDiceRoller)
+    }
+
+
+    //open calculator
+    private fun openCalculator() {
+        val intentCalculator = Intent(applicationContext, Calculator::class.java)
+        intentCalculator.putExtra("Puan Tablosu", 3)
+        intentCalculator.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+        startActivity(intentCalculator)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
 

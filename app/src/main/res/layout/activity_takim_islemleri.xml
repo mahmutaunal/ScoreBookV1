@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    tools:context=".TakimIslemleri">
+    tools:context=".takimislemleri.TakimIslemleri">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/yeniOyun_toolbar"
@@ -33,7 +33,7 @@
             android:layout_gravity="center"
             android:text="@string/yeniOyun_text"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -319,7 +319,7 @@
                 android:fontFamily="@font/comfortaa"
                 android:text="@string/basla"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:cornerRadius="25dp"
                 app:strokeColor="@color/teal_700"

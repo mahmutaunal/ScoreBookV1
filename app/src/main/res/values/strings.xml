@@ -45,4 +45,5 @@
     <string name="text">/</string>
     <string name="gameNumber_text">1. El</string>
     <string name="number_text">1</string>
+    <string name="calculator_text">Hesap Makinesi</string>
 </resources>

@@ -51,4 +51,6 @@ dependencies {
 
     //admob
     implementation 'com.google.android.gms:play-services-ads:21.3.0'
+
+    implementation 'org.mariuszgromada.math:MathParser.org-mXparser:4.4.2'
 }
