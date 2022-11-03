@@ -42,5 +42,7 @@
     <string name="puanTablosu_title">Puan Tablosu</string>
     <string name="yenidenZarAt_text">Yeniden At</string>
     <string name="tamam_text">Tamam</string>
-
+    <string name="text">/</string>
+    <string name="gameNumber_text">1. El</string>
+    <string name="number_text">1</string>
 </resources>

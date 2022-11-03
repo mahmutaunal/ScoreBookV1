@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="?attr/colorPrimary"
+    tools:context=".anamenu.AnaMenu">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/main_toolbar"
@@ -17,16 +18,16 @@
 
         <ImageView
             android:id="@+id/info_icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:src="@drawable/info"
             android:background="?attr/selectableItemBackground"
             tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/darkMode_icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:src="@drawable/day_and_night_mode"
             android:background="?attr/selectableItemBackground"
             android:layout_gravity="right"
@@ -39,20 +40,20 @@
         android:id="@+id/mainAppName_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="150dp"
         android:fontFamily="@font/comfortaa"
         android:gravity="center_horizontal"
         android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="16sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_toolbar" />
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:cardCornerRadius="25dp"
@@ -69,15 +70,14 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
+            app:cornerRadius="25dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/teal_700"
             android:fontFamily="@font/comfortaa"
             android:text="@string/yeniOyun_button"
+            android:textSize="14sp"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:cornerRadius="25dp"
-            app:strokeColor="@color/teal_700"
-            app:strokeWidth="2dp"
-            tools:ignore="TextContrastCheck" />
+            android:textStyle="bold" />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -86,8 +86,6 @@
         android:id="@+id/main_menu_adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-5963947262278027/1072179297"
         ads:layout_constraintBottom_toBottomOf="parent"

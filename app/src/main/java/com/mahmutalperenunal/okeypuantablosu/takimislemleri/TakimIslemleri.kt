@@ -74,8 +74,6 @@ class TakimIslemleri : AppCompatActivity() {
 
                     startActivity(intentPuanTablosu2)
                     finish()
-
-                    //animation
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
                 }
@@ -101,8 +99,6 @@ class TakimIslemleri : AppCompatActivity() {
 
                     startActivity(intentPuanTablosu3)
                     finish()
-
-                    //animation
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
                 }
@@ -129,8 +125,6 @@ class TakimIslemleri : AppCompatActivity() {
 
                     startActivity(intentPuanTablosu4)
                     finish()
-
-                    //animation
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                 }
 
@@ -144,8 +138,6 @@ class TakimIslemleri : AppCompatActivity() {
             val intentMain = Intent(applicationContext, AnaMenu::class.java)
             startActivity(intentMain)
             finish()
-
-            //animation
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
@@ -223,8 +215,6 @@ class TakimIslemleri : AppCompatActivity() {
         val intentMain = Intent(applicationContext, AnaMenu::class.java)
         startActivity(intentMain)
         finish()
-
-        //animation
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 }

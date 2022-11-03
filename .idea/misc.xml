@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-hdpi/activity_puan_tablosu_2_kisi.xml" value="0.1721311475409836" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-hdpi/activity_puan_tablosu_3_kisi.xml" value="0.1721311475409836" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-hdpi/activity_puan_tablosu_4_kisi.xml" value="0.1721311475409836" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-hdpi/activity_takim_islemleri.xml" value="0.1721311475409836" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-land/activity_takim_islemleri.xml" value="0.21164021164021163" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-xhdpi/activity_puan_tablosu_2_kisi.xml" value="0.3387096774193548" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-xhdpi/activity_puan_tablosu_3_kisi.xml" value="0.3387096774193548" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-xhdpi/activity_puan_tablosu_4_kisi.xml" value="0.3387096774193548" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-xhdpi/activity_takim_islemleri.xml" value="0.3387096774193548" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-xxhdpi/activity_ana_menu.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-xxhdpi/activity_puan_tablosu_2_kisi.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-xxhdpi/activity_puan_tablosu_3_kisi.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-xxhdpi/activity_puan_tablosu_4_kisi.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-xxhdpi/activity_takim_islemleri.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-xxxhdpi/activity_puan_tablosu_2_kisi.xml" value="0.1721311475409836" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-xxxhdpi/activity_puan_tablosu_3_kisi.xml" value="0.1721311475409836" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-xxxhdpi/activity_puan_tablosu_4_kisi.xml" value="0.1721311475409836" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout-xxxhdpi/activity_takim_islemleri.xml" value="0.1721311475409836" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout/activity_ana_menu.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout/activity_puan_tablosu2_kisi.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout/activity_puan_tablosu3_kisi.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout/activity_puan_tablosu_2_kisi.xml" value="0.7325581395348837" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout/activity_puan_tablosu_3_kisi.xml" value="0.7325581395348837" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout/activity_puan_tablosu_4_kisi.xml" value="0.7325581395348837" />
-        <entry key="..\:/Users/mahmu/Desktop/OkeyPuanTablosu/app/src/main/res/layout/activity_takim_islemleri.xml" value="0.7325581395348837" />
-        <entry key="..\:/Users/mahmu/Documents/Projects/Okey Puan Tablosu/Okey-Puan-Tablosu/app/src/main/res/layout-hdpi/activity_ana_menu.xml" value="0.1721311475409836" />
-        <entry key="..\:/Users/mahmu/Documents/Projects/Okey Puan Tablosu/Okey-Puan-Tablosu/app/src/main/res/layout/activity_ana_menu.xml" value="0.5973837209302325" />
-      </map>
-    </option>
-  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

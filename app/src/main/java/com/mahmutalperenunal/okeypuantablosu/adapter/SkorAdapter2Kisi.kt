@@ -13,6 +13,7 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
     inner class SkorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var skor1 = view.findViewById<TextView>(R.id.skor1_text)!!
         var skor2 = view.findViewById<TextView>(R.id.skor2_text)!!
+        var number = view.findViewById<TextView>(R.id.gameNumber_2Kisi_text)!!
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkorViewHolder {
@@ -25,6 +26,7 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
         val newList = skorList2Kisi[position]
         holder.skor1.text = newList.oyuncu1_skor
         holder.skor2.text = newList.oyuncu2_skor
+        holder.number.text = newList.gameNumber.toString()
     }
 
     override fun getItemCount(): Int {

@@ -29,7 +29,7 @@
             android:text="@string/skorEkle_title"
             android:textColor="?android:attr/textColorPrimary"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -46,13 +46,13 @@
                 android:fontFamily="@font/comfortaa"
                 android:text="@string/oyuncu1_text"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:id="@+id/oyuncu1Skor_editTextLayout"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="20dp"
                 android:hint="@string/skor_editText"
@@ -67,7 +67,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/comfortaa"
-                    android:textSize="14sp"
                     android:textColorHint="?android:attr/textColorPrimary"
                     android:textColor="?android:attr/textColorPrimary"
                     android:inputType="numberSigned"
@@ -90,13 +89,13 @@
                 android:fontFamily="@font/comfortaa"
                 android:text="@string/oyuncu2_text"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:id="@+id/oyuncu2Skor_editTextLayout"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="20dp"
                 android:hint="@string/skor_editText"
@@ -111,7 +110,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/comfortaa"
-                    android:textSize="14sp"
                     android:textColorHint="?android:attr/textColorPrimary"
                     android:textColor="?android:attr/textColorPrimary"
                     android:inputType="numberSigned"
@@ -135,13 +133,13 @@
                 android:fontFamily="@font/comfortaa"
                 android:text="@string/oyuncu3_text"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:id="@+id/oyuncu3Skor_editTextLayout"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="20dp"
                 android:hint="@string/skor_editText"
@@ -156,7 +154,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/comfortaa"
-                    android:textSize="14sp"
                     android:textColorHint="?android:attr/textColorPrimary"
                     android:textColor="?android:attr/textColorPrimary"
                     android:inputType="numberSigned"
@@ -180,13 +177,13 @@
                 android:fontFamily="@font/comfortaa"
                 android:text="@string/oyuncu4_text"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:id="@+id/oyuncu4Skor_editTextLayout"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="20dp"
                 android:hint="@string/skor_editText"
@@ -201,7 +198,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/comfortaa"
-                    android:textSize="14sp"
                     android:textColorHint="?android:attr/textColorPrimary"
                     android:textColor="?android:attr/textColorPrimary"
                     android:inputType="numberSigned"

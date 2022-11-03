@@ -16,7 +16,7 @@
         android:text="@string/puanTablosu_title"
         android:textColor="?android:attr/textColorPrimary"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -35,8 +35,7 @@
             android:text="@string/oyuncu1_text"
             android:textAlignment="textEnd"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="16sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="30dp"
@@ -56,8 +55,7 @@
             android:text="@string/skor_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="16sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -77,8 +75,7 @@
             android:text="@string/oyuncu2_text"
             android:textAlignment="textEnd"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="16sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="30dp"
@@ -98,8 +95,7 @@
             android:text="@string/skor_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="16sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -119,8 +115,7 @@
             android:text="@string/oyuncu3_text"
             android:textAlignment="textEnd"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="16sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="30dp"
@@ -140,8 +135,7 @@
             android:text="@string/skor_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="16sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -161,8 +155,7 @@
             android:text="@string/oyuncu4_text"
             android:textAlignment="textEnd"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="16sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="30dp"
@@ -182,8 +175,7 @@
             android:text="@string/skor_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="16sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -197,8 +189,8 @@
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/cup"
             tools:ignore="ContentDescription" />
 
@@ -211,7 +203,7 @@
             android:fontFamily="@font/comfortaa"
             android:text="@string/kazananOyuncu_text"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
     </LinearLayout>

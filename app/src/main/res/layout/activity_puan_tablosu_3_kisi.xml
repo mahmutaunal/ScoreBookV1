@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".puantablosu.PuanTablosu4Kisi">
+    android:background="?attr/colorPrimary"
+    tools:context=".puantablosu.PuanTablosu3Kisi">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/yeniOyun_toolbar"
@@ -17,9 +18,9 @@
 
         <ImageView
             android:id="@+id/back_button"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="25dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="15dp"
             android:src="@drawable/back"
             android:background="?attr/selectableItemBackground"
             tools:ignore="ContentDescription" />
@@ -28,19 +29,45 @@
             android:id="@+id/baslik_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:fontFamily="@font/comfortaa"
-            android:layout_marginStart="10dp"
             android:text="@string/puanTablosu_topBar"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="14sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="18dp" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/comfortaa"
+            android:text="@string/text"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="18dp" />
+
+        <TextView
+            android:id="@+id/gameNumber_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/comfortaa"
+            android:text="@string/gameNumber_text"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="18sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="18dp" />
 
         <ImageView
             android:id="@+id/delete_icon"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_gravity="right"
             android:layout_marginEnd="20dp"
             android:src="@drawable/delete"
@@ -49,11 +76,21 @@
 
         <ImageView
             android:id="@+id/dice_icon"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_gravity="right"
             android:layout_marginEnd="20dp"
             android:src="@drawable/dice"
+            android:background="?attr/selectableItemBackground"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <ImageView
+            android:id="@+id/calculator_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/calculator"
             android:background="?attr/selectableItemBackground"
             tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -78,34 +115,31 @@
             android:text="@string/oyuncu1_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="12sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/oyuncu2_text"
             android:layout_width="92dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
             android:fontFamily="@font/comfortaa"
             android:text="@string/oyuncu2_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="12sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/oyuncu3_text"
             android:layout_width="92dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
             android:fontFamily="@font/comfortaa"
             android:text="@string/oyuncu3_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="12sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -128,34 +162,31 @@
             android:text="@string/anlikSkor_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="11sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/oyuncu2_anlikSkor"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="60dp"
             android:fontFamily="@font/comfortaa"
             android:text="@string/anlikSkor_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="11sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/oyuncu3_anlikSkor"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="60dp"
             android:fontFamily="@font/comfortaa"
             android:text="@string/anlikSkor_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="11sp"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -175,9 +206,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="105dp"
+        android:layout_marginTop="115dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="110dp"
+        android:layout_marginBottom="120dp"
         app:layout_constraintBottom_toTopOf="@+id/skorTablosu_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -212,7 +243,6 @@
         android:fontFamily="@font/comfortaa"
         android:text="@string/puanTablosu_text"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="11sp"
         app:cornerRadius="25dp"
         app:layout_constraintEnd_toStartOf="@+id/skorEkle_button"
         app:layout_constraintStart_toStartOf="parent"
@@ -229,7 +259,6 @@
         android:fontFamily="@font/comfortaa"
         android:text="@string/skorEkle_text"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="11sp"
         app:cornerRadius="25dp"
         app:layout_constraintEnd_toStartOf="@+id/oyunuBitir_button"
         app:layout_constraintStart_toEndOf="@+id/skorTablosu_button"
@@ -245,7 +274,6 @@
         android:fontFamily="@font/comfortaa"
         android:text="@string/oyunuBitir_text"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="11sp"
         app:cornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/skorEkle_button"

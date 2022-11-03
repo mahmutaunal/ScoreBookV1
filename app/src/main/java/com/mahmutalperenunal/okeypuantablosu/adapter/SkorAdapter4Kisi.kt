@@ -15,6 +15,7 @@ class SkorAdapter4Kisi(private val skorList4Kisi: ArrayList<SkorData4Kisi>) : Re
         var skor2 = view.findViewById<TextView>(R.id.skor2_text)!!
         var skor3 = view.findViewById<TextView>(R.id.skor3_text)!!
         var skor4 = view.findViewById<TextView>(R.id.skor4_text)!!
+        var number = view.findViewById<TextView>(R.id.gameNumber_4Kisi_text)!!
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkorViewHolder {
@@ -29,6 +30,7 @@ class SkorAdapter4Kisi(private val skorList4Kisi: ArrayList<SkorData4Kisi>) : Re
         holder.skor2.text = newList.oyuncu2_skor
         holder.skor3.text = newList.oyuncu3_skor
         holder.skor4.text = newList.oyuncu4_skor
+        holder.number.text = newList.gameNumber.toString()
     }
 
     override fun getItemCount(): Int {

@@ -7,11 +7,35 @@
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary">
 
+    <TextView
+        android:id="@+id/gameNumber_4Kisi_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/comfortaa"
+        android:layout_marginStart="10dp"
+        android:layout_gravity="center_vertical"
+        android:text="@string/number_text"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/comfortaa"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:text="-"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="16sp" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,61 +44,51 @@
 
         <TextView
             android:id="@+id/skor1_text"
-            android:layout_width="50dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa"
             android:text="@string/skor_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/skor2_text"
-            android:layout_width="50dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:fontFamily="@font/comfortaa"
             android:text="@string/skor_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/skor3_text"
-            android:layout_width="50dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:fontFamily="@font/comfortaa"
             android:text="@string/skor_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/skor4_text"
-            android:layout_width="50dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:fontFamily="@font/comfortaa"
             android:text="@string/skor_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/dark_gray"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.cardview.widget.CardView>

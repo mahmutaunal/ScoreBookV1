@@ -40,6 +40,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
     private var oyuncu1Skor: EditText? = null
     private var oyuncu2Skor: EditText? = null
 
+    private var gameNumber: Int = 1
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,7 +108,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
 
     //add score
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
     private fun skorEkle() {
 
         val inflater = LayoutInflater.from(this)
@@ -142,7 +144,11 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 val yeniAnlikSkor1 = oyuncu1Skor!!.text.toString()
                 val yeniAnlikSkor2 = oyuncu2Skor!!.text.toString()
 
-                skorList2Kisi.add(SkorData2Kisi(yeniAnlikSkor1, yeniAnlikSkor2))
+                skorList2Kisi.add(SkorData2Kisi(yeniAnlikSkor1, yeniAnlikSkor2, gameNumber))
+
+                gameNumber++
+
+                binding.gameNumberText.text = "$gameNumber. El"
 
                 skorCount++
 
@@ -273,8 +279,6 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             val intentTakimIslemleri = Intent(applicationContext, TakimIslemleri::class.java)
             startActivity(intentTakimIslemleri)
             finish()
-
-            //animation
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
             dialog.dismiss()
@@ -287,8 +291,6 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             val intentAnaMenu = Intent(applicationContext, AnaMenu::class.java)
             startActivity(intentAnaMenu)
             finish()
-
-            //animation
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
             dialog.dismiss()
@@ -308,7 +310,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
 
     //delete score
-    @SuppressLint("NotifyDataSetChanged", "InflateParams")
+    @SuppressLint("NotifyDataSetChanged", "InflateParams", "SetTextI18n")
     private fun delete() {
 
         if ( skorCount <= -1 ) {
@@ -332,6 +334,10 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                         dialog.dismiss()
                     }
                     else {
+
+                        gameNumber--
+
+                        binding.gameNumberText.text = "$gameNumber. El"
 
                         val sonucSkor1 = toplamSkor1.toInt() - sonSkor1.toInt()
                         val sonucSkor2 = toplamSkor2.toInt() - sonSkor2.toInt()
@@ -369,8 +375,6 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     dialog, _ ->
                 startActivity(intentMain)
                 finish()
-
-                //animation
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
                 dialog.dismiss()
@@ -405,6 +409,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
 
     //on back pressed turn back main menu
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         AlertDialog.Builder(this, R.style.CustomAlertDialog)
             .setTitle("Çıkış")
@@ -415,8 +420,6 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 val intentMain = Intent(applicationContext, AnaMenu::class.java)
                 startActivity(intentMain)
                 finish()
-
-                //animation
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
                 dialog.dismiss()
