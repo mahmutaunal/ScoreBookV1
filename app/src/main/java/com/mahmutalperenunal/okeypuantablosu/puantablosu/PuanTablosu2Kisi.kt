@@ -1,9 +1,12 @@
 package com.mahmutalperenunal.okeypuantablosu.puantablosu
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -43,6 +46,12 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
     private var gameNumber: Int = 1
 
+    private var clickCount: Int = 0
+
+    private var isSelected: Boolean = false
+
+    private lateinit var sharedPreferences: SharedPreferences
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,6 +83,9 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         binding.oyuncu2Text.text = oyuncu2Ad
 
 
+        sharedPreferences = getSharedPreferences("clickCount2Kisi", Context.MODE_PRIVATE)
+
+
         //set list
         skorList2Kisi = ArrayList()
 
@@ -86,6 +98,10 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         //set recyclerView adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = skorAdapter2Kisi
+
+
+        //edit process
+        editProcess()
 
 
         //set skorEkle dialog
@@ -377,28 +393,162 @@ class PuanTablosu2Kisi : AppCompatActivity() {
     }
 
 
+    //edit process
+    private fun editProcess() {
+        skorAdapter2Kisi.setOnItemLongClickListener(object : SkorAdapter2Kisi.OnItemLongClickListener {
+            @SuppressLint("SetTextI18n")
+            override fun onItemLongClick(position: Int) {
+
+                isSelected = sharedPreferences.getBoolean("selected", false)
+                clickCount = sharedPreferences.getInt("count", 0)
+
+                binding.baslikText.text = "1 İtem Seçili"
+                binding.text.visibility = View.GONE
+                binding.gameNumberText.visibility = View.GONE
+                binding.backButton.visibility = View.VISIBLE
+                binding.editIcon.visibility = View.VISIBLE
+                binding.deleteIcon.visibility = View.GONE
+                binding.diceIcon.visibility = View.GONE
+                binding.calculatorIcon.visibility = View.GONE
+
+                if (clickCount == 0) {
+
+                    if (oyunIsmi == "") {
+                        binding.baslikText.text = "Yeni Oyun"
+                    } else {
+                        binding.baslikText.text = "$oyunIsmi"
+                    }
+
+                    binding.text.visibility = View.VISIBLE
+                    binding.gameNumberText.visibility = View.VISIBLE
+                    binding.backButton.visibility = View.VISIBLE
+                    binding.editIcon.visibility = View.GONE
+                    binding.deleteIcon.visibility = View.VISIBLE
+                    binding.diceIcon.visibility = View.VISIBLE
+                    binding.calculatorIcon.visibility = View.VISIBLE
+                }
+
+                binding.editIcon.setOnClickListener {
+                    val selectedGameNumber = skorList2Kisi[position].gameNumber
+                    editScore(position, selectedGameNumber)
+                }
+
+            }
+        })
+    }
+
+
+    //edit score
+    @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
+    private fun editScore(position: Int, selectedGameNumber: Int) {
+
+        val inflater = LayoutInflater.from(this)
+        val view = inflater.inflate(R.layout.add_item_2_kisi, null)
+
+        //set selected score
+        val seciliSkor1 =  skorList2Kisi[position].oyuncu1_skor
+        val seciliSkor2 =  skorList2Kisi[position].oyuncu2_skor
+
+        //set oyuncuSkor view
+        val oyuncu1Skor = view.findViewById<EditText>(R.id.oyuncu1Skor_editText)
+        val oyuncu2Skor = view.findViewById<EditText>(R.id.oyuncu2Skor_editText)
+
+        //set player names
+        val oyuncu1Text = view.findViewById<TextView>(R.id.oyuncu1Ekle_textView)
+        val oyuncu2Text = view.findViewById<TextView>(R.id.oyuncu2Ekle_textView)
+
+        oyuncu1Text.text = oyuncu1Ad
+        oyuncu2Text.text = oyuncu2Ad
+
+        oyuncu1Skor.setText(seciliSkor1)
+        oyuncu2Skor.setText(seciliSkor2)
+
+        val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
+
+        addDialog.setView(view)
+        addDialog.setPositiveButton("Düzenle") {
+                dialog, _ ->
+
+            //if score not entered
+            if ( oyuncu1Skor!!.text.isEmpty() || oyuncu2Skor!!.text.isEmpty() ) {
+                Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+
+            //score entered
+            else {
+
+                //entered scores to arraylist
+                val yeniAnlikSkor1 = oyuncu1Skor.text.toString()
+                val yeniAnlikSkor2 = oyuncu2Skor.text.toString()
+
+                //set new score to arraylist
+                skorList2Kisi[position].oyuncu1_skor = yeniAnlikSkor1
+                skorList2Kisi[position].oyuncu2_skor = yeniAnlikSkor2
+                skorList2Kisi[position].gameNumber = selectedGameNumber
+
+                binding.gameNumberText.text = "$gameNumber. El"
+
+                skorCount++
+
+                //instant score
+                val eskiAnlikSkor1 = binding.oyuncu1AnlikSkor.text.toString()
+                val eskiAnlikSkor2 = binding.oyuncu2AnlikSkor.text.toString()
+
+                //sum entered score and instant score
+                val sonucEskiAnlikSkor1 = eskiAnlikSkor1.toInt() - seciliSkor1.toInt()
+                val sonucEskiAnlikSkor2 = eskiAnlikSkor2.toInt() - seciliSkor2.toInt()
+
+                val sonucYeniAnlikSkor1 = sonucEskiAnlikSkor1 + yeniAnlikSkor1.toInt()
+                val sonucYeniAnlikSkor2 = sonucEskiAnlikSkor2 + yeniAnlikSkor2.toInt()
+
+                binding.oyuncu1AnlikSkor.text = sonucYeniAnlikSkor1.toString()
+                binding.oyuncu2AnlikSkor.text = sonucYeniAnlikSkor2.toString()
+
+                skorAdapter2Kisi.notifyDataSetChanged()
+                dialog.dismiss()
+            }
+
+        }
+        addDialog.setNegativeButton("İptal Et") {
+                dialog, _ ->
+            dialog.dismiss()
+        }
+        addDialog.create()
+        addDialog.show()
+    }
+
+
     //exit main menu
     private fun exitMainMenu() {
 
-        val intentMain = Intent(applicationContext, AnaMenu::class.java)
+        if (!isSelected) {
 
-        AlertDialog.Builder(this, R.style.CustomAlertDialog)
-            .setTitle("Çıkış Yap")
-            .setMessage("Çıkış yapmak istediğinizden emin misiniz?")
-            .setPositiveButton("Kaydetmeden Çık") {
-                    dialog, _ ->
-                startActivity(intentMain)
-                finish()
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+            val intentMain = Intent(applicationContext, AnaMenu::class.java)
 
-                dialog.dismiss()
-            }
-            .setNegativeButton("İptal Et") {
-                    dialog, _ ->
-                dialog.dismiss()
-            }
-            .create()
-            .show()
+            AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                .setTitle("Çıkış Yap")
+                .setMessage("Çıkış yapmak istediğinizden emin misiniz?")
+                .setPositiveButton("Kaydetmeden Çık") {
+                        dialog, _ ->
+                    startActivity(intentMain)
+                    finish()
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+
+                    dialog.dismiss()
+                }
+                .setNegativeButton("İptal Et") {
+                        dialog, _ ->
+                    dialog.dismiss()
+                }
+                .create()
+                .show()
+
+        } else {
+
+            Toast.makeText(applicationContext, "Lütfen seçili skora basılı tutun!", Toast.LENGTH_SHORT).show()
+
+        }
 
     }
 
@@ -425,24 +575,34 @@ class PuanTablosu2Kisi : AppCompatActivity() {
     //on back pressed turn back main menu
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        AlertDialog.Builder(this, R.style.CustomAlertDialog)
-            .setTitle("Çıkış")
-            .setMessage("Oyundan çıkmak istediğinize emin misiniz?")
-            .setPositiveButton("Çıkış") {
-                    dialog, _ ->
 
-                val intentMain = Intent(applicationContext, AnaMenu::class.java)
-                startActivity(intentMain)
-                finish()
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        if (!isSelected) {
 
-                dialog.dismiss()
-            }
-            .setNegativeButton("İptal") {
-                    dialog, _ ->
-                dialog.dismiss()
-            }
-            .create()
-            .show()
+            AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                .setTitle("Çıkış")
+                .setMessage("Oyundan çıkmak istediğinize emin misiniz?")
+                .setPositiveButton("Çıkış") {
+                        dialog, _ ->
+
+                    val intentMain = Intent(applicationContext, AnaMenu::class.java)
+                    startActivity(intentMain)
+                    finish()
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+
+                    dialog.dismiss()
+                }
+                .setNegativeButton("İptal") {
+                        dialog, _ ->
+                    dialog.dismiss()
+                }
+                .create()
+                .show()
+
+        } else {
+
+            Toast.makeText(applicationContext, "Lütfen seçili skora basılı tutun!", Toast.LENGTH_SHORT).show()
+
+        }
+
     }
 }
