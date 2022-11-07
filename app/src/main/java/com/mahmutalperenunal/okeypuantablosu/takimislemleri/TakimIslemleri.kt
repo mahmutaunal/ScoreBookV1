@@ -1,11 +1,14 @@
 package com.mahmutalperenunal.okeypuantablosu.takimislemleri
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityTakimIslemleriBinding
 import com.mahmutalperenunal.okeypuantablosu.anamenu.AnaMenu
@@ -26,6 +29,13 @@ class TakimIslemleri : AppCompatActivity() {
 
     private var oyunIsmi: EditText? = null
 
+    private var redValue: Int = 0
+    private var blueValue: Int = 0
+    private var yellowValue: Int = 0
+    private var blackValue: Int = 0
+
+    private var isColorsValueEntered: Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +46,6 @@ class TakimIslemleri : AppCompatActivity() {
         MobileAds.initialize(this) {}
         val adRequest = AdRequest.Builder().build()
         binding.takimIslemleriAdView.loadAd(adRequest)
-
-        val intentPuanTablosu2 = Intent(applicationContext, PuanTablosu2Kisi::class.java)
-        val intentPuanTablosu3 = Intent(applicationContext, PuanTablosu3Kisi::class.java)
-        val intentPuanTablosu4 = Intent(applicationContext, PuanTablosu4Kisi::class.java)
 
         oyuncu1Ad = binding.oyuncu1EditText
         oyuncu2Ad = binding.oyuncu2EditText
@@ -54,16 +60,87 @@ class TakimIslemleri : AppCompatActivity() {
         oyunTuru()
 
         //navigate PuanTablosu Activity with number of player
-        binding.baslatButton.setOnClickListener {
+        binding.baslatButton.setOnClickListener { setColorValue() }
 
-            if ( oyuncuSayisi() == 2 ) {
 
-                //player name must be entered
-                if ( binding.oyuncu1EditText.text!!.isEmpty() || binding.oyuncu2EditText.text!!.isEmpty() ) {
-                    Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
-                }
+        //on back pressed turn back to main menu
+        binding.backButton.setOnClickListener {
+            val intentMain = Intent(applicationContext, AnaMenu::class.java)
+            startActivity(intentMain)
+            finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        }
 
-                else {
+    }
+
+
+    //set colors value
+    @SuppressLint("InflateParams")
+    private fun setColorValue() {
+        val inflater = LayoutInflater.from(this)
+        val view = inflater.inflate(R.layout.colors_value, null)
+
+        //set values
+        val redEditText = view.findViewById<EditText>(R.id.red_editText)
+        val blueEditText = view.findViewById<EditText>(R.id.blue_editText)
+        val yellowEditText = view.findViewById<EditText>(R.id.yellow_editText)
+        val blackEditText = view.findViewById<EditText>(R.id.black_editText)
+
+        val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
+
+        addDialog.setView(view)
+        addDialog.setPositiveButton("Başla") {
+                dialog, _ ->
+
+            if (redEditText.text.isEmpty() || blueEditText.text.isEmpty() || yellowEditText.text.isEmpty() || blackEditText.text.isEmpty()) {
+
+                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
+                isColorsValueEntered = false
+
+            } else {
+
+                redValue = redEditText.text.toString().toInt()
+                blueValue = blueEditText.text.toString().toInt()
+                yellowValue = yellowEditText.text.toString().toInt()
+                blackValue = blackEditText.text.toString().toInt()
+
+                isColorsValueEntered = true
+
+                startGame()
+
+            }
+
+                dialog.dismiss()
+        }
+        addDialog.setNegativeButton("İptal Et") {
+                dialog, _ ->
+
+            isColorsValueEntered = false
+
+            dialog.dismiss()
+        }
+        addDialog.create()
+        addDialog.show()
+    }
+
+
+    //start game
+    private fun startGame() {
+
+        val intentPuanTablosu2 = Intent(applicationContext, PuanTablosu2Kisi::class.java)
+        val intentPuanTablosu3 = Intent(applicationContext, PuanTablosu3Kisi::class.java)
+        val intentPuanTablosu4 = Intent(applicationContext, PuanTablosu4Kisi::class.java)
+
+        if ( oyuncuSayisi() == 2 ) {
+
+            //player name must be entered
+            if ( binding.oyuncu1EditText.text!!.isEmpty() || binding.oyuncu2EditText.text!!.isEmpty() ) {
+                Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+            }
+
+            else {
+
+                if (isColorsValueEntered) {
 
                     //send game name to PuanTablosu Activity
                     intentPuanTablosu2.putExtra("Oyun İsmi", oyunIsmi!!.text.toString())
@@ -71,6 +148,12 @@ class TakimIslemleri : AppCompatActivity() {
                     //send player names to PuanTablosu Activity
                     intentPuanTablosu2.putExtra("Oyuncu-1 Ad", oyuncu1Ad!!.text.toString())
                     intentPuanTablosu2.putExtra("Oyuncu-2 Ad", oyuncu2Ad!!.text.toString())
+
+                    //send colors value to PuanTablosu Activity
+                    intentPuanTablosu2.putExtra("Kırmızı Değer", redValue)
+                    intentPuanTablosu2.putExtra("Mavi Değer", blueValue)
+                    intentPuanTablosu2.putExtra("Sarı Değer", yellowValue)
+                    intentPuanTablosu2.putExtra("Siyah Değer", blackValue)
 
                     startActivity(intentPuanTablosu2)
                     finish()
@@ -80,14 +163,18 @@ class TakimIslemleri : AppCompatActivity() {
 
             }
 
-            else if ( oyuncuSayisi() == 3 ) {
+        }
 
-                //player name must be entered
-                if ( binding.oyuncu1EditText.text!!.isEmpty() || binding.oyuncu2EditText.text!!.isEmpty() || binding.oyuncu3EditText.text!!.isEmpty() ) {
-                    Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
-                }
+        else if ( oyuncuSayisi() == 3 ) {
 
-                else {
+            //player name must be entered
+            if ( binding.oyuncu1EditText.text!!.isEmpty() || binding.oyuncu2EditText.text!!.isEmpty() || binding.oyuncu3EditText.text!!.isEmpty() ) {
+                Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+            }
+
+            else {
+
+                if (isColorsValueEntered) {
 
                     //send game name to PuanTablosu Activity
                     intentPuanTablosu3.putExtra("Oyun İsmi", oyunIsmi!!.text.toString())
@@ -97,6 +184,12 @@ class TakimIslemleri : AppCompatActivity() {
                     intentPuanTablosu3.putExtra("Oyuncu-2 Ad", oyuncu2Ad!!.text.toString())
                     intentPuanTablosu3.putExtra("Oyuncu-3 Ad", oyuncu3Ad!!.text.toString())
 
+                    //send colors value to PuanTablosu Activity
+                    intentPuanTablosu3.putExtra("Kırmızı Değer", redValue)
+                    intentPuanTablosu3.putExtra("Mavi Değer", blueValue)
+                    intentPuanTablosu3.putExtra("Sarı Değer", yellowValue)
+                    intentPuanTablosu3.putExtra("Siyah Değer", blackValue)
+
                     startActivity(intentPuanTablosu3)
                     finish()
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
@@ -105,14 +198,18 @@ class TakimIslemleri : AppCompatActivity() {
 
             }
 
-            else if ( oyuncuSayisi() == 4 ) {
+        }
 
-                //player name must be entered
-                if ( binding.oyuncu1EditText.text!!.isEmpty() || binding.oyuncu2EditText.text!!.isEmpty() || binding.oyuncu3EditText.text!!.isEmpty() || binding.oyuncu4EditText.text!!.isEmpty() ) {
-                    Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
-                }
+        else if ( oyuncuSayisi() == 4 ) {
 
-                else {
+            //player name must be entered
+            if ( binding.oyuncu1EditText.text!!.isEmpty() || binding.oyuncu2EditText.text!!.isEmpty() || binding.oyuncu3EditText.text!!.isEmpty() || binding.oyuncu4EditText.text!!.isEmpty() ) {
+                Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+            }
+
+            else {
+
+                if (isColorsValueEntered) {
 
                     //send game name to PuanTablosu Activity
                     intentPuanTablosu4.putExtra("Oyun İsmi", oyunIsmi!!.text.toString())
@@ -123,22 +220,19 @@ class TakimIslemleri : AppCompatActivity() {
                     intentPuanTablosu4.putExtra("Oyuncu-3 Ad", oyuncu3Ad!!.text.toString())
                     intentPuanTablosu4.putExtra("Oyuncu-4 Ad", oyuncu4Ad!!.text.toString())
 
+                    //send colors value to PuanTablosu Activity
+                    intentPuanTablosu4.putExtra("Kırmızı Değer", redValue)
+                    intentPuanTablosu4.putExtra("Mavi Değer", blueValue)
+                    intentPuanTablosu4.putExtra("Sarı Değer", yellowValue)
+                    intentPuanTablosu4.putExtra("Siyah Değer", blackValue)
+
                     startActivity(intentPuanTablosu4)
                     finish()
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                }
 
+                }
             }
 
-        }
-
-
-        //on back pressed turn back to main menu
-        binding.backButton.setOnClickListener {
-            val intentMain = Intent(applicationContext, AnaMenu::class.java)
-            startActivity(intentMain)
-            finish()
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
     }
@@ -211,6 +305,7 @@ class TakimIslemleri : AppCompatActivity() {
 
 
     //on back pressed turn back to main menu
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         val intentMain = Intent(applicationContext, AnaMenu::class.java)
         startActivity(intentMain)

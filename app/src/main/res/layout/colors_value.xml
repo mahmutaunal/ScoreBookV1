@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa"
             android:layout_marginBottom="20dp"
-            android:text="@string/skorEkle_title"
+            android:text="@string/colorsValue_title"
             android:textColor="?android:attr/textColorPrimary"
             android:textAlignment="center"
             android:textSize="20sp"
@@ -35,62 +35,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:gravity="center"
             android:orientation="horizontal">
-
-                <RadioGroup
-                    android:id="@+id/colors_radioGroup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:id="@+id/noColor_radioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/light_gray"
-                        android:checked="true"
-                        android:minHeight="48dp"
-                        android:text="@string/noColor_text" />
-
-                    <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:id="@+id/red_radioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/red"
-                        android:minHeight="48dp"
-                        android:text="@string/red_text" />
-
-                    <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:id="@+id/blue_radioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/blue"
-                        android:minHeight="48dp"
-                        android:text="@string/blue_text" />
-
-                    <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:id="@+id/yellow_radioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/yellow"
-                        android:minHeight="48dp"
-                        android:text="@string/yellow_text" />
-
-                    <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:id="@+id/black_radioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/black"
-                        android:minHeight="48dp"
-                        android:text="@string/black_text" />
-
-                </RadioGroup>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -99,7 +52,7 @@
                     android:layout_gravity="center">
 
                     <TextView
-                        android:id="@+id/oyuncu1Ekle_textView"
+                        android:id="@+id/red_textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLength="11"
@@ -112,19 +65,19 @@
                         android:singleLine="true"
                         android:layout_gravity="end|center_vertical"
                         android:fontFamily="@font/comfortaa"
-                        android:text="@string/oyuncu1_text"
+                        android:text="@string/red_text"
                         android:textAlignment="textEnd"
                         android:textColor="?android:attr/textColorPrimary"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:id="@+id/oyuncu1Skor_editTextLayout"
+                        android:id="@+id/red_editTextLayout"
                         android:layout_width="100dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="20dp"
-                        android:hint="@string/skor_editText"
+                        android:hint="@string/value_editText"
                         app:endIconMode="clear_text"
                         app:boxBackgroundColor="@color/edittext_color"
                         app:boxStrokeColor="@color/teal_200"
@@ -132,7 +85,7 @@
                         android:importantForAutofill="no">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/oyuncu1Skor_editText"
+                            android:id="@+id/red_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
@@ -142,6 +95,7 @@
                             tools:ignore="TextContrastCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -151,7 +105,7 @@
                     android:layout_gravity="center">
 
                     <TextView
-                        android:id="@+id/oyuncu2Ekle_textView"
+                        android:id="@+id/blue_textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLength="11"
@@ -164,19 +118,19 @@
                         android:singleLine="true"
                         android:layout_gravity="end|center_vertical"
                         android:fontFamily="@font/comfortaa"
-                        android:text="@string/oyuncu2_text"
+                        android:text="@string/blue_text"
                         android:textAlignment="textEnd"
                         android:textColor="?android:attr/textColorPrimary"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:id="@+id/oyuncu2Skor_editTextLayout"
+                        android:id="@+id/blue_editTextLayout"
                         android:layout_width="100dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="20dp"
-                        android:hint="@string/skor_editText"
+                        android:hint="@string/value_editText"
                         app:endIconMode="clear_text"
                         app:boxBackgroundColor="@color/edittext_color"
                         app:boxStrokeColor="@color/teal_200"
@@ -184,7 +138,113 @@
                         android:importantForAutofill="no">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/oyuncu2Skor_editText"
+                            android:id="@+id/blue_editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa"
+                            android:inputType="numberSigned"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textColorHint="?android:attr/textColorPrimary"
+                            tools:ignore="TextContrastCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/yellow_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLength="11"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:layout_gravity="end|center_vertical"
+                        android:fontFamily="@font/comfortaa"
+                        android:text="@string/yellow_text"
+                        android:textAlignment="textEnd"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:id="@+id/yellow_editTextLayout"
+                        android:layout_width="100dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="20dp"
+                        android:hint="@string/value_editText"
+                        app:endIconMode="clear_text"
+                        app:boxBackgroundColor="@color/edittext_color"
+                        app:boxStrokeColor="@color/teal_200"
+                        app:hintTextColor="@color/teal_200"
+                        android:importantForAutofill="no">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/yellow_editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa"
+                            android:inputType="numberSigned"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textColorHint="?android:attr/textColorPrimary"
+                            tools:ignore="TextContrastCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/black_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLength="11"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:layout_gravity="end|center_vertical"
+                        android:fontFamily="@font/comfortaa"
+                        android:text="@string/black_text"
+                        android:textAlignment="textEnd"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:id="@+id/black_editTextLayout"
+                        android:layout_width="100dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="20dp"
+                        android:hint="@string/value_editText"
+                        app:endIconMode="clear_text"
+                        app:boxBackgroundColor="@color/edittext_color"
+                        app:boxStrokeColor="@color/teal_200"
+                        app:hintTextColor="@color/teal_200"
+                        android:importantForAutofill="no">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/black_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
@@ -196,73 +256,6 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/cross_linearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:visibility="gone"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/cross1_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/comfortaa"
-                    android:text="X"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/cross2_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="25dp"
-                    android:fontFamily="@font/comfortaa"
-                    android:text="X"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/multiply_linearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:visibility="gone"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/multiply1_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/comfortaa"
-                    android:text="1"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/multiply2_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/comfortaa"
-                    android:text="1"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="18sp" />
 
             </LinearLayout>
 

@@ -58,6 +58,11 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
     private var color: String = "White"
 
+    private var redValue: Int = 0
+    private var blueValue: Int = 0
+    private var yellowValue: Int = 0
+    private var blackValue: Int = 0
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,6 +92,12 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
         binding.oyuncu1Text.text = oyuncu1Ad
         binding.oyuncu2Text.text = oyuncu2Ad
+
+        //get colors value
+        redValue = intent.getIntExtra("Kırmızı Değer", 0)
+        blueValue = intent.getIntExtra("Mavi Değer", 0)
+        yellowValue = intent.getIntExtra("Sarı Değer", 0)
+        blackValue = intent.getIntExtra("Siyah Değer", 0)
 
 
         sharedPreferences = getSharedPreferences("clickCount2Kisi", MODE_PRIVATE)
@@ -188,7 +199,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             cross.visibility = View.VISIBLE
             multiply.visibility = View.VISIBLE
 
-            multiplyNumber = 4
+            multiplyNumber = redValue
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -202,7 +213,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             cross.visibility = View.VISIBLE
             multiply.visibility = View.VISIBLE
 
-            multiplyNumber = 3
+            multiplyNumber = blueValue
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -216,7 +227,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             cross.visibility = View.VISIBLE
             multiply.visibility = View.VISIBLE
 
-            multiplyNumber = 2
+            multiplyNumber = yellowValue
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -230,7 +241,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             cross.visibility = View.VISIBLE
             multiply.visibility = View.VISIBLE
 
-            multiplyNumber = 5
+            multiplyNumber = blackValue
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -610,7 +621,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 yellowButton.isChecked = false
                 blackButton.isChecked = false
 
-                multiplyNumber = 4
+                multiplyNumber = redValue
 
                 cross.visibility = View.VISIBLE
                 multiply.visibility = View.VISIBLE
@@ -630,7 +641,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 yellowButton.isChecked = false
                 blackButton.isChecked = false
 
-                multiplyNumber = 3
+                multiplyNumber = blueValue
 
                 cross.visibility = View.VISIBLE
                 multiply.visibility = View.VISIBLE
@@ -650,7 +661,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 blueButton.isChecked = false
                 blackButton.isChecked = false
 
-                multiplyNumber = 2
+                multiplyNumber = yellowValue
 
                 cross.visibility = View.VISIBLE
                 multiply.visibility = View.VISIBLE
@@ -670,7 +681,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 blueButton.isChecked = false
                 yellowButton.isChecked = false
 
-                multiplyNumber = 5
+                multiplyNumber = blackValue
 
                 cross.visibility = View.VISIBLE
                 multiply.visibility = View.VISIBLE
@@ -704,7 +715,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             cross.visibility = View.VISIBLE
             multiply.visibility = View.VISIBLE
 
-            multiplyNumber = 4
+            multiplyNumber = redValue
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -718,7 +729,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             cross.visibility = View.VISIBLE
             multiply.visibility = View.VISIBLE
 
-            multiplyNumber = 3
+            multiplyNumber = blueValue
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -732,7 +743,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             cross.visibility = View.VISIBLE
             multiply.visibility = View.VISIBLE
 
-            multiplyNumber = 2
+            multiplyNumber = yellowValue
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -746,7 +757,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             cross.visibility = View.VISIBLE
             multiply.visibility = View.VISIBLE
 
-            multiplyNumber = 5
+            multiplyNumber = blackValue
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()

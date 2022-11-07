@@ -51,4 +51,6 @@
     <string name="blue_text">Mavi</string>
     <string name="yellow_text">Sarı</string>
     <string name="black_text">Siyah</string>
+    <string name="colorsValue_title">Renk Değerleri</string>
+    <string name="value_editText">Değer</string>
 </resources>
