@@ -39,22 +39,24 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
                 tools:ignore="UselessParent">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
 
                     <TextView
                         android:id="@+id/red_textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="30dp"
                         android:maxLength="11"
                         android:maxLines="1"
                         android:ellipsize="marquee"
@@ -70,13 +72,82 @@
                         android:textColor="?android:attr/textColorPrimary"
                         android:textSize="16sp" />
 
+                    <TextView
+                        android:id="@+id/blue_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:maxLength="11"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:layout_gravity="end|center_vertical"
+                        android:fontFamily="@font/comfortaa"
+                        android:text="@string/blue_text"
+                        android:textAlignment="textEnd"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/yellow_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:maxLength="11"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:layout_gravity="end|center_vertical"
+                        android:fontFamily="@font/comfortaa"
+                        android:text="@string/yellow_text"
+                        android:textAlignment="textEnd"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/black_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:maxLength="11"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:layout_gravity="end|center_vertical"
+                        android:fontFamily="@font/comfortaa"
+                        android:text="@string/black_text"
+                        android:textAlignment="textEnd"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center">
+
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:id="@+id/red_editTextLayout"
                         android:layout_width="100dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="20dp"
                         android:hint="@string/value_editText"
                         app:endIconMode="clear_text"
                         app:boxBackgroundColor="@color/edittext_color"
@@ -96,40 +167,12 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
-
-                    <TextView
-                        android:id="@+id/blue_textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxLength="11"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:layout_gravity="end|center_vertical"
-                        android:fontFamily="@font/comfortaa"
-                        android:text="@string/blue_text"
-                        android:textAlignment="textEnd"
-                        android:textColor="?android:attr/textColorPrimary"
-                        android:textSize="16sp" />
-
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:id="@+id/blue_editTextLayout"
                         android:layout_width="100dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="20dp"
                         android:hint="@string/value_editText"
                         app:endIconMode="clear_text"
                         app:boxBackgroundColor="@color/edittext_color"
@@ -149,40 +192,12 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
-
-                    <TextView
-                        android:id="@+id/yellow_textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxLength="11"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:layout_gravity="end|center_vertical"
-                        android:fontFamily="@font/comfortaa"
-                        android:text="@string/yellow_text"
-                        android:textAlignment="textEnd"
-                        android:textColor="?android:attr/textColorPrimary"
-                        android:textSize="16sp" />
-
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:id="@+id/yellow_editTextLayout"
                         android:layout_width="100dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="20dp"
                         android:hint="@string/value_editText"
                         app:endIconMode="clear_text"
                         app:boxBackgroundColor="@color/edittext_color"
@@ -202,40 +217,12 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
-
-                    <TextView
-                        android:id="@+id/black_textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxLength="11"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:layout_gravity="end|center_vertical"
-                        android:fontFamily="@font/comfortaa"
-                        android:text="@string/black_text"
-                        android:textAlignment="textEnd"
-                        android:textColor="?android:attr/textColorPrimary"
-                        android:textSize="16sp" />
-
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:id="@+id/black_editTextLayout"
                         android:layout_width="100dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="20dp"
                         android:hint="@string/value_editText"
                         app:endIconMode="clear_text"
                         app:boxBackgroundColor="@color/edittext_color"
