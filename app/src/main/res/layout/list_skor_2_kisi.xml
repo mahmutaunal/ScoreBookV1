@@ -65,8 +65,17 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/color_background"
+        android:layout_width="20dp"
+        android:layout_height="25dp"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/white"
+        android:visibility="visible"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/skor2_selectIcon"

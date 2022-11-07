@@ -46,4 +46,9 @@
     <string name="gameNumber_text">1. El</string>
     <string name="number_text">1</string>
     <string name="calculator_text">Hesap Makinesi</string>
+    <string name="noColor_text">Renk Yok</string>
+    <string name="red_text">Kırmızı</string>
+    <string name="blue_text">Mavi</string>
+    <string name="yellow_text">Sarı</string>
+    <string name="black_text">Siyah</string>
 </resources>
