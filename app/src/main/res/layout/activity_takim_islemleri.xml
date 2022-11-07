@@ -42,6 +42,7 @@
         android:id="@+id/takimIslemleri_nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/takimIslemleri_adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/yeniOyun_toolbar">
@@ -55,256 +56,339 @@
                 android:id="@+id/takimIslemleri_cardView"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 app:cardCornerRadius="25dp"
-                android:layout_gravity="center_horizontal"
                 app:strokeColor="@color/teal_200"
                 app:strokeWidth="2dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/oyunIsmi_editTextLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="250dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:hint="@string/oyunIsmi_text"
-                    android:importantForAutofill="no"
-                    app:boxBackgroundColor="@color/edittext_color"
-                    app:boxStrokeColor="@color/teal_200"
-                    app:endIconMode="clear_text"
-                    app:hintTextColor="@color/teal_200"
-                    app:startIconDrawable="@drawable/ic_game">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/oyunIsmi_editText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/comfortaa"
-                        android:inputType="textCapSentences"
-                        android:textColor="?android:attr/textColorPrimary"
-                        android:textSize="14sp"
-                        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/oyuncu1_editTextLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="250dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="100dp"
-                    android:hint="@string/oyuncu1_text"
-                    android:importantForAutofill="no"
-                    app:boxBackgroundColor="@color/edittext_color"
-                    app:boxStrokeColor="@color/teal_200"
-                    app:endIconMode="clear_text"
-                    app:hintTextColor="@color/teal_200"
-                    app:startIconDrawable="@drawable/ic_user">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/oyuncu1_editText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/comfortaa"
-                        android:inputType="textCapSentences"
-                        android:textColor="?android:attr/textColorPrimary"
-                        android:textSize="14sp"
-                        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/oyuncu2_editTextLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="250dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="170dp"
-                    android:hint="@string/oyuncu2_text"
-                    android:importantForAutofill="no"
-                    app:boxBackgroundColor="@color/edittext_color"
-                    app:boxStrokeColor="@color/teal_200"
-                    app:endIconMode="clear_text"
-                    app:hintTextColor="@color/teal_200"
-                    app:startIconDrawable="@drawable/ic_user">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/oyuncu2_editText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/comfortaa"
-                        android:inputType="textCapSentences"
-                        android:textColor="?android:attr/textColorPrimary"
-                        android:textSize="14sp"
-                        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/oyuncu3_editTextLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="250dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="240dp"
-                    android:hint="@string/oyuncu3_text"
-                    android:importantForAutofill="no"
-                    app:boxBackgroundColor="@color/edittext_color"
-                    app:boxStrokeColor="@color/teal_200"
-                    app:endIconMode="clear_text"
-                    app:hintTextColor="@color/teal_200"
-                    app:startIconDrawable="@drawable/ic_user">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/oyuncu3_editText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/comfortaa"
-                        android:inputType="textCapSentences"
-                        android:textColor="?android:attr/textColorPrimary"
-                        android:textSize="14sp"
-                        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/oyuncu4_editTextLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="250dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="310dp"
-                    android:hint="@string/oyuncu4_text"
-                    android:importantForAutofill="no"
-                    app:boxBackgroundColor="@color/edittext_color"
-                    app:boxStrokeColor="@color/teal_200"
-                    app:endIconMode="clear_text"
-                    app:hintTextColor="@color/teal_200"
-                    app:startIconDrawable="@drawable/ic_user">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/oyuncu4_editText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/comfortaa"
-                        android:inputType="textCapSentences"
-                        android:textColor="?android:attr/textColorPrimary"
-                        android:textSize="14sp"
-                        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
                 <LinearLayout
-                    android:id="@+id/oyuncuSayisi_linearLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="390dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/comfortaa"
-                        android:text="@string/oyuncuSayisi_text"
-                        android:textColor="?android:attr/textColorPrimary"
-                        android:textSize="14sp" />
-
-                    <RadioGroup
-                        android:id="@+id/oyuncuSayisi_radioGroup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.radiobutton.MaterialRadioButton
-                            android:id="@+id/ikiOyunculu_radioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:fontFamily="@font/comfortaa"
-                            android:text="@string/ikiOyunculu_text"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:textSize="14sp"
-                            tools:ignore="TouchTargetSizeCheck" />
-
-                        <com.google.android.material.radiobutton.MaterialRadioButton
-                            android:id="@+id/ucOyunculu_radioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:fontFamily="@font/comfortaa"
-                            android:text="@string/ucOyunculu_text"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:textSize="14sp"
-                            tools:ignore="TouchTargetSizeCheck" />
-
-                        <com.google.android.material.radiobutton.MaterialRadioButton
-                            android:id="@+id/dortOyunculu_radioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:checked="true"
-                            android:fontFamily="@font/comfortaa"
-                            android:text="@string/dortOyunculu_text"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:textSize="14sp"
-                            tools:ignore="TouchTargetSizeCheck" />
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/oyunTuru_linearLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="420dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="20dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <TextView
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/oyunIsmi_editTextLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="250dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp"
+                        android:hint="@string/oyunIsmi_text"
+                        android:importantForAutofill="no"
+                        app:boxBackgroundColor="@color/edittext_color"
+                        app:boxStrokeColor="@color/teal_200"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/teal_200"
+                        app:startIconDrawable="@drawable/ic_game">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/oyunIsmi_editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa"
+                            android:inputType="textCapSentences"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/oyuncu1_editTextLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="250dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp"
+                        android:hint="@string/oyuncu1_text"
+                        android:importantForAutofill="no"
+                        app:boxBackgroundColor="@color/edittext_color"
+                        app:boxStrokeColor="@color/teal_200"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/teal_200"
+                        app:startIconDrawable="@drawable/ic_user">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/oyuncu1_editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa"
+                            android:inputType="textCapSentences"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/oyuncu2_editTextLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="250dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="@string/oyuncu2_text"
+                        android:importantForAutofill="no"
+                        app:boxBackgroundColor="@color/edittext_color"
+                        app:boxStrokeColor="@color/teal_200"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/teal_200"
+                        app:startIconDrawable="@drawable/ic_user">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/oyuncu2_editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa"
+                            android:inputType="textCapSentences"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/oyuncu3_editTextLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="250dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="@string/oyuncu3_text"
+                        android:importantForAutofill="no"
+                        app:boxBackgroundColor="@color/edittext_color"
+                        app:boxStrokeColor="@color/teal_200"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/teal_200"
+                        app:startIconDrawable="@drawable/ic_user">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/oyuncu3_editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa"
+                            android:inputType="textCapSentences"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/oyuncu4_editTextLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="250dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="@string/oyuncu4_text"
+                        android:importantForAutofill="no"
+                        app:boxBackgroundColor="@color/edittext_color"
+                        app:boxStrokeColor="@color/teal_200"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/teal_200"
+                        app:startIconDrawable="@drawable/ic_user">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/oyuncu4_editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa"
+                            android:inputType="textCapSentences"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/oyuncuSayisi_linearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/comfortaa"
-                        android:text="@string/oyunTuru_text"
-                        android:textColor="?android:attr/textColorPrimary"
-                        android:textSize="14sp" />
-
-                    <RadioGroup
-                        android:id="@+id/oyunTuru_radioGroup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center_horizontal"
                         android:orientation="horizontal">
 
-                        <com.google.android.material.radiobutton.MaterialRadioButton
-                            android:id="@+id/tekli_radioButton"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:checked="true"
+                            android:layout_gravity="center"
                             android:fontFamily="@font/comfortaa"
-                            android:minHeight="48dp"
-                            android:text="@string/tekli_text"
+                            android:text="@string/oyuncuSayisi_text"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="14sp" />
 
-                        <com.google.android.material.radiobutton.MaterialRadioButton
-                            android:id="@+id/esli_radioButton"
+                        <RadioGroup
+                            android:id="@+id/oyuncuSayisi_radioGroup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/ikiOyunculu_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/comfortaa"
+                                android:text="@string/ikiOyunculu_text"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="14sp"
+                                tools:ignore="TouchTargetSizeCheck" />
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/ucOyunculu_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/comfortaa"
+                                android:text="@string/ucOyunculu_text"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="14sp"
+                                tools:ignore="TouchTargetSizeCheck" />
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/dortOyunculu_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:checked="true"
+                                android:fontFamily="@font/comfortaa"
+                                android:text="@string/dortOyunculu_text"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="14sp"
+                                tools:ignore="TouchTargetSizeCheck" />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/oyuncuTuru_linearLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:fontFamily="@font/comfortaa"
-                            android:minHeight="48dp"
-                            android:text="@string/esli_text"
+                            android:text="@string/oyuncuTuru_text"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="14sp" />
 
-                    </RadioGroup>
+                        <RadioGroup
+                            android:id="@+id/oyuncuTuru_radioGroup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/tekli_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:checked="true"
+                                android:fontFamily="@font/comfortaa"
+                                android:minHeight="48dp"
+                                android:text="@string/tekli_text"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="14sp" />
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/esli_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/comfortaa"
+                                android:minHeight="48dp"
+                                android:text="@string/esli_text"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="14sp" />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/oyunTuru_linearLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/comfortaa"
+                            android:text="@string/oyunTuru_text"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp" />
+
+                        <RadioGroup
+                            android:id="@+id/oyunTuru_radioGroup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/sayidanDus_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/comfortaa"
+                                android:minHeight="48dp"
+                                android:text="@string/sayidanDus_text"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="14sp" />
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/sayiEKle_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:checked="true"
+                                android:fontFamily="@font/comfortaa"
+                                android:minHeight="48dp"
+                                android:text="@string/sayiEkle_text"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="14sp" />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/baslangicSayisi_editTextLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="250dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="@string/baslangicSayisi_text"
+                        android:importantForAutofill="no"
+                        android:visibility="gone"
+                        app:boxBackgroundColor="@color/edittext_color"
+                        app:boxStrokeColor="@color/teal_200"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/teal_200">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/baslangicSayisi_editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa"
+                            android:inputType="number"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -314,8 +398,9 @@
                 android:id="@+id/baslat_button"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="30dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/comfortaa"
                 android:text="@string/basla"
                 android:textColor="?android:attr/textColorPrimary"

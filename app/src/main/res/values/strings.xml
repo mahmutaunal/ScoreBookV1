@@ -53,4 +53,8 @@
     <string name="black_text">Siyah</string>
     <string name="colorsValue_title">Renk Değerleri</string>
     <string name="value_editText">Değer</string>
+    <string name="oyuncuTuru_text">Oyuncu Şekli</string>
+    <string name="sayidanDus_text">Sayıdan Düş</string>
+    <string name="sayiEkle_text">Sayı Ekle</string>
+    <string name="baslangicSayisi_text">Başlangıç Sayısı</string>
 </resources>

@@ -1,11 +1,13 @@
 package com.mahmutalperenunal.okeypuantablosu.anamenu
 
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -46,6 +48,9 @@ class AnaMenu : AppCompatActivity() {
 
     private val UPDATE_CODE = 22
 
+    private var themeCode: Int = 0
+    private var themeName: String = ""
+
 
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +73,9 @@ class AnaMenu : AppCompatActivity() {
         //review manager
         activateReviewInfo()
 
+        //check last theme
+        checkLastTheme()
+
         //navigate TakimIsimleri Activity
         binding.yeniOyunButton.setOnClickListener {
             val intentTakimIslemleri = Intent(applicationContext, TakimIslemleri::class.java)
@@ -83,7 +91,20 @@ class AnaMenu : AppCompatActivity() {
                 .setMessage("Bu uygulama ile herhangi bir okey oyunundaki puan tablonuzu tutabilirsiniz ve daha sonra bakmak veya devam etmek için kaydedebilirsiniz.")
                 .setPositiveButton("Derecelendir") {
                         dialog, _ ->
+
                     startReviewFlow()
+
+                    dialog.dismiss()
+                }
+                .setNeutralButton("Geliştirici") {
+                    dialog, _ ->
+
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Mahmut+Alperen+%C3%9Cnal")))
+                    } catch (e: ActivityNotFoundException) {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Mahmut+Alperen+%C3%9Cnal")))
+                    }
+
                     dialog.dismiss()
                 }
                 .setNegativeButton("İptal") {
@@ -99,8 +120,8 @@ class AnaMenu : AppCompatActivity() {
         binding.darkModeIcon.setOnClickListener {
 
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                .setTitle("Uygulama Tema")
-                .setMessage("Uygulama temasını seçiniz.")
+                .setTitle("Uygulama Teması")
+                .setMessage("Uygulama temasını seçiniz.\n\nMevcut tema: $themeName")
                 .setPositiveButton(
                     "Açık"
                 ) { _: DialogInterface?, _: Int ->
@@ -130,6 +151,18 @@ class AnaMenu : AppCompatActivity() {
                 }
                 .show()
 
+        }
+    }
+
+
+    //check last theme
+    private fun checkLastTheme() {
+        themeCode = sharedPreferencesTheme.getInt("theme", 0)
+
+        when (themeCode) {
+            -1 -> themeName = "Sistem Teması"
+            1 -> themeName = "Açık"
+            2 -> themeName = "Koyu"
         }
     }
 

@@ -36,6 +36,10 @@ class TakimIslemleri : AppCompatActivity() {
 
     private var isColorsValueEntered: Boolean = false
 
+    private var gameType: String = "Sayı Ekle"
+
+    private var firstNumber: EditText? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +58,12 @@ class TakimIslemleri : AppCompatActivity() {
 
         oyunIsmi = binding.oyunIsmiEditText
 
+        firstNumber = binding.baslangicSayisiEditText
+
         oyuncuSayisiVisibility()
         oyuncuSayisi()
-        oyunTuruneGoreTakimBelirleme()
+        oyuncuTuruneGoreTakimBelirleme()
+        oyuncuTuru()
         oyunTuru()
 
         //navigate PuanTablosu Activity with number of player
@@ -155,6 +162,10 @@ class TakimIslemleri : AppCompatActivity() {
                     intentPuanTablosu2.putExtra("Sarı Değer", yellowValue)
                     intentPuanTablosu2.putExtra("Siyah Değer", blackValue)
 
+                    //send game type and first number
+                    intentPuanTablosu2.putExtra("Oyun Türü", gameType)
+                    intentPuanTablosu2.putExtra("Başlangıç Sayısı", firstNumber!!.text.toString())
+
                     startActivity(intentPuanTablosu2)
                     finish()
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
@@ -189,6 +200,10 @@ class TakimIslemleri : AppCompatActivity() {
                     intentPuanTablosu3.putExtra("Mavi Değer", blueValue)
                     intentPuanTablosu3.putExtra("Sarı Değer", yellowValue)
                     intentPuanTablosu3.putExtra("Siyah Değer", blackValue)
+
+                    //send game type and first number
+                    intentPuanTablosu2.putExtra("Oyun Türü", gameType)
+                    intentPuanTablosu2.putExtra("Başlangıç Sayısı", firstNumber!!.text.toString())
 
                     startActivity(intentPuanTablosu3)
                     finish()
@@ -225,6 +240,10 @@ class TakimIslemleri : AppCompatActivity() {
                     intentPuanTablosu4.putExtra("Mavi Değer", blueValue)
                     intentPuanTablosu4.putExtra("Sarı Değer", yellowValue)
                     intentPuanTablosu4.putExtra("Siyah Değer", blackValue)
+
+                    //send game type and first number
+                    intentPuanTablosu2.putExtra("Oyun Türü", gameType)
+                    intentPuanTablosu2.putExtra("Başlangıç Sayısı", firstNumber!!.text.toString())
 
                     startActivity(intentPuanTablosu4)
                     finish()
@@ -275,7 +294,7 @@ class TakimIslemleri : AppCompatActivity() {
 
 
     //control of game type
-    private fun oyunTuru(): String {
+    private fun oyuncuTuru(): String {
 
         return if ( binding.tekliRadioButton.isChecked ) {
             "Tekli"
@@ -286,7 +305,7 @@ class TakimIslemleri : AppCompatActivity() {
 
 
     //change hint font
-    private fun oyunTuruneGoreTakimBelirleme() {
+    private fun oyuncuTuruneGoreTakimBelirleme() {
 
         binding.tekliRadioButton.setOnClickListener {
             binding.oyuncu1EditText.hint = "Oyuncu 1"
@@ -300,6 +319,22 @@ class TakimIslemleri : AppCompatActivity() {
             binding.oyuncu2EditText.hint = "Oyuncu 2 (Takım-1)"
             binding.oyuncu3EditText.hint = "Oyuncu 3 (Takım-2)"
             binding.oyuncu4EditText.hint = "Oyuncu 4 (Takım-2)"
+        }
+    }
+
+
+    //set game type
+    @SuppressLint("SetTextI18n")
+    private fun oyunTuru() {
+        binding.sayidanDusRadioButton.setOnClickListener {
+            gameType = "Sayıdan Düş"
+            binding.baslangicSayisiEditTextLayout.visibility = View.VISIBLE
+        }
+
+        binding.sayiEKleRadioButton.setOnClickListener {
+            gameType = "Sayı Ekle"
+            binding.baslangicSayisiEditTextLayout.visibility = View.GONE
+            firstNumber!!.setText("0000")
         }
     }
 
