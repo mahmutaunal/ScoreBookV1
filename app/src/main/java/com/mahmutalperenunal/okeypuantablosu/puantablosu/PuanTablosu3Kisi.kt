@@ -8,9 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,6 +52,19 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
     private lateinit var sharedPreferences: SharedPreferences
 
+    private var multiplyNumber: Int = 1
+
+    private var color: String = "White"
+
+    private var redValue: Int = 0
+    private var blueValue: Int = 0
+    private var yellowValue: Int = 0
+    private var blackValue: Int = 0
+
+    private var gameType: String = "Sayı Ekle"
+
+    private var firstNumber: String = "0000"
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,7 +96,28 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         binding.oyuncu2Text.text = oyuncu2Ad
         binding.oyuncu3Text.text = oyuncu3Ad
 
+        //get colors value
+        redValue = intent.getIntExtra("Kırmızı Değer", 0)
+        blueValue = intent.getIntExtra("Mavi Değer", 0)
+        yellowValue = intent.getIntExtra("Sarı Değer", 0)
+        blackValue = intent.getIntExtra("Siyah Değer", 0)
 
+        //get game type and first number
+        gameType = intent.getStringExtra("Oyun Türü").toString()
+        firstNumber = intent.getStringExtra("Başlangıç Sayısı").toString()
+
+        if (firstNumber.isEmpty()) {
+            binding.oyuncu1AnlikSkor.text = "0000"
+            binding.oyuncu2AnlikSkor.text = "0000"
+            binding.oyuncu3AnlikSkor.text = "0000"
+        } else {
+            binding.oyuncu1AnlikSkor.text = firstNumber
+            binding.oyuncu2AnlikSkor.text = firstNumber
+            binding.oyuncu3AnlikSkor.text = firstNumber
+        }
+
+
+        //get click count
         sharedPreferences = getSharedPreferences("clickCount3Kisi", Context.MODE_PRIVATE)
 
 
@@ -110,9 +142,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         //set skorEkle dialog
         binding.skorEkleButton.setOnClickListener { skorEkle() }
 
-        //set delete dialog
-        binding.deleteIcon.setOnClickListener { delete() }
-
         //set puanTablosu dialog
         binding.skorTablosuButton.setOnClickListener { puanTablosu() }
 
@@ -131,11 +160,22 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
 
     //add score
-    @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
+    @SuppressLint("NotifyDataSetChanged", "SetTextI18n", "InflateParams")
     private fun skorEkle() {
+
+        multiplyNumber = 1
 
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.add_item_3_kisi, null)
+        val view2 = inflater.inflate(R.layout.list_skor_3_kisi, null)
+
+        //set selected color
+        val colorBackground = view2.findViewById<TextView>(R.id.color_background)
+
+        colorBackground.text = ""
+        colorBackground.setTextColor(resources.getColor(R.color.white))
+
+        color = "White"
 
         //set oyuncuSkor view
         oyuncu1Skor = view.findViewById(R.id.oyuncu1Skor_editText)
@@ -146,6 +186,96 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         val oyuncu1Text = view.findViewById<TextView>(R.id.oyuncu1Ekle_textView)
         val oyuncu2Text = view.findViewById<TextView>(R.id.oyuncu2Ekle_textView)
         val oyuncu3Text = view.findViewById<TextView>(R.id.oyuncu3Ekle_textView)
+
+        //set colors
+        val noColorButton = view.findViewById<RadioButton>(R.id.noColor_radioButton)
+        val redButton = view.findViewById<RadioButton>(R.id.red_radioButton)
+        val blueButton = view.findViewById<RadioButton>(R.id.blue_radioButton)
+        val yellowButton = view.findViewById<RadioButton>(R.id.yellow_radioButton)
+        val blackButton = view.findViewById<RadioButton>(R.id.black_radioButton)
+
+        //set multiply
+        val cross = view.findViewById<LinearLayout>(R.id.cross_linearLayout)
+        val multiply = view.findViewById<LinearLayout>(R.id.multiply_linearLayout)
+
+        val multiply1 = view.findViewById<TextView>(R.id.multiply1_text)
+        val multiply2 = view.findViewById<TextView>(R.id.multiply2_text)
+
+        //set visibility
+        noColorButton.setOnClickListener {
+            cross.visibility = View.GONE
+            multiply.visibility = View.GONE
+
+            multiplyNumber = 1
+
+            multiply1.text = multiplyNumber.toString()
+            multiply2.text = multiplyNumber.toString()
+
+            colorBackground.text = ""
+            colorBackground.setTextColor(resources.getColor(R.color.white))
+
+            color = "White"
+        }
+
+        redButton.setOnClickListener {
+            cross.visibility = View.VISIBLE
+            multiply.visibility = View.VISIBLE
+
+            multiplyNumber = redValue
+
+            multiply1.text = multiplyNumber.toString()
+            multiply2.text = multiplyNumber.toString()
+
+            colorBackground.text = "K"
+            colorBackground.setTextColor(resources.getColor(R.color.red))
+
+            color = "Red"
+        }
+
+        blueButton.setOnClickListener {
+            cross.visibility = View.VISIBLE
+            multiply.visibility = View.VISIBLE
+
+            multiplyNumber = blueValue
+
+            multiply1.text = multiplyNumber.toString()
+            multiply2.text = multiplyNumber.toString()
+
+            colorBackground.text = "M"
+            colorBackground.setTextColor(resources.getColor(R.color.blue))
+
+            color = "Blue"
+        }
+
+        yellowButton.setOnClickListener {
+            cross.visibility = View.VISIBLE
+            multiply.visibility = View.VISIBLE
+
+            multiplyNumber = yellowValue
+
+            multiply1.text = multiplyNumber.toString()
+            multiply2.text = multiplyNumber.toString()
+
+            colorBackground.text = "S"
+            colorBackground.setTextColor(resources.getColor(R.color.yellow))
+
+            color = "Yellow"
+        }
+
+        blackButton.setOnClickListener {
+            cross.visibility = View.VISIBLE
+            multiply.visibility = View.VISIBLE
+
+            multiplyNumber = blackValue
+
+            multiply1.text = multiplyNumber.toString()
+            multiply2.text = multiplyNumber.toString()
+
+            colorBackground.text = "S"
+            colorBackground.setTextColor(resources.getColor(R.color.black))
+
+            color = "Black"
+        }
 
         oyuncu1Text.text = oyuncu1Ad
         oyuncu2Text.text = oyuncu2Ad
@@ -166,34 +296,84 @@ class PuanTablosu3Kisi : AppCompatActivity() {
             //score entered
             else {
 
-                //entered scores to arraylist
-                val yeniAnlikSkor1 = oyuncu1Skor!!.text.toString()
-                val yeniAnlikSkor2 = oyuncu2Skor!!.text.toString()
-                val yeniAnlikSkor3 = oyuncu3Skor!!.text.toString()
+                if (gameType == "Sayı Ekle") {
 
-                skorList3Kisi.add(SkorData3Kisi(yeniAnlikSkor1, yeniAnlikSkor2, yeniAnlikSkor3, gameNumber))
+                    //entered scores to arraylist
+                    val yeniAnlikSkor1 = oyuncu1Skor!!.text.toString()
+                    val yeniAnlikSkor2 = oyuncu2Skor!!.text.toString()
+                    val yeniAnlikSkor3 = oyuncu3Skor!!.text.toString()
 
-                gameNumber++
+                    val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
+                    val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
+                    val yeniAnlikSkor3Multiply = yeniAnlikSkor3.toInt() * multiplyNumber
 
-                binding.gameNumberText.text = "$gameNumber. El"
+                    skorList3Kisi.add(SkorData3Kisi(yeniAnlikSkor1, yeniAnlikSkor2, yeniAnlikSkor3, gameNumber, color))
 
-                skorCount++
+                    gameNumber++
 
-                //instant scores
-                val eskiAnlikSkor1 = binding.oyuncu1AnlikSkor.text.toString()
-                val eskiAnlikSkor2 = binding.oyuncu2AnlikSkor.text.toString()
-                val eskiAnlikSkor3 = binding.oyuncu3AnlikSkor.text.toString()
+                    binding.gameNumberText.text = "$gameNumber. El"
 
-                //sum of entered scores and instant scores
-                val sonucAnlikSkor1 = yeniAnlikSkor1.toInt() + eskiAnlikSkor1.toInt()
-                val sonucAnlikSkor2 = yeniAnlikSkor2.toInt() + eskiAnlikSkor2.toInt()
-                val sonucAnlikSkor3 = yeniAnlikSkor3.toInt() + eskiAnlikSkor3.toInt()
+                    skorCount++
 
-                binding.oyuncu1AnlikSkor.text = sonucAnlikSkor1.toString()
-                binding.oyuncu2AnlikSkor.text = sonucAnlikSkor2.toString()
-                binding.oyuncu3AnlikSkor.text = sonucAnlikSkor3.toString()
+                    //instant scores
+                    val eskiAnlikSkor1 = binding.oyuncu1AnlikSkor.text.toString()
+                    val eskiAnlikSkor2 = binding.oyuncu2AnlikSkor.text.toString()
+                    val eskiAnlikSkor3 = binding.oyuncu3AnlikSkor.text.toString()
 
-                skorAdapter3Kisi.notifyDataSetChanged()
+                    //sum of entered scores and instant scores
+                    val sonucAnlikSkor1 = yeniAnlikSkor1Multiply + eskiAnlikSkor1.toInt()
+                    val sonucAnlikSkor2 = yeniAnlikSkor2Multiply + eskiAnlikSkor2.toInt()
+                    val sonucAnlikSkor3 = yeniAnlikSkor3Multiply + eskiAnlikSkor3.toInt()
+
+                    binding.oyuncu1AnlikSkor.text = sonucAnlikSkor1.toString()
+                    binding.oyuncu2AnlikSkor.text = sonucAnlikSkor2.toString()
+                    binding.oyuncu3AnlikSkor.text = sonucAnlikSkor3.toString()
+
+                    skorAdapter3Kisi.notifyDataSetChanged()
+
+                } else {
+
+                    //entered scores to arraylist
+                    val yeniAnlikSkor1 = oyuncu1Skor!!.text.toString()
+                    val yeniAnlikSkor2 = oyuncu2Skor!!.text.toString()
+                    val yeniAnlikSkor3 = oyuncu3Skor!!.text.toString()
+
+                    val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
+                    val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
+                    val yeniAnlikSkor3Multiply = yeniAnlikSkor3.toInt() * multiplyNumber
+
+                    skorList3Kisi.add(SkorData3Kisi(yeniAnlikSkor1, yeniAnlikSkor2, yeniAnlikSkor3, gameNumber, color))
+
+                    gameNumber++
+
+                    binding.gameNumberText.text = "$gameNumber. El"
+
+                    skorCount++
+
+                    //instant scores
+                    val eskiAnlikSkor1 = binding.oyuncu1AnlikSkor.text.toString()
+                    val eskiAnlikSkor2 = binding.oyuncu2AnlikSkor.text.toString()
+                    val eskiAnlikSkor3 = binding.oyuncu3AnlikSkor.text.toString()
+
+                    //sum of entered scores and instant scores
+                    val sonucAnlikSkor1 = eskiAnlikSkor1.toInt() - yeniAnlikSkor1Multiply
+                    val sonucAnlikSkor2 = eskiAnlikSkor2.toInt() - yeniAnlikSkor2Multiply
+                    val sonucAnlikSkor3 = eskiAnlikSkor3.toInt() - yeniAnlikSkor3Multiply
+
+                    binding.oyuncu1AnlikSkor.text = sonucAnlikSkor1.toString()
+                    binding.oyuncu2AnlikSkor.text = sonucAnlikSkor2.toString()
+                    binding.oyuncu3AnlikSkor.text = sonucAnlikSkor3.toString()
+
+                    skorAdapter3Kisi.notifyDataSetChanged()
+
+                }
+
+                val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
+                val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
+                val score3 = binding.oyuncu3AnlikSkor.text.toString().toInt()
+
+                if (gameType == "Sayıdan Düş") { if (score1 <= 0 || score2 <= 0 || score3 <= 0) { kazananTakim() } }
+
                 dialog.dismiss()
             }
 
@@ -369,57 +549,118 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
     //delete score
     @SuppressLint("NotifyDataSetChanged", "InflateParams", "SetTextI18n")
-    private fun delete() {
+    private fun delete(position: Int) {
 
         if ( skorCount <= -1 ) {
             Toast.makeText(this, "Silinecek herhangi bir el yok!", Toast.LENGTH_SHORT).show()
         }
 
         else {
-            val sonSkor1 = oyuncu1Skor!!.text.toString()
-            val sonSkor2 = oyuncu2Skor!!.text.toString()
-            val sonSkor3 = oyuncu3Skor!!.text.toString()
 
-            val toplamSkor1 = binding.oyuncu1AnlikSkor.text.toString()
-            val toplamSkor2 = binding.oyuncu2AnlikSkor.text.toString()
-            val toplamSkor3 = binding.oyuncu3AnlikSkor.text.toString()
+            if (gameType == "Sayı Ekle") {
 
-            AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                .setTitle("Son Eli Sil")
-                .setMessage("Son eli silmek istediğinizden emin misiniz?")
-                .setPositiveButton("Sil") {
-                        dialog, _ ->
-                    if(skorCount <= -1) {
-                        Toast.makeText(this, "Silinecek herhangi bir el yok.", Toast.LENGTH_SHORT).show()
+                val toplamSkor1 = binding.oyuncu1AnlikSkor.text.toString()
+                val toplamSkor2 = binding.oyuncu2AnlikSkor.text.toString()
+                val toplamSkor3 = binding.oyuncu3AnlikSkor.text.toString()
+
+                AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                    .setTitle("Son Eli Sil")
+                    .setMessage("Son eli silmek istediğinizden emin misiniz?")
+                    .setPositiveButton("Sil") {
+                            dialog, _ ->
+                        if(skorCount <= -1) {
+                            Toast.makeText(this, "Silinecek herhangi bir el yok.", Toast.LENGTH_SHORT).show()
+                            dialog.dismiss()
+                        }
+                        else {
+
+                            gameNumber--
+
+                            binding.gameNumberText.text = "$gameNumber. El"
+
+                            val sonucSkor1 = toplamSkor1.toInt() - skorList3Kisi[position].oyuncu1_skor.toInt()
+                            val sonucSkor2 = toplamSkor2.toInt() - skorList3Kisi[position].oyuncu2_skor.toInt()
+                            val sonucSkor3 = toplamSkor3.toInt() - skorList3Kisi[position].oyuncu3_skor.toInt()
+
+                            binding.oyuncu1AnlikSkor.text = sonucSkor1.toString()
+                            binding.oyuncu2AnlikSkor.text = sonucSkor2.toString()
+                            binding.oyuncu3AnlikSkor.text = sonucSkor3.toString()
+
+                            skorList3Kisi.removeAt(skorCount)
+
+                            skorCount--
+
+                            skorAdapter3Kisi.notifyDataSetChanged()
+
+                            val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
+                            val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
+                            val score3 = binding.oyuncu3AnlikSkor.text.toString().toInt()
+
+                            if (gameType == "Sayıdan Düş") { if (score1 <= 0 || score2 <= 0 || score3 <= 0) { kazananTakim() } }
+
+                            dialog.dismiss()
+                        }
+                    }
+                    .setNegativeButton("İptal Et") {
+                            dialog, _ ->
                         dialog.dismiss()
                     }
-                    else {
+                    .create()
+                    .show()
 
-                        gameNumber--
+            } else {
 
-                        binding.gameNumberText.text = "$gameNumber. El"
+                val toplamSkor1 = binding.oyuncu1AnlikSkor.text.toString()
+                val toplamSkor2 = binding.oyuncu2AnlikSkor.text.toString()
+                val toplamSkor3 = binding.oyuncu3AnlikSkor.text.toString()
 
-                        val sonucSkor1 = toplamSkor1.toInt() - sonSkor1.toInt()
-                        val sonucSkor2 = toplamSkor2.toInt() - sonSkor2.toInt()
-                        val sonucSkor3 = toplamSkor3.toInt() - sonSkor3.toInt()
+                AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                    .setTitle("Son Eli Sil")
+                    .setMessage("Son eli silmek istediğinizden emin misiniz?")
+                    .setPositiveButton("Sil") {
+                            dialog, _ ->
+                        if(skorCount <= -1) {
+                            Toast.makeText(this, "Silinecek herhangi bir el yok.", Toast.LENGTH_SHORT).show()
+                            dialog.dismiss()
+                        }
+                        else {
 
-                        binding.oyuncu1AnlikSkor.text = sonucSkor1.toString()
-                        binding.oyuncu2AnlikSkor.text = sonucSkor2.toString()
-                        binding.oyuncu3AnlikSkor.text = sonucSkor3.toString()
+                            gameNumber--
 
-                        skorList3Kisi.removeAt(skorCount)
-                        skorCount--
+                            binding.gameNumberText.text = "$gameNumber. El"
 
-                        skorAdapter3Kisi.notifyDataSetChanged()
+                            val sonucSkor1 = toplamSkor1.toInt() + skorList3Kisi[position].oyuncu1_skor.toInt()
+                            val sonucSkor2 = toplamSkor2.toInt() + skorList3Kisi[position].oyuncu2_skor.toInt()
+                            val sonucSkor3 = toplamSkor3.toInt() + skorList3Kisi[position].oyuncu3_skor.toInt()
+
+                            binding.oyuncu1AnlikSkor.text = sonucSkor1.toString()
+                            binding.oyuncu2AnlikSkor.text = sonucSkor2.toString()
+                            binding.oyuncu3AnlikSkor.text = sonucSkor3.toString()
+
+                            skorList3Kisi.removeAt(skorCount)
+
+                            skorCount--
+
+                            skorAdapter3Kisi.notifyDataSetChanged()
+
+                            val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
+                            val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
+                            val score3 = binding.oyuncu3AnlikSkor.text.toString().toInt()
+
+                            if (gameType == "Sayıdan Düş") { if (score1 <= 0 || score2 <= 0 || score3 <= 0) { kazananTakim() } }
+
+                            dialog.dismiss()
+                        }
+                    }
+                    .setNegativeButton("İptal Et") {
+                            dialog, _ ->
                         dialog.dismiss()
                     }
-                }
-                .setNegativeButton("İptal Et") {
-                        dialog, _ ->
-                    dialog.dismiss()
-                }
-                .create()
-                .show()
+                    .create()
+                    .show()
+
+            }
+
         }
 
     }
@@ -439,7 +680,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                 binding.gameNumberText.visibility = View.GONE
                 binding.backButton.visibility = View.VISIBLE
                 binding.editIcon.visibility = View.VISIBLE
-                binding.deleteIcon.visibility = View.GONE
+                binding.deleteIcon.visibility = View.VISIBLE
                 binding.diceIcon.visibility = View.GONE
                 binding.calculatorIcon.visibility = View.GONE
 
@@ -455,15 +696,19 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                     binding.gameNumberText.visibility = View.VISIBLE
                     binding.backButton.visibility = View.VISIBLE
                     binding.editIcon.visibility = View.GONE
-                    binding.deleteIcon.visibility = View.VISIBLE
+                    binding.deleteIcon.visibility = View.GONE
                     binding.diceIcon.visibility = View.VISIBLE
                     binding.calculatorIcon.visibility = View.VISIBLE
                 }
 
+                //edit score
                 binding.editIcon.setOnClickListener {
                     val selectedGameNumber = skorList3Kisi[position].gameNumber
                     editScore(position, selectedGameNumber)
                 }
+
+                //delete score
+                binding.deleteIcon.setOnClickListener { delete(position) }
 
             }
         })
@@ -471,11 +716,15 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
 
     //edit score
-    @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
+    @SuppressLint("NotifyDataSetChanged", "SetTextI18n", "InflateParams")
     private fun editScore(position: Int, selectedGameNumber: Int) {
 
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.add_item_3_kisi, null)
+        val view2 = inflater.inflate(R.layout.list_skor_3_kisi, null)
+
+        //set selected color
+        val colorBackground = view2.findViewById<Button>(R.id.color_background)
 
         //set selected score
         val seciliSkor1 =  skorList3Kisi[position].oyuncu1_skor
@@ -491,6 +740,193 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         val oyuncu1Text = view.findViewById<TextView>(R.id.oyuncu1Ekle_textView)
         val oyuncu2Text = view.findViewById<TextView>(R.id.oyuncu2Ekle_textView)
         val oyuncu3Text = view.findViewById<TextView>(R.id.oyuncu3Ekle_textView)
+
+        //set colors
+        val noColorButton = view.findViewById<RadioButton>(R.id.noColor_radioButton)
+        val redButton = view.findViewById<RadioButton>(R.id.red_radioButton)
+        val blueButton = view.findViewById<RadioButton>(R.id.blue_radioButton)
+        val yellowButton = view.findViewById<RadioButton>(R.id.yellow_radioButton)
+        val blackButton = view.findViewById<RadioButton>(R.id.black_radioButton)
+
+        //set multiply
+        val cross = view.findViewById<LinearLayout>(R.id.cross_linearLayout)
+        val multiply = view.findViewById<LinearLayout>(R.id.multiply_linearLayout)
+
+        val multiply1 = view.findViewById<TextView>(R.id.multiply1_text)
+        val multiply2 = view.findViewById<TextView>(R.id.multiply2_text)
+
+        //set last color
+        when (skorList3Kisi[position].color) {
+            "White" -> {
+                noColorButton.isChecked = true
+                redButton.isChecked = false
+                blueButton.isChecked = false
+                yellowButton.isChecked = false
+                blackButton.isChecked = false
+
+                multiplyNumber = 1
+
+                cross.visibility = View.GONE
+                multiply.visibility = View.GONE
+
+                multiply1.text = multiplyNumber.toString()
+                multiply2.text = multiplyNumber.toString()
+
+                colorBackground.setBackgroundColor(getColor(R.color.white))
+            }
+
+            "Red" -> {
+                redButton.isChecked = true
+                noColorButton.isChecked = false
+                blueButton.isChecked = false
+                yellowButton.isChecked = false
+                blackButton.isChecked = false
+
+                multiplyNumber = redValue
+
+                cross.visibility = View.VISIBLE
+                multiply.visibility = View.VISIBLE
+
+                multiply1.text = multiplyNumber.toString()
+                multiply2.text = multiplyNumber.toString()
+
+                colorBackground.setBackgroundColor(getColor(R.color.red))
+
+                color = "Red"
+            }
+
+            "Blue" -> {
+                blueButton.isChecked = true
+                noColorButton.isChecked = false
+                redButton.isChecked = false
+                yellowButton.isChecked = false
+                blackButton.isChecked = false
+
+                multiplyNumber = blueValue
+
+                cross.visibility = View.VISIBLE
+                multiply.visibility = View.VISIBLE
+
+                multiply1.text = multiplyNumber.toString()
+                multiply2.text = multiplyNumber.toString()
+
+                colorBackground.setBackgroundColor(getColor(R.color.blue))
+
+                color = "Blue"
+            }
+
+            "Yellow" -> {
+                yellowButton.isChecked = true
+                noColorButton.isChecked = false
+                redButton.isChecked = false
+                blueButton.isChecked = false
+                blackButton.isChecked = false
+
+                multiplyNumber = yellowValue
+
+                cross.visibility = View.VISIBLE
+                multiply.visibility = View.VISIBLE
+
+                multiply1.text = multiplyNumber.toString()
+                multiply2.text = multiplyNumber.toString()
+
+                colorBackground.setBackgroundColor(getColor(R.color.yellow))
+
+                color = "Yellow"
+            }
+
+            "Black" -> {
+                blackButton.isChecked = true
+                noColorButton.isChecked = false
+                redButton.isChecked = false
+                blueButton.isChecked = false
+                yellowButton.isChecked = false
+
+                multiplyNumber = blackValue
+
+                cross.visibility = View.VISIBLE
+                multiply.visibility = View.VISIBLE
+
+                multiply1.text = multiplyNumber.toString()
+                multiply2.text = multiplyNumber.toString()
+
+                colorBackground.setBackgroundColor(getColor(R.color.black))
+
+                color = "Black"
+            }
+
+        }
+
+        //set visibility
+        noColorButton.setOnClickListener {
+            cross.visibility = View.GONE
+            multiply.visibility = View.GONE
+
+            multiplyNumber = 1
+
+            multiply1.text = multiplyNumber.toString()
+            multiply2.text = multiplyNumber.toString()
+
+            colorBackground.setBackgroundColor(getColor(R.color.white))
+
+            color = "White"
+        }
+
+        redButton.setOnClickListener {
+            cross.visibility = View.VISIBLE
+            multiply.visibility = View.VISIBLE
+
+            multiplyNumber = redValue
+
+            multiply1.text = multiplyNumber.toString()
+            multiply2.text = multiplyNumber.toString()
+
+            colorBackground.setBackgroundColor(getColor(R.color.red))
+
+            color = "Red"
+        }
+
+        blueButton.setOnClickListener {
+            cross.visibility = View.VISIBLE
+            multiply.visibility = View.VISIBLE
+
+            multiplyNumber = blueValue
+
+            multiply1.text = multiplyNumber.toString()
+            multiply2.text = multiplyNumber.toString()
+
+            colorBackground.setBackgroundColor(getColor(R.color.blue))
+
+            color = "Blue"
+        }
+
+        yellowButton.setOnClickListener {
+            cross.visibility = View.VISIBLE
+            multiply.visibility = View.VISIBLE
+
+            multiplyNumber = yellowValue
+
+            multiply1.text = multiplyNumber.toString()
+            multiply2.text = multiplyNumber.toString()
+
+            colorBackground.setBackgroundColor(getColor(R.color.yellow))
+
+            color = "Yellow"
+        }
+
+        blackButton.setOnClickListener {
+            cross.visibility = View.VISIBLE
+            multiply.visibility = View.VISIBLE
+
+            multiplyNumber = blackValue
+
+            multiply1.text = multiplyNumber.toString()
+            multiply2.text = multiplyNumber.toString()
+
+            colorBackground.setBackgroundColor(getColor(R.color.black))
+
+            color = "Black"
+        }
 
         oyuncu1Text.text = oyuncu1Ad
         oyuncu2Text.text = oyuncu2Ad
@@ -515,41 +951,98 @@ class PuanTablosu3Kisi : AppCompatActivity() {
             //score entered
             else {
 
-                //entered scores to arraylist
-                val yeniAnlikSkor1 = oyuncu1Skor.text.toString()
-                val yeniAnlikSkor2 = oyuncu2Skor.text.toString()
-                val yeniAnlikSkor3 = oyuncu3Skor.text.toString()
+                if (gameType == "Sayı Ekle") {
 
-                //set new score to arraylist
-                skorList3Kisi[position].oyuncu1_skor = yeniAnlikSkor1
-                skorList3Kisi[position].oyuncu2_skor = yeniAnlikSkor2
-                skorList3Kisi[position].oyuncu3_skor = yeniAnlikSkor3
-                skorList3Kisi[position].gameNumber = selectedGameNumber
+                    //entered scores to arraylist
+                    val yeniAnlikSkor1 = oyuncu1Skor.text.toString()
+                    val yeniAnlikSkor2 = oyuncu2Skor.text.toString()
+                    val yeniAnlikSkor3 = oyuncu3Skor.text.toString()
 
-                binding.gameNumberText.text = "$gameNumber. El"
+                    val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
+                    val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
+                    val yeniAnlikSkor3Multiply = yeniAnlikSkor3.toInt() * multiplyNumber
 
-                skorCount++
+                    //set new score to arraylist
+                    skorList3Kisi[position].oyuncu1_skor = yeniAnlikSkor1Multiply.toString()
+                    skorList3Kisi[position].oyuncu2_skor = yeniAnlikSkor2Multiply.toString()
+                    skorList3Kisi[position].oyuncu3_skor = yeniAnlikSkor3Multiply.toString()
+                    skorList3Kisi[position].gameNumber = selectedGameNumber
 
-                //instant score
-                val eskiAnlikSkor1 = binding.oyuncu1AnlikSkor.text.toString()
-                val eskiAnlikSkor2 = binding.oyuncu2AnlikSkor.text.toString()
-                val eskiAnlikSkor3 = binding.oyuncu3AnlikSkor.text.toString()
+                    binding.gameNumberText.text = "$gameNumber. El"
 
-                //sum entered score and instant score
-                val sonucEskiAnlikSkor1 = eskiAnlikSkor1.toInt() - seciliSkor1.toInt()
-                val sonucEskiAnlikSkor2 = eskiAnlikSkor2.toInt() - seciliSkor2.toInt()
-                val sonucEskiAnlikSkor3 = eskiAnlikSkor3.toInt() - seciliSkor3.toInt()
+                    skorCount++
 
-                val sonucYeniAnlikSkor1 = sonucEskiAnlikSkor1 + yeniAnlikSkor1.toInt()
-                val sonucYeniAnlikSkor2 = sonucEskiAnlikSkor2 + yeniAnlikSkor2.toInt()
-                val sonucYeniAnlikSkor3 = sonucEskiAnlikSkor3 + yeniAnlikSkor3.toInt()
+                    //instant score
+                    val eskiAnlikSkor1 = binding.oyuncu1AnlikSkor.text.toString()
+                    val eskiAnlikSkor2 = binding.oyuncu2AnlikSkor.text.toString()
+                    val eskiAnlikSkor3 = binding.oyuncu3AnlikSkor.text.toString()
 
-                binding.oyuncu1AnlikSkor.text = sonucYeniAnlikSkor1.toString()
-                binding.oyuncu2AnlikSkor.text = sonucYeniAnlikSkor2.toString()
-                binding.oyuncu3AnlikSkor.text = sonucYeniAnlikSkor3.toString()
+                    //sum entered score and instant score
+                    val sonucEskiAnlikSkor1 = eskiAnlikSkor1.toInt() - seciliSkor1.toInt()
+                    val sonucEskiAnlikSkor2 = eskiAnlikSkor2.toInt() - seciliSkor2.toInt()
+                    val sonucEskiAnlikSkor3 = eskiAnlikSkor3.toInt() - seciliSkor3.toInt()
 
-                skorAdapter3Kisi.notifyDataSetChanged()
+                    val sonucYeniAnlikSkor1 = sonucEskiAnlikSkor1 + yeniAnlikSkor1.toInt()
+                    val sonucYeniAnlikSkor2 = sonucEskiAnlikSkor2 + yeniAnlikSkor2.toInt()
+                    val sonucYeniAnlikSkor3 = sonucEskiAnlikSkor3 + yeniAnlikSkor3.toInt()
+
+                    binding.oyuncu1AnlikSkor.text = sonucYeniAnlikSkor1.toString()
+                    binding.oyuncu2AnlikSkor.text = sonucYeniAnlikSkor2.toString()
+                    binding.oyuncu3AnlikSkor.text = sonucYeniAnlikSkor3.toString()
+
+                    skorAdapter3Kisi.notifyDataSetChanged()
+
+                } else {
+
+                    //entered scores to arraylist
+                    val yeniAnlikSkor1 = oyuncu1Skor.text.toString()
+                    val yeniAnlikSkor2 = oyuncu2Skor.text.toString()
+                    val yeniAnlikSkor3 = oyuncu3Skor.text.toString()
+
+                    val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
+                    val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
+                    val yeniAnlikSkor3Multiply = yeniAnlikSkor3.toInt() * multiplyNumber
+
+                    //set new score to arraylist
+                    skorList3Kisi[position].oyuncu1_skor = yeniAnlikSkor1Multiply.toString()
+                    skorList3Kisi[position].oyuncu2_skor = yeniAnlikSkor2Multiply.toString()
+                    skorList3Kisi[position].oyuncu3_skor = yeniAnlikSkor3Multiply.toString()
+                    skorList3Kisi[position].gameNumber = selectedGameNumber
+
+                    binding.gameNumberText.text = "$gameNumber. El"
+
+                    skorCount++
+
+                    //instant score
+                    val eskiAnlikSkor1 = binding.oyuncu1AnlikSkor.text.toString()
+                    val eskiAnlikSkor2 = binding.oyuncu2AnlikSkor.text.toString()
+                    val eskiAnlikSkor3 = binding.oyuncu3AnlikSkor.text.toString()
+
+                    //sum entered score and instant score
+                    val sonucEskiAnlikSkor1 = eskiAnlikSkor1.toInt() + seciliSkor1.toInt()
+                    val sonucEskiAnlikSkor2 = eskiAnlikSkor2.toInt() + seciliSkor2.toInt()
+                    val sonucEskiAnlikSkor3 = eskiAnlikSkor3.toInt() + seciliSkor3.toInt()
+
+                    val sonucYeniAnlikSkor1 = sonucEskiAnlikSkor1 - yeniAnlikSkor1.toInt()
+                    val sonucYeniAnlikSkor2 = sonucEskiAnlikSkor2 - yeniAnlikSkor2.toInt()
+                    val sonucYeniAnlikSkor3 = sonucEskiAnlikSkor3 - yeniAnlikSkor3.toInt()
+
+                    binding.oyuncu1AnlikSkor.text = sonucYeniAnlikSkor1.toString()
+                    binding.oyuncu2AnlikSkor.text = sonucYeniAnlikSkor2.toString()
+                    binding.oyuncu3AnlikSkor.text = sonucYeniAnlikSkor3.toString()
+
+                    skorAdapter3Kisi.notifyDataSetChanged()
+
+                }
+
+                val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
+                val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
+                val score3 = binding.oyuncu3AnlikSkor.text.toString().toInt()
+
+                if (gameType == "Sayıdan Düş") { if (score1 <= 0 || score2 <= 0 || score3 <= 0) { kazananTakim() } }
+
                 dialog.dismiss()
+
             }
 
         }
@@ -648,4 +1141,5 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         }
 
     }
+
 }

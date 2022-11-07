@@ -551,6 +551,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                             binding.oyuncu2AnlikSkor.text = sonucSkor2.toString()
 
                             skorList2Kisi.removeAt(position)
+
                             skorCount--
 
                             skorAdapter2Kisi.notifyDataSetChanged()
@@ -668,9 +669,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 }
 
                 //delete selected score
-                binding.deleteIcon.setOnClickListener {
-                    delete(position)
-                }
+                binding.deleteIcon.setOnClickListener { delete(position) }
 
             }
         })

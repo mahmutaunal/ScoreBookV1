@@ -6,4 +6,5 @@ data class SkorData4Kisi (
     var oyuncu2_skor: String,
     var oyuncu3_skor: String,
     var oyuncu4_skor: String,
-    var gameNumber: Int)
+    var gameNumber: Int,
+    var color: String)

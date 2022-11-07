@@ -81,14 +81,15 @@
             android:layout_height="20dp"
             android:layout_gravity="right"
             android:layout_marginEnd="20dp"
+            android:visibility="gone"
             android:src="@drawable/delete"
             android:background="?attr/selectableItemBackground"
             tools:ignore="ContentDescription,RtlHardcoded" />
 
         <ImageView
             android:id="@+id/dice_icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
             android:layout_gravity="right"
             android:layout_marginEnd="20dp"
             android:src="@drawable/dice"
