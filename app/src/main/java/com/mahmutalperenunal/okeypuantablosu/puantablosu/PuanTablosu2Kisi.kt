@@ -20,7 +20,7 @@ import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityPuanTablosu2Kis
 import com.mahmutalperenunal.okeypuantablosu.diceroller.DiceRoller
 import com.mahmutalperenunal.okeypuantablosu.adapter.SkorAdapter2Kisi
 import com.mahmutalperenunal.okeypuantablosu.anamenu.AnaMenu
-import com.mahmutalperenunal.okeypuantablosu.data.SkorData2Kisi
+import com.mahmutalperenunal.okeypuantablosu.model.SkorData2Kisi
 import com.mahmutalperenunal.okeypuantablosu.takimislemleri.TakimIslemleri
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -65,6 +65,9 @@ class PuanTablosu2Kisi : AppCompatActivity() {
     private var gameType: String = "Sayı Ekle"
 
     private var firstNumber: String = "0000"
+
+    private var firstScore1: Int = 1
+    private var firstScore2: Int = 1
 
 
     @SuppressLint("SetTextI18n")
@@ -132,6 +135,9 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = skorAdapter2Kisi
 
+
+        //onClick process
+        onClickProcess()
 
         //edit process
         editProcess()
@@ -210,7 +216,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             colorBackground.text = ""
             colorBackground.setTextColor(resources.getColor(R.color.white))
 
-            color = "White"
+            color = "No Color"
         }
 
         redButton.setOnClickListener {
@@ -297,10 +303,13 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     val yeniAnlikSkor1 = oyuncu1Skor!!.text.toString()
                     val yeniAnlikSkor2 = oyuncu2Skor!!.text.toString()
 
+                    firstScore1 = yeniAnlikSkor1.toInt()
+                    firstScore2 = yeniAnlikSkor1.toInt()
+
                     val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
                     val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
 
-                    skorList2Kisi.add(SkorData2Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), gameNumber, color))
+                    skorList2Kisi.add(SkorData2Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), multiplyNumber, gameNumber, color, false))
 
                     gameNumber++
 
@@ -327,10 +336,13 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     val yeniAnlikSkor1 = oyuncu1Skor!!.text.toString()
                     val yeniAnlikSkor2 = oyuncu2Skor!!.text.toString()
 
+                    firstScore1 = yeniAnlikSkor1.toInt()
+                    firstScore2 = yeniAnlikSkor1.toInt()
+
                     val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
                     val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
 
-                    skorList2Kisi.add(SkorData2Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), gameNumber, color))
+                    skorList2Kisi.add(SkorData2Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), multiplyNumber, gameNumber, color, false))
 
                     gameNumber++
 
@@ -624,6 +636,155 @@ class PuanTablosu2Kisi : AppCompatActivity() {
     }
 
 
+    //onClick process
+    private fun onClickProcess() {
+        skorAdapter2Kisi.setOnItemClickListener(object : SkorAdapter2Kisi.OnItemClickListener {
+            @SuppressLint("SetTextI18n")
+            override fun onItemClick(position: Int) {
+
+                isSelected = sharedPreferences.getBoolean("selected", false)
+                clickCount = sharedPreferences.getInt("count", 0)
+
+                if (clickCount >= 1 || skorList2Kisi[position].isSelected) {
+
+                    if (oyunIsmi == "") {
+                        binding.baslikText.text = "Yeni Oyun"
+                    } else {
+                        binding.baslikText.text = "$oyunIsmi"
+                    }
+
+                    binding.text.visibility = View.VISIBLE
+                    binding.gameNumberText.visibility = View.VISIBLE
+                    binding.backButton.visibility = View.VISIBLE
+                    binding.editIcon.visibility = View.GONE
+                    binding.deleteIcon.visibility = View.GONE
+                    binding.diceIcon.visibility = View.VISIBLE
+                    binding.calculatorIcon.visibility = View.VISIBLE
+                    binding.skorEkleButton.visibility = View.VISIBLE
+                    binding.skorTablosuButton.visibility = View.VISIBLE
+                    binding.oyunuBitirButton.visibility = View.VISIBLE
+
+                } else {
+
+                    if (oyunIsmi == "") {
+                        binding.baslikText.text = "Yeni Oyun"
+                    } else {
+                        binding.baslikText.text = "$oyunIsmi"
+                    }
+
+                    binding.text.visibility = View.VISIBLE
+                    binding.gameNumberText.visibility = View.VISIBLE
+                    binding.backButton.visibility = View.VISIBLE
+                    binding.editIcon.visibility = View.GONE
+                    binding.deleteIcon.visibility = View.GONE
+                    binding.diceIcon.visibility = View.VISIBLE
+                    binding.calculatorIcon.visibility = View.VISIBLE
+                    binding.skorEkleButton.visibility = View.VISIBLE
+                    binding.skorTablosuButton.visibility = View.VISIBLE
+                    binding.oyunuBitirButton.visibility = View.VISIBLE
+
+                    //open score detail page
+                    scoreDetailPage(position)
+
+                }
+
+            }
+        })
+    }
+
+    @SuppressLint("InflateParams", "SetTextI18n")
+    private fun scoreDetailPage(position: Int) {
+        val inflater = LayoutInflater.from(applicationContext)
+        val view = inflater.inflate(R.layout.skor_detay, null)
+
+
+        //set linear layout visibility
+        val linearLayout1 = view.findViewById<LinearLayout>(R.id.skorDetay3_linearLayout)
+        val linearLayout2 = view.findViewById<LinearLayout>(R.id.skorDetay4_linearLayout)
+
+        linearLayout1.visibility = View.GONE
+        linearLayout2.visibility = View.GONE
+
+
+        //set game number
+        val gameNumberText = view.findViewById<TextView>(R.id.skorDetay_gameNumber_textView)
+
+        gameNumberText.text = "${skorList2Kisi[position].gameNumber}. El"
+
+
+        //set player names
+        val playerName1 = view.findViewById<TextView>(R.id.skorDetay_name_textView)
+        val playerName2 = view.findViewById<TextView>(R.id.skorDetay_name2_textView)
+
+        playerName1.text = "$oyuncu1Ad"
+        playerName2.text = "$oyuncu2Ad"
+
+
+        //set first score
+        val firstScore1Text = view.findViewById<TextView>(R.id.skorDetay_score_textView)
+        val firstScore2Text = view.findViewById<TextView>(R.id.skorDetay_score2_textView)
+
+        firstScore1 = skorList2Kisi[position].oyuncu1_skor.toInt() / skorList2Kisi[position].multiplyNumber
+        firstScore2 = skorList2Kisi[position].oyuncu2_skor.toInt() / skorList2Kisi[position].multiplyNumber
+
+        firstScore1Text.text = firstScore1.toString()
+        firstScore2Text.text = firstScore2.toString()
+
+
+        //set colors and colors value
+        val colorValue1 = view.findViewById<TextView>(R.id.skorDetay_multiply_textView)
+        val colorValue2 = view.findViewById<TextView>(R.id.skorDetay_multiply2_textView)
+
+        colorValue1.text = skorList2Kisi[position].multiplyNumber.toString()
+        colorValue2.text = skorList2Kisi[position].multiplyNumber.toString()
+
+        when (skorList2Kisi[position].color) {
+            "White" -> {
+                colorValue1.setTextColor(resources.getColor(R.color.light_gray))
+                colorValue2.setTextColor(resources.getColor(R.color.light_gray))
+            }
+            "Red" -> {
+                colorValue1.setTextColor(resources.getColor(R.color.red))
+                colorValue2.setTextColor(resources.getColor(R.color.red))
+            }
+            "Blue" -> {
+                colorValue1.setTextColor(resources.getColor(R.color.blue))
+                colorValue2.setTextColor(resources.getColor(R.color.blue))
+            }
+            "Yellow" -> {
+                colorValue1.setTextColor(resources.getColor(R.color.yellow))
+                colorValue2.setTextColor(resources.getColor(R.color.yellow))
+            }
+            "Black" -> {
+                colorValue1.setTextColor(resources.getColor(R.color.black))
+                colorValue2.setTextColor(resources.getColor(R.color.black))
+            }
+        }
+
+
+        //set multiply score
+        val lastScore1 = view.findViewById<TextView>(R.id.skorDetay_toplamSkor_textView)
+        val lastScore2 = view.findViewById<TextView>(R.id.skorDetay_toplamSkor2_textView)
+
+        val result1 = firstScore1 * skorList2Kisi[position].multiplyNumber
+        val result2 = firstScore2 * skorList2Kisi[position].multiplyNumber
+
+        lastScore1.text = result1.toString()
+        lastScore2.text = result2.toString()
+
+
+        val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
+
+        addDialog.setView(view)
+        addDialog.setPositiveButton("Tamam") {
+                dialog, _ ->
+            dialog.dismiss()
+        }
+        addDialog.create()
+        addDialog.show()
+    }
+
+
     //edit process
     private fun editProcess() {
         skorAdapter2Kisi.setOnItemLongClickListener(object : SkorAdapter2Kisi.OnItemLongClickListener {
@@ -733,6 +894,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 colorBackground.text = ""
 
                 colorBackground.setBackgroundColor(getColor(R.color.white))
+
+                color = "No Color"
             }
 
             "Red" -> {
@@ -839,7 +1002,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
             colorBackground.setBackgroundColor(getColor(R.color.white))
 
-            color = "White"
+            color = "No Color"
         }
 
         redButton.setOnClickListener {
@@ -933,6 +1096,9 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     val yeniAnlikSkor1 = oyuncu1Skor.text.toString()
                     val yeniAnlikSkor2 = oyuncu2Skor.text.toString()
 
+                    firstScore1 = yeniAnlikSkor1.toInt()
+                    firstScore2 = yeniAnlikSkor1.toInt()
+
                     val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
                     val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
 
@@ -940,6 +1106,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     skorList2Kisi[position].oyuncu1_skor = yeniAnlikSkor1Multiply.toString()
                     skorList2Kisi[position].oyuncu2_skor = yeniAnlikSkor2Multiply.toString()
                     skorList2Kisi[position].gameNumber = selectedGameNumber
+                    skorList2Kisi[position].multiplyNumber = multiplyNumber
 
                     binding.gameNumberText.text = "$gameNumber. El"
 
@@ -967,6 +1134,9 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     val yeniAnlikSkor1 = oyuncu1Skor.text.toString()
                     val yeniAnlikSkor2 = oyuncu2Skor.text.toString()
 
+                    firstScore1 = yeniAnlikSkor1.toInt()
+                    firstScore2 = yeniAnlikSkor1.toInt()
+
                     val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
                     val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
 
@@ -974,6 +1144,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     skorList2Kisi[position].oyuncu1_skor = yeniAnlikSkor1Multiply.toString()
                     skorList2Kisi[position].oyuncu2_skor = yeniAnlikSkor2Multiply.toString()
                     skorList2Kisi[position].gameNumber = selectedGameNumber
+                    skorList2Kisi[position].multiplyNumber = multiplyNumber
 
                     binding.gameNumberText.text = "$gameNumber. El"
 

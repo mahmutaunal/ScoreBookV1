@@ -8,11 +8,21 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmutalperenunal.okeypuantablosu.R
-import com.mahmutalperenunal.okeypuantablosu.data.SkorData2Kisi
+import com.mahmutalperenunal.okeypuantablosu.model.SkorData2Kisi
 
 class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : RecyclerView.Adapter<SkorAdapter2Kisi.SkorViewHolder>() {
 
     private var clickCount = 0
+
+
+    /**
+     * item click
+     */
+    private lateinit var skorListener: OnItemClickListener
+
+    interface OnItemClickListener { fun onItemClick(position: Int) }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) { skorListener = listener }
 
     /**
      * longItemClick
@@ -24,7 +34,7 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
     fun setOnItemLongClickListener(listenerLong: OnItemLongClickListener) { skorListenerLong = listenerLong }
 
 
-    inner class SkorViewHolder(view: View, listenerLong: OnItemLongClickListener) : RecyclerView.ViewHolder(view) {
+    inner class SkorViewHolder(view: View, listener: OnItemClickListener, listenerLong: OnItemLongClickListener) : RecyclerView.ViewHolder(view) {
         var skor1 = view.findViewById<TextView>(R.id.skor1_text)!!
         var skor2 = view.findViewById<TextView>(R.id.skor2_text)!!
         var number = view.findViewById<TextView>(R.id.gameNumber_2Kisi_text)!!
@@ -36,10 +46,38 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
 
         init {
 
+            editor.clear()
+            editor.commit()
+            editor.putBoolean("selected", false)
+            editor.putInt("count", 0)
+            editor.apply()
+
+            itemView.setOnClickListener {
+                if (clickCount >= 1) {
+
+                    clickCount--
+                    skorList2Kisi[adapterPosition].isSelected = false
+                    editor.putBoolean("selected", false)
+                    editor.putInt("count", clickCount)
+                    editor.apply()
+                    selectIcon.visibility = View.GONE
+                    itemView.setBackgroundResource(R.drawable.shape_unselected_cardview)
+                    listener.onItemClick(adapterPosition)
+
+                } else {
+
+                    editor.putBoolean("selected", false)
+                    skorList2Kisi[adapterPosition].isSelected = false
+                    listener.onItemClick(adapterPosition)
+
+                }
+            }
+
             itemView.setOnLongClickListener {
 
                 if (clickCount >= 1) {
                     clickCount--
+                    skorList2Kisi[adapterPosition].isSelected = true
                     editor.putBoolean("selected", false)
                     editor.putInt("count", clickCount)
                     editor.apply()
@@ -49,6 +87,7 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
                     return@setOnLongClickListener true
                 } else {
                     clickCount++
+                    skorList2Kisi[adapterPosition].isSelected = true
                     editor.putBoolean("selected", true)
                     editor.putInt("count", clickCount)
                     editor.apply()
@@ -66,7 +105,7 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkorViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.list_skor_2_kisi, parent, false)
-        return SkorViewHolder(view, skorListenerLong)
+        return SkorViewHolder(view, skorListener, skorListenerLong)
     }
 
     override fun onBindViewHolder(holder: SkorViewHolder, position: Int) {

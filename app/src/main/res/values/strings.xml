@@ -57,4 +57,7 @@
     <string name="sayidanDus_text">Sayıdan Düş</string>
     <string name="sayiEkle_text">Sayı Ekle</string>
     <string name="baslangicSayisi_text">Başlangıç Sayısı</string>
+    <string name="skor_detay_title">Skor Detay</string>
+    <string name="cross_text">X</string>
+    <string name="equal_text">=</string>
 </resources>

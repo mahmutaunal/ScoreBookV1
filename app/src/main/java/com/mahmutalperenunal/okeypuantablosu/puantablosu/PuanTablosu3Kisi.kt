@@ -17,7 +17,7 @@ import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityPuanTablosu3Kis
 import com.mahmutalperenunal.okeypuantablosu.diceroller.DiceRoller
 import com.mahmutalperenunal.okeypuantablosu.adapter.SkorAdapter3Kisi
 import com.mahmutalperenunal.okeypuantablosu.takimislemleri.TakimIslemleri
-import com.mahmutalperenunal.okeypuantablosu.data.SkorData3Kisi
+import com.mahmutalperenunal.okeypuantablosu.model.SkorData3Kisi
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.mahmutalperenunal.okeypuantablosu.anamenu.AnaMenu

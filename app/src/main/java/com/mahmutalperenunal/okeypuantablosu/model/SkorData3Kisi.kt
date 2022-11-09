@@ -1,4 +1,4 @@
-package com.mahmutalperenunal.okeypuantablosu.data
+package com.mahmutalperenunal.okeypuantablosu.model
 
 //data class for player scores
 data class SkorData3Kisi (

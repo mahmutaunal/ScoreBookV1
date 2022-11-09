@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmutalperenunal.okeypuantablosu.R
-import com.mahmutalperenunal.okeypuantablosu.data.SkorData4Kisi
+import com.mahmutalperenunal.okeypuantablosu.model.SkorData4Kisi
 
 class SkorAdapter4Kisi(private val skorList4Kisi: ArrayList<SkorData4Kisi>) : RecyclerView.Adapter<SkorAdapter4Kisi.SkorViewHolder>() {
 
