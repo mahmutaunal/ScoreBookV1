@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.RadioButton
@@ -598,6 +597,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                             binding.oyuncu2AnlikSkor.text = sonucSkor2.toString()
 
                             skorList2Kisi.removeAt(position)
+
                             skorCount--
 
                             skorAdapter2Kisi.notifyDataSetChanged()
@@ -685,7 +685,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         val view2 = inflater.inflate(R.layout.list_skor_2_kisi, null)
 
         //set selected color
-        val colorBackground = view2.findViewById<Button>(R.id.color_background)
+        val colorBackground = view2.findViewById<TextView>(R.id.color_background)
 
         //set selected score
         val seciliSkor1 =  skorList2Kisi[position].oyuncu1_skor
@@ -730,6 +730,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 multiply1.text = multiplyNumber.toString()
                 multiply2.text = multiplyNumber.toString()
 
+                colorBackground.text = ""
+
                 colorBackground.setBackgroundColor(getColor(R.color.white))
             }
 
@@ -747,6 +749,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
                 multiply1.text = multiplyNumber.toString()
                 multiply2.text = multiplyNumber.toString()
+
+                colorBackground.text = "K"
 
                 colorBackground.setBackgroundColor(getColor(R.color.red))
 
@@ -768,6 +772,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 multiply1.text = multiplyNumber.toString()
                 multiply2.text = multiplyNumber.toString()
 
+                colorBackground.text = "M"
+
                 colorBackground.setBackgroundColor(getColor(R.color.blue))
 
                 color = "Blue"
@@ -787,6 +793,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
                 multiply1.text = multiplyNumber.toString()
                 multiply2.text = multiplyNumber.toString()
+
+                colorBackground.text = "S"
 
                 colorBackground.setBackgroundColor(getColor(R.color.yellow))
 
@@ -808,6 +816,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 multiply1.text = multiplyNumber.toString()
                 multiply2.text = multiplyNumber.toString()
 
+                colorBackground.text = "S"
+
                 colorBackground.setBackgroundColor(getColor(R.color.black))
 
                 color = "Black"
@@ -825,6 +835,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
 
+            colorBackground.text = ""
+
             colorBackground.setBackgroundColor(getColor(R.color.white))
 
             color = "White"
@@ -838,6 +850,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
+
+            colorBackground.text = "K"
 
             colorBackground.setBackgroundColor(getColor(R.color.red))
 
@@ -853,6 +867,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
 
+            colorBackground.text = "M"
+
             colorBackground.setBackgroundColor(getColor(R.color.blue))
 
             color = "Blue"
@@ -867,6 +883,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
 
+            colorBackground.text = "S"
+
             colorBackground.setBackgroundColor(getColor(R.color.yellow))
 
             color = "Yellow"
@@ -880,6 +898,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
+
+            colorBackground.text = "S"
 
             colorBackground.setBackgroundColor(getColor(R.color.black))
 

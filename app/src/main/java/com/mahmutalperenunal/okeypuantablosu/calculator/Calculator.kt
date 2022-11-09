@@ -41,42 +41,107 @@ class Calculator : AppCompatActivity() {
         }
 
         binding.buttonOpenBracket.setOnClickListener {
+            if (isEqualClicked) {
+                binding.solutionTv.text = ""
+                binding.resultTv.text = ""
+                isEqualClicked = false
+            }
             binding.solutionTv.text = addToInputText("(")
         }
         binding.buttonCloseBracket.setOnClickListener {
+            if (isEqualClicked) {
+                binding.solutionTv.text = ""
+                binding.resultTv.text = ""
+                isEqualClicked = false
+            }
             binding.solutionTv.text = addToInputText(")")
         }
         binding.button0.setOnClickListener {
+            if (isEqualClicked) {
+                binding.solutionTv.text = ""
+                binding.resultTv.text = ""
+                isEqualClicked = false
+            }
             binding.solutionTv.text = addToInputText("0")
         }
         binding.button1.setOnClickListener {
+            if (isEqualClicked) {
+                binding.solutionTv.text = ""
+                binding.resultTv.text = ""
+                isEqualClicked = false
+            }
             binding.solutionTv.text = addToInputText("1")
         }
         binding.button2.setOnClickListener {
+            if (isEqualClicked) {
+                binding.solutionTv.text = ""
+                binding.resultTv.text = ""
+                isEqualClicked = false
+            }
             binding.solutionTv.text = addToInputText("2")
         }
         binding.button3.setOnClickListener {
+            if (isEqualClicked) {
+                binding.solutionTv.text = ""
+                binding.resultTv.text = ""
+                isEqualClicked = false
+            }
             binding.solutionTv.text = addToInputText("3")
         }
         binding.button4.setOnClickListener {
+            if (isEqualClicked) {
+                binding.solutionTv.text = ""
+                binding.resultTv.text = ""
+                isEqualClicked = false
+            }
             binding.solutionTv.text = addToInputText("4")
         }
         binding.button5.setOnClickListener {
+            if (isEqualClicked) {
+                binding.solutionTv.text = ""
+                binding.resultTv.text = ""
+                isEqualClicked = false
+            }
             binding.solutionTv.text = addToInputText("5")
         }
         binding.button6.setOnClickListener {
+            if (isEqualClicked) {
+                binding.solutionTv.text = ""
+                binding.resultTv.text = ""
+                isEqualClicked = false
+            }
             binding.solutionTv.text = addToInputText("6")
         }
         binding.button7.setOnClickListener {
+            if (isEqualClicked) {
+                binding.solutionTv.text = ""
+                binding.resultTv.text = ""
+                isEqualClicked = false
+            }
             binding.solutionTv.text = addToInputText("7")
         }
         binding.button8.setOnClickListener {
+            if (isEqualClicked) {
+                binding.solutionTv.text = ""
+                binding.resultTv.text = ""
+                isEqualClicked = false
+            }
             binding.solutionTv.text = addToInputText("8")
         }
         binding.button9.setOnClickListener {
+            if (isEqualClicked) {
+                binding.solutionTv.text = ""
+                binding.resultTv.text = ""
+                isEqualClicked = false
+            }
             binding.solutionTv.text = addToInputText("9")
         }
         binding.buttonDot.setOnClickListener {
+            if (isEqualClicked) {
+                binding.solutionTv.text = ""
+                binding.resultTv.text = ""
+                isEqualClicked = false
+            }
             binding.solutionTv.text = addToInputText(".")
         }
         binding.buttonDivide.setOnClickListener {

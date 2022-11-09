@@ -202,8 +202,8 @@ class TakimIslemleri : AppCompatActivity() {
                     intentPuanTablosu3.putExtra("Siyah Değer", blackValue)
 
                     //send game type and first number
-                    intentPuanTablosu2.putExtra("Oyun Türü", gameType)
-                    intentPuanTablosu2.putExtra("Başlangıç Sayısı", firstNumber!!.text.toString())
+                    intentPuanTablosu3.putExtra("Oyun Türü", gameType)
+                    intentPuanTablosu3.putExtra("Başlangıç Sayısı", firstNumber!!.text.toString())
 
                     startActivity(intentPuanTablosu3)
                     finish()
@@ -226,28 +226,55 @@ class TakimIslemleri : AppCompatActivity() {
 
                 if (isColorsValueEntered) {
 
-                    //send game name to PuanTablosu Activity
-                    intentPuanTablosu4.putExtra("Oyun İsmi", oyunIsmi!!.text.toString())
+                    if (oyuncuTuru() == "Eşli") {
 
-                    //send player names to PuanTablosu Activity
-                    intentPuanTablosu4.putExtra("Oyuncu-1 Ad", oyuncu1Ad!!.text.toString())
-                    intentPuanTablosu4.putExtra("Oyuncu-2 Ad", oyuncu2Ad!!.text.toString())
-                    intentPuanTablosu4.putExtra("Oyuncu-3 Ad", oyuncu3Ad!!.text.toString())
-                    intentPuanTablosu4.putExtra("Oyuncu-4 Ad", oyuncu4Ad!!.text.toString())
+                        //send game name to PuanTablosu Activity
+                        intentPuanTablosu2.putExtra("Oyun İsmi", oyunIsmi!!.text.toString())
 
-                    //send colors value to PuanTablosu Activity
-                    intentPuanTablosu4.putExtra("Kırmızı Değer", redValue)
-                    intentPuanTablosu4.putExtra("Mavi Değer", blueValue)
-                    intentPuanTablosu4.putExtra("Sarı Değer", yellowValue)
-                    intentPuanTablosu4.putExtra("Siyah Değer", blackValue)
+                        //send player names to PuanTablosu Activity
+                        intentPuanTablosu2.putExtra("Oyuncu-1 Ad", oyuncu1Ad!!.text.toString())
+                        intentPuanTablosu2.putExtra("Oyuncu-2 Ad", oyuncu2Ad!!.text.toString())
 
-                    //send game type and first number
-                    intentPuanTablosu2.putExtra("Oyun Türü", gameType)
-                    intentPuanTablosu2.putExtra("Başlangıç Sayısı", firstNumber!!.text.toString())
+                        //send colors value to PuanTablosu Activity
+                        intentPuanTablosu2.putExtra("Kırmızı Değer", redValue)
+                        intentPuanTablosu2.putExtra("Mavi Değer", blueValue)
+                        intentPuanTablosu2.putExtra("Sarı Değer", yellowValue)
+                        intentPuanTablosu2.putExtra("Siyah Değer", blackValue)
 
-                    startActivity(intentPuanTablosu4)
-                    finish()
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                        //send game type and first number
+                        intentPuanTablosu2.putExtra("Oyun Türü", gameType)
+                        intentPuanTablosu2.putExtra("Başlangıç Sayısı", firstNumber!!.text.toString())
+
+                        startActivity(intentPuanTablosu4)
+                        finish()
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+
+                    } else {
+
+                        //send game name to PuanTablosu Activity
+                        intentPuanTablosu4.putExtra("Oyun İsmi", oyunIsmi!!.text.toString())
+
+                        //send player names to PuanTablosu Activity
+                        intentPuanTablosu4.putExtra("Oyuncu-1 Ad", oyuncu1Ad!!.text.toString())
+                        intentPuanTablosu4.putExtra("Oyuncu-2 Ad", oyuncu2Ad!!.text.toString())
+                        intentPuanTablosu4.putExtra("Oyuncu-3 Ad", oyuncu3Ad!!.text.toString())
+                        intentPuanTablosu4.putExtra("Oyuncu-4 Ad", oyuncu4Ad!!.text.toString())
+
+                        //send colors value to PuanTablosu Activity
+                        intentPuanTablosu4.putExtra("Kırmızı Değer", redValue)
+                        intentPuanTablosu4.putExtra("Mavi Değer", blueValue)
+                        intentPuanTablosu4.putExtra("Sarı Değer", yellowValue)
+                        intentPuanTablosu4.putExtra("Siyah Değer", blackValue)
+
+                        //send game type and first number
+                        intentPuanTablosu4.putExtra("Oyun Türü", gameType)
+                        intentPuanTablosu4.putExtra("Başlangıç Sayısı", firstNumber!!.text.toString())
+
+                        startActivity(intentPuanTablosu4)
+                        finish()
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+
+                    }
 
                 }
             }
@@ -315,10 +342,10 @@ class TakimIslemleri : AppCompatActivity() {
         }
 
         binding.esliRadioButton.setOnClickListener {
-            binding.oyuncu1EditText.hint = "Oyuncu 1 (Takım-1)"
-            binding.oyuncu2EditText.hint = "Oyuncu 2 (Takım-1)"
-            binding.oyuncu3EditText.hint = "Oyuncu 3 (Takım-2)"
-            binding.oyuncu4EditText.hint = "Oyuncu 4 (Takım-2)"
+            binding.oyuncu1EditText.hint = "Takım 1"
+            binding.oyuncu2EditText.hint = "Takım 2"
+            binding.oyuncu3EditText.visibility = View.GONE
+            binding.oyuncu4EditText.visibility = View.GONE
         }
     }
 

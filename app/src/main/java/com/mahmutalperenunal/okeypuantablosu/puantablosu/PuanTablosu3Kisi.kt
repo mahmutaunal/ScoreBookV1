@@ -200,6 +200,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
         val multiply1 = view.findViewById<TextView>(R.id.multiply1_text)
         val multiply2 = view.findViewById<TextView>(R.id.multiply2_text)
+        val multiply3 = view.findViewById<TextView>(R.id.multiply3_text)
 
         //set visibility
         noColorButton.setOnClickListener {
@@ -210,6 +211,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
+            multiply3.text = multiplyNumber.toString()
 
             colorBackground.text = ""
             colorBackground.setTextColor(resources.getColor(R.color.white))
@@ -225,6 +227,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
+            multiply3.text = multiplyNumber.toString()
 
             colorBackground.text = "K"
             colorBackground.setTextColor(resources.getColor(R.color.red))
@@ -240,6 +243,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
+            multiply3.text = multiplyNumber.toString()
 
             colorBackground.text = "M"
             colorBackground.setTextColor(resources.getColor(R.color.blue))
@@ -255,6 +259,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
+            multiply3.text = multiplyNumber.toString()
 
             colorBackground.text = "S"
             colorBackground.setTextColor(resources.getColor(R.color.yellow))
@@ -270,6 +275,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
+            multiply3.text = multiplyNumber.toString()
 
             colorBackground.text = "S"
             colorBackground.setTextColor(resources.getColor(R.color.black))
@@ -307,7 +313,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                     val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
                     val yeniAnlikSkor3Multiply = yeniAnlikSkor3.toInt() * multiplyNumber
 
-                    skorList3Kisi.add(SkorData3Kisi(yeniAnlikSkor1, yeniAnlikSkor2, yeniAnlikSkor3, gameNumber, color))
+                    skorList3Kisi.add(SkorData3Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), yeniAnlikSkor3Multiply.toString(), gameNumber, color))
 
                     gameNumber++
 
@@ -564,8 +570,8 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                 val toplamSkor3 = binding.oyuncu3AnlikSkor.text.toString()
 
                 AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                    .setTitle("Son Eli Sil")
-                    .setMessage("Son eli silmek istediğinizden emin misiniz?")
+                    .setTitle("Seçili Eli Sil")
+                    .setMessage("Seçili eli silmek istediğinizden emin misiniz?")
                     .setPositiveButton("Sil") {
                             dialog, _ ->
                         if(skorCount <= -1) {
@@ -586,7 +592,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                             binding.oyuncu2AnlikSkor.text = sonucSkor2.toString()
                             binding.oyuncu3AnlikSkor.text = sonucSkor3.toString()
 
-                            skorList3Kisi.removeAt(skorCount)
+                            skorList3Kisi.removeAt(position)
 
                             skorCount--
 
@@ -615,8 +621,8 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                 val toplamSkor3 = binding.oyuncu3AnlikSkor.text.toString()
 
                 AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                    .setTitle("Son Eli Sil")
-                    .setMessage("Son eli silmek istediğinizden emin misiniz?")
+                    .setTitle("Seçili Eli Sil")
+                    .setMessage("Seçili eli silmek istediğinizden emin misiniz?")
                     .setPositiveButton("Sil") {
                             dialog, _ ->
                         if(skorCount <= -1) {
@@ -637,7 +643,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                             binding.oyuncu2AnlikSkor.text = sonucSkor2.toString()
                             binding.oyuncu3AnlikSkor.text = sonucSkor3.toString()
 
-                            skorList3Kisi.removeAt(skorCount)
+                            skorList3Kisi.removeAt(position)
 
                             skorCount--
 
@@ -724,7 +730,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         val view2 = inflater.inflate(R.layout.list_skor_3_kisi, null)
 
         //set selected color
-        val colorBackground = view2.findViewById<Button>(R.id.color_background)
+        val colorBackground = view2.findViewById<TextView>(R.id.color_background)
 
         //set selected score
         val seciliSkor1 =  skorList3Kisi[position].oyuncu1_skor
@@ -754,6 +760,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
         val multiply1 = view.findViewById<TextView>(R.id.multiply1_text)
         val multiply2 = view.findViewById<TextView>(R.id.multiply2_text)
+        val multiply3 = view.findViewById<TextView>(R.id.multiply3_text)
 
         //set last color
         when (skorList3Kisi[position].color) {
@@ -771,6 +778,9 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
                 multiply1.text = multiplyNumber.toString()
                 multiply2.text = multiplyNumber.toString()
+                multiply3.text = multiplyNumber.toString()
+
+                colorBackground.text = ""
 
                 colorBackground.setBackgroundColor(getColor(R.color.white))
             }
@@ -789,6 +799,9 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
                 multiply1.text = multiplyNumber.toString()
                 multiply2.text = multiplyNumber.toString()
+                multiply3.text = multiplyNumber.toString()
+
+                colorBackground.text = "K"
 
                 colorBackground.setBackgroundColor(getColor(R.color.red))
 
@@ -809,6 +822,9 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
                 multiply1.text = multiplyNumber.toString()
                 multiply2.text = multiplyNumber.toString()
+                multiply3.text = multiplyNumber.toString()
+
+                colorBackground.text = "M"
 
                 colorBackground.setBackgroundColor(getColor(R.color.blue))
 
@@ -829,6 +845,9 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
                 multiply1.text = multiplyNumber.toString()
                 multiply2.text = multiplyNumber.toString()
+                multiply3.text = multiplyNumber.toString()
+
+                colorBackground.text = "S"
 
                 colorBackground.setBackgroundColor(getColor(R.color.yellow))
 
@@ -849,6 +868,9 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
                 multiply1.text = multiplyNumber.toString()
                 multiply2.text = multiplyNumber.toString()
+                multiply3.text = multiplyNumber.toString()
+
+                colorBackground.text = "S"
 
                 colorBackground.setBackgroundColor(getColor(R.color.black))
 
@@ -866,6 +888,9 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
+            multiply3.text = multiplyNumber.toString()
+
+            colorBackground.text = ""
 
             colorBackground.setBackgroundColor(getColor(R.color.white))
 
@@ -880,6 +905,9 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
+            multiply3.text = multiplyNumber.toString()
+
+            colorBackground.text = "K"
 
             colorBackground.setBackgroundColor(getColor(R.color.red))
 
@@ -894,6 +922,9 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
+            multiply3.text = multiplyNumber.toString()
+
+            colorBackground.text = "M"
 
             colorBackground.setBackgroundColor(getColor(R.color.blue))
 
@@ -908,6 +939,9 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
+            multiply3.text = multiplyNumber.toString()
+
+            colorBackground.text = "S"
 
             colorBackground.setBackgroundColor(getColor(R.color.yellow))
 
@@ -922,6 +956,9 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
+            multiply3.text = multiplyNumber.toString()
+
+            colorBackground.text = "S"
 
             colorBackground.setBackgroundColor(getColor(R.color.black))
 
@@ -982,9 +1019,9 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                     val sonucEskiAnlikSkor2 = eskiAnlikSkor2.toInt() - seciliSkor2.toInt()
                     val sonucEskiAnlikSkor3 = eskiAnlikSkor3.toInt() - seciliSkor3.toInt()
 
-                    val sonucYeniAnlikSkor1 = sonucEskiAnlikSkor1 + yeniAnlikSkor1.toInt()
-                    val sonucYeniAnlikSkor2 = sonucEskiAnlikSkor2 + yeniAnlikSkor2.toInt()
-                    val sonucYeniAnlikSkor3 = sonucEskiAnlikSkor3 + yeniAnlikSkor3.toInt()
+                    val sonucYeniAnlikSkor1 = sonucEskiAnlikSkor1 + yeniAnlikSkor1Multiply
+                    val sonucYeniAnlikSkor2 = sonucEskiAnlikSkor2 + yeniAnlikSkor2Multiply
+                    val sonucYeniAnlikSkor3 = sonucEskiAnlikSkor3 + yeniAnlikSkor3Multiply
 
                     binding.oyuncu1AnlikSkor.text = sonucYeniAnlikSkor1.toString()
                     binding.oyuncu2AnlikSkor.text = sonucYeniAnlikSkor2.toString()
@@ -1023,9 +1060,9 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                     val sonucEskiAnlikSkor2 = eskiAnlikSkor2.toInt() + seciliSkor2.toInt()
                     val sonucEskiAnlikSkor3 = eskiAnlikSkor3.toInt() + seciliSkor3.toInt()
 
-                    val sonucYeniAnlikSkor1 = sonucEskiAnlikSkor1 - yeniAnlikSkor1.toInt()
-                    val sonucYeniAnlikSkor2 = sonucEskiAnlikSkor2 - yeniAnlikSkor2.toInt()
-                    val sonucYeniAnlikSkor3 = sonucEskiAnlikSkor3 - yeniAnlikSkor3.toInt()
+                    val sonucYeniAnlikSkor1 = sonucEskiAnlikSkor1 - yeniAnlikSkor1Multiply
+                    val sonucYeniAnlikSkor2 = sonucEskiAnlikSkor2 - yeniAnlikSkor2Multiply
+                    val sonucYeniAnlikSkor3 = sonucEskiAnlikSkor3 - yeniAnlikSkor3Multiply
 
                     binding.oyuncu1AnlikSkor.text = sonucYeniAnlikSkor1.toString()
                     binding.oyuncu2AnlikSkor.text = sonucYeniAnlikSkor2.toString()
