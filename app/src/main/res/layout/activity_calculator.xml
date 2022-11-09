@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#F1F1F1"
+        android:background="@color/calculator_color"
         android:orientation="vertical"
         android:paddingVertical="16dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmutalperenunal.okeypuantablosu.R
@@ -69,6 +70,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
     private var firstScore1: Int = 1
     private var firstScore2: Int = 1
 
+    private lateinit var sharedPreferencesTheme: SharedPreferences
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -120,6 +123,9 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
         //get click count
         sharedPreferences = getSharedPreferences("clickCount2Kisi", MODE_PRIVATE)
+
+        //get theme
+        sharedPreferencesTheme = getSharedPreferences("appTheme", MODE_PRIVATE)
 
 
         //set list
@@ -216,7 +222,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             colorBackground.text = ""
             colorBackground.setTextColor(resources.getColor(R.color.white))
 
-            color = "No Color"
+            color = "White"
         }
 
         redButton.setOnClickListener {
@@ -274,7 +280,12 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             multiply2.text = multiplyNumber.toString()
 
             colorBackground.text = "S"
-            colorBackground.setTextColor(resources.getColor(R.color.black))
+
+            if (sharedPreferencesTheme.getInt("theme", 0) == 2) {
+                colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
+            } else {
+                colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
+            }
 
             color = "Black"
         }
@@ -303,13 +314,10 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     val yeniAnlikSkor1 = oyuncu1Skor!!.text.toString()
                     val yeniAnlikSkor2 = oyuncu2Skor!!.text.toString()
 
-                    firstScore1 = yeniAnlikSkor1.toInt()
-                    firstScore2 = yeniAnlikSkor1.toInt()
-
                     val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
                     val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
 
-                    skorList2Kisi.add(SkorData2Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), multiplyNumber, gameNumber, color, false))
+                    skorList2Kisi.add(SkorData2Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), gameNumber, multiplyNumber, color, false))
 
                     gameNumber++
 
@@ -336,13 +344,10 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     val yeniAnlikSkor1 = oyuncu1Skor!!.text.toString()
                     val yeniAnlikSkor2 = oyuncu2Skor!!.text.toString()
 
-                    firstScore1 = yeniAnlikSkor1.toInt()
-                    firstScore2 = yeniAnlikSkor1.toInt()
-
                     val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
                     val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
 
-                    skorList2Kisi.add(SkorData2Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), multiplyNumber, gameNumber, color, false))
+                    skorList2Kisi.add(SkorData2Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), gameNumber, multiplyNumber, color, false))
 
                     gameNumber++
 
@@ -732,6 +737,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
 
         //set colors and colors value
+        val color = view.findViewById<CardView>(R.id.selectedColor)
+
         val colorValue1 = view.findViewById<TextView>(R.id.skorDetay_multiply_textView)
         val colorValue2 = view.findViewById<TextView>(R.id.skorDetay_multiply2_textView)
 
@@ -742,22 +749,39 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             "White" -> {
                 colorValue1.setTextColor(resources.getColor(R.color.light_gray))
                 colorValue2.setTextColor(resources.getColor(R.color.light_gray))
+
+                color.setCardBackgroundColor(resources.getColor(R.color.white))
             }
             "Red" -> {
                 colorValue1.setTextColor(resources.getColor(R.color.red))
                 colorValue2.setTextColor(resources.getColor(R.color.red))
+
+                color.setCardBackgroundColor(resources.getColor(R.color.red))
             }
             "Blue" -> {
                 colorValue1.setTextColor(resources.getColor(R.color.blue))
                 colorValue2.setTextColor(resources.getColor(R.color.blue))
+
+                color.setCardBackgroundColor(resources.getColor(R.color.blue))
             }
             "Yellow" -> {
                 colorValue1.setTextColor(resources.getColor(R.color.yellow))
                 colorValue2.setTextColor(resources.getColor(R.color.yellow))
+
+                color.setCardBackgroundColor(resources.getColor(R.color.yellow))
             }
             "Black" -> {
-                colorValue1.setTextColor(resources.getColor(R.color.black))
-                colorValue2.setTextColor(resources.getColor(R.color.black))
+                if (sharedPreferencesTheme.getInt("theme", 0) == 2) {
+                    colorValue1.setTextColor(resources.getColor(R.color.color_value_color))
+                    colorValue2.setTextColor(resources.getColor(R.color.color_value_color))
+
+                    color.setCardBackgroundColor(resources.getColor(R.color.color_value_color))
+                } else {
+                    colorValue1.setTextColor(resources.getColor(R.color.color_value_color))
+                    colorValue2.setTextColor(resources.getColor(R.color.color_value_color))
+
+                    color.setCardBackgroundColor(resources.getColor(R.color.color_value_color))
+                }
             }
         }
 
@@ -895,7 +919,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
                 colorBackground.setBackgroundColor(getColor(R.color.white))
 
-                color = "No Color"
+                color = "White"
             }
 
             "Red" -> {
@@ -981,7 +1005,11 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
                 colorBackground.text = "S"
 
-                colorBackground.setBackgroundColor(getColor(R.color.black))
+                if (sharedPreferencesTheme.getInt("theme", 0) == 2) {
+                    colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
+                } else {
+                    colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
+                }
 
                 color = "Black"
             }
@@ -1002,7 +1030,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
             colorBackground.setBackgroundColor(getColor(R.color.white))
 
-            color = "No Color"
+            color = "White"
         }
 
         redButton.setOnClickListener {
@@ -1064,7 +1092,11 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
             colorBackground.text = "S"
 
-            colorBackground.setBackgroundColor(getColor(R.color.black))
+            if (sharedPreferencesTheme.getInt("theme", 0) == 2) {
+                colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
+            } else {
+                colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
+            }
 
             color = "Black"
         }
@@ -1095,9 +1127,6 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     //entered scores to arraylist
                     val yeniAnlikSkor1 = oyuncu1Skor.text.toString()
                     val yeniAnlikSkor2 = oyuncu2Skor.text.toString()
-
-                    firstScore1 = yeniAnlikSkor1.toInt()
-                    firstScore2 = yeniAnlikSkor1.toInt()
 
                     val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
                     val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
@@ -1133,9 +1162,6 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     //entered scores to arraylist
                     val yeniAnlikSkor1 = oyuncu1Skor.text.toString()
                     val yeniAnlikSkor2 = oyuncu2Skor.text.toString()
-
-                    firstScore1 = yeniAnlikSkor1.toInt()
-                    firstScore2 = yeniAnlikSkor1.toInt()
 
                     val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
                     val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber

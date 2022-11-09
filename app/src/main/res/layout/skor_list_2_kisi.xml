@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="55dp"
         android:orientation="horizontal">
 
         <TextView
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="80dp">
+        android:layout_marginTop="90dp">
 
         <TextView
             android:id="@+id/oyuncu2SkorTabloAd_textView"
@@ -103,7 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="145dp"
         android:layout_marginBottom="20dp"
         android:layout_gravity="center_horizontal"
         tools:ignore="UseCompoundDrawables">

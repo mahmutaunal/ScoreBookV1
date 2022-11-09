@@ -19,4 +19,7 @@
     <color name="transparent">#00000000</color>
     <color name="add_score">#FFFFFFFF</color>
     <color name="scoreboard">#FFFFFFFF</color>
+    <color name="text_color">#FF000000</color>
+    <color name="calculator_color">#F1F1F1</color>
+    <color name="color_value_color">#FFFFFFFF</color>
 </resources>

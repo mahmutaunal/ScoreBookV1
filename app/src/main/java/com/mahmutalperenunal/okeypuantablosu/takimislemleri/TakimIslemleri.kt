@@ -119,7 +119,21 @@ class TakimIslemleri : AppCompatActivity() {
 
                 dialog.dismiss()
         }
-        addDialog.setNegativeButton("İptal Et") {
+        addDialog.setNegativeButton("Atla") {
+                dialog, _ ->
+
+            redValue = 1
+            blueValue = 1
+            yellowValue = 1
+            blackValue = 1
+
+            isColorsValueEntered = true
+
+            startGame()
+
+            dialog.dismiss()
+        }
+        addDialog.setNeutralButton("İptal") {
                 dialog, _ ->
 
             isColorsValueEntered = false

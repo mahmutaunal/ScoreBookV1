@@ -6,4 +6,6 @@ data class SkorData3Kisi (
     var oyuncu2_skor: String,
     var oyuncu3_skor: String,
     var gameNumber: Int,
-    var color: String)
+    var multiplyNumber: Int,
+    var color: String,
+    var isSelected: Boolean)

@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmutalperenunal.okeypuantablosu.R
@@ -66,6 +67,13 @@ class PuanTablosu4Kisi : AppCompatActivity() {
     private var gameType: String = "Sayı Ekle"
 
     private var firstNumber: String = "0000"
+
+    private var firstScore1: Int = 1
+    private var firstScore2: Int = 1
+    private var firstScore3: Int = 1
+    private var firstScore4: Int = 1
+
+    private lateinit var sharedPreferencesTheme: SharedPreferences
 
 
     @SuppressLint("SetTextI18n")
@@ -126,6 +134,9 @@ class PuanTablosu4Kisi : AppCompatActivity() {
         //get click count
         sharedPreferences = getSharedPreferences("clickCount4Kisi", Context.MODE_PRIVATE)
 
+        //get theme
+        sharedPreferencesTheme = getSharedPreferences("appTheme", MODE_PRIVATE)
+
 
         //set list
         skorList = ArrayList()
@@ -140,6 +151,9 @@ class PuanTablosu4Kisi : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = skorAdapter4Kisi
 
+
+        //onClick process
+        onClickProcess()
 
         //edit process
         editProcess()
@@ -292,7 +306,12 @@ class PuanTablosu4Kisi : AppCompatActivity() {
             multiply4.text = multiplyNumber.toString()
 
             colorBackground.text = "S"
-            colorBackground.setTextColor(resources.getColor(R.color.black))
+
+            if (sharedPreferencesTheme.getInt("theme", 0) == 2) {
+                colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
+            } else {
+                colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
+            }
 
             color = "Black"
         }
@@ -330,7 +349,7 @@ class PuanTablosu4Kisi : AppCompatActivity() {
                     val yeniAnlikSkor3Multiply = yeniAnlikSkor3.toInt() * multiplyNumber
                     val yeniAnlikSkor4Multiply = yeniAnlikSkor4.toInt() * multiplyNumber
 
-                    skorList.add(SkorData4Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), yeniAnlikSkor3Multiply.toString(), yeniAnlikSkor4Multiply.toString(), gameNumber, color))
+                    skorList.add(SkorData4Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), yeniAnlikSkor3Multiply.toString(), yeniAnlikSkor4Multiply.toString(), gameNumber, multiplyNumber, color, false))
 
                     gameNumber++
 
@@ -370,7 +389,7 @@ class PuanTablosu4Kisi : AppCompatActivity() {
                     val yeniAnlikSkor3Multiply = yeniAnlikSkor3.toInt() * multiplyNumber
                     val yeniAnlikSkor4Multiply = yeniAnlikSkor4.toInt() * multiplyNumber
 
-                    skorList.add(SkorData4Kisi(yeniAnlikSkor1, yeniAnlikSkor2, yeniAnlikSkor3, yeniAnlikSkor4, gameNumber, color))
+                    skorList.add(SkorData4Kisi(yeniAnlikSkor1, yeniAnlikSkor2, yeniAnlikSkor3, yeniAnlikSkor4, gameNumber, multiplyNumber, color, false))
 
                     gameNumber++
 
@@ -728,6 +747,206 @@ class PuanTablosu4Kisi : AppCompatActivity() {
     }
 
 
+    //onClick process
+    private fun onClickProcess() {
+        skorAdapter4Kisi.setOnItemClickListener(object : SkorAdapter4Kisi.OnItemClickListener {
+            @SuppressLint("SetTextI18n")
+            override fun onItemClick(position: Int) {
+
+                isSelected = sharedPreferences.getBoolean("selected", false)
+                clickCount = sharedPreferences.getInt("count", 0)
+
+                if (clickCount >= 1 || skorList[position].isSelected) {
+
+                    if (oyunIsmi == "") {
+                        binding.baslikText.text = "Yeni Oyun"
+                    } else {
+                        binding.baslikText.text = "$oyunIsmi"
+                    }
+
+                    binding.text.visibility = View.VISIBLE
+                    binding.gameNumberText.visibility = View.VISIBLE
+                    binding.backButton.visibility = View.VISIBLE
+                    binding.editIcon.visibility = View.GONE
+                    binding.deleteIcon.visibility = View.GONE
+                    binding.diceIcon.visibility = View.VISIBLE
+                    binding.calculatorIcon.visibility = View.VISIBLE
+                    binding.skorEkleButton.visibility = View.VISIBLE
+                    binding.skorTablosuButton.visibility = View.VISIBLE
+                    binding.oyunuBitirButton.visibility = View.VISIBLE
+
+                } else {
+
+                    if (oyunIsmi == "") {
+                        binding.baslikText.text = "Yeni Oyun"
+                    } else {
+                        binding.baslikText.text = "$oyunIsmi"
+                    }
+
+                    binding.text.visibility = View.VISIBLE
+                    binding.gameNumberText.visibility = View.VISIBLE
+                    binding.backButton.visibility = View.VISIBLE
+                    binding.editIcon.visibility = View.GONE
+                    binding.deleteIcon.visibility = View.GONE
+                    binding.diceIcon.visibility = View.VISIBLE
+                    binding.calculatorIcon.visibility = View.VISIBLE
+                    binding.skorEkleButton.visibility = View.VISIBLE
+                    binding.skorTablosuButton.visibility = View.VISIBLE
+                    binding.oyunuBitirButton.visibility = View.VISIBLE
+
+                    //open score detail page
+                    scoreDetailPage(position)
+
+                }
+
+            }
+        })
+    }
+
+    @SuppressLint("InflateParams", "SetTextI18n")
+    private fun scoreDetailPage(position: Int) {
+        val inflater = LayoutInflater.from(applicationContext)
+        val view = inflater.inflate(R.layout.skor_detay, null)
+
+
+        //set linear layout visibility
+        val linearLayout3 = view.findViewById<LinearLayout>(R.id.skorDetay3_linearLayout)
+        val linearLayout4 = view.findViewById<LinearLayout>(R.id.skorDetay4_linearLayout)
+
+        linearLayout3.visibility = View.VISIBLE
+        linearLayout4.visibility = View.VISIBLE
+
+
+        //set game number
+        val gameNumberText = view.findViewById<TextView>(R.id.skorDetay_gameNumber_textView)
+
+        gameNumberText.text = "${skorList[position].gameNumber}. El"
+
+
+        //set player names
+        val playerName1 = view.findViewById<TextView>(R.id.skorDetay_name_textView)
+        val playerName2 = view.findViewById<TextView>(R.id.skorDetay_name2_textView)
+        val playerName3 = view.findViewById<TextView>(R.id.skorDetay_name3_textView)
+        val playerName4 = view.findViewById<TextView>(R.id.skorDetay_name4_textView)
+
+        playerName1.text = "$oyuncu1Ad"
+        playerName2.text = "$oyuncu2Ad"
+        playerName3.text = "$oyuncu3Ad"
+        playerName4.text = "$oyuncu4Ad"
+
+
+        //set first score
+        val firstScore1Text = view.findViewById<TextView>(R.id.skorDetay_score_textView)
+        val firstScore2Text = view.findViewById<TextView>(R.id.skorDetay_score2_textView)
+        val firstScore3Text = view.findViewById<TextView>(R.id.skorDetay_score3_textView)
+        val firstScore4Text = view.findViewById<TextView>(R.id.skorDetay_score4_textView)
+
+        firstScore1 = skorList[position].oyuncu1_skor.toInt() / skorList[position].multiplyNumber
+        firstScore2 = skorList[position].oyuncu2_skor.toInt() / skorList[position].multiplyNumber
+        firstScore3 = skorList[position].oyuncu3_skor.toInt() / skorList[position].multiplyNumber
+        firstScore4 = skorList[position].oyuncu4_skor.toInt() / skorList[position].multiplyNumber
+
+        firstScore1Text.text = firstScore1.toString()
+        firstScore2Text.text = firstScore2.toString()
+        firstScore3Text.text = firstScore3.toString()
+        firstScore4Text.text = firstScore4.toString()
+
+
+        //set colors and colors value
+        val color = view.findViewById<CardView>(R.id.selectedColor)
+
+        val colorValue1 = view.findViewById<TextView>(R.id.skorDetay_multiply_textView)
+        val colorValue2 = view.findViewById<TextView>(R.id.skorDetay_multiply2_textView)
+        val colorValue3 = view.findViewById<TextView>(R.id.skorDetay_multiply3_textView)
+        val colorValue4 = view.findViewById<TextView>(R.id.skorDetay_multiply4_textView)
+
+        colorValue1.text = skorList[position].multiplyNumber.toString()
+        colorValue2.text = skorList[position].multiplyNumber.toString()
+        colorValue3.text = skorList[position].multiplyNumber.toString()
+        colorValue4.text = skorList[position].multiplyNumber.toString()
+
+        when (skorList[position].color) {
+            "White" -> {
+                colorValue1.setTextColor(resources.getColor(R.color.light_gray))
+                colorValue2.setTextColor(resources.getColor(R.color.light_gray))
+                colorValue3.setTextColor(resources.getColor(R.color.light_gray))
+                colorValue4.setTextColor(resources.getColor(R.color.light_gray))
+
+                color.setCardBackgroundColor(resources.getColor(R.color.white))
+            }
+            "Red" -> {
+                colorValue1.setTextColor(resources.getColor(R.color.red))
+                colorValue2.setTextColor(resources.getColor(R.color.red))
+                colorValue3.setTextColor(resources.getColor(R.color.red))
+                colorValue4.setTextColor(resources.getColor(R.color.red))
+
+                color.setCardBackgroundColor(resources.getColor(R.color.red))
+            }
+            "Blue" -> {
+                colorValue1.setTextColor(resources.getColor(R.color.blue))
+                colorValue2.setTextColor(resources.getColor(R.color.blue))
+                colorValue3.setTextColor(resources.getColor(R.color.blue))
+                colorValue4.setTextColor(resources.getColor(R.color.blue))
+
+                color.setCardBackgroundColor(resources.getColor(R.color.blue))
+            }
+            "Yellow" -> {
+                colorValue1.setTextColor(resources.getColor(R.color.yellow))
+                colorValue2.setTextColor(resources.getColor(R.color.yellow))
+                colorValue3.setTextColor(resources.getColor(R.color.yellow))
+                colorValue4.setTextColor(resources.getColor(R.color.yellow))
+
+                color.setCardBackgroundColor(resources.getColor(R.color.yellow))
+            }
+            "Black" -> {
+                if (sharedPreferencesTheme.getInt("theme", 0) == 2) {
+                    colorValue1.setTextColor(resources.getColor(R.color.color_value_color))
+                    colorValue2.setTextColor(resources.getColor(R.color.color_value_color))
+                    colorValue3.setTextColor(resources.getColor(R.color.color_value_color))
+                    colorValue4.setTextColor(resources.getColor(R.color.color_value_color))
+
+                    color.setCardBackgroundColor(resources.getColor(R.color.color_value_color))
+                } else {
+                    colorValue1.setTextColor(resources.getColor(R.color.color_value_color))
+                    colorValue2.setTextColor(resources.getColor(R.color.color_value_color))
+                    colorValue3.setTextColor(resources.getColor(R.color.color_value_color))
+                    colorValue4.setTextColor(resources.getColor(R.color.color_value_color))
+
+                    color.setCardBackgroundColor(resources.getColor(R.color.color_value_color))
+                }
+            }
+        }
+
+
+        //set multiply score
+        val lastScore1 = view.findViewById<TextView>(R.id.skorDetay_toplamSkor_textView)
+        val lastScore2 = view.findViewById<TextView>(R.id.skorDetay_toplamSkor2_textView)
+        val lastScore3 = view.findViewById<TextView>(R.id.skorDetay_toplamSkor3_textView)
+        val lastScore4 = view.findViewById<TextView>(R.id.skorDetay_toplamSkor4_textView)
+
+        val result1 = firstScore1 * skorList[position].multiplyNumber
+        val result2 = firstScore2 * skorList[position].multiplyNumber
+        val result3 = firstScore3 * skorList[position].multiplyNumber
+        val result4 = firstScore4 * skorList[position].multiplyNumber
+
+        lastScore1.text = result1.toString()
+        lastScore2.text = result2.toString()
+        lastScore3.text = result3.toString()
+        lastScore4.text = result4.toString()
+
+
+        val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
+
+        addDialog.setView(view)
+        addDialog.setPositiveButton("Tamam") {
+                dialog, _ ->
+            dialog.dismiss()
+        }
+        addDialog.create()
+        addDialog.show()
+    }
+
+
     //edit process
     private fun editProcess() {
         skorAdapter4Kisi.setOnItemLongClickListener(object : SkorAdapter4Kisi.OnItemLongClickListener {
@@ -937,7 +1156,11 @@ class PuanTablosu4Kisi : AppCompatActivity() {
 
                 colorBackground.text = "S"
 
-                colorBackground.setBackgroundColor(getColor(R.color.black))
+                if (sharedPreferencesTheme.getInt("theme", 0) == 2) {
+                    colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
+                } else {
+                    colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
+                }
 
                 color = "Black"
             }
@@ -1030,7 +1253,11 @@ class PuanTablosu4Kisi : AppCompatActivity() {
 
             colorBackground.text = "S"
 
-            colorBackground.setBackgroundColor(getColor(R.color.black))
+            if (sharedPreferencesTheme.getInt("theme", 0) == 2) {
+                colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
+            } else {
+                colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
+            }
 
             color = "Black"
         }
