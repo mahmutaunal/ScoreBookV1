@@ -1,11 +1,13 @@
 package com.mahmutalperenunal.okeypuantablosu.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.model.SkorData2Kisi
@@ -39,7 +41,9 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
         var skor2 = view.findViewById<TextView>(R.id.skor2_text)!!
         var number = view.findViewById<TextView>(R.id.gameNumber_2Kisi_text)!!
 
-        val selectIcon: ImageView = itemView.findViewById(R.id.skor2_selectIcon)
+        var colorBackground = view.findViewById<CardView>(R.id.color_background)!!
+
+        private val selectIcon: ImageView = itemView.findViewById(R.id.skor2_selectIcon)
 
         private val preferences = itemView.context.getSharedPreferences("clickCount2Kisi", Context.MODE_PRIVATE)
         private val editor = preferences.edit()
@@ -61,6 +65,7 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
                     editor.putInt("count", clickCount)
                     editor.apply()
                     selectIcon.visibility = View.GONE
+                    colorBackground.visibility = View.VISIBLE
                     itemView.setBackgroundResource(R.drawable.shape_unselected_cardview)
                     listener.onItemClick(adapterPosition)
 
@@ -82,6 +87,7 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
                     editor.putInt("count", clickCount)
                     editor.apply()
                     selectIcon.visibility = View.GONE
+                    colorBackground.visibility = View.VISIBLE
                     itemView.setBackgroundResource(R.drawable.shape_unselected_cardview)
                     listenerLong.onItemLongClick(adapterPosition)
                     return@setOnLongClickListener true
@@ -92,6 +98,7 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
                     editor.putInt("count", clickCount)
                     editor.apply()
                     selectIcon.visibility = View.VISIBLE
+                    colorBackground.visibility = View.GONE
                     itemView.setBackgroundResource(R.drawable.shape_selected_cardview)
                     listenerLong.onItemLongClick(adapterPosition)
                     return@setOnLongClickListener true
@@ -113,6 +120,15 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
         holder.skor1.text = newList.oyuncu1_skor
         holder.skor2.text = newList.oyuncu2_skor
         holder.number.text = newList.gameNumber.toString()
+
+        when (newList.color) {
+            "White" -> holder.colorBackground.setCardBackgroundColor(Color.WHITE)
+            "Red" -> holder.colorBackground.setCardBackgroundColor(Color.RED)
+            "Blue" -> holder.colorBackground.setCardBackgroundColor(Color.BLUE)
+            "Yellow" -> holder.colorBackground.setCardBackgroundColor(Color.YELLOW)
+            "Black" -> holder.colorBackground.setCardBackgroundColor(Color.BLACK)
+        }
+
     }
 
     override fun getItemCount(): Int {

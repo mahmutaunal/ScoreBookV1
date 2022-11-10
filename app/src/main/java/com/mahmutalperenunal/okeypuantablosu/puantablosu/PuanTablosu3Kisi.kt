@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmutalperenunal.okeypuantablosu.R
@@ -180,13 +179,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.add_item_3_kisi, null)
-        val view2 = inflater.inflate(R.layout.list_skor_3_kisi, null)
-
-        //set selected color
-        val colorBackground = view2.findViewById<TextView>(R.id.color_background)
-
-        colorBackground.text = ""
-        colorBackground.setTextColor(resources.getColor(R.color.white))
 
         color = "White"
 
@@ -226,9 +218,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
 
-            colorBackground.text = ""
-            colorBackground.setTextColor(resources.getColor(R.color.white))
-
             color = "White"
         }
 
@@ -241,9 +230,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
-
-            colorBackground.text = "K"
-            colorBackground.setTextColor(resources.getColor(R.color.red))
 
             color = "Red"
         }
@@ -258,9 +244,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
 
-            colorBackground.text = "M"
-            colorBackground.setTextColor(resources.getColor(R.color.blue))
-
             color = "Blue"
         }
 
@@ -274,9 +257,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
 
-            colorBackground.text = "S"
-            colorBackground.setTextColor(resources.getColor(R.color.yellow))
-
             color = "Yellow"
         }
 
@@ -289,14 +269,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
-
-            colorBackground.text = "S"
-
-            if (sharedPreferencesTheme.getInt("theme", 0) == 2) {
-                colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
-            } else {
-                colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
-            }
 
             color = "Black"
         }
@@ -789,10 +761,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         firstScore2Text.text = firstScore2.toString()
         firstScore3Text.text = firstScore3.toString()
 
-
-        //set colors and colors value
-        val color = view.findViewById<CardView>(R.id.selectedColor)
-
         val colorValue1 = view.findViewById<TextView>(R.id.skorDetay_multiply_textView)
         val colorValue2 = view.findViewById<TextView>(R.id.skorDetay_multiply2_textView)
         val colorValue3 = view.findViewById<TextView>(R.id.skorDetay_multiply3_textView)
@@ -803,47 +771,29 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
         when (skorList3Kisi[position].color) {
             "White" -> {
-                colorValue1.setTextColor(resources.getColor(R.color.light_gray))
-                colorValue2.setTextColor(resources.getColor(R.color.light_gray))
-                colorValue3.setTextColor(resources.getColor(R.color.light_gray))
-
-                color.setCardBackgroundColor(resources.getColor(R.color.white))
+                colorValue1.setTextColor(getColor(R.color.light_gray))
+                colorValue2.setTextColor(getColor(R.color.light_gray))
+                colorValue3.setTextColor(getColor(R.color.light_gray))
             }
             "Red" -> {
-                colorValue1.setTextColor(resources.getColor(R.color.red))
-                colorValue2.setTextColor(resources.getColor(R.color.red))
-                colorValue3.setTextColor(resources.getColor(R.color.red))
-
-                color.setCardBackgroundColor(resources.getColor(R.color.red))
+                colorValue1.setTextColor(getColor(R.color.red))
+                colorValue2.setTextColor(getColor(R.color.red))
+                colorValue3.setTextColor(getColor(R.color.red))
             }
             "Blue" -> {
-                colorValue1.setTextColor(resources.getColor(R.color.blue))
-                colorValue2.setTextColor(resources.getColor(R.color.blue))
-                colorValue3.setTextColor(resources.getColor(R.color.blue))
-
-                color.setCardBackgroundColor(resources.getColor(R.color.blue))
+                colorValue1.setTextColor(getColor(R.color.blue))
+                colorValue2.setTextColor(getColor(R.color.blue))
+                colorValue3.setTextColor(getColor(R.color.blue))
             }
             "Yellow" -> {
-                colorValue1.setTextColor(resources.getColor(R.color.yellow))
-                colorValue2.setTextColor(resources.getColor(R.color.yellow))
-                colorValue3.setTextColor(resources.getColor(R.color.yellow))
-
-                color.setCardBackgroundColor(resources.getColor(R.color.yellow))
+                colorValue1.setTextColor(getColor(R.color.yellow))
+                colorValue2.setTextColor(getColor(R.color.yellow))
+                colorValue3.setTextColor(getColor(R.color.yellow))
             }
             "Black" -> {
-                if (sharedPreferencesTheme.getInt("theme", 0) == 2) {
-                    colorValue1.setTextColor(resources.getColor(R.color.color_value_color))
-                    colorValue2.setTextColor(resources.getColor(R.color.color_value_color))
-                    colorValue3.setTextColor(resources.getColor(R.color.color_value_color))
-
-                    color.setCardBackgroundColor(resources.getColor(R.color.color_value_color))
-                } else {
-                    colorValue1.setTextColor(resources.getColor(R.color.color_value_color))
-                    colorValue2.setTextColor(resources.getColor(R.color.color_value_color))
-                    colorValue3.setTextColor(resources.getColor(R.color.color_value_color))
-
-                    color.setCardBackgroundColor(resources.getColor(R.color.color_value_color))
-                }
+                colorValue1.setTextColor(getColor(R.color.black))
+                colorValue2.setTextColor(getColor(R.color.black))
+                colorValue3.setTextColor(getColor(R.color.black))
             }
         }
 
@@ -1074,11 +1024,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
                 colorBackground.text = "S"
 
-                if (sharedPreferencesTheme.getInt("theme", 0) == 2) {
-                    colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
-                } else {
-                    colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
-                }
+                colorBackground.setTextColor(getColor(R.color.black))
 
                 color = "Black"
             }
@@ -1166,11 +1112,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
             colorBackground.text = "S"
 
-            if (sharedPreferencesTheme.getInt("theme", 0) == 2) {
-                colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
-            } else {
-                colorBackground.setTextColor(resources.getColor(R.color.color_value_color))
-            }
+            colorBackground.setTextColor(getColor(R.color.black))
 
             color = "Black"
         }
