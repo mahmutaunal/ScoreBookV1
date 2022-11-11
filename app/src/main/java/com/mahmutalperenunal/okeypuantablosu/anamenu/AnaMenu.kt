@@ -100,9 +100,9 @@ class AnaMenu : AppCompatActivity() {
                     dialog, _ ->
 
                     try {
-                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Mahmut+Alperen+%C3%9Cnal")))
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=5245599652065968716")))
                     } catch (e: ActivityNotFoundException) {
-                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Mahmut+Alperen+%C3%9Cnal")))
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=5245599652065968716")))
                     }
 
                     dialog.dismiss()
