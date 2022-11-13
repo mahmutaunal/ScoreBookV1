@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -187,6 +188,13 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         //set player names
         val oyuncu1Text = view.findViewById<TextView>(R.id.oyuncu1Ekle_textView)
         val oyuncu2Text = view.findViewById<TextView>(R.id.oyuncu2Ekle_textView)
+
+        //set colors layout visibility
+        val colorLayout = view.findViewById<RadioGroup>(R.id.colors_radioGroup)
+
+        if (redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1) {
+            colorLayout.visibility = View.GONE
+        }
 
         //set colors
         val noColorButton = view.findViewById<RadioButton>(R.id.noColor_radioButton)
@@ -846,6 +854,13 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         val oyuncu1Text = view.findViewById<TextView>(R.id.oyuncu1Ekle_textView)
         val oyuncu2Text = view.findViewById<TextView>(R.id.oyuncu2Ekle_textView)
 
+        //set colors layout visibility
+        val colorLayout = view.findViewById<RadioGroup>(R.id.colors_radioGroup)
+
+        if (redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1) {
+            colorLayout.visibility = View.GONE
+        }
+
         //set colors
         val noColorButton = view.findViewById<RadioButton>(R.id.noColor_radioButton)
         val redButton = view.findViewById<RadioButton>(R.id.red_radioButton)
@@ -1050,6 +1065,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     skorList2Kisi[position].oyuncu2_skor = yeniAnlikSkor2Multiply.toString()
                     skorList2Kisi[position].gameNumber = selectedGameNumber
                     skorList2Kisi[position].multiplyNumber = multiplyNumber
+                    skorList2Kisi[position].color = color
 
                     binding.gameNumberText.text = "$gameNumber. El"
 
@@ -1085,6 +1101,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     skorList2Kisi[position].oyuncu2_skor = yeniAnlikSkor2Multiply.toString()
                     skorList2Kisi[position].gameNumber = selectedGameNumber
                     skorList2Kisi[position].multiplyNumber = multiplyNumber
+                    skorList2Kisi[position].color = color
 
                     binding.gameNumberText.text = "$gameNumber. El"
 

@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmutalperenunal.okeypuantablosu.R
@@ -192,6 +193,13 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         val oyuncu2Text = view.findViewById<TextView>(R.id.oyuncu2Ekle_textView)
         val oyuncu3Text = view.findViewById<TextView>(R.id.oyuncu3Ekle_textView)
 
+        //set colors layout visibility
+        val colorLayout = view.findViewById<RadioGroup>(R.id.colors_radioGroup)
+
+        if (redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1) {
+            colorLayout.visibility = View.GONE
+        }
+
         //set colors
         val noColorButton = view.findViewById<RadioButton>(R.id.noColor_radioButton)
         val redButton = view.findViewById<RadioButton>(R.id.red_radioButton)
@@ -338,7 +346,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                     val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
                     val yeniAnlikSkor3Multiply = yeniAnlikSkor3.toInt() * multiplyNumber
 
-                    skorList3Kisi.add(SkorData3Kisi(yeniAnlikSkor1, yeniAnlikSkor2, yeniAnlikSkor3, gameNumber, multiplyNumber, color, false))
+                    skorList3Kisi.add(SkorData3Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor1Multiply.toString(), gameNumber, multiplyNumber, color, false))
 
                     gameNumber++
 
@@ -761,6 +769,10 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         firstScore2Text.text = firstScore2.toString()
         firstScore3Text.text = firstScore3.toString()
 
+
+        //set colors and colors value
+        val color = view.findViewById<CardView>(R.id.selectedColor)
+
         val colorValue1 = view.findViewById<TextView>(R.id.skorDetay_multiply_textView)
         val colorValue2 = view.findViewById<TextView>(R.id.skorDetay_multiply2_textView)
         val colorValue3 = view.findViewById<TextView>(R.id.skorDetay_multiply3_textView)
@@ -774,26 +786,36 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                 colorValue1.setTextColor(getColor(R.color.light_gray))
                 colorValue2.setTextColor(getColor(R.color.light_gray))
                 colorValue3.setTextColor(getColor(R.color.light_gray))
+
+                color.setCardBackgroundColor(getColor(R.color.white))
             }
             "Red" -> {
                 colorValue1.setTextColor(getColor(R.color.red))
                 colorValue2.setTextColor(getColor(R.color.red))
                 colorValue3.setTextColor(getColor(R.color.red))
+
+                color.setCardBackgroundColor(getColor(R.color.red))
             }
             "Blue" -> {
                 colorValue1.setTextColor(getColor(R.color.blue))
                 colorValue2.setTextColor(getColor(R.color.blue))
                 colorValue3.setTextColor(getColor(R.color.blue))
+
+                color.setCardBackgroundColor(getColor(R.color.blue))
             }
             "Yellow" -> {
                 colorValue1.setTextColor(getColor(R.color.yellow))
                 colorValue2.setTextColor(getColor(R.color.yellow))
                 colorValue3.setTextColor(getColor(R.color.yellow))
+
+                color.setCardBackgroundColor(getColor(R.color.yellow))
             }
             "Black" -> {
                 colorValue1.setTextColor(getColor(R.color.black))
                 colorValue2.setTextColor(getColor(R.color.black))
                 colorValue3.setTextColor(getColor(R.color.black))
+
+                color.setCardBackgroundColor(getColor(R.color.black))
             }
         }
 
@@ -879,10 +901,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.add_item_3_kisi, null)
-        val view2 = inflater.inflate(R.layout.list_skor_3_kisi, null)
-
-        //set selected color
-        val colorBackground = view2.findViewById<TextView>(R.id.color_background)
 
         //set selected score
         val seciliSkor1 =  skorList3Kisi[position].oyuncu1_skor
@@ -898,6 +916,13 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         val oyuncu1Text = view.findViewById<TextView>(R.id.oyuncu1Ekle_textView)
         val oyuncu2Text = view.findViewById<TextView>(R.id.oyuncu2Ekle_textView)
         val oyuncu3Text = view.findViewById<TextView>(R.id.oyuncu3Ekle_textView)
+
+        //set colors layout visibility
+        val colorLayout = view.findViewById<RadioGroup>(R.id.colors_radioGroup)
+
+        if (redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1) {
+            colorLayout.visibility = View.GONE
+        }
 
         //set colors
         val noColorButton = view.findViewById<RadioButton>(R.id.noColor_radioButton)
@@ -932,9 +957,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                 multiply2.text = multiplyNumber.toString()
                 multiply3.text = multiplyNumber.toString()
 
-                colorBackground.text = ""
-
-                colorBackground.setBackgroundColor(getColor(R.color.white))
+                color = "White"
             }
 
             "Red" -> {
@@ -952,10 +975,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                 multiply1.text = multiplyNumber.toString()
                 multiply2.text = multiplyNumber.toString()
                 multiply3.text = multiplyNumber.toString()
-
-                colorBackground.text = "K"
-
-                colorBackground.setBackgroundColor(getColor(R.color.red))
 
                 color = "Red"
             }
@@ -976,10 +995,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                 multiply2.text = multiplyNumber.toString()
                 multiply3.text = multiplyNumber.toString()
 
-                colorBackground.text = "M"
-
-                colorBackground.setBackgroundColor(getColor(R.color.blue))
-
                 color = "Blue"
             }
 
@@ -998,10 +1013,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                 multiply1.text = multiplyNumber.toString()
                 multiply2.text = multiplyNumber.toString()
                 multiply3.text = multiplyNumber.toString()
-
-                colorBackground.text = "S"
-
-                colorBackground.setBackgroundColor(getColor(R.color.yellow))
 
                 color = "Yellow"
             }
@@ -1022,10 +1033,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                 multiply2.text = multiplyNumber.toString()
                 multiply3.text = multiplyNumber.toString()
 
-                colorBackground.text = "S"
-
-                colorBackground.setTextColor(getColor(R.color.black))
-
                 color = "Black"
             }
 
@@ -1042,10 +1049,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
 
-            colorBackground.text = ""
-
-            colorBackground.setBackgroundColor(getColor(R.color.white))
-
             color = "White"
         }
 
@@ -1058,10 +1061,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
-
-            colorBackground.text = "K"
-
-            colorBackground.setBackgroundColor(getColor(R.color.red))
 
             color = "Red"
         }
@@ -1076,10 +1075,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
 
-            colorBackground.text = "M"
-
-            colorBackground.setBackgroundColor(getColor(R.color.blue))
-
             color = "Blue"
         }
 
@@ -1093,10 +1088,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
 
-            colorBackground.text = "S"
-
-            colorBackground.setBackgroundColor(getColor(R.color.yellow))
-
             color = "Yellow"
         }
 
@@ -1109,10 +1100,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
-
-            colorBackground.text = "S"
-
-            colorBackground.setTextColor(getColor(R.color.black))
 
             color = "Black"
         }
@@ -1156,6 +1143,8 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                     skorList3Kisi[position].oyuncu2_skor = yeniAnlikSkor2Multiply.toString()
                     skorList3Kisi[position].oyuncu3_skor = yeniAnlikSkor3Multiply.toString()
                     skorList3Kisi[position].gameNumber = selectedGameNumber
+                    skorList3Kisi[position].multiplyNumber = multiplyNumber
+                    skorList3Kisi[position].color = color
 
                     binding.gameNumberText.text = "$gameNumber. El"
 
@@ -1197,6 +1186,8 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                     skorList3Kisi[position].oyuncu2_skor = yeniAnlikSkor2Multiply.toString()
                     skorList3Kisi[position].oyuncu3_skor = yeniAnlikSkor3Multiply.toString()
                     skorList3Kisi[position].gameNumber = selectedGameNumber
+                    skorList3Kisi[position].multiplyNumber = multiplyNumber
+                    skorList3Kisi[position].color = color
 
                     binding.gameNumberText.text = "$gameNumber. El"
 
