@@ -2,6 +2,7 @@ package com.mahmutalperenunal.okeypuantablosu.calculator
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
@@ -22,11 +23,13 @@ class Calculator : AppCompatActivity() {
     private var isEqualClicked: Boolean = false
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalculatorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         puanTablosu = intent.getIntExtra("Puan Tablosu", 0)
 

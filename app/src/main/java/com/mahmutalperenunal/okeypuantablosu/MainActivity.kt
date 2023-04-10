@@ -1,7 +1,9 @@
 package com.mahmutalperenunal.okeypuantablosu
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,10 +23,13 @@ class MainActivity : AppCompatActivity() {
     private var theme: Int? = null
 
 
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         sharedPreferencesTheme = getSharedPreferences("appTheme", MODE_PRIVATE)
 

@@ -2,21 +2,21 @@ package com.mahmutalperenunal.okeypuantablosu.takimislemleri
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputLayout
 import com.mahmutalperenunal.okeypuantablosu.R
-import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityTakimIslemleriBinding
 import com.mahmutalperenunal.okeypuantablosu.anamenu.AnaMenu
+import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityTakimIslemleriBinding
 import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu2Kisi
 import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu3Kisi
 import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu4Kisi
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
 
 class TakimIslemleri : AppCompatActivity() {
 
@@ -41,15 +41,13 @@ class TakimIslemleri : AppCompatActivity() {
     private var firstNumber: EditText? = null
 
 
+    @SuppressLint("VisibleForTests", "SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTakimIslemleriBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //set admob banner
-        MobileAds.initialize(this) {}
-        val adRequest = AdRequest.Builder().build()
-        binding.takimIslemleriAdView.loadAd(adRequest)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         oyuncu1Ad = binding.oyuncu1EditText
         oyuncu2Ad = binding.oyuncu2EditText
@@ -67,7 +65,7 @@ class TakimIslemleri : AppCompatActivity() {
         oyunTuru()
 
         //navigate PuanTablosu Activity with number of player
-        binding.baslatButton.setOnClickListener { setColorValue() }
+        binding.baslatButton.setOnClickListener { controlUsernames() }
 
 
         //on back pressed turn back to main menu
@@ -78,6 +76,73 @@ class TakimIslemleri : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
+    }
+
+
+    //check usernames
+    private fun controlUsernames() {
+
+        if (oyuncuSayisi() == 2) {
+
+            if (binding.oyuncu1EditText.text!!.isEmpty()) {
+                binding.oyuncu1EditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+            } else if (binding.oyuncu2EditText.text!!.isEmpty()) {
+                binding.oyuncu2EditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+            } else {
+                if (gameType == "Sayıdan Düş") {
+                    if (firstNumber!!.text.toString() == "") {
+                        binding.baslangicSayisiEditTextLayout.error = "Zorunlu"
+                        Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+                    } else { setColorValue() }
+                } else { setColorValue() }
+            }
+
+        } else if (oyuncuSayisi() == 3) {
+
+            if (binding.oyuncu1EditText.text!!.isEmpty()) {
+                binding.oyuncu1EditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+            } else if (binding.oyuncu2EditText.text!!.isEmpty()) {
+                binding.oyuncu2EditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+            } else if (binding.oyuncu3EditText.text!!.isEmpty()) {
+                binding.oyuncu3EditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+            } else {
+                if (gameType == "Sayıdan Düş") {
+                    if (firstNumber!!.text.toString() == "") {
+                        binding.baslangicSayisiEditTextLayout.error = "Zorunlu"
+                        Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+                    } else { setColorValue() }
+                } else { setColorValue() }
+            }
+
+        } else if (oyuncuSayisi() == 4) {
+
+            if (binding.oyuncu1EditText.text!!.isEmpty()) {
+                binding.oyuncu1EditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+            } else if (binding.oyuncu2EditText.text!!.isEmpty()) {
+                binding.oyuncu2EditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+            } else if (binding.oyuncu3EditText.text!!.isEmpty()) {
+                binding.oyuncu3EditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+            } else if (binding.oyuncu2EditText.text!!.isEmpty()) {
+                binding.oyuncu3EditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+            } else {
+                if (gameType == "Sayıdan Düş") {
+                    if (firstNumber!!.text.toString() == "") {
+                        binding.baslangicSayisiEditTextLayout.error = "Zorunlu"
+                        Toast.makeText(applicationContext, "Lütfen oyuncu adlarını girin", Toast.LENGTH_SHORT).show()
+                    } else { setColorValue() }
+                } else { setColorValue() }
+            }
+
+        }
     }
 
 
@@ -93,14 +158,42 @@ class TakimIslemleri : AppCompatActivity() {
         val yellowEditText = view.findViewById<EditText>(R.id.yellow_editText)
         val blackEditText = view.findViewById<EditText>(R.id.black_editText)
 
+        val redEditTextLayout = view.findViewById<TextInputLayout>(R.id.red_editTextLayout)
+        val blueEditTextLayout = view.findViewById<TextInputLayout>(R.id.blue_editTextLayout)
+        val yellowEditTextLayout = view.findViewById<TextInputLayout>(R.id.yellow_editTextLayout)
+        val blackEditTextLayout = view.findViewById<TextInputLayout>(R.id.black_editTextLayout)
+
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
         addDialog.setView(view)
-        addDialog.setPositiveButton("Başla") {
-                dialog, _ ->
+        /*addDialog.setPositiveButton("Başla", object : DialogInterface.OnClickListener {
+            override fun onClick(dialog: DialogInterface, which: Int) {
 
-            if (redEditText.text.isEmpty() || blueEditText.text.isEmpty() || yellowEditText.text.isEmpty() || blackEditText.text.isEmpty()) {
+            }
+        })*/
+        addDialog.setPositiveButton("Başla"
+        ) { dialog, _ ->
+            if (redEditText.text.isEmpty()) {
 
+                redEditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
+                isColorsValueEntered = false
+
+            } else if (blueEditText.text.isEmpty()) {
+
+                blueEditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
+                isColorsValueEntered = false
+
+            } else if (yellowEditText.text.isEmpty()) {
+
+                yellowEditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
+                isColorsValueEntered = false
+
+            } else if (blackEditText.text.isEmpty()) {
+
+                blackEditTextLayout.error = "Zorunlu"
                 Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
                 isColorsValueEntered = false
 
@@ -115,13 +208,11 @@ class TakimIslemleri : AppCompatActivity() {
 
                 startGame()
 
-            }
-
                 dialog.dismiss()
+            }
         }
-        addDialog.setNegativeButton("Atla") {
-                dialog, _ ->
-
+        addDialog.setNegativeButton("Atla"
+        ) { dialog, _ ->
             redValue = 1
             blueValue = 1
             yellowValue = 1
@@ -133,15 +224,52 @@ class TakimIslemleri : AppCompatActivity() {
 
             dialog.dismiss()
         }
-        addDialog.setNeutralButton("İptal") {
-                dialog, _ ->
-
-            isColorsValueEntered = false
-
+        addDialog.setNeutralButton("İptal"
+        ) { dialog, _ ->
+            isColorsValueEntered = true
             dialog.dismiss()
         }
-        addDialog.create()
         addDialog.show()
+
+        /*addDialog.create().getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            if (redEditText.text.isEmpty()) {
+
+                redEditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
+                isColorsValueEntered = false
+
+            } else if (blueEditText.text.isEmpty()) {
+
+                blueEditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
+                isColorsValueEntered = false
+
+            } else if (yellowEditText.text.isEmpty()) {
+
+                yellowEditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
+                isColorsValueEntered = false
+
+            } else if (blackEditText.text.isEmpty()) {
+
+                blackEditTextLayout.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
+                isColorsValueEntered = false
+
+            } else {
+
+                redValue = redEditText.text.toString().toInt()
+                blueValue = blueEditText.text.toString().toInt()
+                yellowValue = yellowEditText.text.toString().toInt()
+                blackValue = blackEditText.text.toString().toInt()
+
+                isColorsValueEntered = true
+
+                startGame()
+
+                addDialog.create().dismiss()
+            }
+        }*/
     }
 
 
@@ -349,17 +477,21 @@ class TakimIslemleri : AppCompatActivity() {
     private fun oyuncuTuruneGoreTakimBelirleme() {
 
         binding.tekliRadioButton.setOnClickListener {
-            binding.oyuncu1EditText.hint = "Oyuncu 1"
-            binding.oyuncu2EditText.hint = "Oyuncu 2"
-            binding.oyuncu3EditText.hint = "Oyuncu 3"
-            binding.oyuncu4EditText.hint = "Oyuncu 4"
+            binding.oyuncu1EditTextLayout.hint = "Oyuncu 1"
+            binding.oyuncu2EditTextLayout.hint = "Oyuncu 2"
+            binding.oyuncu1EditTextLayout.visibility = View.VISIBLE
+            binding.oyuncu2EditTextLayout.visibility = View.VISIBLE
+            binding.oyuncu3EditTextLayout.visibility = View.VISIBLE
+            binding.oyuncu4EditTextLayout.visibility = View.VISIBLE
         }
 
         binding.esliRadioButton.setOnClickListener {
-            binding.oyuncu1EditText.hint = "Takım 1"
-            binding.oyuncu2EditText.hint = "Takım 2"
-            binding.oyuncu3EditText.visibility = View.GONE
-            binding.oyuncu4EditText.visibility = View.GONE
+            binding.oyuncu1EditTextLayout.hint = "Takım 1"
+            binding.oyuncu2EditTextLayout.hint = "Takım 2"
+            binding.oyuncu1EditTextLayout.visibility = View.VISIBLE
+            binding.oyuncu2EditTextLayout.visibility = View.VISIBLE
+            binding.oyuncu3EditTextLayout.visibility = View.GONE
+            binding.oyuncu4EditTextLayout.visibility = View.GONE
         }
     }
 
@@ -370,6 +502,7 @@ class TakimIslemleri : AppCompatActivity() {
         binding.sayidanDusRadioButton.setOnClickListener {
             gameType = "Sayıdan Düş"
             binding.baslangicSayisiEditTextLayout.visibility = View.VISIBLE
+            firstNumber!!.setText("")
         }
 
         binding.sayiEKleRadioButton.setOnClickListener {

@@ -60,4 +60,6 @@
     <string name="skor_detay_title">Skor Detay</string>
     <string name="cross_text">X</string>
     <string name="equal_text">=</string>
+    <string name="delete_text">SİL</string>
+    <string name="edit_text">DÜZENLE</string>
 </resources>

@@ -48,7 +48,7 @@
         android:textColor="?android:attr/textColorPrimary"
         android:layout_margin="16dp"
         android:layout_marginEnd="16dp"
-        android:textSize="32dp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculator_toolbar" />
@@ -109,7 +109,8 @@
                 android:text="("
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_close_bracket"
@@ -121,7 +122,8 @@
                 android:text=")"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_divide"
@@ -133,7 +135,8 @@
                 android:text="/"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
 
@@ -152,7 +155,8 @@
                 android:text="7"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_8"
@@ -163,7 +167,8 @@
                 android:text="8"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_9"
@@ -174,7 +179,8 @@
                 android:text="9"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_multiply"
@@ -186,7 +192,8 @@
                 android:text="*"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
 
@@ -205,7 +212,8 @@
                 android:text="4"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_5"
@@ -216,7 +224,8 @@
                 android:text="5"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_6"
@@ -227,7 +236,8 @@
                 android:text="6"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_plus"
@@ -239,7 +249,8 @@
                 android:text="+"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
 
@@ -258,7 +269,8 @@
                 android:text="1"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_2"
@@ -269,7 +281,8 @@
                 android:text="2"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_3"
@@ -280,7 +293,8 @@
                 android:text="3"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_minus"
@@ -292,7 +306,8 @@
                 android:text="-"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
 
@@ -323,7 +338,8 @@
                 android:text="0"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_dot"
@@ -334,7 +350,8 @@
                 android:text="."
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_equals"
@@ -346,7 +363,8 @@
                 android:text="="
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                app:cornerRadius="36dp" />
+                app:cornerRadius="36dp"
+                tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
 

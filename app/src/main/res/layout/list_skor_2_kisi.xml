@@ -16,7 +16,8 @@
         android:layout_gravity="center_vertical"
         android:text="@string/number_text"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:ignore="VisualLintOverlap" />
 
     <TextView
         android:id="@+id/text"
@@ -27,7 +28,8 @@
         android:layout_marginTop="3dp"
         android:text="-"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:ignore="VisualLintOverlap" />
 
     <LinearLayout
         android:id="@+id/linearLayout"

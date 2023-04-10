@@ -6,11 +6,11 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -52,11 +52,13 @@ class AnaMenu : AppCompatActivity() {
     private var themeName: String = ""
 
 
-    @SuppressLint("InflateParams")
+    @SuppressLint("InflateParams", "VisibleForTests", "SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAnaMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //set admob banner
         MobileAds.initialize(this) {}
@@ -202,7 +204,7 @@ class AnaMenu : AppCompatActivity() {
             "App Update Almost Done.",
             Snackbar.LENGTH_INDEFINITE
         )
-        snackbar.setAction("Roload") { view: View? -> appUpdateManager.completeUpdate() }
+        snackbar.setAction("Roload") { appUpdateManager.completeUpdate() }
         snackbar.setTextColor(Color.parseColor("#FF000"))
         snackbar.show()
     }
@@ -224,8 +226,6 @@ class AnaMenu : AppCompatActivity() {
         managerInfoTask.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 reviewInfo = task.result
-            } else {
-                Toast.makeText(this, "Değerlendirme Başlatılamadı!", Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,16 +20,16 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="25dp"
-            android:src="@drawable/back"
             android:background="?attr/selectableItemBackground"
+            android:src="@drawable/back"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/yeniOyun_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/comfortaa"
             android:layout_gravity="center"
+            android:fontFamily="@font/comfortaa"
             android:text="@string/yeniOyun_text"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="18sp"
@@ -42,10 +41,10 @@
         android:id="@+id/takimIslemleri_nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/takimIslemleri_adView"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/yeniOyun_toolbar">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,7 +59,8 @@
                 android:layout_marginTop="10dp"
                 app:cardCornerRadius="25dp"
                 app:strokeColor="@color/teal_200"
-                app:strokeWidth="2dp">
+                app:strokeWidth="2dp"
+                tools:ignore="TextSizeCheck">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                         android:id="@+id/oyunIsmi_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="250dp"
-                        android:layout_height="60dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="20dp"
                         android:hint="@string/oyunIsmi_text"
@@ -99,14 +99,15 @@
                         android:id="@+id/oyuncu1_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="250dp"
-                        android:layout_height="60dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="40dp"
                         android:hint="@string/oyuncu1_text"
                         android:importantForAutofill="no"
                         app:boxBackgroundColor="@color/edittext_color"
                         app:boxStrokeColor="@color/teal_200"
                         app:endIconMode="clear_text"
+                        app:errorEnabled="true"
                         app:hintTextColor="@color/teal_200"
                         app:startIconDrawable="@drawable/ic_user">
 
@@ -126,14 +127,15 @@
                         android:id="@+id/oyuncu2_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="250dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
                         android:hint="@string/oyuncu2_text"
                         android:importantForAutofill="no"
                         app:boxBackgroundColor="@color/edittext_color"
                         app:boxStrokeColor="@color/teal_200"
                         app:endIconMode="clear_text"
+                        app:errorEnabled="true"
                         app:hintTextColor="@color/teal_200"
                         app:startIconDrawable="@drawable/ic_user">
 
@@ -153,14 +155,15 @@
                         android:id="@+id/oyuncu3_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="250dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
                         android:hint="@string/oyuncu3_text"
                         android:importantForAutofill="no"
                         app:boxBackgroundColor="@color/edittext_color"
                         app:boxStrokeColor="@color/teal_200"
                         app:endIconMode="clear_text"
+                        app:errorEnabled="true"
                         app:hintTextColor="@color/teal_200"
                         app:startIconDrawable="@drawable/ic_user">
 
@@ -180,14 +183,15 @@
                         android:id="@+id/oyuncu4_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="250dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
                         android:hint="@string/oyuncu4_text"
                         android:importantForAutofill="no"
                         app:boxBackgroundColor="@color/edittext_color"
                         app:boxStrokeColor="@color/teal_200"
                         app:endIconMode="clear_text"
+                        app:errorEnabled="true"
                         app:hintTextColor="@color/teal_200"
                         app:startIconDrawable="@drawable/ic_user">
 
@@ -207,8 +211,8 @@
                         android:id="@+id/oyuncuSayisi_linearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -268,8 +272,8 @@
                         android:id="@+id/oyuncuTuru_linearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -368,8 +372,9 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="250dp"
                         android:layout_height="60dp"
-                        android:layout_marginTop="5dp"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
                         android:hint="@string/baslangicSayisi_text"
                         android:importantForAutofill="no"
                         android:visibility="gone"
@@ -399,7 +404,7 @@
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/comfortaa"
                 android:text="@string/basla"
@@ -409,23 +414,10 @@
                 app:cornerRadius="25dp"
                 app:strokeColor="@color/teal_700"
                 app:strokeWidth="2dp"
-                tools:ignore="TextContrastCheck" />
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/takimIslemleri_adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-5963947262278027/1072179297"
-        ads:layout_constraintBottom_toBottomOf="parent"
-        ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

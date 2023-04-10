@@ -3,6 +3,7 @@ package com.mahmutalperenunal.okeypuantablosu.puantablosu
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -74,11 +75,13 @@ class PuanTablosu2Kisi : AppCompatActivity() {
     private lateinit var sharedPreferencesTheme: SharedPreferences
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "VisibleForTests", "SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPuanTablosu2KisiBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //set admob banner
         MobileAds.initialize(this) {}
@@ -145,9 +148,6 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
         //onClick process
         onClickProcess()
-
-        //edit process
-        editProcess()
 
 
         //set skorEkle dialog
@@ -281,13 +281,13 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 dialog, _ ->
 
             //if score not entered
-            if ( oyuncu1Skor!!.text.isEmpty() || oyuncu2Skor!!.text.isEmpty() ) {
+            if ( oyuncu1Skor!!.text.isEmpty()) {
+                oyuncu1Skor!!.error = "Zorunlu"
                 Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-
-            //score entered
-            else {
+            } else if (oyuncu2Skor!!.text.isEmpty()) {
+                oyuncu2Skor!!.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
+            } else {
 
                 if (gameType == "Sayı Ekle") {
 
@@ -728,10 +728,10 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
         when (skorList2Kisi[position].color) {
             "White" -> {
-                colorValue1.setTextColor(getColor(R.color.light_gray))
-                colorValue2.setTextColor(getColor(R.color.light_gray))
+                colorValue1.setTextColor(getColor(R.color.skor_detay_beyaz_tas_color))
+                colorValue2.setTextColor(getColor(R.color.skor_detay_beyaz_tas_color))
 
-                color.setCardBackgroundColor(getColor(R.color.white))
+                color.setCardBackgroundColor(getColor(R.color.skor_detay_beyaz_tas_color))
             }
             "Red" -> {
                 colorValue1.setTextColor(getColor(R.color.red))
@@ -752,10 +752,10 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 color.setCardBackgroundColor(getColor(R.color.yellow))
             }
             "Black" -> {
-                colorValue1.setTextColor(getColor(R.color.black))
-                colorValue2.setTextColor(getColor(R.color.black))
+                colorValue1.setTextColor(getColor(R.color.siyah_tas_color))
+                colorValue2.setTextColor(getColor(R.color.siyah_tas_color))
 
-                color.setCardBackgroundColor(getColor(R.color.black))
+                color.setCardBackgroundColor(getColor(R.color.siyah_tas_color))
             }
         }
 
@@ -774,64 +774,27 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
         addDialog.setView(view)
-        addDialog.setPositiveButton("Tamam") {
+        addDialog.setPositiveButton("Düzenle") {
+                dialog, _ ->
+
+            val selectedGameNumber = skorList2Kisi[position].gameNumber
+            editScore(position, selectedGameNumber)
+
+            dialog.dismiss()
+        }
+        addDialog.setNegativeButton("Sil") {
+                dialog, _ ->
+
+            delete(position)
+
+            dialog.dismiss()
+        }
+        addDialog.setNeutralButton("İptal") {
                 dialog, _ ->
             dialog.dismiss()
         }
         addDialog.create()
         addDialog.show()
-    }
-
-
-    //edit process
-    private fun editProcess() {
-        skorAdapter2Kisi.setOnItemLongClickListener(object : SkorAdapter2Kisi.OnItemLongClickListener {
-            @SuppressLint("SetTextI18n", "InflateParams")
-            override fun onItemLongClick(position: Int) {
-
-                isSelected = sharedPreferences.getBoolean("selected", false)
-                clickCount = sharedPreferences.getInt("count", 0)
-
-                binding.baslikText.text = "1 İtem Seçili"
-                binding.text.visibility = View.GONE
-                binding.gameNumberText.visibility = View.GONE
-                binding.backButton.visibility = View.VISIBLE
-                binding.editIcon.visibility = View.VISIBLE
-                binding.deleteIcon.visibility = View.VISIBLE
-                binding.diceIcon.visibility = View.GONE
-                binding.calculatorIcon.visibility = View.GONE
-
-                if (clickCount == 0) {
-
-                    if (oyunIsmi == "") {
-                        binding.baslikText.text = "Yeni Oyun"
-                    } else {
-                        binding.baslikText.text = "$oyunIsmi"
-                    }
-
-                    binding.text.visibility = View.VISIBLE
-                    binding.gameNumberText.visibility = View.VISIBLE
-                    binding.backButton.visibility = View.VISIBLE
-                    binding.editIcon.visibility = View.GONE
-                    binding.deleteIcon.visibility = View.GONE
-                    binding.diceIcon.visibility = View.VISIBLE
-                    binding.calculatorIcon.visibility = View.VISIBLE
-                    binding.skorEkleButton.visibility = View.VISIBLE
-                    binding.skorTablosuButton.visibility = View.VISIBLE
-                    binding.oyunuBitirButton.visibility = View.VISIBLE
-                }
-
-                //edit selected score
-                binding.editIcon.setOnClickListener {
-                    val selectedGameNumber = skorList2Kisi[position].gameNumber
-                    editScore(position, selectedGameNumber)
-                }
-
-                //delete selected score
-                binding.deleteIcon.setOnClickListener { delete(position) }
-
-            }
-        })
     }
 
 
@@ -1043,13 +1006,13 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 dialog, _ ->
 
             //if score not entered
-            if ( oyuncu1Skor!!.text.isEmpty() || oyuncu2Skor!!.text.isEmpty() ) {
+            if ( oyuncu1Skor!!.text.isEmpty()) {
+                oyuncu1Skor.error = "Zorunlu"
                 Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-
-            //score entered
-            else {
+            } else if (oyuncu2Skor!!.text.isEmpty()) {
+                oyuncu2Skor.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
+            } else {
 
                 if (gameType == "Sayı Ekle") {
 

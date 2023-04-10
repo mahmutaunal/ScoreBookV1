@@ -1,5 +1,7 @@
 package com.mahmutalperenunal.okeypuantablosu.diceroller
 
+import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,11 +16,14 @@ class DiceRoller : AppCompatActivity() {
 
     private lateinit var binding: ActivityDiceRollerBinding
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDiceRollerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //screen size
         val displayMetrics = DisplayMetrics()

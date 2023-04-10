@@ -26,17 +26,8 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
 
     fun setOnItemClickListener(listener: OnItemClickListener) { skorListener = listener }
 
-    /**
-     * longItemClick
-     */
-    private lateinit var skorListenerLong: OnItemLongClickListener
 
-    interface OnItemLongClickListener { fun onItemLongClick(position: Int) }
-
-    fun setOnItemLongClickListener(listenerLong: OnItemLongClickListener) { skorListenerLong = listenerLong }
-
-
-    inner class SkorViewHolder(view: View, listener: OnItemClickListener, listenerLong: OnItemLongClickListener) : RecyclerView.ViewHolder(view) {
+    inner class SkorViewHolder(view: View, listener: OnItemClickListener) : RecyclerView.ViewHolder(view) {
         var skor1 = view.findViewById<TextView>(R.id.skor1_text)!!
         var skor2 = view.findViewById<TextView>(R.id.skor2_text)!!
         var number = view.findViewById<TextView>(R.id.gameNumber_2Kisi_text)!!
@@ -78,41 +69,13 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
                 }
             }
 
-            itemView.setOnLongClickListener {
-
-                if (clickCount >= 1) {
-                    clickCount--
-                    skorList2Kisi[adapterPosition].isSelected = true
-                    editor.putBoolean("selected", false)
-                    editor.putInt("count", clickCount)
-                    editor.apply()
-                    selectIcon.visibility = View.GONE
-                    colorBackground.visibility = View.VISIBLE
-                    itemView.setBackgroundResource(R.drawable.shape_unselected_cardview)
-                    listenerLong.onItemLongClick(adapterPosition)
-                    return@setOnLongClickListener true
-                } else {
-                    clickCount++
-                    skorList2Kisi[adapterPosition].isSelected = true
-                    editor.putBoolean("selected", true)
-                    editor.putInt("count", clickCount)
-                    editor.apply()
-                    selectIcon.visibility = View.VISIBLE
-                    colorBackground.visibility = View.GONE
-                    itemView.setBackgroundResource(R.drawable.shape_selected_cardview)
-                    listenerLong.onItemLongClick(adapterPosition)
-                    return@setOnLongClickListener true
-                }
-
-            }
-
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkorViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.list_skor_2_kisi, parent, false)
-        return SkorViewHolder(view, skorListener, skorListenerLong)
+        return SkorViewHolder(view, skorListener)
     }
 
     override fun onBindViewHolder(holder: SkorViewHolder, position: Int) {

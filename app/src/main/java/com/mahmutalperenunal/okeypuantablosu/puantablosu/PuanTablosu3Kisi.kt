@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -73,11 +74,13 @@ class PuanTablosu3Kisi : AppCompatActivity() {
     private lateinit var sharedPreferencesTheme: SharedPreferences
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPuanTablosu3KisiBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //set admob banner
         MobileAds.initialize(this) {}
@@ -147,9 +150,6 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
         //onClick process
         onClickProcess()
-
-        //edit process
-        editProcess()
 
 
         //set skorEkle dialog
@@ -783,11 +783,11 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
         when (skorList3Kisi[position].color) {
             "White" -> {
-                colorValue1.setTextColor(getColor(R.color.light_gray))
-                colorValue2.setTextColor(getColor(R.color.light_gray))
-                colorValue3.setTextColor(getColor(R.color.light_gray))
+                colorValue1.setTextColor(getColor(R.color.skor_detay_beyaz_tas_color))
+                colorValue2.setTextColor(getColor(R.color.skor_detay_beyaz_tas_color))
+                colorValue3.setTextColor(getColor(R.color.skor_detay_beyaz_tas_color))
 
-                color.setCardBackgroundColor(getColor(R.color.white))
+                color.setCardBackgroundColor(getColor(R.color.skor_detay_beyaz_tas_color))
             }
             "Red" -> {
                 colorValue1.setTextColor(getColor(R.color.red))
@@ -811,11 +811,11 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                 color.setCardBackgroundColor(getColor(R.color.yellow))
             }
             "Black" -> {
-                colorValue1.setTextColor(getColor(R.color.black))
-                colorValue2.setTextColor(getColor(R.color.black))
-                colorValue3.setTextColor(getColor(R.color.black))
+                colorValue1.setTextColor(getColor(R.color.siyah_tas_color))
+                colorValue2.setTextColor(getColor(R.color.siyah_tas_color))
+                colorValue3.setTextColor(getColor(R.color.siyah_tas_color))
 
-                color.setCardBackgroundColor(getColor(R.color.black))
+                color.setCardBackgroundColor(getColor(R.color.siyah_tas_color))
             }
         }
 
@@ -837,61 +837,27 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
         addDialog.setView(view)
-        addDialog.setPositiveButton("Tamam") {
+        addDialog.setPositiveButton("Düzenle") {
+                dialog, _ ->
+
+            val selectedGameNumber = skorList3Kisi[position].gameNumber
+            editScore(position, selectedGameNumber)
+
+            dialog.dismiss()
+        }
+        addDialog.setNegativeButton("Sil") {
+                dialog, _ ->
+
+            delete(position)
+
+            dialog.dismiss()
+        }
+        addDialog.setNeutralButton("İptal") {
                 dialog, _ ->
             dialog.dismiss()
         }
         addDialog.create()
         addDialog.show()
-    }
-
-
-    //edit process
-    private fun editProcess() {
-        skorAdapter3Kisi.setOnItemLongClickListener(object : SkorAdapter3Kisi.OnItemLongClickListener {
-            @SuppressLint("SetTextI18n")
-            override fun onItemLongClick(position: Int) {
-
-                isSelected = sharedPreferences.getBoolean("selected", false)
-                clickCount = sharedPreferences.getInt("count", 0)
-
-                binding.baslikText.text = "1 İtem Seçili"
-                binding.text.visibility = View.GONE
-                binding.gameNumberText.visibility = View.GONE
-                binding.backButton.visibility = View.VISIBLE
-                binding.editIcon.visibility = View.VISIBLE
-                binding.deleteIcon.visibility = View.VISIBLE
-                binding.diceIcon.visibility = View.GONE
-                binding.calculatorIcon.visibility = View.GONE
-
-                if (clickCount == 0) {
-
-                    if (oyunIsmi == "") {
-                        binding.baslikText.text = "Yeni Oyun"
-                    } else {
-                        binding.baslikText.text = "$oyunIsmi"
-                    }
-
-                    binding.text.visibility = View.VISIBLE
-                    binding.gameNumberText.visibility = View.VISIBLE
-                    binding.backButton.visibility = View.VISIBLE
-                    binding.editIcon.visibility = View.GONE
-                    binding.deleteIcon.visibility = View.GONE
-                    binding.diceIcon.visibility = View.VISIBLE
-                    binding.calculatorIcon.visibility = View.VISIBLE
-                }
-
-                //edit score
-                binding.editIcon.setOnClickListener {
-                    val selectedGameNumber = skorList3Kisi[position].gameNumber
-                    editScore(position, selectedGameNumber)
-                }
-
-                //delete score
-                binding.deleteIcon.setOnClickListener { delete(position) }
-
-            }
-        })
     }
 
 
