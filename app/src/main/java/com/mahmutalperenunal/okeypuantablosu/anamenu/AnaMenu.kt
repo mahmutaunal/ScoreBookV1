@@ -4,10 +4,8 @@ import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.IntentSender.SendIntentException
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -18,10 +16,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.install.InstallState
+import com.google.android.play.core.appupdate.AppUpdateOptions
 import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
@@ -69,14 +66,38 @@ class AnaMenu : AppCompatActivity() {
         sharedPreferencesTheme = getSharedPreferences("appTheme", MODE_PRIVATE)
         editorTheme = sharedPreferencesTheme.edit()
 
-        //set update manager
-        checkUpdate()
-
         //review manager
         activateReviewInfo()
 
         //check last theme
         checkLastTheme()
+
+        appUpdateManager = AppUpdateManagerFactory.create(this)
+
+        // Returns an intent object that you use to check for an update.
+        val appUpdateInfoTask = appUpdateManager.appUpdateInfo
+
+        // Checks whether the platform allows the specified type of update,
+        // and current version staleness.
+        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                && appUpdateInfo.updatePriority() >= 4
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
+                // Request the update.
+                appUpdateManager.startUpdateFlowForResult(
+                    // Pass the intent that is returned by 'getAppUpdateInfo()'.
+                    appUpdateInfo,
+                    // The current activity making the update request.
+                    this,
+                    AppUpdateOptions.newBuilder(AppUpdateType.FLEXIBLE)
+                        .setAllowAssetPackDeletion(true)
+                        .build(),
+                    UPDATE_CODE)
+            }
+        }
+
+        // Before starting an update, register a listener for updates.
+        appUpdateManager.registerListener(listener)
 
         //navigate TakimIsimleri Activity
         binding.yeniOyunButton.setOnClickListener {
@@ -98,7 +119,7 @@ class AnaMenu : AppCompatActivity() {
 
                     dialog.dismiss()
                 }
-                .setNeutralButton("Geliştirici") {
+                .setNegativeButton("Geliştirici") {
                     dialog, _ ->
 
                     try {
@@ -109,7 +130,7 @@ class AnaMenu : AppCompatActivity() {
 
                     dialog.dismiss()
                 }
-                .setNegativeButton("İptal") {
+                .setNeutralButton("İptal") {
                         dialog, _ ->
                     dialog.dismiss()
                 }
@@ -169,56 +190,6 @@ class AnaMenu : AppCompatActivity() {
     }
 
 
-    //update manager
-    private fun checkUpdate() {
-        appUpdateManager = AppUpdateManagerFactory.create(this)
-        val task = appUpdateManager.appUpdateInfo
-        task.addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)
-            ) {
-                try {
-                    appUpdateManager.startUpdateFlowForResult(
-                        appUpdateInfo, AppUpdateType.FLEXIBLE,
-                        this@AnaMenu, UPDATE_CODE
-                    )
-                } catch (e: SendIntentException) {
-                    e.printStackTrace()
-                    Log.e("Update Error", e.toString())
-                }
-            }
-        }
-        appUpdateManager.registerListener(listener)
-    }
-
-    private var listener =
-        InstallStateUpdatedListener { installState: InstallState ->
-            if (installState.installStatus() == InstallStatus.DOWNLOADED) {
-                popUp()
-            }
-        }
-
-    private fun popUp() {
-        val snackbar = Snackbar.make(
-            findViewById(android.R.id.content),
-            "App Update Almost Done.",
-            Snackbar.LENGTH_INDEFINITE
-        )
-        snackbar.setAction("Roload") { appUpdateManager.completeUpdate() }
-        snackbar.setTextColor(Color.parseColor("#FF000"))
-        snackbar.show()
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == UPDATE_CODE) {
-            if (resultCode != RESULT_OK) {
-            }
-        }
-    }
-
-
     //app review
     private fun activateReviewInfo() {
         reviewManager = ReviewManagerFactory.create(this)
@@ -238,6 +209,67 @@ class AnaMenu : AppCompatActivity() {
                 "Değerlendirme Tamamlandı!",
                 Toast.LENGTH_SHORT
             ).show()
+        }
+    }
+
+
+    // Create a listener to track request state updates.
+    val listener = InstallStateUpdatedListener { state ->
+        // (Optional) Provide a download progress bar.
+        if (state.installStatus() == InstallStatus.DOWNLOADED) {
+            // After the update is downloaded, show a notification
+            // and request user confirmation to restart the app.
+            popupSnackbarForCompleteUpdate()
+        }
+        // Log state or install the update.
+    }
+
+
+    // Displays the snackbar notification and call to action.
+    private fun popupSnackbarForCompleteUpdate() {
+        Snackbar.make(
+            findViewById(android.R.id.content),
+            "An update has just been downloaded.",
+            Snackbar.LENGTH_INDEFINITE
+        ).apply {
+            setAction("RESTART") { appUpdateManager.completeUpdate() }
+            setActionTextColor(resources.getColor(R.color.teal_200))
+            show()
+        }
+    }
+
+    override fun onStop() {
+        appUpdateManager.registerListener { listener }
+        super.onStop()
+    }
+
+    // Checks that the update is not stalled during 'onResume()'.
+    // However, you should execute this check at all app entry points.
+    override fun onResume() {
+        super.onResume()
+
+        appUpdateManager
+            .appUpdateInfo
+            .addOnSuccessListener { appUpdateInfo ->
+                // If the update is downloaded but not installed,
+                // notify the user to complete the update.
+                if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
+                    popupSnackbarForCompleteUpdate()
+                }
+            }
+    }
+
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == UPDATE_CODE) {
+            if (resultCode != RESULT_OK) {
+                Log.e("MY_APP", "Update flow failed! Result code: $resultCode")
+                // If the update is cancelled or fails,
+                // you can request to start the update again.
+                Toast.makeText(applicationContext, "Güncelleme İptal Edildi!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

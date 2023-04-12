@@ -25,13 +25,6 @@ class DiceRoller : AppCompatActivity() {
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        //screen size
-        val displayMetrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(displayMetrics)
-        val width = displayMetrics.widthPixels
-        val height = displayMetrics.heightPixels
-        window.setLayout(((width * .7).toInt()), (height * .3).toInt())
-
         //random dice
         randomDice()
 
