@@ -304,17 +304,24 @@ class PuanTablosu4Kisi : AppCompatActivity() {
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
         addDialog.setView(view)
+        addDialog.setCancelable(false)
         addDialog.setPositiveButton("Ekle") {
                 dialog, _ ->
 
             //if score not entered
-            if ( oyuncu1Skor!!.text.isEmpty() || oyuncu2Skor!!.text.isEmpty() || oyuncu3Skor!!.text.isEmpty() || oyuncu4Skor!!.text.isEmpty() ) {
+            if (oyuncu1Skor!!.text.isEmpty()) {
+                oyuncu1Skor!!.error = "Zorunlu"
                 Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-
-            //score entered
-            else {
+            } else if (oyuncu2Skor!!.text.isEmpty()) {
+                oyuncu2Skor!!.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
+            } else if (oyuncu3Skor!!.text.isEmpty()) {
+                oyuncu3Skor!!.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
+            } else if (oyuncu4Skor!!.text.isEmpty()) {
+                oyuncu4Skor!!.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
+            } else {
 
                 if (gameType == "Sayı Ekle") {
 
@@ -574,6 +581,7 @@ class PuanTablosu4Kisi : AppCompatActivity() {
 
             dialog.dismiss()
         }
+        addDialog.setCancelable(false)
         addDialog.create()
         addDialog.show()
     }
@@ -736,48 +744,8 @@ class PuanTablosu4Kisi : AppCompatActivity() {
                 isSelected = sharedPreferences.getBoolean("selected", false)
                 clickCount = sharedPreferences.getInt("count", 0)
 
-                if (clickCount >= 1 || skorList[position].isSelected) {
-
-                    if (oyunIsmi == "") {
-                        binding.baslikText.text = "Yeni Oyun"
-                    } else {
-                        binding.baslikText.text = "$oyunIsmi"
-                    }
-
-                    binding.text.visibility = View.VISIBLE
-                    binding.gameNumberText.visibility = View.VISIBLE
-                    binding.backButton.visibility = View.VISIBLE
-                    binding.editIcon.visibility = View.GONE
-                    binding.deleteIcon.visibility = View.GONE
-                    binding.diceIcon.visibility = View.VISIBLE
-                    binding.calculatorIcon.visibility = View.VISIBLE
-                    binding.skorEkleButton.visibility = View.VISIBLE
-                    binding.skorTablosuButton.visibility = View.VISIBLE
-                    binding.oyunuBitirButton.visibility = View.VISIBLE
-
-                } else {
-
-                    if (oyunIsmi == "") {
-                        binding.baslikText.text = "Yeni Oyun"
-                    } else {
-                        binding.baslikText.text = "$oyunIsmi"
-                    }
-
-                    binding.text.visibility = View.VISIBLE
-                    binding.gameNumberText.visibility = View.VISIBLE
-                    binding.backButton.visibility = View.VISIBLE
-                    binding.editIcon.visibility = View.GONE
-                    binding.deleteIcon.visibility = View.GONE
-                    binding.diceIcon.visibility = View.VISIBLE
-                    binding.calculatorIcon.visibility = View.VISIBLE
-                    binding.skorEkleButton.visibility = View.VISIBLE
-                    binding.skorTablosuButton.visibility = View.VISIBLE
-                    binding.oyunuBitirButton.visibility = View.VISIBLE
-
-                    //open score detail page
-                    scoreDetailPage(position)
-
-                }
+                //open score detail page
+                scoreDetailPage(position)
 
             }
         })
@@ -785,7 +753,7 @@ class PuanTablosu4Kisi : AppCompatActivity() {
 
     @SuppressLint("InflateParams", "SetTextI18n")
     private fun scoreDetailPage(position: Int) {
-        val inflater = LayoutInflater.from(applicationContext)
+        val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.skor_detay, null)
 
 
@@ -847,12 +815,13 @@ class PuanTablosu4Kisi : AppCompatActivity() {
 
         when (skorList[position].color) {
             "White" -> {
-                colorValue1.setTextColor(getColor(R.color.skor_detay_beyaz_tas_color))
-                colorValue2.setTextColor(getColor(R.color.skor_detay_beyaz_tas_color))
-                colorValue3.setTextColor(getColor(R.color.skor_detay_beyaz_tas_color))
-                colorValue4.setTextColor(getColor(R.color.skor_detay_beyaz_tas_color))
+                colorValue1.setTextColor(getColor(R.color.siyah_tas_color))
+                colorValue2.setTextColor(getColor(R.color.siyah_tas_color))
+                colorValue3.setTextColor(getColor(R.color.siyah_tas_color))
+                colorValue4.setTextColor(getColor(R.color.siyah_tas_color))
 
                 color.setCardBackgroundColor(getColor(R.color.skor_detay_beyaz_tas_color))
+                color.visibility = View.GONE
             }
             "Red" -> {
                 colorValue1.setTextColor(getColor(R.color.red))
@@ -1173,13 +1142,19 @@ class PuanTablosu4Kisi : AppCompatActivity() {
                 dialog, _ ->
 
             //if score not entered
-            if ( oyuncu1Skor!!.text.isEmpty() || oyuncu2Skor!!.text.isEmpty() ) {
+            if (oyuncu1Skor!!.text.isEmpty()) {
+                oyuncu1Skor.error = "Zorunlu"
                 Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-
-            //score entered
-            else {
+            } else if (oyuncu2Skor!!.text.isEmpty()) {
+                oyuncu2Skor.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
+            } else if (oyuncu3Skor!!.text.isEmpty()) {
+                oyuncu3Skor.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
+            } else if (oyuncu4Skor!!.text.isEmpty()) {
+                oyuncu4Skor.error = "Zorunlu"
+                Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
+            } else {
 
                 if (gameType == "Sayı Ekle") {
 
@@ -1299,6 +1274,7 @@ class PuanTablosu4Kisi : AppCompatActivity() {
                 dialog, _ ->
             dialog.dismiss()
         }
+        addDialog.setCancelable(false)
         addDialog.create()
         addDialog.show()
     }
@@ -1326,6 +1302,7 @@ class PuanTablosu4Kisi : AppCompatActivity() {
                         dialog, _ ->
                     dialog.dismiss()
                 }
+                .setCancelable(false)
                 .create()
                 .show()
 
@@ -1352,6 +1329,7 @@ class PuanTablosu4Kisi : AppCompatActivity() {
                     dialog, _ ->
                 dialog.dismiss()
             }
+            .setCancelable(false)
             .create()
             .show()
     }
@@ -1380,6 +1358,7 @@ class PuanTablosu4Kisi : AppCompatActivity() {
                         dialog, _ ->
                     dialog.dismiss()
                 }
+                .setCancelable(false)
                 .create()
                 .show()
 

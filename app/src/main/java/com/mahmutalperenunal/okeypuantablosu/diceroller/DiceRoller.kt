@@ -5,7 +5,6 @@ import android.content.pm.ActivityInfo
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import com.mahmutalperenunal.okeypuantablosu.R

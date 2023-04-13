@@ -277,6 +277,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
         addDialog.setView(view)
+        addDialog.setCancelable(false)
         addDialog.setPositiveButton("Ekle") {
                 dialog, _ ->
 
@@ -464,6 +465,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         }
 
         addDialog.setView(view)
+        addDialog.setCancelable(false)
         addDialog.setPositiveButton("Yeni Oyun Başlat") {
                 dialog, _ ->
 
@@ -631,48 +633,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 isSelected = sharedPreferences.getBoolean("selected", false)
                 clickCount = sharedPreferences.getInt("count", 0)
 
-                if (clickCount >= 1 || skorList2Kisi[position].isSelected) {
-
-                    if (oyunIsmi == "") {
-                        binding.baslikText.text = "Yeni Oyun"
-                    } else {
-                        binding.baslikText.text = "$oyunIsmi"
-                    }
-
-                    binding.text.visibility = View.VISIBLE
-                    binding.gameNumberText.visibility = View.VISIBLE
-                    binding.backButton.visibility = View.VISIBLE
-                    binding.editIcon.visibility = View.GONE
-                    binding.deleteIcon.visibility = View.GONE
-                    binding.diceIcon.visibility = View.VISIBLE
-                    binding.calculatorIcon.visibility = View.VISIBLE
-                    binding.skorEkleButton.visibility = View.VISIBLE
-                    binding.skorTablosuButton.visibility = View.VISIBLE
-                    binding.oyunuBitirButton.visibility = View.VISIBLE
-
-                } else {
-
-                    if (oyunIsmi == "") {
-                        binding.baslikText.text = "Yeni Oyun"
-                    } else {
-                        binding.baslikText.text = "$oyunIsmi"
-                    }
-
-                    binding.text.visibility = View.VISIBLE
-                    binding.gameNumberText.visibility = View.VISIBLE
-                    binding.backButton.visibility = View.VISIBLE
-                    binding.editIcon.visibility = View.GONE
-                    binding.deleteIcon.visibility = View.GONE
-                    binding.diceIcon.visibility = View.VISIBLE
-                    binding.calculatorIcon.visibility = View.VISIBLE
-                    binding.skorEkleButton.visibility = View.VISIBLE
-                    binding.skorTablosuButton.visibility = View.VISIBLE
-                    binding.oyunuBitirButton.visibility = View.VISIBLE
-
-                    //open score detail page
-                    scoreDetailPage(position)
-
-                }
+                //open score detail page
+                scoreDetailPage(position)
 
             }
         })
@@ -680,7 +642,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
     @SuppressLint("InflateParams", "SetTextI18n")
     private fun scoreDetailPage(position: Int) {
-        val inflater = LayoutInflater.from(applicationContext)
+        val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.skor_detay, null)
 
 
@@ -728,10 +690,11 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
         when (skorList2Kisi[position].color) {
             "White" -> {
-                colorValue1.setTextColor(getColor(R.color.skor_detay_beyaz_tas_color))
-                colorValue2.setTextColor(getColor(R.color.skor_detay_beyaz_tas_color))
+                colorValue1.setTextColor(getColor(R.color.siyah_tas_color))
+                colorValue2.setTextColor(getColor(R.color.siyah_tas_color))
 
                 color.setCardBackgroundColor(getColor(R.color.skor_detay_beyaz_tas_color))
+                color.visibility = View.GONE
             }
             "Red" -> {
                 colorValue1.setTextColor(getColor(R.color.red))
@@ -1002,6 +965,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
         addDialog.setView(view)
+        addDialog.setCancelable(false)
         addDialog.setPositiveButton("Düzenle") {
                 dialog, _ ->
 
@@ -1128,6 +1092,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                         dialog, _ ->
                     dialog.dismiss()
                 }
+                .setCancelable(false)
                 .create()
                 .show()
 
@@ -1154,6 +1119,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     dialog, _ ->
                 dialog.dismiss()
             }
+            .setCancelable(false)
             .create()
             .show()
     }
@@ -1182,6 +1148,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                         dialog, _ ->
                     dialog.dismiss()
                 }
+                .setCancelable(false)
                 .create()
                 .show()
 

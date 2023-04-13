@@ -10,15 +10,13 @@
 
     <ImageView
         android:id="@+id/main_logo_imageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="175dp"
-        android:layout_marginEnd="25dp"
+        android:layout_width="1500dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_logo_adaptive"
+        app:layout_constraintBottom_toTopOf="@+id/main_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_logo_adaptive"
         tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView

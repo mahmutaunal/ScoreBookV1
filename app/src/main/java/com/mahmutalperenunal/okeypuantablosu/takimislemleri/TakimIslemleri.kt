@@ -166,35 +166,30 @@ class TakimIslemleri : AppCompatActivity() {
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
         addDialog.setView(view)
-        /*addDialog.setPositiveButton("Başla", object : DialogInterface.OnClickListener {
-            override fun onClick(dialog: DialogInterface, which: Int) {
-
-            }
-        })*/
         addDialog.setPositiveButton("Başla"
         ) { dialog, _ ->
             if (redEditText.text.isEmpty()) {
 
                 redEditTextLayout.error = "Zorunlu"
-                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Lütfen Renk Değerlerini Girin veya Atla Seçin!", Toast.LENGTH_SHORT).show()
                 isColorsValueEntered = false
 
             } else if (blueEditText.text.isEmpty()) {
 
                 blueEditTextLayout.error = "Zorunlu"
-                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Lütfen Renk Değerlerini Girin veya Atla Seçin!", Toast.LENGTH_SHORT).show()
                 isColorsValueEntered = false
 
             } else if (yellowEditText.text.isEmpty()) {
 
                 yellowEditTextLayout.error = "Zorunlu"
-                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Lütfen Renk Değerlerini Girin veya Atla Seçin!", Toast.LENGTH_SHORT).show()
                 isColorsValueEntered = false
 
             } else if (blackEditText.text.isEmpty()) {
 
                 blackEditTextLayout.error = "Zorunlu"
-                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Lütfen Renk Değerlerini Girin veya Atla Seçin!", Toast.LENGTH_SHORT).show()
                 isColorsValueEntered = false
 
             } else {
@@ -229,47 +224,8 @@ class TakimIslemleri : AppCompatActivity() {
             isColorsValueEntered = true
             dialog.dismiss()
         }
+        addDialog.setCancelable(false)
         addDialog.show()
-
-        /*addDialog.create().getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-            if (redEditText.text.isEmpty()) {
-
-                redEditTextLayout.error = "Zorunlu"
-                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
-                isColorsValueEntered = false
-
-            } else if (blueEditText.text.isEmpty()) {
-
-                blueEditTextLayout.error = "Zorunlu"
-                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
-                isColorsValueEntered = false
-
-            } else if (yellowEditText.text.isEmpty()) {
-
-                yellowEditTextLayout.error = "Zorunlu"
-                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
-                isColorsValueEntered = false
-
-            } else if (blackEditText.text.isEmpty()) {
-
-                blackEditTextLayout.error = "Zorunlu"
-                Toast.makeText(applicationContext, "Lütfen Tüm Alanları Doldurun!", Toast.LENGTH_SHORT).show()
-                isColorsValueEntered = false
-
-            } else {
-
-                redValue = redEditText.text.toString().toInt()
-                blueValue = blueEditText.text.toString().toInt()
-                yellowValue = yellowEditText.text.toString().toInt()
-                blackValue = blackEditText.text.toString().toInt()
-
-                isColorsValueEntered = true
-
-                startGame()
-
-                addDialog.create().dismiss()
-            }
-        }*/
     }
 
 

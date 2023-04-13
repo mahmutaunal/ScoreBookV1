@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -35,8 +34,6 @@ class SkorAdapter3Kisi (private val skorList3Kisi: ArrayList<SkorData3Kisi>) : R
 
         var colorBackground = view.findViewById<CardView>(R.id.color_background)!!
 
-        private val selectIcon: ImageView = itemView.findViewById(R.id.skor3_selectIcon)
-
         private val preferences = itemView.context.getSharedPreferences("clickCount3Kisi", Context.MODE_PRIVATE)
         private val editor = preferences.edit()
 
@@ -56,7 +53,6 @@ class SkorAdapter3Kisi (private val skorList3Kisi: ArrayList<SkorData3Kisi>) : R
                     editor.putBoolean("selected", false)
                     editor.putInt("count", clickCount)
                     editor.apply()
-                    selectIcon.visibility = View.GONE
                     colorBackground.visibility = View.VISIBLE
                     itemView.setBackgroundResource(R.drawable.shape_unselected_cardview)
                     listener.onItemClick(adapterPosition)
@@ -87,7 +83,7 @@ class SkorAdapter3Kisi (private val skorList3Kisi: ArrayList<SkorData3Kisi>) : R
         holder.number.text = newList.gameNumber.toString()
 
         when (newList.color) {
-            "White" -> holder.colorBackground.setCardBackgroundColor(Color.WHITE)
+            "White" -> holder.colorBackground.visibility = View.GONE
             "Red" -> holder.colorBackground.setCardBackgroundColor(Color.RED)
             "Blue" -> holder.colorBackground.setCardBackgroundColor(Color.BLUE)
             "Yellow" -> holder.colorBackground.setCardBackgroundColor(Color.YELLOW)
