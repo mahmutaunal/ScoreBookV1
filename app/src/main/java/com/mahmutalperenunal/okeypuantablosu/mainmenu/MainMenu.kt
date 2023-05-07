@@ -1,4 +1,4 @@
-package com.mahmutalperenunal.okeypuantablosu.anamenu
+package com.mahmutalperenunal.okeypuantablosu.mainmenu
 
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
@@ -27,12 +27,12 @@ import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.mahmutalperenunal.okeypuantablosu.R
-import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityAnaMenuBinding
-import com.mahmutalperenunal.okeypuantablosu.takimislemleri.TakimIslemleri
+import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityMainMenuBinding
+import com.mahmutalperenunal.okeypuantablosu.teamoperations.TeamOperations
 
-class AnaMenu : AppCompatActivity() {
+class MainMenu : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAnaMenuBinding
+    private lateinit var binding: ActivityMainMenuBinding
 
     private lateinit var sharedPreferencesTheme: SharedPreferences
 
@@ -52,9 +52,10 @@ class AnaMenu : AppCompatActivity() {
     @SuppressLint("InflateParams", "VisibleForTests", "SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAnaMenuBinding.inflate(layoutInflater)
+        binding = ActivityMainMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //set screen orientation to portrait
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //set admob banner
@@ -72,6 +73,7 @@ class AnaMenu : AppCompatActivity() {
         //check last theme
         checkLastTheme()
 
+        //set app update manager
         appUpdateManager = AppUpdateManagerFactory.create(this)
 
         // Returns an intent object that you use to check for an update.
@@ -82,7 +84,8 @@ class AnaMenu : AppCompatActivity() {
         appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
                 && appUpdateInfo.updatePriority() >= 4
-                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)
+            ) {
                 // Request the update.
                 appUpdateManager.startUpdateFlowForResult(
                     // Pass the intent that is returned by 'getAppUpdateInfo()'.
@@ -92,17 +95,18 @@ class AnaMenu : AppCompatActivity() {
                     AppUpdateOptions.newBuilder(AppUpdateType.FLEXIBLE)
                         .setAllowAssetPackDeletion(true)
                         .build(),
-                    UPDATE_CODE)
+                    UPDATE_CODE
+                )
             }
         }
 
         // Before starting an update, register a listener for updates.
         appUpdateManager.registerListener(listener)
 
-        //navigate TakimIsimleri Activity
+        //navigate TeamOperations Activity
         binding.yeniOyunButton.setOnClickListener {
-            val intentTakimIslemleri = Intent(applicationContext, TakimIslemleri::class.java)
-            startActivity(intentTakimIslemleri)
+            val intentTeamOperations = Intent(applicationContext, TeamOperations::class.java)
+            startActivity(intentTeamOperations)
             finish()
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
@@ -110,28 +114,35 @@ class AnaMenu : AppCompatActivity() {
         //info about app
         binding.infoIcon.setOnClickListener {
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                .setTitle("Bilgilendirme")
-                .setMessage("Bu uygulama ile herhangi bir okey oyunundaki puan tablonuzu tutabilirsiniz ve daha sonra bakmak veya devam etmek için kaydedebilirsiniz.")
-                .setPositiveButton("Derecelendir") {
-                        dialog, _ ->
+                .setTitle(R.string.info_text)
+                .setMessage(R.string.info_description_text)
+                .setPositiveButton(R.string.rate_text) { dialog, _ ->
 
                     startReviewFlow()
 
                     dialog.dismiss()
                 }
-                .setNegativeButton("Geliştirici") {
-                    dialog, _ ->
+                .setNegativeButton(R.string.developer_text) { dialog, _ ->
 
                     try {
-                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=5245599652065968716")))
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://play.google.com/store/apps/dev?id=5245599652065968716")
+                            )
+                        )
                     } catch (e: ActivityNotFoundException) {
-                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=5245599652065968716")))
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://play.google.com/store/apps/dev?id=5245599652065968716")
+                            )
+                        )
                     }
 
                     dialog.dismiss()
                 }
-                .setNeutralButton("İptal") {
-                        dialog, _ ->
+                .setNeutralButton(R.string.cancel_text) { dialog, _ ->
                     dialog.dismiss()
                 }
                 .create()
@@ -143,10 +154,10 @@ class AnaMenu : AppCompatActivity() {
         binding.darkModeIcon.setOnClickListener {
 
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                .setTitle("Uygulama Teması")
-                .setMessage("Uygulama temasını seçiniz.\n\nMevcut tema: $themeName")
+                .setTitle(R.string.app_theme_text)
+                .setMessage("${R.string.app_theme_description_text} \n\n${R.string.current_theme_text} $themeName")
                 .setPositiveButton(
-                    "Açık"
+                    R.string.light_text
                 ) { _: DialogInterface?, _: Int ->
                     AppCompatDelegate.setDefaultNightMode(
                         AppCompatDelegate.MODE_NIGHT_NO
@@ -155,7 +166,7 @@ class AnaMenu : AppCompatActivity() {
                     editorTheme.apply()
                 }
                 .setNegativeButton(
-                    "Koyu"
+                    R.string.dark_text
                 ) { _: DialogInterface?, _: Int ->
                     AppCompatDelegate.setDefaultNightMode(
                         AppCompatDelegate.MODE_NIGHT_YES
@@ -164,7 +175,7 @@ class AnaMenu : AppCompatActivity() {
                     editorTheme.apply()
                 }
                 .setNeutralButton(
-                    "Sistem Teması"
+                    R.string.system_theme_text
                 ) { _: DialogInterface?, _: Int ->
                     AppCompatDelegate.setDefaultNightMode(
                         AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
@@ -183,9 +194,9 @@ class AnaMenu : AppCompatActivity() {
         themeCode = sharedPreferencesTheme.getInt("theme", 0)
 
         when (themeCode) {
-            -1 -> themeName = "Sistem Teması"
-            1 -> themeName = "Açık"
-            2 -> themeName = "Koyu"
+            -1 -> themeName = getString(R.string.system_theme_text)
+            1 -> themeName = getString(R.string.light_text)
+            2 -> themeName = getString(R.string.dark_text)
         }
     }
 
@@ -193,7 +204,8 @@ class AnaMenu : AppCompatActivity() {
     //app review
     private fun activateReviewInfo() {
         reviewManager = ReviewManagerFactory.create(this)
-        val managerInfoTask: com.google.android.play.core.tasks.Task<ReviewInfo> = reviewManager.requestReviewFlow()
+        val managerInfoTask: com.google.android.play.core.tasks.Task<ReviewInfo> =
+            reviewManager.requestReviewFlow()
         managerInfoTask.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 reviewInfo = task.result
@@ -202,11 +214,12 @@ class AnaMenu : AppCompatActivity() {
     }
 
     private fun startReviewFlow() {
-        val flow: com.google.android.play.core.tasks.Task<Void> = reviewManager.launchReviewFlow(this, reviewInfo)
+        val flow: com.google.android.play.core.tasks.Task<Void> =
+            reviewManager.launchReviewFlow(this, reviewInfo)
         flow.addOnCompleteListener {
             Toast.makeText(
                 this,
-                "Değerlendirme Tamamlandı!",
+                R.string.rate_completed_text,
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -214,7 +227,7 @@ class AnaMenu : AppCompatActivity() {
 
 
     // Create a listener to track request state updates.
-    val listener = InstallStateUpdatedListener { state ->
+    private val listener = InstallStateUpdatedListener { state ->
         // (Optional) Provide a download progress bar.
         if (state.installStatus() == InstallStatus.DOWNLOADED) {
             // After the update is downloaded, show a notification
@@ -229,10 +242,10 @@ class AnaMenu : AppCompatActivity() {
     private fun popupSnackbarForCompleteUpdate() {
         Snackbar.make(
             findViewById(android.R.id.content),
-            "An update has just been downloaded.",
+            R.string.update_downloaded_text,
             Snackbar.LENGTH_INDEFINITE
         ).apply {
-            setAction("RESTART") { appUpdateManager.completeUpdate() }
+            setAction(R.string.restart_text) { appUpdateManager.completeUpdate() }
             setActionTextColor(resources.getColor(R.color.teal_200))
             show()
         }
@@ -268,7 +281,8 @@ class AnaMenu : AppCompatActivity() {
                 Log.e("MY_APP", "Update flow failed! Result code: $resultCode")
                 // If the update is cancelled or fails,
                 // you can request to start the update again.
-                Toast.makeText(applicationContext, "Güncelleme İptal Edildi!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, R.string.cancel_update_text, Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }

@@ -1,11 +1,11 @@
 package com.mahmutalperenunal.okeypuantablosu.model
 
 //data class for player scores
-data class SkorData3Kisi (
-    var oyuncu1_skor: String,
-    var oyuncu2_skor: String,
-    var oyuncu3_skor: String,
+data class ScoreData2Player(
+    var player1_score: String,
+    var player2_score: String,
     var gameNumber: Int,
     var multiplyNumber: Int,
     var color: String,
-    var isSelected: Boolean)
+    var isSelected: Boolean
+)

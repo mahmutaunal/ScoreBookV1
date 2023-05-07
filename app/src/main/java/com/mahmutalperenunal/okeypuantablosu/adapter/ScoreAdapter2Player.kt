@@ -9,31 +9,33 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmutalperenunal.okeypuantablosu.R
-import com.mahmutalperenunal.okeypuantablosu.model.SkorData2Kisi
+import com.mahmutalperenunal.okeypuantablosu.model.ScoreData2Player
 
-class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : RecyclerView.Adapter<SkorAdapter2Kisi.SkorViewHolder>() {
+class ScoreAdapter2Player(private val scoreList2Player: ArrayList<ScoreData2Player>) :
+    RecyclerView.Adapter<ScoreAdapter2Player.ScoreViewHolder>() {
 
     private var clickCount = 0
 
+    private lateinit var scoreListener: OnItemClickListener
 
-    /**
-     * item click
-     */
-    private lateinit var skorListener: OnItemClickListener
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
 
-    interface OnItemClickListener { fun onItemClick(position: Int) }
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        scoreListener = listener
+    }
 
-    fun setOnItemClickListener(listener: OnItemClickListener) { skorListener = listener }
-
-
-    inner class SkorViewHolder(view: View, listener: OnItemClickListener) : RecyclerView.ViewHolder(view) {
-        var skor1 = view.findViewById<TextView>(R.id.skor1_text)!!
-        var skor2 = view.findViewById<TextView>(R.id.skor2_text)!!
+    inner class ScoreViewHolder(view: View, listener: OnItemClickListener) :
+        RecyclerView.ViewHolder(view) {
+        var score1 = view.findViewById<TextView>(R.id.skor1_text)!!
+        var score2 = view.findViewById<TextView>(R.id.skor2_text)!!
         var number = view.findViewById<TextView>(R.id.gameNumber_2Kisi_text)!!
 
         var colorBackground = view.findViewById<CardView>(R.id.color_background)!!
 
-        private val preferences = itemView.context.getSharedPreferences("clickCount2Kisi", Context.MODE_PRIVATE)
+        private val preferences =
+            itemView.context.getSharedPreferences("clickCount2Player", Context.MODE_PRIVATE)
         private val editor = preferences.edit()
 
         init {
@@ -48,7 +50,7 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
                 if (clickCount >= 1) {
 
                     clickCount--
-                    skorList2Kisi[adapterPosition].isSelected = false
+                    scoreList2Player[adapterPosition].isSelected = false
                     editor.putBoolean("selected", false)
                     editor.putInt("count", clickCount)
                     editor.apply()
@@ -59,7 +61,7 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
                 } else {
 
                     editor.putBoolean("selected", false)
-                    skorList2Kisi[adapterPosition].isSelected = false
+                    scoreList2Player[adapterPosition].isSelected = false
                     listener.onItemClick(adapterPosition)
 
                 }
@@ -68,16 +70,16 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkorViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScoreViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.list_skor_2_kisi, parent, false)
-        return SkorViewHolder(view, skorListener)
+        return ScoreViewHolder(view, scoreListener)
     }
 
-    override fun onBindViewHolder(holder: SkorViewHolder, position: Int) {
-        val newList = skorList2Kisi[position]
-        holder.skor1.text = newList.oyuncu1_skor
-        holder.skor2.text = newList.oyuncu2_skor
+    override fun onBindViewHolder(holder: ScoreViewHolder, position: Int) {
+        val newList = scoreList2Player[position]
+        holder.score1.text = newList.player1_score
+        holder.score2.text = newList.player2_score
         holder.number.text = newList.gameNumber.toString()
 
         when (newList.color) {
@@ -91,7 +93,7 @@ class SkorAdapter2Kisi (private val skorList2Kisi: ArrayList<SkorData2Kisi>) : R
     }
 
     override fun getItemCount(): Int {
-        return skorList2Kisi.size
+        return scoreList2Player.size
     }
 
 }

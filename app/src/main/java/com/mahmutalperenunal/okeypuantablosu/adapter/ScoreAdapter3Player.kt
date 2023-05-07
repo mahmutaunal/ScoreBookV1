@@ -9,32 +9,35 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmutalperenunal.okeypuantablosu.R
-import com.mahmutalperenunal.okeypuantablosu.model.SkorData3Kisi
+import com.mahmutalperenunal.okeypuantablosu.model.ScoreData3Player
 
-class SkorAdapter3Kisi (private val skorList3Kisi: ArrayList<SkorData3Kisi>) : RecyclerView.Adapter<SkorAdapter3Kisi.SkorViewHolder>() {
+class ScoreAdapter3Player(private val scoreList3Player: ArrayList<ScoreData3Player>) :
+    RecyclerView.Adapter<ScoreAdapter3Player.ScoreViewHolder>() {
 
     private var clickCount = 0
 
+    private lateinit var scoreListener: OnItemClickListener
 
-    /**
-     * item click
-     */
-    private lateinit var skorListener: OnItemClickListener
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
 
-    interface OnItemClickListener { fun onItemClick(position: Int) }
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        scoreListener = listener
+    }
 
-    fun setOnItemClickListener(listener: OnItemClickListener) { skorListener = listener }
 
-
-    inner class SkorViewHolder(view: View, listener: OnItemClickListener) : RecyclerView.ViewHolder(view) {
-        var skor1 = view.findViewById<TextView>(R.id.skor1_text)!!
-        var skor2 = view.findViewById<TextView>(R.id.skor2_text)!!
-        var skor3 = view.findViewById<TextView>(R.id.skor3_text)!!
+    inner class ScoreViewHolder(view: View, listener: OnItemClickListener) :
+        RecyclerView.ViewHolder(view) {
+        var score1 = view.findViewById<TextView>(R.id.skor1_text)!!
+        var score2 = view.findViewById<TextView>(R.id.skor2_text)!!
+        var score3 = view.findViewById<TextView>(R.id.skor3_text)!!
         var number = view.findViewById<TextView>(R.id.gameNumber_3Kisi_text)!!
 
         var colorBackground = view.findViewById<CardView>(R.id.color_background)!!
 
-        private val preferences = itemView.context.getSharedPreferences("clickCount3Kisi", Context.MODE_PRIVATE)
+        private val preferences =
+            itemView.context.getSharedPreferences("clickCount3Player", Context.MODE_PRIVATE)
         private val editor = preferences.edit()
 
         init {
@@ -49,7 +52,7 @@ class SkorAdapter3Kisi (private val skorList3Kisi: ArrayList<SkorData3Kisi>) : R
                 if (clickCount >= 1) {
 
                     clickCount--
-                    skorList3Kisi[adapterPosition].isSelected = false
+                    scoreList3Player[adapterPosition].isSelected = false
                     editor.putBoolean("selected", false)
                     editor.putInt("count", clickCount)
                     editor.apply()
@@ -60,7 +63,7 @@ class SkorAdapter3Kisi (private val skorList3Kisi: ArrayList<SkorData3Kisi>) : R
                 } else {
 
                     editor.putBoolean("selected", false)
-                    skorList3Kisi[adapterPosition].isSelected = false
+                    scoreList3Player[adapterPosition].isSelected = false
                     listener.onItemClick(adapterPosition)
 
                 }
@@ -69,17 +72,17 @@ class SkorAdapter3Kisi (private val skorList3Kisi: ArrayList<SkorData3Kisi>) : R
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkorViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScoreViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.list_skor_3_kisi, parent, false)
-        return SkorViewHolder(view, skorListener)
+        return ScoreViewHolder(view, scoreListener)
     }
 
-    override fun onBindViewHolder(holder: SkorViewHolder, position: Int) {
-        val newList = skorList3Kisi[position]
-        holder.skor1.text = newList.oyuncu1_skor
-        holder.skor2.text = newList.oyuncu2_skor
-        holder.skor3.text = newList.oyuncu3_skor
+    override fun onBindViewHolder(holder: ScoreViewHolder, position: Int) {
+        val newList = scoreList3Player[position]
+        holder.score1.text = newList.player1_score
+        holder.score2.text = newList.player2_score
+        holder.score3.text = newList.player3_score
         holder.number.text = newList.gameNumber.toString()
 
         when (newList.color) {
@@ -92,7 +95,7 @@ class SkorAdapter3Kisi (private val skorList3Kisi: ArrayList<SkorData3Kisi>) : R
     }
 
     override fun getItemCount(): Int {
-        return skorList3Kisi.size
+        return scoreList3Player.size
     }
 
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Okey Puan Tablosu</string>
+    <string name="app_name">Skor Defteri</string>
 
     <string name="yeniOyun_button">Yeni Oyun</string>
     <string name="gecmisOyunlar_button">Kaydedilen Oyunlar</string>
@@ -62,4 +62,42 @@
     <string name="equal_text">=</string>
     <string name="delete_text">SİL</string>
     <string name="edit_text">DÜZENLE</string>
+    <string name="info_text">Bilgilendirme</string>
+    <string name="info_description_text">Bu uygulama ile herhangi bir okey oyunundaki puan tablonuzu tutabilirsiniz ve daha sonra bakmak veya devam etmek için kaydedebilirsiniz.</string>
+    <string name="rate_text">Derecelendir</string>
+    <string name="developer_text">Geliştirici</string>
+    <string name="cancel_text">İptal</string>
+    <string name="app_theme_text">Uygulama Teması</string>
+    <string name="current_theme_text">Mevcut tema:</string>
+    <string name="app_theme_description_text">Uygulama temasını seçiniz.</string>
+    <string name="light_text">Açık</string>
+    <string name="dark_text">Koyu</string>
+    <string name="system_theme_text">Sistem Teması</string>
+    <string name="rate_completed_text">Değerlendirme Tamamlandı!</string>
+    <string name="restart_text">Yeniden Başlat</string>
+    <string name="update_downloaded_text">An update has just been downloaded.</string>
+    <string name="cancel_update_text">Güncelleme İptal Edildi!</string>
+    <string name="error_text">Hata!</string>
+    <string name="compulsory_text">Zorunlu!</string>
+    <string name="enter_player_name_text">Lütfen oyuncu adlarını girin!</string>
+    <string name="start_text">Başla</string>
+    <string name="skip_text">Atla</string>
+    <string name="enter_color_values">Lütfen Renk Değerlerini Girin veya Atla Seçin!</string>
+    <string name="player1_text">Oyuncu 1</string>
+    <string name="player2_text">Oyuncu 2</string>
+    <string name="team1_text">Takım 1</string>
+    <string name="team2_text">Takım 2</string>
+    <string name="new_game_text">Yeni Oyun</string>
+    <string name="add_text">Ekle</string>
+    <string name="enter_all_scores_text">Lütfen tüm oyuncuların skorlarını girin!</string>
+    <string name="round_text">El</string>
+    <string name="ahead_text">Önde</string>
+    <string name="tie_text">Beraberlik.</string>
+    <string name="ok_text">Tamam</string>
+    <string name="won_text">Kazandı</string>
+    <string name="new_game_start_text">Yeni Oyun Başlat</string>
+    <string name="main_menu_text">Ana Menu</string>
+    <string name="no_round_to_delete_text">Silinecek herhangi bir el yok!</string>
+    <string name="delete_round_text">Seçili Eli Sil</string>
+    <string name="delete_round_description_text">Seçili eli silmek istediğinizden emin misiniz?</string>
 </resources>

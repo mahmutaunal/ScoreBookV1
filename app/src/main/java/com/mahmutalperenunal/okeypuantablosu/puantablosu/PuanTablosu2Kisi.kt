@@ -21,12 +21,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityPuanTablosu2KisiBinding
 import com.mahmutalperenunal.okeypuantablosu.diceroller.DiceRoller
-import com.mahmutalperenunal.okeypuantablosu.adapter.SkorAdapter2Kisi
-import com.mahmutalperenunal.okeypuantablosu.anamenu.AnaMenu
-import com.mahmutalperenunal.okeypuantablosu.model.SkorData2Kisi
-import com.mahmutalperenunal.okeypuantablosu.takimislemleri.TakimIslemleri
+import com.mahmutalperenunal.okeypuantablosu.mainmenu.MainMenu
+import com.mahmutalperenunal.okeypuantablosu.model.ScoreData2Player
+import com.mahmutalperenunal.okeypuantablosu.teamoperations.TeamOperations
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
+import com.mahmutalperenunal.okeypuantablosu.adapter.ScoreAdapter2Player
 import com.mahmutalperenunal.okeypuantablosu.calculator.Calculator
 
 //operations such as entering scores, deleting players.
@@ -35,18 +35,18 @@ class PuanTablosu2Kisi : AppCompatActivity() {
     private  lateinit var binding: ActivityPuanTablosu2KisiBinding
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var skorList2Kisi: ArrayList<SkorData2Kisi>
-    private  lateinit var skorAdapter2Kisi: SkorAdapter2Kisi
+    private lateinit var scoreList2Player: ArrayList<ScoreData2Player>
+    private  lateinit var scoreAdapter2Player: ScoreAdapter2Player
 
-    private var skorCount: Int = -1
+    private var scoreCount: Int = -1
 
-    private var oyunIsmi: String? = null
+    private var gameName: String? = null
 
-    private var oyuncu1Ad: String? = null
-    private var oyuncu2Ad: String? = null
+    private var player1Name: String? = null
+    private var player2Name: String? = null
 
-    private var oyuncu1Skor: EditText? = null
-    private var oyuncu2Skor: EditText? = null
+    private var player1Score: EditText? = null
+    private var player2Score: EditText? = null
 
     private var gameNumber: Int = 1
 
@@ -65,7 +65,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
     private var yellowValue: Int = 0
     private var blackValue: Int = 0
 
-    private var gameType: String = "Sayı Ekle"
+    private var gameType: String = "Add Score"
 
     private var firstNumber: String = "0000"
 
@@ -81,6 +81,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         binding = ActivityPuanTablosu2KisiBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //set screen orientation portrait
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //set admob banner
@@ -89,32 +90,33 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         binding.takimIslemleriAdView.loadAd(adRequest)
 
         //game name
-        oyunIsmi = intent.getStringExtra("Oyun İsmi").toString()
+        gameName = intent.getStringExtra("Game Name").toString()
 
-        //if game name not entered, subtitle is "Yeni Oyun"
-        if ( oyunIsmi == "" ) {
-            binding.baslikText.text = "Yeni Oyun"
+        //if game name not entered, subtitle is "New Game"
+        if ( gameName == "" ) {
+            binding.baslikText.text = getString(R.string.new_game_text)
         }
         else {
-            binding.baslikText.text = oyunIsmi
+            binding.baslikText.text = gameName
         }
 
-        //player names
-        oyuncu1Ad = intent.getStringExtra("Oyuncu-1 Ad").toString()
-        oyuncu2Ad = intent.getStringExtra("Oyuncu-2 Ad").toString()
+        //get player names
+        player1Name = intent.getStringExtra("Player-1 Name").toString()
+        player2Name = intent.getStringExtra("Player-2 Name").toString()
 
-        binding.oyuncu1Text.text = oyuncu1Ad
-        binding.oyuncu2Text.text = oyuncu2Ad
+        //set player names
+        binding.oyuncu1Text.text = player1Name
+        binding.oyuncu2Text.text = player2Name
 
         //get colors value
-        redValue = intent.getIntExtra("Kırmızı Değer", 0)
-        blueValue = intent.getIntExtra("Mavi Değer", 0)
-        yellowValue = intent.getIntExtra("Sarı Değer", 0)
-        blackValue = intent.getIntExtra("Siyah Değer", 0)
+        redValue = intent.getIntExtra("Red Value", 0)
+        blueValue = intent.getIntExtra("Blue Value", 0)
+        yellowValue = intent.getIntExtra("Yellow Value", 0)
+        blackValue = intent.getIntExtra("Black Value", 0)
 
         //get game type and first number
-        gameType = intent.getStringExtra("Oyun Türü").toString()
-        firstNumber = intent.getStringExtra("Başlangıç Sayısı").toString()
+        gameType = intent.getStringExtra("Game Type").toString()
+        firstNumber = intent.getStringExtra("Number of Starts").toString()
 
         if (firstNumber.isEmpty()) {
             binding.oyuncu1AnlikSkor.text = "0000"
@@ -126,35 +128,35 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
 
         //get click count
-        sharedPreferences = getSharedPreferences("clickCount2Kisi", MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("clickCount2Player", MODE_PRIVATE)
 
         //get theme
         sharedPreferencesTheme = getSharedPreferences("appTheme", MODE_PRIVATE)
 
 
         //set list
-        skorList2Kisi = ArrayList()
+        scoreList2Player = ArrayList()
 
         //set recyclerView
         recyclerView = findViewById(R.id.puanTablosu_recyclerView)
 
         //set adapter
-        skorAdapter2Kisi = SkorAdapter2Kisi(skorList2Kisi)
+        scoreAdapter2Player = ScoreAdapter2Player(scoreList2Player)
 
         //set recyclerView adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = skorAdapter2Kisi
+        recyclerView.adapter = scoreAdapter2Player
 
 
         //onClick process
         onClickProcess()
 
 
-        //set skorEkle dialog
-        binding.skorEkleButton.setOnClickListener { skorEkle() }
+        //set addScore dialog
+        binding.skorEkleButton.setOnClickListener { addScore() }
 
-        //set puanTablosu dialog
-        binding.skorTablosuButton.setOnClickListener { puanTablosu() }
+        //set scoreboard dialog
+        binding.skorTablosuButton.setOnClickListener { scoreboard() }
 
         //on back pressed turn main menu
         binding.backButton.setOnClickListener { exitMainMenu() }
@@ -172,7 +174,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
     //add score
     @SuppressLint("NotifyDataSetChanged", "SetTextI18n", "InflateParams")
-    private fun skorEkle() {
+    private fun addScore() {
 
         multiplyNumber = 1
 
@@ -181,13 +183,13 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
         color = "White"
 
-        //set oyuncuSkor view
-        oyuncu1Skor = view.findViewById(R.id.oyuncu1Skor_editText)
-        oyuncu2Skor = view.findViewById(R.id.oyuncu2Skor_editText)
+        //set playerScore view
+        player1Score = view.findViewById(R.id.oyuncu1Skor_editText)
+        player2Score = view.findViewById(R.id.oyuncu2Skor_editText)
 
         //set player names
-        val oyuncu1Text = view.findViewById<TextView>(R.id.oyuncu1Ekle_textView)
-        val oyuncu2Text = view.findViewById<TextView>(R.id.oyuncu2Ekle_textView)
+        val player1Text = view.findViewById<TextView>(R.id.oyuncu1Ekle_textView)
+        val player2Text = view.findViewById<TextView>(R.id.oyuncu2Ekle_textView)
 
         //set colors layout visibility
         val colorLayout = view.findViewById<RadioGroup>(R.id.colors_radioGroup)
@@ -271,97 +273,97 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             color = "Black"
         }
 
-        oyuncu1Text.text = oyuncu1Ad
-        oyuncu2Text.text = oyuncu2Ad
+        player1Text.text = player1Name
+        player2Text.text = player2Name
 
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
         addDialog.setView(view)
         addDialog.setCancelable(false)
-        addDialog.setPositiveButton("Ekle") {
+        addDialog.setPositiveButton(R.string.add_text) {
                 dialog, _ ->
 
             //if score not entered
-            if ( oyuncu1Skor!!.text.isEmpty()) {
-                oyuncu1Skor!!.error = "Zorunlu"
-                Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
-            } else if (oyuncu2Skor!!.text.isEmpty()) {
-                oyuncu2Skor!!.error = "Zorunlu"
-                Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
+            if ( player1Score!!.text.isEmpty()) {
+                player1Score!!.error = getString(R.string.compulsory_text)
+                Toast.makeText(applicationContext, R.string.enter_all_scores_text, Toast.LENGTH_SHORT).show()
+            } else if (player2Score!!.text.isEmpty()) {
+                player2Score!!.error = getString(R.string.compulsory_text)
+                Toast.makeText(applicationContext, R.string.enter_all_scores_text, Toast.LENGTH_SHORT).show()
             } else {
 
-                if (gameType == "Sayı Ekle") {
+                if (gameType == "Add Score") {
 
                     //entered scores to arraylist
-                    val yeniAnlikSkor1 = oyuncu1Skor!!.text.toString()
-                    val yeniAnlikSkor2 = oyuncu2Skor!!.text.toString()
+                    val newInstantScore1 = player1Score!!.text.toString()
+                    val newInstantScore2 = player2Score!!.text.toString()
 
-                    val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
-                    val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
+                    val newInstantScore1Multiply = newInstantScore1.toInt() * multiplyNumber
+                    val newInstantScore2Multiply = newInstantScore2.toInt() * multiplyNumber
 
-                    skorList2Kisi.add(SkorData2Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), gameNumber, multiplyNumber, color, false))
+                    scoreList2Player.add(ScoreData2Player(newInstantScore1Multiply.toString(), newInstantScore2Multiply.toString(), gameNumber, multiplyNumber, color, false))
 
                     gameNumber++
 
-                    binding.gameNumberText.text = "$gameNumber. El"
+                    binding.gameNumberText.text = "$gameNumber. ${getString(R.string.round_text)}"
 
-                    skorCount++
+                    scoreCount++
 
                     //instant score
-                    val eskiAnlikSkor1 = binding.oyuncu1AnlikSkor.text.toString()
-                    val eskiAnlikSkor2 = binding.oyuncu2AnlikSkor.text.toString()
+                    val exInstantScore1 = binding.oyuncu1AnlikSkor.text.toString()
+                    val exInstantScore2 = binding.oyuncu2AnlikSkor.text.toString()
 
                     //sum entered score and instant score
-                    val sonucAnlikSkor1 = yeniAnlikSkor1Multiply + eskiAnlikSkor1.toInt()
-                    val sonucAnlikSkor2 = yeniAnlikSkor2Multiply + eskiAnlikSkor2.toInt()
+                    val resultInstantScore1 = newInstantScore1Multiply + exInstantScore1.toInt()
+                    val resultInstantScore2 = newInstantScore2Multiply + exInstantScore2.toInt()
 
-                    binding.oyuncu1AnlikSkor.text = sonucAnlikSkor1.toString()
-                    binding.oyuncu2AnlikSkor.text = sonucAnlikSkor2.toString()
+                    binding.oyuncu1AnlikSkor.text = resultInstantScore1.toString()
+                    binding.oyuncu2AnlikSkor.text = resultInstantScore2.toString()
 
-                    skorAdapter2Kisi.notifyDataSetChanged()
+                    scoreAdapter2Player.notifyDataSetChanged()
 
                 } else {
 
                     //entered scores to arraylist
-                    val yeniAnlikSkor1 = oyuncu1Skor!!.text.toString()
-                    val yeniAnlikSkor2 = oyuncu2Skor!!.text.toString()
+                    val newInstantScore1 = player1Score!!.text.toString()
+                    val newInstantScore2 = player2Score!!.text.toString()
 
-                    val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
-                    val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
+                    val newInstantScore1Multiply = newInstantScore1.toInt() * multiplyNumber
+                    val newInstantScore2Multiply = newInstantScore2.toInt() * multiplyNumber
 
-                    skorList2Kisi.add(SkorData2Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), gameNumber, multiplyNumber, color, false))
+                    scoreList2Player.add(ScoreData2Player(newInstantScore1Multiply.toString(), newInstantScore2Multiply.toString(), gameNumber, multiplyNumber, color, false))
 
                     gameNumber++
 
-                    binding.gameNumberText.text = "$gameNumber. El"
+                    binding.gameNumberText.text = "$gameNumber. ${getString(R.string.round_text)}"
 
-                    skorCount++
+                    scoreCount++
 
                     //instant score
-                    val eskiAnlikSkor1 = binding.oyuncu1AnlikSkor.text.toString()
-                    val eskiAnlikSkor2 = binding.oyuncu2AnlikSkor.text.toString()
+                    val exInstantScore1 = binding.oyuncu1AnlikSkor.text.toString()
+                    val exInstantScore2 = binding.oyuncu2AnlikSkor.text.toString()
 
                     //sum entered score and instant score
-                    val sonucAnlikSkor1 = eskiAnlikSkor1.toInt() - yeniAnlikSkor1Multiply
-                    val sonucAnlikSkor2 = eskiAnlikSkor2.toInt() - yeniAnlikSkor2Multiply
+                    val resultInstantScore1 = exInstantScore1.toInt() - newInstantScore1Multiply
+                    val resultInstantScore2 = exInstantScore2.toInt() - newInstantScore2Multiply
 
-                    binding.oyuncu1AnlikSkor.text = sonucAnlikSkor1.toString()
-                    binding.oyuncu2AnlikSkor.text = sonucAnlikSkor2.toString()
+                    binding.oyuncu1AnlikSkor.text = resultInstantScore1.toString()
+                    binding.oyuncu2AnlikSkor.text = resultInstantScore2.toString()
 
-                    skorAdapter2Kisi.notifyDataSetChanged()
+                    scoreAdapter2Player.notifyDataSetChanged()
 
                 }
 
                 val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
                 val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
 
-                if (gameType == "Sayıdan Düş") { if (score1 <= 0 || score2 <= 0) { kazananTakim() } }
+                if (gameType == "Deduct from the number") { if (score1 <= 0 || score2 <= 0) { winnerTeam() } }
 
                 dialog.dismiss()
             }
 
         }
-        addDialog.setNegativeButton("İptal Et") {
+        addDialog.setNegativeButton(R.string.cancel_text) {
                 dialog, _ ->
             dialog.dismiss()
         }
@@ -372,48 +374,48 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
     //scoreboard
     @SuppressLint("NotifyDataSetChanged", "CutPasteId", "SetTextI18n")
-    private fun puanTablosu() {
+    private fun scoreboard() {
 
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.skor_list_2_kisi, null)
 
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
-        val kazananTakim = view.findViewById<TextView>(R.id.kazananOyuncular_text)
+        val winnerTeam = view.findViewById<TextView>(R.id.kazananOyuncular_text)
 
-        val oyuncu1SkorText = view.findViewById<TextView>(R.id.oyuncu1Skor_textView)
-        val oyuncu2SkorText = view.findViewById<TextView>(R.id.oyuncu2Skor_textView)
+        val player1ScoreText = view.findViewById<TextView>(R.id.oyuncu1Skor_textView)
+        val player2ScoreText = view.findViewById<TextView>(R.id.oyuncu2Skor_textView)
 
-        val oyuncu1ToplamSkor = binding.oyuncu1AnlikSkor.text.toString()
-        val oyuncu2ToplamSkor = binding.oyuncu2AnlikSkor.text.toString()
+        val player1TotalScore = binding.oyuncu1AnlikSkor.text.toString()
+        val player2TotalScore = binding.oyuncu2AnlikSkor.text.toString()
 
-        oyuncu1SkorText.text = oyuncu1ToplamSkor
-        oyuncu2SkorText.text = oyuncu2ToplamSkor
+        player1ScoreText.text = player1TotalScore
+        player2ScoreText.text = player2TotalScore
 
-        val oyuncu1SkorTabloAdText = view.findViewById<TextView>(R.id.oyuncu1SkorTabloAd_textView)
-        val oyuncu2SkorTabloAdText = view.findViewById<TextView>(R.id.oyuncu2SkorTabloAd_textView)
+        val player1ScoreboardNameText = view.findViewById<TextView>(R.id.oyuncu1SkorTabloAd_textView)
+        val player2ScoreboardNameText = view.findViewById<TextView>(R.id.oyuncu2SkorTabloAd_textView)
 
-        oyuncu1SkorTabloAdText.text = oyuncu1Ad
-        oyuncu2SkorTabloAdText.text = oyuncu2Ad
+        player1ScoreboardNameText.text = player1Name
+        player2ScoreboardNameText.text = player2Name
 
         //show the leading team
-        val oyuncu1Skor = oyuncu1ToplamSkor.toInt()
-        val oyuncu2Skor = oyuncu2ToplamSkor.toInt()
+        val player1Score = player1TotalScore.toInt()
+        val player2Score = player2TotalScore.toInt()
 
         when {
-            ( (oyuncu1Skor < oyuncu2Skor) )-> {
-                kazananTakim.text = "$oyuncu1Ad Önde."
+            ( (player1Score < player2Score) )-> {
+                winnerTeam.text = "$player1Name ${getString(R.string.ahead_text)}."
             }
-            ( (oyuncu2Skor < oyuncu1Skor) )-> {
-                kazananTakim.text = "$oyuncu2Ad Önde."
+            ( (player2Score < player1Score) )-> {
+                winnerTeam.text = "$player2Name ${getString(R.string.ahead_text)}."
             }
             else -> {
-                kazananTakim.text = "Beraberlik"
+                winnerTeam.text = getString(R.string.tie_text)
             }
         }
 
         addDialog.setView(view)
-        addDialog.setPositiveButton("Tamam") {
+        addDialog.setPositiveButton(R.string.ok_text) {
                 dialog, _ ->
             dialog.dismiss()
         }
@@ -424,54 +426,54 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
     //winner team scoreboard
     @SuppressLint("NotifyDataSetChanged", "CutPasteId", "SetTextI18n")
-    private fun kazananTakim() {
+    private fun winnerTeam() {
 
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.skor_list_2_kisi, null)
 
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
-        val kazananTakim = view.findViewById<TextView>(R.id.kazananOyuncular_text)
+        val winnerTeam = view.findViewById<TextView>(R.id.kazananOyuncular_text)
 
-        val oyuncu1SkorText = view.findViewById<TextView>(R.id.oyuncu1Skor_textView)
-        val oyuncu2SkorText = view.findViewById<TextView>(R.id.oyuncu2Skor_textView)
+        val player1ScoreText = view.findViewById<TextView>(R.id.oyuncu1Skor_textView)
+        val player2ScoreText = view.findViewById<TextView>(R.id.oyuncu2Skor_textView)
 
-        val oyuncu1ToplamSkor = binding.oyuncu1AnlikSkor.text.toString()
-        val oyuncu2ToplamSkor = binding.oyuncu2AnlikSkor.text.toString()
+        val player1TotalScore = binding.oyuncu1AnlikSkor.text.toString()
+        val player2TotalScore = binding.oyuncu2AnlikSkor.text.toString()
 
-        oyuncu1SkorText.text = oyuncu1ToplamSkor
-        oyuncu2SkorText.text = oyuncu2ToplamSkor
+        player1ScoreText.text = player1TotalScore
+        player2ScoreText.text = player2TotalScore
 
-        val oyuncu1SkorTabloAdText = view.findViewById<TextView>(R.id.oyuncu1SkorTabloAd_textView)
-        val oyuncu2SkorTabloAdText = view.findViewById<TextView>(R.id.oyuncu2SkorTabloAd_textView)
+        val player1ScoreboardNameText = view.findViewById<TextView>(R.id.oyuncu1SkorTabloAd_textView)
+        val player2ScoreboardNameText = view.findViewById<TextView>(R.id.oyuncu2SkorTabloAd_textView)
 
-        oyuncu1SkorTabloAdText.text = oyuncu1Ad
-        oyuncu2SkorTabloAdText.text = oyuncu2Ad
+        player1ScoreboardNameText.text = player1Name
+        player2ScoreboardNameText.text = player2Name
 
         //show the leading team
-        val oyuncu1Skor = oyuncu1ToplamSkor.toInt()
-        val oyuncu2Skor = oyuncu2ToplamSkor.toInt()
+        val player1Score = player1TotalScore.toInt()
+        val player2Score = player2TotalScore.toInt()
 
         when {
-            ( (oyuncu1Skor < oyuncu2Skor) )-> {
-                kazananTakim.text = "$oyuncu1Ad Kazandı."
+            ( (player1Score < player2Score) )-> {
+                winnerTeam.text = "$player1Name ${getString(R.string.won_text)}."
             }
-            ( (oyuncu2Skor < oyuncu1Skor) )-> {
-                kazananTakim.text = "$oyuncu2Ad Kazandı."
+            ( (player2Score < player1Score) )-> {
+                winnerTeam.text = "$player2Name ${getString(R.string.won_text)}."
             }
             else -> {
-                kazananTakim.text = "Beraberlik"
+                winnerTeam.text = getString(R.string.tie_text)
             }
         }
 
         addDialog.setView(view)
         addDialog.setCancelable(false)
-        addDialog.setPositiveButton("Yeni Oyun Başlat") {
+        addDialog.setPositiveButton(R.string.new_game_start_text) {
                 dialog, _ ->
 
-            //turn back takimIslemleri Activity for start a new game
-            val intentTakimIslemleri = Intent(applicationContext, TakimIslemleri::class.java)
-            startActivity(intentTakimIslemleri)
+            //turn back teamOperations Activity for start a new game
+            val intentTeamOperations = Intent(applicationContext, TeamOperations::class.java)
+            startActivity(intentTeamOperations)
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
@@ -479,11 +481,11 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         }
 
         //turn back main menu
-        addDialog.setNegativeButton("Ana Menü") {
+        addDialog.setNegativeButton(R.string.main_menu_text) {
                 dialog, _ ->
 
-            val intentAnaMenu = Intent(applicationContext, AnaMenu::class.java)
-            startActivity(intentAnaMenu)
+            val intentMainMenu = Intent(applicationContext, MainMenu::class.java)
+            startActivity(intentMainMenu)
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
@@ -506,7 +508,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
     //open calculator
     private fun openCalculator() {
         val intentCalculator = Intent(applicationContext, Calculator::class.java)
-        intentCalculator.putExtra("Puan Tablosu", 2)
+        intentCalculator.putExtra("Scoreboard", 2)
         intentCalculator.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
         startActivity(intentCalculator)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
@@ -517,53 +519,53 @@ class PuanTablosu2Kisi : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged", "InflateParams", "SetTextI18n")
     private fun delete(position: Int) {
 
-        if ( skorCount <= -1 ) {
-            Toast.makeText(this, "Silinecek herhangi bir el yok!", Toast.LENGTH_SHORT).show()
+        if ( scoreCount <= -1 ) {
+            Toast.makeText(this, R.string.no_round_to_delete_text, Toast.LENGTH_SHORT).show()
         }
 
         else {
 
-            if (gameType == "Sayı Ekle") {
+            if (gameType == "Add Sore") {
 
-                val toplamSkor1 = binding.oyuncu1AnlikSkor.text.toString()
-                val toplamSkor2 = binding.oyuncu2AnlikSkor.text.toString()
+                val totalScore1 = binding.oyuncu1AnlikSkor.text.toString()
+                val totalScore2 = binding.oyuncu2AnlikSkor.text.toString()
 
                 AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                    .setTitle("Seçili Eli Sil")
-                    .setMessage("Seçili eli silmek istediğinizden emin misiniz?")
-                    .setPositiveButton("Sil") {
+                    .setTitle(R.string.delete_round_text)
+                    .setMessage(R.string.delete_round_description_text)
+                    .setPositiveButton(R.string.delete_text) {
                             dialog, _ ->
-                        if(skorCount <= -1) {
-                            Toast.makeText(this, "Silinecek herhangi bir el yok.", Toast.LENGTH_SHORT).show()
+                        if(scoreCount <= -1) {
+                            Toast.makeText(this, R.string.no_round_to_delete_text, Toast.LENGTH_SHORT).show()
                             dialog.dismiss()
                         }
                         else {
 
                             gameNumber--
 
-                            binding.gameNumberText.text = "$gameNumber. El"
+                            binding.gameNumberText.text = "$gameNumber. ${getString(R.string.round_text)}"
 
-                            val sonucSkor1 = toplamSkor1.toInt() - skorList2Kisi[position].oyuncu1_skor.toInt()
-                            val sonucSkor2 = toplamSkor2.toInt() - skorList2Kisi[position].oyuncu2_skor.toInt()
+                            val resultScore1 = totalScore1.toInt() - scoreList2Player[position].player1_score.toInt()
+                            val resultScore2 = totalScore2.toInt() - scoreList2Player[position].player2_score.toInt()
 
-                            binding.oyuncu1AnlikSkor.text = sonucSkor1.toString()
-                            binding.oyuncu2AnlikSkor.text = sonucSkor2.toString()
+                            binding.oyuncu1AnlikSkor.text = resultScore1.toString()
+                            binding.oyuncu2AnlikSkor.text = resultScore2.toString()
 
-                            skorList2Kisi.removeAt(position)
+                            scoreList2Player.removeAt(position)
 
-                            skorCount--
+                            scoreCount--
 
-                            skorAdapter2Kisi.notifyDataSetChanged()
+                            scoreAdapter2Player.notifyDataSetChanged()
 
                             val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
                             val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
 
-                            if (gameType == "Sayıdan Düş") { if (score1 <= 0 || score2 <= 0) { kazananTakim() } }
+                            if (gameType == "Deduct from the number") { if (score1 <= 0 || score2 <= 0) { winnerTeam() } }
 
                             dialog.dismiss()
                         }
                     }
-                    .setNegativeButton("İptal Et") {
+                    .setNegativeButton(R.string.cancel_text) {
                             dialog, _ ->
                         dialog.dismiss()
                     }
@@ -572,45 +574,45 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
             } else {
 
-                val toplamSkor1 = binding.oyuncu1AnlikSkor.text.toString()
-                val toplamSkor2 = binding.oyuncu2AnlikSkor.text.toString()
+                val totalScore1 = binding.oyuncu1AnlikSkor.text.toString()
+                val totalScore2 = binding.oyuncu2AnlikSkor.text.toString()
 
                 AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                    .setTitle("Seçili Eli Sil")
-                    .setMessage("Seçili eli silmek istediğinizden emin misiniz?")
-                    .setPositiveButton("Sil") {
+                    .setTitle(R.string.delete_round_text)
+                    .setMessage(R.string.delete_round_description_text)
+                    .setPositiveButton(R.string.delete_text) {
                             dialog, _ ->
-                        if(skorCount <= -1) {
-                            Toast.makeText(this, "Silinecek herhangi bir el yok.", Toast.LENGTH_SHORT).show()
+                        if(scoreCount <= -1) {
+                            Toast.makeText(this, R.string.no_round_to_delete_text, Toast.LENGTH_SHORT).show()
                             dialog.dismiss()
                         }
                         else {
 
                             gameNumber--
 
-                            binding.gameNumberText.text = "$gameNumber. El"
+                            binding.gameNumberText.text = "$gameNumber. ${getString(R.string.round_text)}."
 
-                            val sonucSkor1 = toplamSkor1.toInt() + skorList2Kisi[position].oyuncu1_skor.toInt()
-                            val sonucSkor2 = toplamSkor2.toInt() + skorList2Kisi[position].oyuncu2_skor.toInt()
+                            val resultScore1 = totalScore1.toInt() + scoreList2Player[position].player1_score.toInt()
+                            val resultScore2 = totalScore2.toInt() + scoreList2Player[position].player2_score.toInt()
 
-                            binding.oyuncu1AnlikSkor.text = sonucSkor1.toString()
-                            binding.oyuncu2AnlikSkor.text = sonucSkor2.toString()
+                            binding.oyuncu1AnlikSkor.text = resultScore1.toString()
+                            binding.oyuncu2AnlikSkor.text = resultScore2.toString()
 
-                            skorList2Kisi.removeAt(position)
+                            scoreList2Player.removeAt(position)
 
-                            skorCount--
+                            scoreCount--
 
-                            skorAdapter2Kisi.notifyDataSetChanged()
+                            scoreAdapter2Player.notifyDataSetChanged()
 
                             val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
                             val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
 
-                            if (gameType == "Sayıdan Düş") { if (score1 <= 0 || score2 <= 0) { kazananTakim() } }
+                            if (gameType == "Deduct from the number") { if (score1 <= 0 || score2 <= 0) { winnerTeam() } }
 
                             dialog.dismiss()
                         }
                     }
-                    .setNegativeButton("İptal Et") {
+                    .setNegativeButton(R.string.cancel_text) {
                             dialog, _ ->
                         dialog.dismiss()
                     }
@@ -626,7 +628,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
     //onClick process
     private fun onClickProcess() {
-        skorAdapter2Kisi.setOnItemClickListener(object : SkorAdapter2Kisi.OnItemClickListener {
+        scoreAdapter2Player.setOnItemClickListener(object : ScoreAdapter2Player.OnItemClickListener {
             @SuppressLint("SetTextI18n")
             override fun onItemClick(position: Int) {
 
@@ -657,23 +659,23 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         //set game number
         val gameNumberText = view.findViewById<TextView>(R.id.skorDetay_gameNumber_textView)
 
-        gameNumberText.text = "${skorList2Kisi[position].gameNumber}. El"
+        gameNumberText.text = "${scoreList2Player[position].gameNumber}. ${getString(R.string.round_text)}"
 
 
         //set player names
         val playerName1 = view.findViewById<TextView>(R.id.skorDetay_name_textView)
         val playerName2 = view.findViewById<TextView>(R.id.skorDetay_name2_textView)
 
-        playerName1.text = "$oyuncu1Ad"
-        playerName2.text = "$oyuncu2Ad"
+        playerName1.text = "$player1Name"
+        playerName2.text = "$player2Name"
 
 
         //set first score
         val firstScore1Text = view.findViewById<TextView>(R.id.skorDetay_score_textView)
         val firstScore2Text = view.findViewById<TextView>(R.id.skorDetay_score2_textView)
 
-        firstScore1 = skorList2Kisi[position].oyuncu1_skor.toInt() / skorList2Kisi[position].multiplyNumber
-        firstScore2 = skorList2Kisi[position].oyuncu2_skor.toInt() / skorList2Kisi[position].multiplyNumber
+        firstScore1 = scoreList2Player[position].player1_score.toInt() / scoreList2Player[position].multiplyNumber
+        firstScore2 = scoreList2Player[position].player2_score.toInt() / scoreList2Player[position].multiplyNumber
 
         firstScore1Text.text = firstScore1.toString()
         firstScore2Text.text = firstScore2.toString()
@@ -685,10 +687,10 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         val colorValue1 = view.findViewById<TextView>(R.id.skorDetay_multiply_textView)
         val colorValue2 = view.findViewById<TextView>(R.id.skorDetay_multiply2_textView)
 
-        colorValue1.text = skorList2Kisi[position].multiplyNumber.toString()
-        colorValue2.text = skorList2Kisi[position].multiplyNumber.toString()
+        colorValue1.text = scoreList2Player[position].multiplyNumber.toString()
+        colorValue2.text = scoreList2Player[position].multiplyNumber.toString()
 
-        when (skorList2Kisi[position].color) {
+        when (scoreList2Player[position].color) {
             "White" -> {
                 colorValue1.setTextColor(getColor(R.color.siyah_tas_color))
                 colorValue2.setTextColor(getColor(R.color.siyah_tas_color))
@@ -727,8 +729,8 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         val lastScore1 = view.findViewById<TextView>(R.id.skorDetay_toplamSkor_textView)
         val lastScore2 = view.findViewById<TextView>(R.id.skorDetay_toplamSkor2_textView)
 
-        val result1 = firstScore1 * skorList2Kisi[position].multiplyNumber
-        val result2 = firstScore2 * skorList2Kisi[position].multiplyNumber
+        val result1 = firstScore1 * scoreList2Player[position].multiplyNumber
+        val result2 = firstScore2 * scoreList2Player[position].multiplyNumber
 
         lastScore1.text = result1.toString()
         lastScore2.text = result2.toString()
@@ -737,22 +739,22 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
         addDialog.setView(view)
-        addDialog.setPositiveButton("Düzenle") {
+        addDialog.setPositiveButton(R.string.edit_text) {
                 dialog, _ ->
 
-            val selectedGameNumber = skorList2Kisi[position].gameNumber
+            val selectedGameNumber = scoreList2Player[position].gameNumber
             editScore(position, selectedGameNumber)
 
             dialog.dismiss()
         }
-        addDialog.setNegativeButton("Sil") {
+        addDialog.setNegativeButton(R.string.delete_text) {
                 dialog, _ ->
 
             delete(position)
 
             dialog.dismiss()
         }
-        addDialog.setNeutralButton("İptal") {
+        addDialog.setNeutralButton(R.string.cancel_text) {
                 dialog, _ ->
             dialog.dismiss()
         }
@@ -769,16 +771,16 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         val view = inflater.inflate(R.layout.add_item_2_kisi, null)
 
         //set selected score
-        val seciliSkor1 =  skorList2Kisi[position].oyuncu1_skor
-        val seciliSkor2 =  skorList2Kisi[position].oyuncu2_skor
+        val selectedScore1 =  scoreList2Player[position].player1_score
+        val selectedScore2 =  scoreList2Player[position].player2_score
 
-        //set oyuncuSkor view
-        val oyuncu1Skor = view.findViewById<EditText>(R.id.oyuncu1Skor_editText)
-        val oyuncu2Skor = view.findViewById<EditText>(R.id.oyuncu2Skor_editText)
+        //set playerScore view
+        val player1Score = view.findViewById<EditText>(R.id.oyuncu1Skor_editText)
+        val player2Score = view.findViewById<EditText>(R.id.oyuncu2Skor_editText)
 
         //set player names
-        val oyuncu1Text = view.findViewById<TextView>(R.id.oyuncu1Ekle_textView)
-        val oyuncu2Text = view.findViewById<TextView>(R.id.oyuncu2Ekle_textView)
+        val player1Text = view.findViewById<TextView>(R.id.oyuncu1Ekle_textView)
+        val player2Text = view.findViewById<TextView>(R.id.oyuncu2Ekle_textView)
 
         //set colors layout visibility
         val colorLayout = view.findViewById<RadioGroup>(R.id.colors_radioGroup)
@@ -802,7 +804,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
         val multiply2 = view.findViewById<TextView>(R.id.multiply2_text)
 
         //set last color
-        when (skorList2Kisi[position].color) {
+        when (scoreList2Player[position].color) {
             "White" -> {
                 noColorButton.isChecked = true
                 redButton.isChecked = false
@@ -956,91 +958,91 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             color = "Black"
         }
 
-        oyuncu1Text.text = oyuncu1Ad
-        oyuncu2Text.text = oyuncu2Ad
+        player1Text.text = player1Name
+        player2Text.text = player2Name
 
-        oyuncu1Skor.setText(seciliSkor1)
-        oyuncu2Skor.setText(seciliSkor2)
+        player1Score.setText(selectedScore1)
+        player2Score.setText(selectedScore2)
 
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
         addDialog.setView(view)
         addDialog.setCancelable(false)
-        addDialog.setPositiveButton("Düzenle") {
+        addDialog.setPositiveButton(R.string.edit_text) {
                 dialog, _ ->
 
             //if score not entered
-            if ( oyuncu1Skor!!.text.isEmpty()) {
-                oyuncu1Skor.error = "Zorunlu"
-                Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
-            } else if (oyuncu2Skor!!.text.isEmpty()) {
-                oyuncu2Skor.error = "Zorunlu"
-                Toast.makeText(applicationContext, "Lütfen tüm oyuncuların skorlarını girin", Toast.LENGTH_SHORT).show()
+            if ( player1Score!!.text.isEmpty()) {
+                player1Score.error = getString(R.string.compulsory_text)
+                Toast.makeText(applicationContext, R.string.enter_all_scores_text, Toast.LENGTH_SHORT).show()
+            } else if (player2Score!!.text.isEmpty()) {
+                player2Score.error = getString(R.string.compulsory_text)
+                Toast.makeText(applicationContext, R.string.enter_all_scores_text, Toast.LENGTH_SHORT).show()
             } else {
 
-                if (gameType == "Sayı Ekle") {
+                if (gameType == "Add Score") {
 
                     //entered scores to arraylist
-                    val yeniAnlikSkor1 = oyuncu1Skor.text.toString()
-                    val yeniAnlikSkor2 = oyuncu2Skor.text.toString()
+                    val newInstantScore1 = player1Score.text.toString()
+                    val newInstantScore2 = player2Score.text.toString()
 
-                    val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
-                    val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
+                    val newInstantScore1Multiply = newInstantScore1.toInt() * multiplyNumber
+                    val newInstantScore2Multiply = newInstantScore2.toInt() * multiplyNumber
 
                     //set new score to arraylist
-                    skorList2Kisi[position].oyuncu1_skor = yeniAnlikSkor1Multiply.toString()
-                    skorList2Kisi[position].oyuncu2_skor = yeniAnlikSkor2Multiply.toString()
-                    skorList2Kisi[position].gameNumber = selectedGameNumber
-                    skorList2Kisi[position].multiplyNumber = multiplyNumber
-                    skorList2Kisi[position].color = color
+                    scoreList2Player[position].player1_score = newInstantScore1Multiply.toString()
+                    scoreList2Player[position].player2_score = newInstantScore2Multiply.toString()
+                    scoreList2Player[position].gameNumber = selectedGameNumber
+                    scoreList2Player[position].multiplyNumber = multiplyNumber
+                    scoreList2Player[position].color = color
 
-                    binding.gameNumberText.text = "$gameNumber. El"
+                    binding.gameNumberText.text = "$gameNumber. ${getString(R.string.round_text)}"
 
-                    skorCount++
+                    scoreCount++
 
                     //instant score
-                    val eskiAnlikSkor1 = binding.oyuncu1AnlikSkor.text.toString()
-                    val eskiAnlikSkor2 = binding.oyuncu2AnlikSkor.text.toString()
+                    val exInstantScore1 = binding.oyuncu1AnlikSkor.text.toString()
+                    val exInstantScore2 = binding.oyuncu2AnlikSkor.text.toString()
 
                     //sum entered score and instant score
-                    val sonucEskiAnlikSkor1 = eskiAnlikSkor1.toInt() - seciliSkor1.toInt()
-                    val sonucEskiAnlikSkor2 = eskiAnlikSkor2.toInt() - seciliSkor2.toInt()
+                    val resultOldInstantScore1 = exInstantScore1.toInt() - selectedScore1.toInt()
+                    val resultOldInstantScore2 = exInstantScore2.toInt() - selectedScore2.toInt()
 
-                    val sonucYeniAnlikSkor1 = sonucEskiAnlikSkor1 + yeniAnlikSkor1Multiply
-                    val sonucYeniAnlikSkor2 = sonucEskiAnlikSkor2 + yeniAnlikSkor2Multiply
+                    val resultNewInstantScore1 = resultOldInstantScore1 + newInstantScore1Multiply
+                    val resultNewInstantScore2 = resultOldInstantScore2 + newInstantScore2Multiply
 
-                    binding.oyuncu1AnlikSkor.text = sonucYeniAnlikSkor1.toString()
-                    binding.oyuncu2AnlikSkor.text = sonucYeniAnlikSkor2.toString()
+                    binding.oyuncu1AnlikSkor.text = resultNewInstantScore1.toString()
+                    binding.oyuncu2AnlikSkor.text = resultNewInstantScore2.toString()
 
-                    skorAdapter2Kisi.notifyDataSetChanged()
+                    scoreAdapter2Player.notifyDataSetChanged()
 
                 } else {
 
                     //entered scores to arraylist
-                    val yeniAnlikSkor1 = oyuncu1Skor.text.toString()
-                    val yeniAnlikSkor2 = oyuncu2Skor.text.toString()
+                    val yeniAnlikSkor1 = player1Score.text.toString()
+                    val yeniAnlikSkor2 = player2Score.text.toString()
 
                     val yeniAnlikSkor1Multiply = yeniAnlikSkor1.toInt() * multiplyNumber
                     val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
 
                     //set new score to arraylist
-                    skorList2Kisi[position].oyuncu1_skor = yeniAnlikSkor1Multiply.toString()
-                    skorList2Kisi[position].oyuncu2_skor = yeniAnlikSkor2Multiply.toString()
-                    skorList2Kisi[position].gameNumber = selectedGameNumber
-                    skorList2Kisi[position].multiplyNumber = multiplyNumber
-                    skorList2Kisi[position].color = color
+                    scoreList2Player[position].player1_score = yeniAnlikSkor1Multiply.toString()
+                    scoreList2Player[position].player2_score = yeniAnlikSkor2Multiply.toString()
+                    scoreList2Player[position].gameNumber = selectedGameNumber
+                    scoreList2Player[position].multiplyNumber = multiplyNumber
+                    scoreList2Player[position].color = color
 
                     binding.gameNumberText.text = "$gameNumber. El"
 
-                    skorCount++
+                    scoreCount++
 
                     //instant score
                     val eskiAnlikSkor1 = binding.oyuncu1AnlikSkor.text.toString()
                     val eskiAnlikSkor2 = binding.oyuncu2AnlikSkor.text.toString()
 
                     //sum entered score and instant score
-                    val sonucEskiAnlikSkor1 = eskiAnlikSkor1.toInt() + seciliSkor1.toInt()
-                    val sonucEskiAnlikSkor2 = eskiAnlikSkor2.toInt() + seciliSkor2.toInt()
+                    val sonucEskiAnlikSkor1 = eskiAnlikSkor1.toInt() + selectedScore1.toInt()
+                    val sonucEskiAnlikSkor2 = eskiAnlikSkor2.toInt() + selectedScore2.toInt()
 
                     val sonucYeniAnlikSkor1 = sonucEskiAnlikSkor1 - yeniAnlikSkor1Multiply
                     val sonucYeniAnlikSkor2 = sonucEskiAnlikSkor2 - yeniAnlikSkor2Multiply
@@ -1048,14 +1050,14 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                     binding.oyuncu1AnlikSkor.text = sonucYeniAnlikSkor1.toString()
                     binding.oyuncu2AnlikSkor.text = sonucYeniAnlikSkor2.toString()
 
-                    skorAdapter2Kisi.notifyDataSetChanged()
+                    scoreAdapter2Player.notifyDataSetChanged()
 
                 }
 
                 val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
                 val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
 
-                if (gameType == "Sayıdan Düş") { if (score1 <= 0 || score2 <= 0) { kazananTakim() } }
+                if (gameType == "Sayıdan Düş") { if (score1 <= 0 || score2 <= 0) { winnerTeam() } }
 
                 dialog.dismiss()
             }
@@ -1075,7 +1077,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
 
         if (!isSelected) {
 
-            val intentMain = Intent(applicationContext, AnaMenu::class.java)
+            val intentMain = Intent(applicationContext, MainMenu::class.java)
 
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
                 .setTitle("Çıkış Yap")
@@ -1112,7 +1114,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
             .setMessage("Oyunu bitirmek istediğinize emin misiniz?")
             .setPositiveButton("Oyunu Bitir") {
                     dialog, _ ->
-                kazananTakim()
+                winnerTeam()
                 dialog.dismiss()
             }
             .setNegativeButton("Geri Dön") {
@@ -1137,7 +1139,7 @@ class PuanTablosu2Kisi : AppCompatActivity() {
                 .setPositiveButton("Çıkış") {
                         dialog, _ ->
 
-                    val intentMain = Intent(applicationContext, AnaMenu::class.java)
+                    val intentMain = Intent(applicationContext, MainMenu::class.java)
                     startActivity(intentMain)
                     finish()
                     overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)

@@ -3,10 +3,10 @@ package com.mahmutalperenunal.okeypuantablosu.diceroller
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityDiceRollerBinding
 import kotlin.random.Random
@@ -22,6 +22,7 @@ class DiceRoller : AppCompatActivity() {
         binding = ActivityDiceRollerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //set screen orientation to portrait
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //random dice

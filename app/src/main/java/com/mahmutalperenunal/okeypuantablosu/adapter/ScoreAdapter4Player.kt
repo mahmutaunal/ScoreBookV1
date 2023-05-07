@@ -9,33 +9,36 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmutalperenunal.okeypuantablosu.R
-import com.mahmutalperenunal.okeypuantablosu.model.SkorData4Kisi
+import com.mahmutalperenunal.okeypuantablosu.model.ScoreData4Player
 
-class SkorAdapter4Kisi(private val skorList4Kisi: ArrayList<SkorData4Kisi>) : RecyclerView.Adapter<SkorAdapter4Kisi.SkorViewHolder>() {
+class ScoreAdapter4Player(private val scoreList4Player: ArrayList<ScoreData4Player>) :
+    RecyclerView.Adapter<ScoreAdapter4Player.ScoreViewHolder>() {
 
     private var clickCount = 0
 
+    private lateinit var scoreListener: OnItemClickListener
 
-    /**
-     * item click
-     */
-    private lateinit var skorListener: OnItemClickListener
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
 
-    interface OnItemClickListener { fun onItemClick(position: Int) }
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        scoreListener = listener
+    }
 
-    fun setOnItemClickListener(listener: OnItemClickListener) { skorListener = listener }
 
-
-    inner class SkorViewHolder(view: View, listener: OnItemClickListener) : RecyclerView.ViewHolder(view) {
-        var skor1 = view.findViewById<TextView>(R.id.skor1_text)!!
-        var skor2 = view.findViewById<TextView>(R.id.skor2_text)!!
-        var skor3 = view.findViewById<TextView>(R.id.skor3_text)!!
-        var skor4 = view.findViewById<TextView>(R.id.skor4_text)!!
+    inner class ScoreViewHolder(view: View, listener: OnItemClickListener) :
+        RecyclerView.ViewHolder(view) {
+        var score1 = view.findViewById<TextView>(R.id.skor1_text)!!
+        var score2 = view.findViewById<TextView>(R.id.skor2_text)!!
+        var score3 = view.findViewById<TextView>(R.id.skor3_text)!!
+        var score4 = view.findViewById<TextView>(R.id.skor4_text)!!
         var number = view.findViewById<TextView>(R.id.gameNumber_4Kisi_text)!!
 
         var colorBackground = view.findViewById<CardView>(R.id.color_background)!!
 
-        private val preferences = itemView.context.getSharedPreferences("clickCount4Kisi", Context.MODE_PRIVATE)
+        private val preferences =
+            itemView.context.getSharedPreferences("clickCount4Player", Context.MODE_PRIVATE)
         private val editor = preferences.edit()
 
         init {
@@ -50,7 +53,7 @@ class SkorAdapter4Kisi(private val skorList4Kisi: ArrayList<SkorData4Kisi>) : Re
                 if (clickCount >= 1) {
 
                     clickCount--
-                    skorList4Kisi[adapterPosition].isSelected = false
+                    scoreList4Player[adapterPosition].isSelected = false
                     editor.putBoolean("selected", false)
                     editor.putInt("count", clickCount)
                     editor.apply()
@@ -61,7 +64,7 @@ class SkorAdapter4Kisi(private val skorList4Kisi: ArrayList<SkorData4Kisi>) : Re
                 } else {
 
                     editor.putBoolean("selected", false)
-                    skorList4Kisi[adapterPosition].isSelected = false
+                    scoreList4Player[adapterPosition].isSelected = false
                     listener.onItemClick(adapterPosition)
 
                 }
@@ -70,18 +73,18 @@ class SkorAdapter4Kisi(private val skorList4Kisi: ArrayList<SkorData4Kisi>) : Re
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkorViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScoreViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.list_skor_4_kisi, parent, false)
-        return SkorViewHolder(view, skorListener)
+        return ScoreViewHolder(view, scoreListener)
     }
 
-    override fun onBindViewHolder(holder: SkorViewHolder, position: Int) {
-        val newList = skorList4Kisi[position]
-        holder.skor1.text = newList.oyuncu1_skor
-        holder.skor2.text = newList.oyuncu2_skor
-        holder.skor3.text = newList.oyuncu3_skor
-        holder.skor4.text = newList.oyuncu4_skor
+    override fun onBindViewHolder(holder: ScoreViewHolder, position: Int) {
+        val newList = scoreList4Player[position]
+        holder.score1.text = newList.player1_score
+        holder.score2.text = newList.player2_score
+        holder.score3.text = newList.player3_score
+        holder.score4.text = newList.player4_score
         holder.number.text = newList.gameNumber.toString()
 
         when (newList.color) {
@@ -94,7 +97,7 @@ class SkorAdapter4Kisi(private val skorList4Kisi: ArrayList<SkorData4Kisi>) : Re
     }
 
     override fun getItemCount(): Int {
-        return skorList4Kisi.size
+        return scoreList4Player.size
     }
 
 }

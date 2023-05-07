@@ -17,12 +17,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityPuanTablosu3KisiBinding
 import com.mahmutalperenunal.okeypuantablosu.diceroller.DiceRoller
-import com.mahmutalperenunal.okeypuantablosu.adapter.SkorAdapter3Kisi
-import com.mahmutalperenunal.okeypuantablosu.takimislemleri.TakimIslemleri
-import com.mahmutalperenunal.okeypuantablosu.model.SkorData3Kisi
+import com.mahmutalperenunal.okeypuantablosu.adapter.ScoreAdapter3Player
+import com.mahmutalperenunal.okeypuantablosu.teamoperations.TeamOperations
+import com.mahmutalperenunal.okeypuantablosu.model.ScoreData3Player
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
-import com.mahmutalperenunal.okeypuantablosu.anamenu.AnaMenu
+import com.mahmutalperenunal.okeypuantablosu.mainmenu.MainMenu
 import com.mahmutalperenunal.okeypuantablosu.calculator.Calculator
 
 //operations such as entering scores, deleting players.
@@ -31,8 +31,8 @@ class PuanTablosu3Kisi : AppCompatActivity() {
     private  lateinit var binding: ActivityPuanTablosu3KisiBinding
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var skorList3Kisi: ArrayList<SkorData3Kisi>
-    private  lateinit var skorAdapter3Kisi: SkorAdapter3Kisi
+    private lateinit var skorList3Kisi: ArrayList<ScoreData3Player>
+    private  lateinit var scoreAdapter3Player: ScoreAdapter3Player
 
     private var skorCount: Int = -1
 
@@ -141,11 +141,11 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         recyclerView = findViewById(R.id.puanTablosu_recyclerView)
 
         //set adapter
-        skorAdapter3Kisi = SkorAdapter3Kisi(skorList3Kisi)
+        scoreAdapter3Player = ScoreAdapter3Player(skorList3Kisi)
 
         //set recyclerView adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = skorAdapter3Kisi
+        recyclerView.adapter = scoreAdapter3Player
 
 
         //onClick process
@@ -314,7 +314,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                     val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
                     val yeniAnlikSkor3Multiply = yeniAnlikSkor3.toInt() * multiplyNumber
 
-                    skorList3Kisi.add(SkorData3Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), yeniAnlikSkor3Multiply.toString(), gameNumber, multiplyNumber, color, false))
+                    skorList3Kisi.add(ScoreData3Player(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor2Multiply.toString(), yeniAnlikSkor3Multiply.toString(), gameNumber, multiplyNumber, color, false))
 
                     gameNumber++
 
@@ -336,7 +336,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                     binding.oyuncu2AnlikSkor.text = sonucAnlikSkor2.toString()
                     binding.oyuncu3AnlikSkor.text = sonucAnlikSkor3.toString()
 
-                    skorAdapter3Kisi.notifyDataSetChanged()
+                    scoreAdapter3Player.notifyDataSetChanged()
 
                 } else {
 
@@ -349,7 +349,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                     val yeniAnlikSkor2Multiply = yeniAnlikSkor2.toInt() * multiplyNumber
                     val yeniAnlikSkor3Multiply = yeniAnlikSkor3.toInt() * multiplyNumber
 
-                    skorList3Kisi.add(SkorData3Kisi(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor1Multiply.toString(), gameNumber, multiplyNumber, color, false))
+                    skorList3Kisi.add(ScoreData3Player(yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor1Multiply.toString(), yeniAnlikSkor1Multiply.toString(), gameNumber, multiplyNumber, color, false))
 
                     gameNumber++
 
@@ -371,7 +371,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                     binding.oyuncu2AnlikSkor.text = sonucAnlikSkor2.toString()
                     binding.oyuncu3AnlikSkor.text = sonucAnlikSkor3.toString()
 
-                    skorAdapter3Kisi.notifyDataSetChanged()
+                    scoreAdapter3Player.notifyDataSetChanged()
 
                 }
 
@@ -512,8 +512,8 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                 dialog, _ ->
 
             //turn back TakimIslemleri for start a new game
-            val intentTakimIslemleri = Intent(applicationContext, TakimIslemleri::class.java)
-            startActivity(intentTakimIslemleri)
+            val intentTeamOperations = Intent(applicationContext, TeamOperations::class.java)
+            startActivity(intentTeamOperations)
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
@@ -524,8 +524,8 @@ class PuanTablosu3Kisi : AppCompatActivity() {
         addDialog.setNegativeButton("Ana Menü") {
                 dialog, _ ->
 
-            val intentAnaMenu = Intent(applicationContext, AnaMenu::class.java)
-            startActivity(intentAnaMenu)
+            val intentMainMenu = Intent(applicationContext, MainMenu::class.java)
+            startActivity(intentMainMenu)
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
@@ -599,7 +599,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
                             skorCount--
 
-                            skorAdapter3Kisi.notifyDataSetChanged()
+                            scoreAdapter3Player.notifyDataSetChanged()
 
                             val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
                             val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
@@ -650,7 +650,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
                             skorCount--
 
-                            skorAdapter3Kisi.notifyDataSetChanged()
+                            scoreAdapter3Player.notifyDataSetChanged()
 
                             val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
                             val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
@@ -677,7 +677,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
     //onClick process
     private fun onClickProcess() {
-        skorAdapter3Kisi.setOnItemClickListener(object : SkorAdapter3Kisi.OnItemClickListener {
+        scoreAdapter3Player.setOnItemClickListener(object : ScoreAdapter3Player.OnItemClickListener {
             @SuppressLint("SetTextI18n")
             override fun onItemClick(position: Int) {
 
@@ -1103,7 +1103,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                     binding.oyuncu2AnlikSkor.text = sonucYeniAnlikSkor2.toString()
                     binding.oyuncu3AnlikSkor.text = sonucYeniAnlikSkor3.toString()
 
-                    skorAdapter3Kisi.notifyDataSetChanged()
+                    scoreAdapter3Player.notifyDataSetChanged()
 
                 } else {
 
@@ -1146,7 +1146,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                     binding.oyuncu2AnlikSkor.text = sonucYeniAnlikSkor2.toString()
                     binding.oyuncu3AnlikSkor.text = sonucYeniAnlikSkor3.toString()
 
-                    skorAdapter3Kisi.notifyDataSetChanged()
+                    scoreAdapter3Player.notifyDataSetChanged()
 
                 }
 
@@ -1176,7 +1176,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
 
         if (!isSelected) {
 
-            val intentMain = Intent(applicationContext, AnaMenu::class.java)
+            val intentMain = Intent(applicationContext, MainMenu::class.java)
 
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
                 .setTitle("Çıkış Yap")
@@ -1238,7 +1238,7 @@ class PuanTablosu3Kisi : AppCompatActivity() {
                 .setPositiveButton("Çıkış") {
                         dialog, _ ->
 
-                    val intentMain = Intent(applicationContext, AnaMenu::class.java)
+                    val intentMain = Intent(applicationContext, MainMenu::class.java)
                     startActivity(intentMain)
                     finish()
                     overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)

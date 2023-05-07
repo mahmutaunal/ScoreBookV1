@@ -3,22 +3,22 @@ package com.mahmutalperenunal.okeypuantablosu.calculator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityCalculatorBinding
 import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu2Kisi
 import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu3Kisi
 import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu4Kisi
-import java.text.DecimalFormat
 import org.mariuszgromada.math.mxparser.Expression
+import java.text.DecimalFormat
 
 class Calculator : AppCompatActivity() {
 
     private lateinit var binding: ActivityCalculatorBinding
 
-    private var puanTablosu: Int = 0
+    private var scoreBoard: Int = 0
 
     private var isEqualClicked: Boolean = false
 
@@ -29,9 +29,11 @@ class Calculator : AppCompatActivity() {
         binding = ActivityCalculatorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //set screen orientation to portrait
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        puanTablosu = intent.getIntExtra("Puan Tablosu", 0)
+        //get scoreboard player
+        scoreBoard = intent.getIntExtra("Scoreboard", 0)
 
         binding.buttonC.setOnClickListener {
             binding.solutionTv.text = ""
@@ -196,7 +198,7 @@ class Calculator : AppCompatActivity() {
             val result = Expression(expression).calculate()
             if (result.isNaN()) {
                 // Show Error Message
-                binding.resultTv.text = "Hata"
+                binding.resultTv.text = getString(R.string.error_text)
                 binding.resultTv.setTextColor(ContextCompat.getColor(this, R.color.red))
                 binding.solutionTv.text = ""
             } else {
@@ -206,35 +208,35 @@ class Calculator : AppCompatActivity() {
             }
         } catch (e: Exception) {
             // Show Error Message
-            binding.resultTv.text = "Hata"
+            binding.resultTv.text = getString(R.string.error_text)
             binding.resultTv.setTextColor(ContextCompat.getColor(this, R.color.red))
             binding.solutionTv.text = ""
         }
     }
 
 
-    //on back pressed turn back puan tablosu
+    //on back pressed turn back scoreboardActivity
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        when (puanTablosu) {
+        when (scoreBoard) {
             2 -> {
-                val intentPuanTablosu = Intent(applicationContext, PuanTablosu2Kisi::class.java)
-                intentPuanTablosu.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-                startActivity(intentPuanTablosu)
+                val intentScoreboard = Intent(applicationContext, PuanTablosu2Kisi::class.java)
+                intentScoreboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                startActivity(intentScoreboard)
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             }
 
             3 -> {
-                val intentPuanTablosu = Intent(applicationContext, PuanTablosu3Kisi::class.java)
-                intentPuanTablosu.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-                startActivity(intentPuanTablosu)
+                val intentScoreboard = Intent(applicationContext, PuanTablosu3Kisi::class.java)
+                intentScoreboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                startActivity(intentScoreboard)
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             }
 
             4 -> {
-                val intentPuanTablosu = Intent(applicationContext, PuanTablosu4Kisi::class.java)
-                intentPuanTablosu.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-                startActivity(intentPuanTablosu)
+                val intentScoreboard = Intent(applicationContext, PuanTablosu4Kisi::class.java)
+                intentScoreboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                startActivity(intentScoreboard)
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             }
         }

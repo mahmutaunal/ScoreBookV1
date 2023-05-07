@@ -10,9 +10,10 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/ic_logo"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_logo_circle"
+        android:localeConfig="@xml/locales_config"
+        android:roundIcon="@drawable/logo"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.OkeyPuanTablosu"
@@ -25,7 +26,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".takimislemleri.TakimIslemleri"
+            android:name=".teamoperations.TeamOperations"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -60,14 +61,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".anamenu.AnaMenu"
+            android:name=".mainmenu.MainMenu"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
