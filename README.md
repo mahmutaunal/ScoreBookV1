@@ -1,13 +1,13 @@
-# Okey Puan Tablosu - Android App
+# Skor Defteri - Android App
 
 <img src="/readme/ic_logo.png" align="left"
 width="200" hspace="10" vspace="10">
 
-Okey Score Table is an application that allows the points kept in the okey game to be stored in the application. 
-Okey Puan Tablosu is free.
-No registration is required to use the Okey Puan Tablosu application.
+Skor Defteri is an application that allows the points kept in the okey game to be stored in the application. 
+Skor Defteri is free.
+No registration is required to use the Skor Defteri application.
 
-Okey Puan Tablosu is available on the Google Play Store.
+Skor Defteri is available on the Google Play Store.
 
 <p align="left">
 <a href="https://play.google.com/store/apps/details?id=com.mahmutalperenunal.okeypuantablosu">
@@ -18,7 +18,7 @@ Okey Puan Tablosu is available on the Google Play Store.
 
 ## About
 
-The Okey Puan Tablosu application allows up to 4 players to be played in pairs and singles in addition or deduction types. Optionally, it allows assigning values ​​for each color and keeps the scores multiplied by the value of the selected color while keeping the scores. It allows editing or deleting the score of any hand entered.
+Skor Defteri application allows up to 4 players to be played in pairs and singles in addition or deduction types. Optionally, it allows assigning values ​​for each color and keeps the scores multiplied by the value of the selected color while keeping the scores. It allows editing or deleting the score of any hand entered.
 
 In addition to the application, there are dice rolling and calculator features.
 
@@ -62,7 +62,7 @@ width="200"
 
 ## Permissions
 
-Okey Puan Tablosu requires the following permissions:
+Skor Defteri requires the following permissions:
 - Full Network Access.
 - View Network Connections.
 
