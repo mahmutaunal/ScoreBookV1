@@ -40,14 +40,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".puantablosu.PuanTablosu3Kisi"
+            android:name=".puantablosu.Scoreboard3Player"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".puantablosu.PuanTablosu2Kisi"
+            android:name=".puantablosu.Scoreboard2Player"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

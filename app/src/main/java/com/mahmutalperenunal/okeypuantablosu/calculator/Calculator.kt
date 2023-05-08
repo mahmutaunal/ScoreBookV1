@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityCalculatorBinding
-import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu2Kisi
-import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu3Kisi
+import com.mahmutalperenunal.okeypuantablosu.puantablosu.Scoreboard2Player
+import com.mahmutalperenunal.okeypuantablosu.puantablosu.Scoreboard3Player
 import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu4Kisi
 import org.mariuszgromada.math.mxparser.Expression
 import java.text.DecimalFormat
@@ -220,14 +220,14 @@ class Calculator : AppCompatActivity() {
     override fun onBackPressed() {
         when (scoreBoard) {
             2 -> {
-                val intentScoreboard = Intent(applicationContext, PuanTablosu2Kisi::class.java)
+                val intentScoreboard = Intent(applicationContext, Scoreboard2Player::class.java)
                 intentScoreboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
                 startActivity(intentScoreboard)
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             }
 
             3 -> {
-                val intentScoreboard = Intent(applicationContext, PuanTablosu3Kisi::class.java)
+                val intentScoreboard = Intent(applicationContext, Scoreboard3Player::class.java)
                 intentScoreboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
                 startActivity(intentScoreboard)
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)

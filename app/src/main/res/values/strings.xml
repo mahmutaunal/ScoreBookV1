@@ -100,4 +100,10 @@
     <string name="no_round_to_delete_text">Silinecek herhangi bir el yok!</string>
     <string name="delete_round_text">Seçili Eli Sil</string>
     <string name="delete_round_description_text">Seçili eli silmek istediğinizden emin misiniz?</string>
+    <string name="exit_text">Çıkış</string>
+    <string name="exit_description_text">Çıkış yapmak istediğinizden emin misiniz?</string>
+    <string name="exit_without_save_text">Kaydetmeden Çık</string>
+    <string name="finish_game_text">Oyunu Bitir</string>
+    <string name="finish_game_description_text">Oyunu bitirmek istediğinize emin misiniz?</string>
+    <string name="back_text">Geri Dön</string>
 </resources>

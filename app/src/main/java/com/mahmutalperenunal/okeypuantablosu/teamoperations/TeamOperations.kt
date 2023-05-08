@@ -14,8 +14,8 @@ import com.google.android.material.textfield.TextInputLayout
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.mainmenu.MainMenu
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityTeamOperationsBinding
-import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu2Kisi
-import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu3Kisi
+import com.mahmutalperenunal.okeypuantablosu.puantablosu.Scoreboard2Player
+import com.mahmutalperenunal.okeypuantablosu.puantablosu.Scoreboard3Player
 import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu4Kisi
 
 class TeamOperations : AppCompatActivity() {
@@ -306,8 +306,8 @@ class TeamOperations : AppCompatActivity() {
     //start game
     private fun startGame() {
 
-        val intentScoreboard2 = Intent(applicationContext, PuanTablosu2Kisi::class.java)
-        val intentScoreboard3 = Intent(applicationContext, PuanTablosu3Kisi::class.java)
+        val intentScoreboard2 = Intent(applicationContext, Scoreboard2Player::class.java)
+        val intentScoreboard3 = Intent(applicationContext, Scoreboard3Player::class.java)
         val intentScoreboard4 = Intent(applicationContext, PuanTablosu4Kisi::class.java)
 
         if (playerNumber() == 2) {

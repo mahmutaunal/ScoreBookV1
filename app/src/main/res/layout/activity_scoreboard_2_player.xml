@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    tools:context=".puantablosu.PuanTablosu3Kisi">
+    tools:context=".puantablosu.Scoreboard2Player">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/yeniOyun_toolbar"
@@ -113,22 +113,9 @@
             android:layout_width="92dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="80dp"
             android:fontFamily="@font/comfortaa"
             android:text="@string/oyuncu2_text"
-            android:textAlignment="center"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="16sp"
-            tools:ignore="TextSizeCheck" />
-
-        <TextView
-            android:id="@+id/oyuncu3_text"
-            android:layout_width="92dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="30dp"
-            android:fontFamily="@font/comfortaa"
-            android:text="@string/oyuncu3_text"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="16sp"
@@ -154,27 +141,15 @@
             android:fontFamily="@font/comfortaa"
             android:text="@string/anlikSkor_text"
             android:textAlignment="center"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorPrimary" />
 
         <TextView
             android:id="@+id/oyuncu2_anlikSkor"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="60dp"
-            android:fontFamily="@font/comfortaa"
-            android:text="@string/anlikSkor_text"
-            android:textAlignment="center"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/oyuncu3_anlikSkor"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="110dp"
             android:fontFamily="@font/comfortaa"
             android:text="@string/anlikSkor_text"
             android:textAlignment="center"
@@ -278,7 +253,7 @@
 
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/puanTablosu_3_adView"
+        android:id="@+id/takimIslemleri_adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

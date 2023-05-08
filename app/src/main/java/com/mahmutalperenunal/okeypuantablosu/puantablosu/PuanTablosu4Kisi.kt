@@ -638,10 +638,10 @@ class PuanTablosu4Kisi : AppCompatActivity() {
 
                             binding.gameNumberText.text = "$gameNumber. El"
 
-                            val sonucSkor1 = toplamSkor1.toInt() - skorList[position].oyuncu1_skor.toInt()
-                            val sonucSkor2 = toplamSkor2.toInt() - skorList[position].oyuncu2_skor.toInt()
-                            val sonucSkor3 = toplamSkor3.toInt() - skorList[position].oyuncu3_skor.toInt()
-                            val sonucSkor4 = toplamSkor4.toInt() - skorList[position].oyuncu4_skor.toInt()
+                            val sonucSkor1 = toplamSkor1.toInt() - skorList[position].player1_score.toInt()
+                            val sonucSkor2 = toplamSkor2.toInt() - skorList[position].player2_score.toInt()
+                            val sonucSkor3 = toplamSkor3.toInt() - skorList[position].player3_score.toInt()
+                            val sonucSkor4 = toplamSkor4.toInt() - skorList[position].player4_score.toInt()
 
                             binding.oyuncu1AnlikSkor.text = sonucSkor1.toString()
                             binding.oyuncu2AnlikSkor.text = sonucSkor2.toString()
@@ -695,10 +695,10 @@ class PuanTablosu4Kisi : AppCompatActivity() {
 
                             binding.gameNumberText.text = "$gameNumber. El"
 
-                            val sonucSkor1 = toplamSkor1.toInt() + skorList[position].oyuncu1_skor.toInt()
-                            val sonucSkor2 = toplamSkor2.toInt() + skorList[position].oyuncu2_skor.toInt()
-                            val sonucSkor3 = toplamSkor3.toInt() + skorList[position].oyuncu3_skor.toInt()
-                            val sonucSkor4 = toplamSkor4.toInt() + skorList[position].oyuncu4_skor.toInt()
+                            val sonucSkor1 = toplamSkor1.toInt() + skorList[position].player1_score.toInt()
+                            val sonucSkor2 = toplamSkor2.toInt() + skorList[position].player2_score.toInt()
+                            val sonucSkor3 = toplamSkor3.toInt() + skorList[position].player3_score.toInt()
+                            val sonucSkor4 = toplamSkor4.toInt() + skorList[position].player4_score.toInt()
 
                             binding.oyuncu1AnlikSkor.text = sonucSkor1.toString()
                             binding.oyuncu2AnlikSkor.text = sonucSkor2.toString()
@@ -789,10 +789,10 @@ class PuanTablosu4Kisi : AppCompatActivity() {
         val firstScore3Text = view.findViewById<TextView>(R.id.skorDetay_score3_textView)
         val firstScore4Text = view.findViewById<TextView>(R.id.skorDetay_score4_textView)
 
-        firstScore1 = skorList[position].oyuncu1_skor.toInt() / skorList[position].multiplyNumber
-        firstScore2 = skorList[position].oyuncu2_skor.toInt() / skorList[position].multiplyNumber
-        firstScore3 = skorList[position].oyuncu3_skor.toInt() / skorList[position].multiplyNumber
-        firstScore4 = skorList[position].oyuncu4_skor.toInt() / skorList[position].multiplyNumber
+        firstScore1 = skorList[position].player1_score.toInt() / skorList[position].multiplyNumber
+        firstScore2 = skorList[position].player2_score.toInt() / skorList[position].multiplyNumber
+        firstScore3 = skorList[position].player3_score.toInt() / skorList[position].multiplyNumber
+        firstScore4 = skorList[position].player4_score.toInt() / skorList[position].multiplyNumber
 
         firstScore1Text.text = firstScore1.toString()
         firstScore2Text.text = firstScore2.toString()
@@ -910,10 +910,10 @@ class PuanTablosu4Kisi : AppCompatActivity() {
         val view = inflater.inflate(R.layout.add_item_4_kisi, null)
 
         //set selected score
-        val seciliSkor1 =  skorList[position].oyuncu1_skor
-        val seciliSkor2 =  skorList[position].oyuncu2_skor
-        val seciliSkor3 =  skorList[position].oyuncu3_skor
-        val seciliSkor4 =  skorList[position].oyuncu4_skor
+        val seciliSkor1 =  skorList[position].player1_score
+        val seciliSkor2 =  skorList[position].player2_score
+        val seciliSkor3 =  skorList[position].player3_score
+        val seciliSkor4 =  skorList[position].player4_score
 
         //set oyuncuSkor view
         val oyuncu1Skor = view.findViewById<EditText>(R.id.oyuncu1Skor_editText)
@@ -1170,10 +1170,10 @@ class PuanTablosu4Kisi : AppCompatActivity() {
                     val yeniAnlikSkor4Multiply = yeniAnlikSkor4.toInt() * multiplyNumber
 
                     //set new score to arraylist
-                    skorList[position].oyuncu1_skor = yeniAnlikSkor1Multiply.toString()
-                    skorList[position].oyuncu2_skor = yeniAnlikSkor2Multiply.toString()
-                    skorList[position].oyuncu3_skor = yeniAnlikSkor3Multiply.toString()
-                    skorList[position].oyuncu4_skor = yeniAnlikSkor4Multiply.toString()
+                    skorList[position].player1_score = yeniAnlikSkor1Multiply.toString()
+                    skorList[position].player2_score = yeniAnlikSkor2Multiply.toString()
+                    skorList[position].player3_score = yeniAnlikSkor3Multiply.toString()
+                    skorList[position].player4_score = yeniAnlikSkor4Multiply.toString()
                     skorList[position].gameNumber = selectedGameNumber
                     skorList[position].multiplyNumber = multiplyNumber
                     skorList[position].color = color
@@ -1220,10 +1220,10 @@ class PuanTablosu4Kisi : AppCompatActivity() {
                     val yeniAnlikSkor4Multiply = yeniAnlikSkor4.toInt() * multiplyNumber
 
                     //set new score to arraylist
-                    skorList[position].oyuncu1_skor = yeniAnlikSkor1Multiply.toString()
-                    skorList[position].oyuncu2_skor = yeniAnlikSkor2Multiply.toString()
-                    skorList[position].oyuncu3_skor = yeniAnlikSkor3Multiply.toString()
-                    skorList[position].oyuncu4_skor = yeniAnlikSkor4Multiply.toString()
+                    skorList[position].player1_score = yeniAnlikSkor1Multiply.toString()
+                    skorList[position].player2_score = yeniAnlikSkor2Multiply.toString()
+                    skorList[position].player3_score = yeniAnlikSkor3Multiply.toString()
+                    skorList[position].player4_score = yeniAnlikSkor4Multiply.toString()
                     skorList[position].gameNumber = selectedGameNumber
                     skorList[position].multiplyNumber = multiplyNumber
                     skorList[position].color = color
