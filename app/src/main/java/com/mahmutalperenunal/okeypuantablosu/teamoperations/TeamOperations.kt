@@ -16,7 +16,7 @@ import com.mahmutalperenunal.okeypuantablosu.mainmenu.MainMenu
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityTeamOperationsBinding
 import com.mahmutalperenunal.okeypuantablosu.puantablosu.Scoreboard2Player
 import com.mahmutalperenunal.okeypuantablosu.puantablosu.Scoreboard3Player
-import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu4Kisi
+import com.mahmutalperenunal.okeypuantablosu.puantablosu.Scoreboard4Player
 
 class TeamOperations : AppCompatActivity() {
 
@@ -308,7 +308,7 @@ class TeamOperations : AppCompatActivity() {
 
         val intentScoreboard2 = Intent(applicationContext, Scoreboard2Player::class.java)
         val intentScoreboard3 = Intent(applicationContext, Scoreboard3Player::class.java)
-        val intentScoreboard4 = Intent(applicationContext, PuanTablosu4Kisi::class.java)
+        val intentScoreboard4 = Intent(applicationContext, Scoreboard4Player::class.java)
 
         if (playerNumber() == 2) {
 

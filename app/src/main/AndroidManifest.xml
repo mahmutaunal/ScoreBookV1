@@ -33,7 +33,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".puantablosu.PuanTablosu4Kisi"
+            android:name=".puantablosu.Scoreboard4Player"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

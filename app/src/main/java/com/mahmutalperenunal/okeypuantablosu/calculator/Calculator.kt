@@ -10,7 +10,7 @@ import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityCalculatorBinding
 import com.mahmutalperenunal.okeypuantablosu.puantablosu.Scoreboard2Player
 import com.mahmutalperenunal.okeypuantablosu.puantablosu.Scoreboard3Player
-import com.mahmutalperenunal.okeypuantablosu.puantablosu.PuanTablosu4Kisi
+import com.mahmutalperenunal.okeypuantablosu.puantablosu.Scoreboard4Player
 import org.mariuszgromada.math.mxparser.Expression
 import java.text.DecimalFormat
 
@@ -234,7 +234,7 @@ class Calculator : AppCompatActivity() {
             }
 
             4 -> {
-                val intentScoreboard = Intent(applicationContext, PuanTablosu4Kisi::class.java)
+                val intentScoreboard = Intent(applicationContext, Scoreboard4Player::class.java)
                 intentScoreboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
                 startActivity(intentScoreboard)
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
