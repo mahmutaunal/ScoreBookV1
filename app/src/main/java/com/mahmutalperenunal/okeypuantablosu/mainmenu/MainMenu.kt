@@ -104,88 +104,14 @@ class MainMenu : AppCompatActivity() {
         appUpdateManager.registerListener(listener)
 
         //navigate TeamOperations Activity
-        binding.yeniOyunButton.setOnClickListener {
-            val intentTeamOperations = Intent(applicationContext, TeamOperations::class.java)
-            startActivity(intentTeamOperations)
-            finish()
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        }
+        binding.mainMenuNewGameButton.setOnClickListener { startNewGame() }
 
         //info about app
-        binding.infoIcon.setOnClickListener {
-            AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                .setTitle(R.string.info_text)
-                .setMessage(R.string.info_description_text)
-                .setPositiveButton(R.string.rate_text) { dialog, _ ->
-
-                    startReviewFlow()
-
-                    dialog.dismiss()
-                }
-                .setNegativeButton(R.string.developer_text) { dialog, _ ->
-
-                    try {
-                        startActivity(
-                            Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("https://play.google.com/store/apps/dev?id=5245599652065968716")
-                            )
-                        )
-                    } catch (e: ActivityNotFoundException) {
-                        startActivity(
-                            Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("https://play.google.com/store/apps/dev?id=5245599652065968716")
-                            )
-                        )
-                    }
-
-                    dialog.dismiss()
-                }
-                .setNeutralButton(R.string.cancel_text) { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .create()
-                .show()
-        }
+        binding.mainMenuInfoIcon.setOnClickListener { infoApp() }
 
 
         //change dark and light mode with button click
-        binding.darkModeIcon.setOnClickListener {
-
-            AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                .setTitle(R.string.app_theme_text)
-                .setMessage("${R.string.app_theme_description_text} \n\n${R.string.current_theme_text} $themeName")
-                .setPositiveButton(
-                    R.string.light_text
-                ) { _: DialogInterface?, _: Int ->
-                    AppCompatDelegate.setDefaultNightMode(
-                        AppCompatDelegate.MODE_NIGHT_NO
-                    )
-                    editorTheme.putInt("theme", 1)
-                    editorTheme.apply()
-                }
-                .setNegativeButton(
-                    R.string.dark_text
-                ) { _: DialogInterface?, _: Int ->
-                    AppCompatDelegate.setDefaultNightMode(
-                        AppCompatDelegate.MODE_NIGHT_YES
-                    )
-                    editorTheme.putInt("theme", 2)
-                    editorTheme.apply()
-                }
-                .setNeutralButton(
-                    R.string.system_theme_text
-                ) { _: DialogInterface?, _: Int ->
-                    AppCompatDelegate.setDefaultNightMode(
-                        AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-                    )
-                    editorTheme.putInt("theme", -1)
-                    editorTheme.apply()
-                }
-                .show()
-
-        }
+        binding.mainMenuDarkModeIcon.setOnClickListener { changeAppTheme() }
     }
 
 
@@ -198,6 +124,90 @@ class MainMenu : AppCompatActivity() {
             1 -> themeName = getString(R.string.light_text)
             2 -> themeName = getString(R.string.dark_text)
         }
+    }
+
+
+    //start new game
+    private fun startNewGame() {
+        val intentTeamOperations = Intent(applicationContext, TeamOperations::class.java)
+        startActivity(intentTeamOperations)
+        finish()
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+
+    //info about app
+    private fun infoApp() {
+        AlertDialog.Builder(this, R.style.CustomAlertDialog)
+            .setTitle(R.string.info_text)
+            .setMessage(R.string.info_description_text)
+            .setPositiveButton(R.string.rate_text) { dialog, _ ->
+
+                startReviewFlow()
+
+                dialog.dismiss()
+            }
+            .setNegativeButton(R.string.developer_text) { dialog, _ ->
+
+                try {
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/dev?id=5245599652065968716")
+                        )
+                    )
+                } catch (e: ActivityNotFoundException) {
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/dev?id=5245599652065968716")
+                        )
+                    )
+                }
+
+                dialog.dismiss()
+            }
+            .setNeutralButton(R.string.cancel_text) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
+    }
+
+
+    //change app theme
+    private fun changeAppTheme() {
+        AlertDialog.Builder(this, R.style.CustomAlertDialog)
+            .setTitle(R.string.app_theme_text)
+            .setMessage("${R.string.app_theme_description_text} \n\n${R.string.current_theme_text} $themeName")
+            .setPositiveButton(
+                R.string.light_text
+            ) { _: DialogInterface?, _: Int ->
+                AppCompatDelegate.setDefaultNightMode(
+                    AppCompatDelegate.MODE_NIGHT_NO
+                )
+                editorTheme.putInt("theme", 1)
+                editorTheme.apply()
+            }
+            .setNegativeButton(
+                R.string.dark_text
+            ) { _: DialogInterface?, _: Int ->
+                AppCompatDelegate.setDefaultNightMode(
+                    AppCompatDelegate.MODE_NIGHT_YES
+                )
+                editorTheme.putInt("theme", 2)
+                editorTheme.apply()
+            }
+            .setNeutralButton(
+                R.string.system_theme_text
+            ) { _: DialogInterface?, _: Int ->
+                AppCompatDelegate.setDefaultNightMode(
+                    AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                )
+                editorTheme.putInt("theme", -1)
+                editorTheme.apply()
+            }
+            .show()
     }
 
 

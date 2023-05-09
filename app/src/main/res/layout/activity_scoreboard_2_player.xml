@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    tools:context=".puantablosu.Scoreboard2Player">
+    tools:context=".scoreboard.Scoreboard2Player">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/yeniOyun_toolbar"

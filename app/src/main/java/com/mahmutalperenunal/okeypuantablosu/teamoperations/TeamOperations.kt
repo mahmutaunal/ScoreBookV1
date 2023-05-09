@@ -12,11 +12,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
 import com.mahmutalperenunal.okeypuantablosu.R
-import com.mahmutalperenunal.okeypuantablosu.mainmenu.MainMenu
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityTeamOperationsBinding
-import com.mahmutalperenunal.okeypuantablosu.puantablosu.Scoreboard2Player
-import com.mahmutalperenunal.okeypuantablosu.puantablosu.Scoreboard3Player
-import com.mahmutalperenunal.okeypuantablosu.puantablosu.Scoreboard4Player
+import com.mahmutalperenunal.okeypuantablosu.mainmenu.MainMenu
+import com.mahmutalperenunal.okeypuantablosu.scoreboard.Scoreboard2Player
+import com.mahmutalperenunal.okeypuantablosu.scoreboard.Scoreboard3Player
+import com.mahmutalperenunal.okeypuantablosu.scoreboard.Scoreboard4Player
 
 class TeamOperations : AppCompatActivity() {
 
@@ -51,16 +51,16 @@ class TeamOperations : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //set player names
-        player1Name = binding.oyuncu1EditText
-        player2Name = binding.oyuncu2EditText
-        player3Name = binding.oyuncu3EditText
-        player4Name = binding.oyuncu4EditText
+        player1Name = binding.teamOperationsPlayer1NameEditText
+        player2Name = binding.teamOperationsPlayer2NameEditText
+        player3Name = binding.teamOperationsPlayer3NameEditText
+        player4Name = binding.teamOperationsPlayer4NameEditText
 
         //set game name
-        gameName = binding.oyunIsmiEditText
+        gameName = binding.teamOperationsGameNameEditText
 
         //set first number
-        firstNumber = binding.baslangicSayisiEditText
+        firstNumber = binding.teamOperationsNumberOfStartsEditText
 
         playerNumberVisibility()
         playerNumber()
@@ -69,11 +69,11 @@ class TeamOperations : AppCompatActivity() {
         gameType()
 
         //navigate Scoreboard Activity with number of player
-        binding.baslatButton.setOnClickListener { controlUsernames() }
+        binding.teamOperationsStartButton.setOnClickListener { controlUsernames() }
 
 
         //on back pressed turn back to main menu
-        binding.backButton.setOnClickListener {
+        binding.teamOperationsBackButton.setOnClickListener {
             val intentMain = Intent(applicationContext, MainMenu::class.java)
             startActivity(intentMain)
             finish()
@@ -88,15 +88,17 @@ class TeamOperations : AppCompatActivity() {
 
         if (playerNumber() == 2) {
 
-            if (binding.oyuncu1EditText.text!!.isEmpty()) {
-                binding.oyuncu1EditTextLayout.error = getString(R.string.compulsory_text)
+            if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+                binding.teamOperationsPlayer1NameEditTextLayout.error =
+                    getString(R.string.compulsory_text)
                 Toast.makeText(
                     applicationContext,
                     R.string.enter_player_name_text,
                     Toast.LENGTH_SHORT
                 ).show()
-            } else if (binding.oyuncu2EditText.text!!.isEmpty()) {
-                binding.oyuncu2EditTextLayout.error = getString(R.string.compulsory_text)
+            } else if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+                binding.teamOperationsPlayer2NameEditTextLayout.error =
+                    getString(R.string.compulsory_text)
                 Toast.makeText(
                     applicationContext,
                     R.string.enter_player_name_text,
@@ -105,7 +107,7 @@ class TeamOperations : AppCompatActivity() {
             } else {
                 if (gameType == "Deduct from the number") {
                     if (firstNumber!!.text.toString() == "") {
-                        binding.baslangicSayisiEditTextLayout.error =
+                        binding.teamOperationsNumberOfStartsEditTextLayout.error =
                             getString(R.string.compulsory_text)
                         Toast.makeText(
                             applicationContext,
@@ -122,22 +124,25 @@ class TeamOperations : AppCompatActivity() {
 
         } else if (playerNumber() == 3) {
 
-            if (binding.oyuncu1EditText.text!!.isEmpty()) {
-                binding.oyuncu1EditTextLayout.error = getString(R.string.compulsory_text)
+            if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+                binding.teamOperationsPlayer1NameEditTextLayout.error =
+                    getString(R.string.compulsory_text)
                 Toast.makeText(
                     applicationContext,
                     R.string.enter_player_name_text,
                     Toast.LENGTH_SHORT
                 ).show()
-            } else if (binding.oyuncu2EditText.text!!.isEmpty()) {
-                binding.oyuncu2EditTextLayout.error = getString(R.string.compulsory_text)
+            } else if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+                binding.teamOperationsPlayer2NameEditTextLayout.error =
+                    getString(R.string.compulsory_text)
                 Toast.makeText(
                     applicationContext,
                     R.string.enter_player_name_text,
                     Toast.LENGTH_SHORT
                 ).show()
-            } else if (binding.oyuncu3EditText.text!!.isEmpty()) {
-                binding.oyuncu3EditTextLayout.error = getString(R.string.compulsory_text)
+            } else if (binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
+                binding.teamOperationsPlayer3NameEditTextLayout.error =
+                    getString(R.string.compulsory_text)
                 Toast.makeText(
                     applicationContext,
                     R.string.enter_player_name_text,
@@ -146,7 +151,7 @@ class TeamOperations : AppCompatActivity() {
             } else {
                 if (gameType == "Deduct from the number") {
                     if (firstNumber!!.text.toString() == "") {
-                        binding.baslangicSayisiEditTextLayout.error =
+                        binding.teamOperationsNumberOfStartsEditTextLayout.error =
                             getString(R.string.compulsory_text)
                         Toast.makeText(
                             applicationContext,
@@ -163,29 +168,33 @@ class TeamOperations : AppCompatActivity() {
 
         } else if (playerNumber() == 4) {
 
-            if (binding.oyuncu1EditText.text!!.isEmpty()) {
-                binding.oyuncu1EditTextLayout.error = getString(R.string.compulsory_text)
+            if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+                binding.teamOperationsPlayer1NameEditTextLayout.error =
+                    getString(R.string.compulsory_text)
                 Toast.makeText(
                     applicationContext,
                     R.string.enter_player_name_text,
                     Toast.LENGTH_SHORT
                 ).show()
-            } else if (binding.oyuncu2EditText.text!!.isEmpty()) {
-                binding.oyuncu2EditTextLayout.error = getString(R.string.compulsory_text)
+            } else if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+                binding.teamOperationsPlayer2NameEditTextLayout.error =
+                    getString(R.string.compulsory_text)
                 Toast.makeText(
                     applicationContext,
                     R.string.enter_player_name_text,
                     Toast.LENGTH_SHORT
                 ).show()
-            } else if (binding.oyuncu3EditText.text!!.isEmpty()) {
-                binding.oyuncu3EditTextLayout.error = getString(R.string.compulsory_text)
+            } else if (binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
+                binding.teamOperationsPlayer3NameEditTextLayout.error =
+                    getString(R.string.compulsory_text)
                 Toast.makeText(
                     applicationContext,
                     R.string.enter_player_name_text,
                     Toast.LENGTH_SHORT
                 ).show()
-            } else if (binding.oyuncu2EditText.text!!.isEmpty()) {
-                binding.oyuncu3EditTextLayout.error = getString(R.string.compulsory_text)
+            } else if (binding.teamOperationsPlayer4NameEditText.text!!.isEmpty()) {
+                binding.teamOperationsPlayer4NameEditTextLayout.error =
+                    getString(R.string.compulsory_text)
                 Toast.makeText(
                     applicationContext,
                     R.string.enter_player_name_text,
@@ -194,7 +203,7 @@ class TeamOperations : AppCompatActivity() {
             } else {
                 if (gameType == "Deduct from the number") {
                     if (firstNumber!!.text.toString() == "") {
-                        binding.baslangicSayisiEditTextLayout.error =
+                        binding.teamOperationsNumberOfStartsEditTextLayout.error =
                             getString(R.string.compulsory_text)
                         Toast.makeText(
                             applicationContext,
@@ -217,18 +226,18 @@ class TeamOperations : AppCompatActivity() {
     @SuppressLint("InflateParams")
     private fun setColorValue() {
         val inflater = LayoutInflater.from(this)
-        val view = inflater.inflate(R.layout.colors_value, null)
+        val view = inflater.inflate(R.layout.add_color_value, null)
 
         //set values
-        val redEditText = view.findViewById<EditText>(R.id.red_editText)
-        val blueEditText = view.findViewById<EditText>(R.id.blue_editText)
-        val yellowEditText = view.findViewById<EditText>(R.id.yellow_editText)
-        val blackEditText = view.findViewById<EditText>(R.id.black_editText)
+        val redEditText = view.findViewById<EditText>(R.id.addColorValue_red_editText)
+        val blueEditText = view.findViewById<EditText>(R.id.addColorValue_blue_editText)
+        val yellowEditText = view.findViewById<EditText>(R.id.addColorValue_yellow_editText)
+        val blackEditText = view.findViewById<EditText>(R.id.addColorValue_black_editText)
 
-        val redEditTextLayout = view.findViewById<TextInputLayout>(R.id.red_editTextLayout)
-        val blueEditTextLayout = view.findViewById<TextInputLayout>(R.id.blue_editTextLayout)
-        val yellowEditTextLayout = view.findViewById<TextInputLayout>(R.id.yellow_editTextLayout)
-        val blackEditTextLayout = view.findViewById<TextInputLayout>(R.id.black_editTextLayout)
+        val redEditTextLayout = view.findViewById<TextInputLayout>(R.id.addColorValue_red_editTextLayout)
+        val blueEditTextLayout = view.findViewById<TextInputLayout>(R.id.addColorValue_blue_editTextLayout)
+        val yellowEditTextLayout = view.findViewById<TextInputLayout>(R.id.addColorValue_yellow_editTextLayout)
+        val blackEditTextLayout = view.findViewById<TextInputLayout>(R.id.addColorValue_black_editTextLayout)
 
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
@@ -313,7 +322,7 @@ class TeamOperations : AppCompatActivity() {
         if (playerNumber() == 2) {
 
             //player name must be entered
-            if (binding.oyuncu1EditText.text!!.isEmpty() || binding.oyuncu2EditText.text!!.isEmpty()) {
+            if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty() || binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
                 Toast.makeText(
                     applicationContext,
                     R.string.enter_player_name_text,
@@ -351,7 +360,7 @@ class TeamOperations : AppCompatActivity() {
         } else if (playerNumber() == 3) {
 
             //player name must be entered
-            if (binding.oyuncu1EditText.text!!.isEmpty() || binding.oyuncu2EditText.text!!.isEmpty() || binding.oyuncu3EditText.text!!.isEmpty()) {
+            if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty() || binding.teamOperationsPlayer2NameEditText.text!!.isEmpty() || binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
                 Toast.makeText(
                     applicationContext,
                     R.string.enter_player_name_text,
@@ -390,7 +399,7 @@ class TeamOperations : AppCompatActivity() {
         } else if (playerNumber() == 4) {
 
             //player name must be entered
-            if (binding.oyuncu1EditText.text!!.isEmpty() || binding.oyuncu2EditText.text!!.isEmpty() || binding.oyuncu3EditText.text!!.isEmpty() || binding.oyuncu4EditText.text!!.isEmpty()) {
+            if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty() || binding.teamOperationsPlayer2NameEditText.text!!.isEmpty() || binding.teamOperationsPlayer3NameEditText.text!!.isEmpty() || binding.teamOperationsPlayer4NameEditText.text!!.isEmpty()) {
                 Toast.makeText(
                     applicationContext,
                     R.string.enter_player_name_text,
@@ -467,8 +476,8 @@ class TeamOperations : AppCompatActivity() {
     //control of player number
     private fun playerNumber(): Int {
         return when {
-            binding.ikiOyunculuRadioButton.isChecked -> 2
-            binding.ucOyunculuRadioButton.isChecked -> 3
+            binding.teamOperations2PlayerRadioButton.isChecked -> 2
+            binding.teamOperations3PlayerRadioButton.isChecked -> 3
             else -> 4
         }
     }
@@ -477,25 +486,25 @@ class TeamOperations : AppCompatActivity() {
     //change edittext visibility
     private fun playerNumberVisibility() {
 
-        binding.ikiOyunculuRadioButton.setOnClickListener {
-            binding.oyuncu3EditTextLayout.visibility = View.GONE
-            binding.oyuncu4EditTextLayout.visibility = View.GONE
+        binding.teamOperations2PlayerRadioButton.setOnClickListener {
+            binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.GONE
+            binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
 
-            binding.esliRadioButton.visibility = View.GONE
+            binding.teamOperationsMultipleRadioButton.visibility = View.GONE
         }
 
-        binding.ucOyunculuRadioButton.setOnClickListener {
-            binding.oyuncu3EditTextLayout.visibility = View.VISIBLE
-            binding.oyuncu4EditTextLayout.visibility = View.GONE
+        binding.teamOperations3PlayerRadioButton.setOnClickListener {
+            binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
+            binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
 
-            binding.esliRadioButton.visibility = View.GONE
+            binding.teamOperationsMultipleRadioButton.visibility = View.GONE
         }
 
-        binding.dortOyunculuRadioButton.setOnClickListener {
-            binding.oyuncu3EditTextLayout.visibility = View.VISIBLE
-            binding.oyuncu4EditTextLayout.visibility = View.VISIBLE
+        binding.teamOperations4PlayerRadioButton.setOnClickListener {
+            binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
+            binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.VISIBLE
 
-            binding.esliRadioButton.visibility = View.VISIBLE
+            binding.teamOperationsMultipleRadioButton.visibility = View.VISIBLE
         }
     }
 
@@ -503,7 +512,7 @@ class TeamOperations : AppCompatActivity() {
     //control of game type
     private fun playerType(): String {
 
-        return if (binding.tekliRadioButton.isChecked) {
+        return if (binding.teamOperationsSingleRadioButton.isChecked) {
             "Single"
         } else {
             "Multiple"
@@ -514,22 +523,22 @@ class TeamOperations : AppCompatActivity() {
     //change hint font and visibility
     private fun teamDeterminationByPlayerType() {
 
-        binding.tekliRadioButton.setOnClickListener {
-            binding.oyuncu1EditTextLayout.hint = getString(R.string.player1_text)
-            binding.oyuncu2EditTextLayout.hint = getString(R.string.player2_text)
-            binding.oyuncu1EditTextLayout.visibility = View.VISIBLE
-            binding.oyuncu2EditTextLayout.visibility = View.VISIBLE
-            binding.oyuncu3EditTextLayout.visibility = View.VISIBLE
-            binding.oyuncu4EditTextLayout.visibility = View.VISIBLE
+        binding.teamOperationsSingleRadioButton.setOnClickListener {
+            binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
+            binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
+            binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
+            binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
+            binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
+            binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.VISIBLE
         }
 
-        binding.esliRadioButton.setOnClickListener {
-            binding.oyuncu1EditTextLayout.hint = getString(R.string.team1_text)
-            binding.oyuncu2EditTextLayout.hint = getString(R.string.team2_text)
-            binding.oyuncu1EditTextLayout.visibility = View.VISIBLE
-            binding.oyuncu2EditTextLayout.visibility = View.VISIBLE
-            binding.oyuncu3EditTextLayout.visibility = View.GONE
-            binding.oyuncu4EditTextLayout.visibility = View.GONE
+        binding.teamOperationsMultipleRadioButton.setOnClickListener {
+            binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.team1_text)
+            binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.team2_text)
+            binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
+            binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
+            binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.GONE
+            binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
         }
     }
 
@@ -537,15 +546,15 @@ class TeamOperations : AppCompatActivity() {
     //set game type
     @SuppressLint("SetTextI18n")
     private fun gameType() {
-        binding.sayidanDusRadioButton.setOnClickListener {
+        binding.teamOperationsDeductFromNumberRadioButton.setOnClickListener {
             gameType = "Deduct from the number"
-            binding.baslangicSayisiEditTextLayout.visibility = View.VISIBLE
+            binding.teamOperationsNumberOfStartsEditTextLayout.visibility = View.VISIBLE
             firstNumber!!.setText("")
         }
 
-        binding.sayiEKleRadioButton.setOnClickListener {
+        binding.teamOperationsAddScoreRadioButton.setOnClickListener {
             gameType = "Add Score"
-            binding.baslangicSayisiEditTextLayout.visibility = View.GONE
+            binding.teamOperationsNumberOfStartsEditTextLayout.visibility = View.GONE
             firstNumber!!.setText("0000")
         }
     }

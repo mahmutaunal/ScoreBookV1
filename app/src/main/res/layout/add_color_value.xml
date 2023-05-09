@@ -51,7 +51,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/red_textView"
+                        android:id="@+id/addColorValue_red_textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical"
@@ -72,7 +72,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/blue_textView"
+                        android:id="@+id/addColorValue_blue_textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical"
@@ -92,7 +92,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/yellow_textView"
+                        android:id="@+id/addColorValue_yellow_textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical"
@@ -112,7 +112,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/black_textView"
+                        android:id="@+id/addColorValue_black_textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical"
@@ -142,7 +142,7 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/red_editTextLayout"
+                        android:id="@+id/addColorValue_red_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
                         app:hintTextColor="@color/teal_200">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/red_editText"
+                            android:id="@+id/addColorValue_red_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
@@ -167,7 +167,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/blue_editTextLayout"
+                        android:id="@+id/addColorValue_blue_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
                         app:hintTextColor="@color/teal_200">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/blue_editText"
+                            android:id="@+id/addColorValue_blue_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
@@ -192,7 +192,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/yellow_editTextLayout"
+                        android:id="@+id/addColorValue_yellow_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
@@ -205,7 +205,7 @@
                         app:hintTextColor="@color/teal_200">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/yellow_editText"
+                            android:id="@+id/addColorValue_yellow_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
@@ -217,7 +217,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/black_editTextLayout"
+                        android:id="@+id/addColorValue_black_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
@@ -230,7 +230,7 @@
                         app:hintTextColor="@color/teal_200">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/black_editText"
+                            android:id="@+id/addColorValue_black_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"

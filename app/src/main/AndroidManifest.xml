@@ -33,21 +33,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".puantablosu.Scoreboard4Player"
+            android:name=".scoreboard.Scoreboard4Player"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".puantablosu.Scoreboard3Player"
+            android:name=".scoreboard.Scoreboard3Player"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".puantablosu.Scoreboard2Player"
+            android:name=".scoreboard.Scoreboard2Player"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

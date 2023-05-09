@@ -8,7 +8,7 @@
     tools:context=".diceroller.DiceRoller">
 
     <ImageView
-        android:id="@+id/dice_imageView"
+        android:id="@+id/diceRoller_dice_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="200dp"
@@ -20,7 +20,7 @@
         tools:ignore="ContentDescription" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/yenidenZarAt_button"
+        android:id="@+id/diceRoller_rollDiceAgain_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -38,7 +38,7 @@
         tools:ignore="TextContrastCheck" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/ok_button"
+        android:id="@+id/diceRoller_ok_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"

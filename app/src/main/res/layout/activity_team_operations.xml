@@ -8,7 +8,7 @@
     tools:context=".teamoperations.TeamOperations">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/yeniOyun_toolbar"
+        android:id="@+id/teamOperations_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/back_button"
+            android:id="@+id/teamOperations_back_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="25dp"
@@ -25,7 +25,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/yeniOyun_textView"
+            android:id="@+id/teamOperations_title_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -38,7 +38,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/takimIslemleri_nestedScrollView"
+        android:id="@+id/teamOperations_nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
@@ -52,7 +52,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/takimIslemleri_cardView"
+                android:id="@+id/teamOperations_cardView"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -69,7 +69,7 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/oyunIsmi_editTextLayout"
+                        android:id="@+id/teamOperations_gameName_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                         app:startIconDrawable="@drawable/ic_game">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/oyunIsmi_editText"
+                            android:id="@+id/teamOperations_gameName_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
@@ -96,7 +96,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/oyuncu1_editTextLayout"
+                        android:id="@+id/teamOperations_player1Name_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
                         app:startIconDrawable="@drawable/ic_user">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/oyuncu1_editText"
+                            android:id="@+id/teamOperations_player1Name_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
@@ -124,7 +124,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/oyuncu2_editTextLayout"
+                        android:id="@+id/teamOperations_player2Name_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
                         app:startIconDrawable="@drawable/ic_user">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/oyuncu2_editText"
+                            android:id="@+id/teamOperations_player2Name_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
@@ -152,7 +152,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/oyuncu3_editTextLayout"
+                        android:id="@+id/teamOperations_player3Name_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
@@ -168,7 +168,7 @@
                         app:startIconDrawable="@drawable/ic_user">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/oyuncu3_editText"
+                            android:id="@+id/teamOperations_player3Name_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
@@ -180,7 +180,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/oyuncu4_editTextLayout"
+                        android:id="@+id/teamOperations_player4Name_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
@@ -196,7 +196,7 @@
                         app:startIconDrawable="@drawable/ic_user">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/oyuncu4_editText"
+                            android:id="@+id/teamOperations_player4Name_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
@@ -208,7 +208,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <LinearLayout
-                        android:id="@+id/oyuncuSayisi_linearLayout"
+                        android:id="@+id/teamOperations_numberOfPlayer_linearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -225,13 +225,13 @@
                             android:textSize="14sp" />
 
                         <RadioGroup
-                            android:id="@+id/oyuncuSayisi_radioGroup"
+                            android:id="@+id/teamOperations_numberOfPlayer_radioGroup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:id="@+id/ikiOyunculu_radioButton"
+                                android:id="@+id/teamOperations_2Player_radioButton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
@@ -242,7 +242,7 @@
                                 tools:ignore="TouchTargetSizeCheck" />
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:id="@+id/ucOyunculu_radioButton"
+                                android:id="@+id/teamOperations_3Player_radioButton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
@@ -253,7 +253,7 @@
                                 tools:ignore="TouchTargetSizeCheck" />
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:id="@+id/dortOyunculu_radioButton"
+                                android:id="@+id/teamOperations_4Player_radioButton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
@@ -269,7 +269,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/oyuncuTuru_linearLayout"
+                        android:id="@+id/teamOperations_playerType_linearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -286,13 +286,13 @@
                             android:textSize="14sp" />
 
                         <RadioGroup
-                            android:id="@+id/oyuncuTuru_radioGroup"
+                            android:id="@+id/teamOperations_playerType_radioGroup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:id="@+id/tekli_radioButton"
+                                android:id="@+id/teamOperations_single_radioButton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
@@ -304,7 +304,7 @@
                                 android:textSize="14sp" />
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:id="@+id/esli_radioButton"
+                                android:id="@+id/teamOperations_multiple_radioButton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
@@ -319,7 +319,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/oyunTuru_linearLayout"
+                        android:id="@+id/teamOperations_gameType_linearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -335,13 +335,13 @@
                             android:textSize="14sp" />
 
                         <RadioGroup
-                            android:id="@+id/oyunTuru_radioGroup"
+                            android:id="@+id/teamOperations_gameType_radioGroup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:id="@+id/sayidanDus_radioButton"
+                                android:id="@+id/teamOperations_deductFromNumber_radioButton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
@@ -352,7 +352,7 @@
                                 android:textSize="14sp" />
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:id="@+id/sayiEKle_radioButton"
+                                android:id="@+id/teamOperations_addScore_radioButton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
@@ -368,7 +368,7 @@
                     </LinearLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/baslangicSayisi_editTextLayout"
+                        android:id="@+id/teamOperations_numberOfStarts_editTextLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="250dp"
                         android:layout_height="60dp"
@@ -384,7 +384,7 @@
                         app:hintTextColor="@color/teal_200">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/baslangicSayisi_editText"
+                            android:id="@+id/teamOperations_numberOfStarts_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
@@ -400,7 +400,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/baslat_button"
+                android:id="@+id/teamOperations_start_button"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"

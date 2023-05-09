@@ -29,10 +29,10 @@ class DiceRoller : AppCompatActivity() {
         randomDice()
 
         //again dice roll
-        binding.yenidenZarAtButton.setOnClickListener { randomDice() }
+        binding.diceRollerRollDiceAgainButton.setOnClickListener { randomDice() }
 
         //exit diceRoller
-        binding.okButton.setOnClickListener { finish() }
+        binding.diceRollerOkButton.setOnClickListener { finish() }
 
     }
 
@@ -50,18 +50,18 @@ class DiceRoller : AppCompatActivity() {
             else -> R.drawable.dice_6
         }
 
-        val diceImage = findViewById<ImageView>(R.id.dice_imageView)
+        val diceImage = findViewById<ImageView>(R.id.diceRoller_dice_imageView)
         diceImage.setImageResource(diceResource)
     }
 
 
     //dice animation
     private fun diceAnimation() {
-        binding.diceImageView.animate().apply {
+        binding.diceRollerDiceImageView.animate().apply {
             duration = 1000
             rotationXBy(360f)
         }.withEndAction {
-            binding.diceImageView.animate().apply {
+            binding.diceRollerDiceImageView.animate().apply {
                 duration = 1000
                 rotationX(360f)
             }.start()

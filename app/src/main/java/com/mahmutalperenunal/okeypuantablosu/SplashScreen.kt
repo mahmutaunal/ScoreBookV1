@@ -9,14 +9,14 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.mahmutalperenunal.okeypuantablosu.mainmenu.MainMenu
-import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityMainBinding
+import com.mahmutalperenunal.okeypuantablosu.databinding.ActivitySplashScreenBinding
 import java.util.*
 import kotlin.concurrent.timerTask
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivitySplashScreenBinding
 
     private lateinit var sharedPreferencesTheme: SharedPreferences
 
@@ -26,7 +26,7 @@ class SplashScreen : AppCompatActivity() {
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //set screen orientation to portrait

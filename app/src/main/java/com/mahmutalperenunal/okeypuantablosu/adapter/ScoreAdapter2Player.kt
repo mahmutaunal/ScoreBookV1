@@ -72,7 +72,7 @@ class ScoreAdapter2Player(private val scoreList2Player: ArrayList<ScoreData2Play
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScoreViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.list_skor_2_kisi, parent, false)
+        val view = inflater.inflate(R.layout.that_round_score_2_player, parent, false)
         return ScoreViewHolder(view, scoreListener)
     }
 
