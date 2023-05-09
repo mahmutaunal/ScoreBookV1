@@ -1,4 +1,4 @@
-package com.mahmutalperenunal.okeypuantablosu.scoreboard
+package com.mahmutalperenunal.okeypuantablosu.activity.scoreboard
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -17,13 +17,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.mahmutalperenunal.okeypuantablosu.R
+import com.mahmutalperenunal.okeypuantablosu.activity.Calculator
+import com.mahmutalperenunal.okeypuantablosu.activity.DiceRoller
+import com.mahmutalperenunal.okeypuantablosu.activity.MainMenu
+import com.mahmutalperenunal.okeypuantablosu.activity.TeamOperations
 import com.mahmutalperenunal.okeypuantablosu.adapter.ScoreAdapter4Player
-import com.mahmutalperenunal.okeypuantablosu.calculator.Calculator
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityScoreboard4PlayerBinding
-import com.mahmutalperenunal.okeypuantablosu.diceroller.DiceRoller
-import com.mahmutalperenunal.okeypuantablosu.mainmenu.MainMenu
 import com.mahmutalperenunal.okeypuantablosu.model.ScoreData4Player
-import com.mahmutalperenunal.okeypuantablosu.teamoperations.TeamOperations
 
 //operations such as entering scores, deleting players.
 class Scoreboard4Player : AppCompatActivity() {
@@ -89,15 +89,15 @@ class Scoreboard4Player : AppCompatActivity() {
         //set admob banner
         MobileAds.initialize(this) {}
         val adRequest = AdRequest.Builder().build()
-        binding.puanTablosu4AdView.loadAd(adRequest)
+        binding.scoreBoard4PlayerAdView.loadAd(adRequest)
 
         //game name
         gameName = intent.getStringExtra("Game Name").toString()
 
         if (gameName == "") {
-            binding.baslikText.text = getString(R.string.new_game_text)
+            binding.scoreBoard4PlayerTitleText.text = getString(R.string.new_game_text)
         } else {
-            binding.baslikText.text = gameName
+            binding.scoreBoard4PlayerTitleText.text = gameName
         }
 
         //player names
@@ -106,10 +106,10 @@ class Scoreboard4Player : AppCompatActivity() {
         player3Name = intent.getStringExtra("Player-3 Name").toString()
         player4Name = intent.getStringExtra("Player-4 Name").toString()
 
-        binding.oyuncu1Text.text = player1Name
-        binding.oyuncu2Text.text = player2Name
-        binding.oyuncu3Text.text = player3Name
-        binding.oyuncu4Text.text = player4Name
+        binding.scoreBoard4PlayerPlayer1NameText.text = player1Name
+        binding.scoreBoard4PlayerPlayer2NameText.text = player2Name
+        binding.scoreBoard4PlayerPlayer3NameText.text = player3Name
+        binding.scoreBoard4PlayerPlayer4NameText.text = player4Name
 
         //get colors value
         redValue = intent.getIntExtra("Red Value", 0)
@@ -122,15 +122,15 @@ class Scoreboard4Player : AppCompatActivity() {
         firstNumber = intent.getStringExtra("Number of Starts").toString()
 
         if (firstNumber.isEmpty()) {
-            binding.oyuncu1AnlikSkor.text = "0000"
-            binding.oyuncu2AnlikSkor.text = "0000"
-            binding.oyuncu3AnlikSkor.text = "0000"
-            binding.oyuncu4AnlikSkor.text = "0000"
+            binding.scoreBoard4PlayerPlayer1InstantScoreText.text = "0000"
+            binding.scoreBoard4PlayerPlayer2InstantScoreText.text = "0000"
+            binding.scoreBoard4PlayerPlayer3InstantScoreText.text = "0000"
+            binding.scoreBoard4PlayerPlayer4InstantScoreText.text = "0000"
         } else {
-            binding.oyuncu1AnlikSkor.text = firstNumber
-            binding.oyuncu2AnlikSkor.text = firstNumber
-            binding.oyuncu3AnlikSkor.text = firstNumber
-            binding.oyuncu4AnlikSkor.text = firstNumber
+            binding.scoreBoard4PlayerPlayer1InstantScoreText.text = firstNumber
+            binding.scoreBoard4PlayerPlayer2InstantScoreText.text = firstNumber
+            binding.scoreBoard4PlayerPlayer3InstantScoreText.text = firstNumber
+            binding.scoreBoard4PlayerPlayer4InstantScoreText.text = firstNumber
         }
 
 
@@ -145,7 +145,7 @@ class Scoreboard4Player : AppCompatActivity() {
         scoreList4Player = ArrayList()
 
         //set recyclerView
-        recyclerView = findViewById(R.id.puanTablosu_recyclerView)
+        recyclerView = findViewById(R.id.scoreBoard4Player_recyclerView)
 
         //set adapter
         scoreAdapter4Player = ScoreAdapter4Player(scoreList4Player)
@@ -160,22 +160,22 @@ class Scoreboard4Player : AppCompatActivity() {
 
 
         //set addScore dialog
-        binding.skorEkleButton.setOnClickListener { addScore() }
+        binding.scoreBoard4PlayerAddScoreButton.setOnClickListener { addScore() }
 
         //set scoreboard dialog
-        binding.skorTablosuButton.setOnClickListener { scoreboard() }
+        binding.scoreBoard4PlayerScoreboardButton.setOnClickListener { scoreboard() }
 
         //exit main menu
-        binding.backButton.setOnClickListener { exitMainMenu() }
+        binding.scoreBoard4PlayerBackButton.setOnClickListener { exitMainMenu() }
 
         //save & exit
-        binding.oyunuBitirButton.setOnClickListener { saveExit() }
+        binding.scoreBoard4PlayerFinishGameButton.setOnClickListener { saveExit() }
 
         //dice roller
-        binding.diceIcon.setOnClickListener { diceRoller() }
+        binding.scoreBoard4PlayerDiceIcon.setOnClickListener { diceRoller() }
 
         //calculator
-        binding.calculatorIcon.setOnClickListener { openCalculator() }
+        binding.scoreBoard4PlayerCalculatorIcon.setOnClickListener { openCalculator() }
     }
 
 
@@ -366,15 +366,20 @@ class Scoreboard4Player : AppCompatActivity() {
 
                     gameNumber++
 
-                    binding.gameNumberText.text = "$gameNumber. ${getString(R.string.round_text)}"
+                    binding.scoreBoard4PlayerRoundNumberText.text =
+                        "$gameNumber. ${getString(R.string.round_text)}"
 
                     scoreCount++
 
                     //instant scores
-                    val exInstantScore1 = binding.oyuncu1AnlikSkor.text.toString()
-                    val exInstantScore2 = binding.oyuncu2AnlikSkor.text.toString()
-                    val exInstantScore3 = binding.oyuncu3AnlikSkor.text.toString()
-                    val exInstantScore4 = binding.oyuncu4AnlikSkor.text.toString()
+                    val exInstantScore1 =
+                        binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+                    val exInstantScore2 =
+                        binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+                    val exInstantScore3 =
+                        binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+                    val exInstantScore4 =
+                        binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
 
                     //sum of entered scores and instant scores
                     val resultInstantScore1 = newInstantScore1Multiply + exInstantScore1.toInt()
@@ -382,10 +387,14 @@ class Scoreboard4Player : AppCompatActivity() {
                     val resultInstantScore3 = newInstantScore3Multiply + exInstantScore3.toInt()
                     val resultInstantScore4 = newInstantScore4Multiply + exInstantScore4.toInt()
 
-                    binding.oyuncu1AnlikSkor.text = resultInstantScore1.toString()
-                    binding.oyuncu2AnlikSkor.text = resultInstantScore2.toString()
-                    binding.oyuncu3AnlikSkor.text = resultInstantScore3.toString()
-                    binding.oyuncu4AnlikSkor.text = resultInstantScore4.toString()
+                    binding.scoreBoard4PlayerPlayer1InstantScoreText.text =
+                        resultInstantScore1.toString()
+                    binding.scoreBoard4PlayerPlayer2InstantScoreText.text =
+                        resultInstantScore2.toString()
+                    binding.scoreBoard4PlayerPlayer3InstantScoreText.text =
+                        resultInstantScore3.toString()
+                    binding.scoreBoard4PlayerPlayer4InstantScoreText.text =
+                        resultInstantScore4.toString()
 
                     scoreAdapter4Player.notifyDataSetChanged()
 
@@ -417,15 +426,20 @@ class Scoreboard4Player : AppCompatActivity() {
 
                     gameNumber++
 
-                    binding.gameNumberText.text = "$gameNumber. ${getString(R.string.round_text)}"
+                    binding.scoreBoard4PlayerRoundNumberText.text =
+                        "$gameNumber. ${getString(R.string.round_text)}"
 
                     scoreCount++
 
                     //instant scores
-                    val exInstantScore1 = binding.oyuncu1AnlikSkor.text.toString()
-                    val exInstantScore2 = binding.oyuncu2AnlikSkor.text.toString()
-                    val exInstantScore3 = binding.oyuncu3AnlikSkor.text.toString()
-                    val exInstantScore4 = binding.oyuncu4AnlikSkor.text.toString()
+                    val exInstantScore1 =
+                        binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+                    val exInstantScore2 =
+                        binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+                    val exInstantScore3 =
+                        binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+                    val exInstantScore4 =
+                        binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
 
                     //sum of entered scores and instant scores
                     val resultInstantScore1 = exInstantScore1.toInt() - newInstantScore1Multiply
@@ -433,19 +447,27 @@ class Scoreboard4Player : AppCompatActivity() {
                     val resultInstantScore3 = exInstantScore3.toInt() - newInstantScore3Multiply
                     val resultInstantScore4 = exInstantScore4.toInt() - newInstantScore4Multiply
 
-                    binding.oyuncu1AnlikSkor.text = resultInstantScore1.toString()
-                    binding.oyuncu2AnlikSkor.text = resultInstantScore2.toString()
-                    binding.oyuncu3AnlikSkor.text = resultInstantScore3.toString()
-                    binding.oyuncu4AnlikSkor.text = resultInstantScore4.toString()
+                    binding.scoreBoard4PlayerPlayer1InstantScoreText.text =
+                        resultInstantScore1.toString()
+                    binding.scoreBoard4PlayerPlayer2InstantScoreText.text =
+                        resultInstantScore2.toString()
+                    binding.scoreBoard4PlayerPlayer3InstantScoreText.text =
+                        resultInstantScore3.toString()
+                    binding.scoreBoard4PlayerPlayer4InstantScoreText.text =
+                        resultInstantScore4.toString()
 
                     scoreAdapter4Player.notifyDataSetChanged()
 
                 }
 
-                val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
-                val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
-                val score3 = binding.oyuncu3AnlikSkor.text.toString().toInt()
-                val score4 = binding.oyuncu4AnlikSkor.text.toString().toInt()
+                val score1 =
+                    binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString().toInt()
+                val score2 =
+                    binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString().toInt()
+                val score3 =
+                    binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString().toInt()
+                val score4 =
+                    binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString().toInt()
 
                 if (gameType == "Deduct from the number") {
                     if (score1 <= 0 || score2 <= 0 || score3 <= 0 || score4 <= 0) {
@@ -481,10 +503,10 @@ class Scoreboard4Player : AppCompatActivity() {
         val player3ScoreText = view.findViewById<TextView>(R.id.oyuncu3Skor_textView)
         val player4ScoreText = view.findViewById<TextView>(R.id.oyuncu4Skor_textView)
 
-        val player1TotalScore = binding.oyuncu1AnlikSkor.text.toString()
-        val player2TotalScore = binding.oyuncu2AnlikSkor.text.toString()
-        val player3TotalScore = binding.oyuncu3AnlikSkor.text.toString()
-        val player4TotalScore = binding.oyuncu4AnlikSkor.text.toString()
+        val player1TotalScore = binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+        val player2TotalScore = binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+        val player3TotalScore = binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+        val player4TotalScore = binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
 
         player1ScoreText.text = player1TotalScore
         player2ScoreText.text = player2TotalScore
@@ -558,10 +580,10 @@ class Scoreboard4Player : AppCompatActivity() {
         val player3ScoreText = view.findViewById<TextView>(R.id.oyuncu3Skor_textView)
         val player4ScoreText = view.findViewById<TextView>(R.id.oyuncu4Skor_textView)
 
-        val player1TotalScore = binding.oyuncu1AnlikSkor.text.toString()
-        val player2TotalScore = binding.oyuncu2AnlikSkor.text.toString()
-        val player3TotalScore = binding.oyuncu3AnlikSkor.text.toString()
-        val player4TotalScore = binding.oyuncu4AnlikSkor.text.toString()
+        val player1TotalScore = binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+        val player2TotalScore = binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+        val player3TotalScore = binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+        val player4TotalScore = binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
 
         player1ScoreText.text = player1TotalScore
         player2ScoreText.text = player2TotalScore
@@ -667,10 +689,10 @@ class Scoreboard4Player : AppCompatActivity() {
 
             if (gameType == "Add Score") {
 
-                val totalScore1 = binding.oyuncu1AnlikSkor.text.toString()
-                val totalScore2 = binding.oyuncu2AnlikSkor.text.toString()
-                val totalScore3 = binding.oyuncu3AnlikSkor.text.toString()
-                val totalScore4 = binding.oyuncu4AnlikSkor.text.toString()
+                val totalScore1 = binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+                val totalScore2 = binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+                val totalScore3 = binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+                val totalScore4 = binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
 
 
                 AlertDialog.Builder(this, R.style.CustomAlertDialog)
@@ -688,7 +710,7 @@ class Scoreboard4Player : AppCompatActivity() {
 
                             gameNumber--
 
-                            binding.gameNumberText.text =
+                            binding.scoreBoard4PlayerRoundNumberText.text =
                                 "$gameNumber. ${getString(R.string.round_text)}"
 
                             val resultScore1 =
@@ -700,10 +722,14 @@ class Scoreboard4Player : AppCompatActivity() {
                             val resultScore4 =
                                 totalScore4.toInt() - scoreList4Player[position].player4_score.toInt()
 
-                            binding.oyuncu1AnlikSkor.text = resultScore1.toString()
-                            binding.oyuncu2AnlikSkor.text = resultScore2.toString()
-                            binding.oyuncu3AnlikSkor.text = resultScore3.toString()
-                            binding.oyuncu4AnlikSkor.text = resultScore4.toString()
+                            binding.scoreBoard4PlayerPlayer1InstantScoreText.text =
+                                resultScore1.toString()
+                            binding.scoreBoard4PlayerPlayer2InstantScoreText.text =
+                                resultScore2.toString()
+                            binding.scoreBoard4PlayerPlayer3InstantScoreText.text =
+                                resultScore3.toString()
+                            binding.scoreBoard4PlayerPlayer4InstantScoreText.text =
+                                resultScore4.toString()
 
                             scoreList4Player.removeAt(position)
 
@@ -711,10 +737,18 @@ class Scoreboard4Player : AppCompatActivity() {
 
                             scoreAdapter4Player.notifyDataSetChanged()
 
-                            val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
-                            val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
-                            val score3 = binding.oyuncu3AnlikSkor.text.toString().toInt()
-                            val score4 = binding.oyuncu4AnlikSkor.text.toString().toInt()
+                            val score1 =
+                                binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+                                    .toInt()
+                            val score2 =
+                                binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+                                    .toInt()
+                            val score3 =
+                                binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+                                    .toInt()
+                            val score4 =
+                                binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
+                                    .toInt()
 
                             if (gameType == "Deduct from the number") {
                                 if (score1 <= 0 || score2 <= 0 || score3 <= 0 || score4 <= 0) {
@@ -733,10 +767,10 @@ class Scoreboard4Player : AppCompatActivity() {
 
             } else {
 
-                val totalScore1 = binding.oyuncu1AnlikSkor.text.toString()
-                val totalScore2 = binding.oyuncu2AnlikSkor.text.toString()
-                val totalScore3 = binding.oyuncu3AnlikSkor.text.toString()
-                val totalScore4 = binding.oyuncu4AnlikSkor.text.toString()
+                val totalScore1 = binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+                val totalScore2 = binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+                val totalScore3 = binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+                val totalScore4 = binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
 
 
                 AlertDialog.Builder(this, R.style.CustomAlertDialog)
@@ -754,7 +788,7 @@ class Scoreboard4Player : AppCompatActivity() {
 
                             gameNumber--
 
-                            binding.gameNumberText.text =
+                            binding.scoreBoard4PlayerRoundNumberText.text =
                                 "$gameNumber. ${getString(R.string.round_text)}"
 
                             val resultScore1 =
@@ -766,10 +800,14 @@ class Scoreboard4Player : AppCompatActivity() {
                             val resultScore4 =
                                 totalScore4.toInt() + scoreList4Player[position].player4_score.toInt()
 
-                            binding.oyuncu1AnlikSkor.text = resultScore1.toString()
-                            binding.oyuncu2AnlikSkor.text = resultScore2.toString()
-                            binding.oyuncu3AnlikSkor.text = resultScore3.toString()
-                            binding.oyuncu4AnlikSkor.text = resultScore4.toString()
+                            binding.scoreBoard4PlayerPlayer1InstantScoreText.text =
+                                resultScore1.toString()
+                            binding.scoreBoard4PlayerPlayer2InstantScoreText.text =
+                                resultScore2.toString()
+                            binding.scoreBoard4PlayerPlayer3InstantScoreText.text =
+                                resultScore3.toString()
+                            binding.scoreBoard4PlayerPlayer4InstantScoreText.text =
+                                resultScore4.toString()
 
                             scoreList4Player.removeAt(position)
 
@@ -777,10 +815,18 @@ class Scoreboard4Player : AppCompatActivity() {
 
                             scoreAdapter4Player.notifyDataSetChanged()
 
-                            val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
-                            val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
-                            val score3 = binding.oyuncu3AnlikSkor.text.toString().toInt()
-                            val score4 = binding.oyuncu4AnlikSkor.text.toString().toInt()
+                            val score1 =
+                                binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+                                    .toInt()
+                            val score2 =
+                                binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+                                    .toInt()
+                            val score3 =
+                                binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+                                    .toInt()
+                            val score4 =
+                                binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
+                                    .toInt()
 
                             if (gameType == "Deduct from the number") {
                                 if (score1 <= 0 || score2 <= 0 || score3 <= 0 || score4 <= 0) {
@@ -836,7 +882,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
 
         //set game number
-        val gameNumberText = view.findViewById<TextView>(R.id.scoreDetail_selectedScoreGameNumber_textView)
+        val gameNumberText =
+            view.findViewById<TextView>(R.id.scoreDetail_selectedScoreGameNumber_textView)
 
         gameNumberText.text =
             "${scoreList4Player[position].gameNumber}. ${getString(R.string.round_text)}"
@@ -1269,15 +1316,20 @@ class Scoreboard4Player : AppCompatActivity() {
                     scoreList4Player[position].multiplyNumber = multiplyNumber
                     scoreList4Player[position].color = color
 
-                    binding.gameNumberText.text = "$gameNumber. ${getString(R.string.round_text)}"
+                    binding.scoreBoard4PlayerRoundNumberText.text =
+                        "$gameNumber. ${getString(R.string.round_text)}"
 
                     scoreCount++
 
                     //instant score
-                    val exInstantScore1 = binding.oyuncu1AnlikSkor.text.toString()
-                    val exInstantScore2 = binding.oyuncu2AnlikSkor.text.toString()
-                    val exInstantScore3 = binding.oyuncu3AnlikSkor.text.toString()
-                    val exInstantScore4 = binding.oyuncu4AnlikSkor.text.toString()
+                    val exInstantScore1 =
+                        binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+                    val exInstantScore2 =
+                        binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+                    val exInstantScore3 =
+                        binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+                    val exInstantScore4 =
+                        binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
 
                     //sum entered score and instant score
                     val resultOldInstantScore1 = exInstantScore1.toInt() - selectedScore1.toInt()
@@ -1290,10 +1342,14 @@ class Scoreboard4Player : AppCompatActivity() {
                     val resultNewInstantScore3 = resultOldInstantScore3 + newInstantScore3Multiply
                     val resultNewInstantScore4 = resultOldInstantScore4 + newInstantScore4Multiply
 
-                    binding.oyuncu1AnlikSkor.text = resultNewInstantScore1.toString()
-                    binding.oyuncu2AnlikSkor.text = resultNewInstantScore2.toString()
-                    binding.oyuncu3AnlikSkor.text = resultNewInstantScore3.toString()
-                    binding.oyuncu4AnlikSkor.text = resultNewInstantScore4.toString()
+                    binding.scoreBoard4PlayerPlayer1InstantScoreText.text =
+                        resultNewInstantScore1.toString()
+                    binding.scoreBoard4PlayerPlayer2InstantScoreText.text =
+                        resultNewInstantScore2.toString()
+                    binding.scoreBoard4PlayerPlayer3InstantScoreText.text =
+                        resultNewInstantScore3.toString()
+                    binding.scoreBoard4PlayerPlayer4InstantScoreText.text =
+                        resultNewInstantScore4.toString()
 
                     scoreAdapter4Player.notifyDataSetChanged()
 
@@ -1319,15 +1375,20 @@ class Scoreboard4Player : AppCompatActivity() {
                     scoreList4Player[position].multiplyNumber = multiplyNumber
                     scoreList4Player[position].color = color
 
-                    binding.gameNumberText.text = "$gameNumber. ${getString(R.string.round_text)}"
+                    binding.scoreBoard4PlayerRoundNumberText.text =
+                        "$gameNumber. ${getString(R.string.round_text)}"
 
                     scoreCount++
 
                     //instant score
-                    val exInstantScore1 = binding.oyuncu1AnlikSkor.text.toString()
-                    val exInstantScore2 = binding.oyuncu2AnlikSkor.text.toString()
-                    val exInstantScore3 = binding.oyuncu3AnlikSkor.text.toString()
-                    val exInstantScore4 = binding.oyuncu4AnlikSkor.text.toString()
+                    val exInstantScore1 =
+                        binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+                    val exInstantScore2 =
+                        binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+                    val exInstantScore3 =
+                        binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+                    val exInstantScore4 =
+                        binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
 
                     //sum entered score and instant score
                     val resultOldInstantScore1 = exInstantScore1.toInt() + selectedScore1.toInt()
@@ -1340,19 +1401,27 @@ class Scoreboard4Player : AppCompatActivity() {
                     val resultNewInstantScore3 = resultOldInstantScore3 - newInstantScore3Multiply
                     val resultNewInstantScore4 = resultOldInstantScore4 - newInstantScore4Multiply
 
-                    binding.oyuncu1AnlikSkor.text = resultNewInstantScore1.toString()
-                    binding.oyuncu2AnlikSkor.text = resultNewInstantScore2.toString()
-                    binding.oyuncu3AnlikSkor.text = resultNewInstantScore3.toString()
-                    binding.oyuncu4AnlikSkor.text = resultNewInstantScore4.toString()
+                    binding.scoreBoard4PlayerPlayer1InstantScoreText.text =
+                        resultNewInstantScore1.toString()
+                    binding.scoreBoard4PlayerPlayer2InstantScoreText.text =
+                        resultNewInstantScore2.toString()
+                    binding.scoreBoard4PlayerPlayer3InstantScoreText.text =
+                        resultNewInstantScore3.toString()
+                    binding.scoreBoard4PlayerPlayer4InstantScoreText.text =
+                        resultNewInstantScore4.toString()
 
                     scoreAdapter4Player.notifyDataSetChanged()
 
                 }
 
-                val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
-                val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
-                val score3 = binding.oyuncu3AnlikSkor.text.toString().toInt()
-                val score4 = binding.oyuncu4AnlikSkor.text.toString().toInt()
+                val score1 =
+                    binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString().toInt()
+                val score2 =
+                    binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString().toInt()
+                val score3 =
+                    binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString().toInt()
+                val score4 =
+                    binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString().toInt()
 
                 if (gameType == "Deduct from the number") {
                     if (score1 <= 0 || score2 <= 0 || score3 <= 0 || score4 <= 0) {

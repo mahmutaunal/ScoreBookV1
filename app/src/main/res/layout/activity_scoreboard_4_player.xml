@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    tools:context=".scoreboard.Scoreboard4Player">
+    tools:context=".activity.scoreboard.Scoreboard4Player">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/yeniOyun_toolbar"
+        android:id="@+id/scoreBoard4Player_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,16 +16,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/back_button"
+            android:id="@+id/scoreBoard4Player_back_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="15dp"
-            android:src="@drawable/back"
             android:background="?attr/selectableItemBackground"
+            android:src="@drawable/back"
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/baslik_text"
+            android:id="@+id/scoreBoard4Player_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -39,7 +38,7 @@
             tools:layout_editor_absoluteY="18dp" />
 
         <TextView
-            android:id="@+id/text"
+            android:id="@+id/scoreBoard4Player_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -52,7 +51,7 @@
             tools:layout_editor_absoluteY="18dp" />
 
         <TextView
-            android:id="@+id/gameNumber_text"
+            android:id="@+id/scoreBoard4Player_roundNumber_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -65,39 +64,39 @@
             tools:layout_editor_absoluteY="18dp" />
 
         <ImageView
-            android:id="@+id/dice_icon"
+            android:id="@+id/scoreBoard4Player_dice_icon"
             android:layout_width="23dp"
             android:layout_height="23dp"
             android:layout_gravity="right"
             android:layout_marginEnd="20dp"
-            android:src="@drawable/dice"
             android:background="?attr/selectableItemBackground"
+            android:src="@drawable/dice"
             tools:ignore="ContentDescription,RtlHardcoded" />
 
         <ImageView
-            android:id="@+id/calculator_icon"
+            android:id="@+id/scoreBoard4Player_calculator_icon"
             android:layout_width="25dp"
             android:layout_height="20dp"
             android:layout_gravity="right"
             android:layout_marginEnd="20dp"
-            android:src="@drawable/calculator"
             android:background="?attr/selectableItemBackground"
+            android:src="@drawable/calculator"
             tools:ignore="ContentDescription,RtlHardcoded" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
-        android:id="@+id/oyuncuAdlari_linearLayout"
+        android:id="@+id/scoreBoard4Player_playerNames_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/yeniOyun_toolbar">
+        app:layout_constraintTop_toBottomOf="@id/scoreBoard4Player_toolbar">
 
         <TextView
-            android:id="@+id/oyuncu1_text"
+            android:id="@+id/scoreBoard4Player_player1Name_text"
             android:layout_width="92dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -109,7 +108,7 @@
             tools:ignore="TextSizeCheck" />
 
         <TextView
-            android:id="@+id/oyuncu2_text"
+            android:id="@+id/scoreBoard4Player_player2Name_text"
             android:layout_width="92dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -122,7 +121,7 @@
             tools:ignore="TextSizeCheck" />
 
         <TextView
-            android:id="@+id/oyuncu3_text"
+            android:id="@+id/scoreBoard4Player_player3Name_text"
             android:layout_width="92dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -135,7 +134,7 @@
             tools:ignore="TextSizeCheck" />
 
         <TextView
-            android:id="@+id/oyuncu4_text"
+            android:id="@+id/scoreBoard4Player_player4Name_text"
             android:layout_width="92dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -150,17 +149,17 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/anlikSkor_linearLayut"
+        android:id="@+id/scoreBoard4Player_instantScores_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/oyuncuAdlari_linearLayout">
+        app:layout_constraintTop_toBottomOf="@id/scoreBoard4Player_playerNames_linearLayout">
 
         <TextView
-            android:id="@+id/oyuncu1_anlikSkor"
+            android:id="@+id/scoreBoard4Player_player1InstantScore_text"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -171,19 +170,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/oyuncu2_anlikSkor"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="40dp"
-            android:fontFamily="@font/comfortaa"
-            android:text="@string/anlikSkor_text"
-            android:textAlignment="center"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/oyuncu3_anlikSkor"
+            android:id="@+id/scoreBoard4Player_player2InstantScore_text"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -195,7 +182,19 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/oyuncu4_anlikSkor"
+            android:id="@+id/scoreBoard4Player_player3InstantScore_text"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="40dp"
+            android:fontFamily="@font/comfortaa"
+            android:text="@string/anlikSkor_text"
+            android:textAlignment="center"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/scoreBoard4Player_player4InstantScore_text"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -209,31 +208,31 @@
     </LinearLayout>
 
     <HorizontalScrollView
-        android:id="@+id/view1"
+        android:id="@+id/scoreBoard4Player_view1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/text_color"
         android:layout_marginTop="3dp"
+        android:background="@color/text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/anlikSkor_linearLayut"
+        app:layout_constraintTop_toBottomOf="@+id/scoreBoard4Player_instantScores_linearLayout"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/puanTablosu_nestedScrollView"
+        android:id="@+id/scoreBoard4Player_nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginTop="115dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="120dp"
-        app:layout_constraintBottom_toTopOf="@+id/skorTablosu_button"
+        app:layout_constraintBottom_toTopOf="@+id/scoreBoard4Player_scoreboard_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/view1">
+        app:layout_constraintTop_toTopOf="@id/scoreBoard4Player_view1">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/puanTablosu_recyclerView"
+            android:id="@+id/scoreBoard4Player_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal" />
@@ -241,18 +240,18 @@
     </androidx.core.widget.NestedScrollView>
 
     <HorizontalScrollView
-        android:id="@+id/view2"
+        android:id="@+id/scoreBoard4Player_view2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/black"
         android:layout_marginTop="3dp"
+        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/puanTablosu_nestedScrollView"
+        app:layout_constraintTop_toBottomOf="@+id/scoreBoard4Player_nestedScrollView"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/skorTablosu_button"
+        android:id="@+id/scoreBoard4Player_scoreboard_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -261,16 +260,16 @@
         android:fontFamily="@font/comfortaa"
         android:text="@string/puanTablosu_text"
         android:textColor="@color/text_color"
-        app:strokeColor="@color/text_color"
         app:cornerRadius="25dp"
-        app:layout_constraintEnd_toStartOf="@+id/skorEkle_button"
+        app:layout_constraintEnd_toStartOf="@+id/scoreBoard4Player_addScore_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/puanTablosu_nestedScrollView"
+        app:layout_constraintTop_toBottomOf="@+id/scoreBoard4Player_nestedScrollView"
+        app:strokeColor="@color/text_color"
         app:strokeWidth="2dp"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/skorEkle_button"
+        android:id="@+id/scoreBoard4Player_addScore_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -278,15 +277,15 @@
         android:fontFamily="@font/comfortaa"
         android:text="@string/skorEkle_text"
         android:textColor="@color/text_color"
-        app:strokeColor="@color/text_color"
         app:cornerRadius="25dp"
-        app:layout_constraintEnd_toStartOf="@+id/oyunuBitir_button"
-        app:layout_constraintStart_toEndOf="@+id/skorTablosu_button"
-        app:layout_constraintTop_toTopOf="@+id/skorTablosu_button"
+        app:layout_constraintEnd_toStartOf="@+id/scoreBoard4Player_finishGame_button"
+        app:layout_constraintStart_toEndOf="@+id/scoreBoard4Player_scoreboard_button"
+        app:layout_constraintTop_toTopOf="@+id/scoreBoard4Player_scoreboard_button"
+        app:strokeColor="@color/text_color"
         app:strokeWidth="2dp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/oyunuBitir_button"
+        android:id="@+id/scoreBoard4Player_finishGame_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -294,16 +293,15 @@
         android:fontFamily="@font/comfortaa"
         android:text="@string/oyunuBitir_text"
         android:textColor="@color/text_color"
-        app:strokeColor="@color/text_color"
         app:cornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/skorEkle_button"
-        app:layout_constraintTop_toTopOf="@+id/skorEkle_button"
+        app:layout_constraintStart_toEndOf="@+id/scoreBoard4Player_addScore_button"
+        app:layout_constraintTop_toTopOf="@+id/scoreBoard4Player_addScore_button"
+        app:strokeColor="@color/text_color"
         app:strokeWidth="2dp" />
 
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/puanTablosu_4_adView"
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/scoreBoard4Player_adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

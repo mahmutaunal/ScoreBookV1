@@ -1,4 +1,4 @@
-package com.mahmutalperenunal.okeypuantablosu.diceroller
+package com.mahmutalperenunal.okeypuantablosu.activity
 
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo

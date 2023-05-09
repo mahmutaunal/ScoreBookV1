@@ -1,4 +1,4 @@
-package com.mahmutalperenunal.okeypuantablosu
+package com.mahmutalperenunal.okeypuantablosu.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import com.mahmutalperenunal.okeypuantablosu.mainmenu.MainMenu
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivitySplashScreenBinding
 import java.util.*
 import kotlin.concurrent.timerTask

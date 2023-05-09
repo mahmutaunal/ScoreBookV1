@@ -1,4 +1,4 @@
-package com.mahmutalperenunal.okeypuantablosu.teamoperations
+package com.mahmutalperenunal.okeypuantablosu.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -13,10 +13,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityTeamOperationsBinding
-import com.mahmutalperenunal.okeypuantablosu.mainmenu.MainMenu
-import com.mahmutalperenunal.okeypuantablosu.scoreboard.Scoreboard2Player
-import com.mahmutalperenunal.okeypuantablosu.scoreboard.Scoreboard3Player
-import com.mahmutalperenunal.okeypuantablosu.scoreboard.Scoreboard4Player
+import com.mahmutalperenunal.okeypuantablosu.activity.scoreboard.Scoreboard2Player
+import com.mahmutalperenunal.okeypuantablosu.activity.scoreboard.Scoreboard3Player
+import com.mahmutalperenunal.okeypuantablosu.activity.scoreboard.Scoreboard4Player
 
 class TeamOperations : AppCompatActivity() {
 

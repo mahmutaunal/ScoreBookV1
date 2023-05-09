@@ -1,4 +1,4 @@
-package com.mahmutalperenunal.okeypuantablosu.calculator
+package com.mahmutalperenunal.okeypuantablosu.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityCalculatorBinding
-import com.mahmutalperenunal.okeypuantablosu.scoreboard.Scoreboard2Player
-import com.mahmutalperenunal.okeypuantablosu.scoreboard.Scoreboard3Player
-import com.mahmutalperenunal.okeypuantablosu.scoreboard.Scoreboard4Player
+import com.mahmutalperenunal.okeypuantablosu.activity.scoreboard.Scoreboard2Player
+import com.mahmutalperenunal.okeypuantablosu.activity.scoreboard.Scoreboard3Player
+import com.mahmutalperenunal.okeypuantablosu.activity.scoreboard.Scoreboard4Player
 import org.mariuszgromada.math.mxparser.Expression
 import java.text.DecimalFormat
 

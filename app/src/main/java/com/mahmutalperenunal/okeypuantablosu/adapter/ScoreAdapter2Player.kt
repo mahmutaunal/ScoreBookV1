@@ -28,11 +28,12 @@ class ScoreAdapter2Player(private val scoreList2Player: ArrayList<ScoreData2Play
 
     inner class ScoreViewHolder(view: View, listener: OnItemClickListener) :
         RecyclerView.ViewHolder(view) {
-        var score1 = view.findViewById<TextView>(R.id.skor1_text)!!
-        var score2 = view.findViewById<TextView>(R.id.skor2_text)!!
-        var number = view.findViewById<TextView>(R.id.gameNumber_2Kisi_text)!!
+        var score1 = view.findViewById<TextView>(R.id.thatRoundScores2Player_player1Score_text)!!
+        var score2 = view.findViewById<TextView>(R.id.thatRoundScores2Player_player2Score_text)!!
+        var number = view.findViewById<TextView>(R.id.thatRoundScores2Player_roundNumber_text)!!
 
-        var colorBackground = view.findViewById<CardView>(R.id.color_background)!!
+        var colorBackground =
+            view.findViewById<CardView>(R.id.thatRoundScores2Player_scoreColor_background)!!
 
         private val preferences =
             itemView.context.getSharedPreferences("clickCount2Player", Context.MODE_PRIVATE)

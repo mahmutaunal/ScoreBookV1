@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp"
-    android:background="?attr/colorPrimary">
+    android:background="?attr/colorPrimary"
+    app:cardCornerRadius="10dp">
 
     <TextView
-        android:id="@+id/gameNumber_3Kisi_text"
+        android:id="@+id/thatRoundScores3Player_gameNumber_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/comfortaa"
-        android:layout_marginStart="10dp"
         android:layout_gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/comfortaa"
         android:text="@string/number_text"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="16sp"
         tools:ignore="VisualLintOverlap" />
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/thatRoundScores3Player_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/comfortaa"
         android:layout_marginStart="20dp"
         android:layout_marginTop="3dp"
+        android:fontFamily="@font/comfortaa"
         android:text="-"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="16sp"
         tools:ignore="VisualLintOverlap" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/thatRoundScores3Player_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        android:gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +45,7 @@
         tools:ignore="UselessParent">
 
         <TextView
-            android:id="@+id/skor1_text"
+            android:id="@+id/thatRoundScores3Player_player1Score_text"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa"
@@ -57,7 +56,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/skor2_text"
+            android:id="@+id/thatRoundScores3Player_player2Score_text"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
@@ -69,7 +68,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/skor3_text"
+            android:id="@+id/thatRoundScores3Player_player3Score_text"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
@@ -83,7 +82,7 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/color_background"
+        android:id="@+id/thatRoundScores3Player_roundColor_background"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_gravity="end|center_vertical"

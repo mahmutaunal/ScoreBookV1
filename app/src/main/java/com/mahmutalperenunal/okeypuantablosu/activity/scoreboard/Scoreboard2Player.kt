@@ -1,4 +1,4 @@
-package com.mahmutalperenunal.okeypuantablosu.scoreboard
+package com.mahmutalperenunal.okeypuantablosu.activity.scoreboard
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -21,13 +21,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.mahmutalperenunal.okeypuantablosu.R
+import com.mahmutalperenunal.okeypuantablosu.activity.Calculator
+import com.mahmutalperenunal.okeypuantablosu.activity.DiceRoller
+import com.mahmutalperenunal.okeypuantablosu.activity.MainMenu
+import com.mahmutalperenunal.okeypuantablosu.activity.TeamOperations
 import com.mahmutalperenunal.okeypuantablosu.adapter.ScoreAdapter2Player
-import com.mahmutalperenunal.okeypuantablosu.calculator.Calculator
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityScoreboard2PlayerBinding
-import com.mahmutalperenunal.okeypuantablosu.diceroller.DiceRoller
-import com.mahmutalperenunal.okeypuantablosu.mainmenu.MainMenu
 import com.mahmutalperenunal.okeypuantablosu.model.ScoreData2Player
-import com.mahmutalperenunal.okeypuantablosu.teamoperations.TeamOperations
 
 //operations such as entering scores, deleting players.
 class Scoreboard2Player : AppCompatActivity() {
@@ -87,16 +87,16 @@ class Scoreboard2Player : AppCompatActivity() {
         //set admob banner
         MobileAds.initialize(this) {}
         val adRequest = AdRequest.Builder().build()
-        binding.takimIslemleriAdView.loadAd(adRequest)
+        binding.scoreBoard2PlayerAdView.loadAd(adRequest)
 
         //game name
         gameName = intent.getStringExtra("Game Name").toString()
 
         //if game name not entered, subtitle is "New Game"
         if (gameName == "") {
-            binding.baslikText.text = getString(R.string.new_game_text)
+            binding.scoreBoard2PlayerTitleText.text = getString(R.string.new_game_text)
         } else {
-            binding.baslikText.text = gameName
+            binding.scoreBoard2PlayerTitleText.text = gameName
         }
 
         //get player names
@@ -104,8 +104,8 @@ class Scoreboard2Player : AppCompatActivity() {
         player2Name = intent.getStringExtra("Player-2 Name").toString()
 
         //set player names
-        binding.oyuncu1Text.text = player1Name
-        binding.oyuncu2Text.text = player2Name
+        binding.scoreBoard2PlayerPlayer1NameText.text = player1Name
+        binding.scoreBoard2PlayerPlayer2NameText.text = player2Name
 
         //get colors value
         redValue = intent.getIntExtra("Red Value", 0)
@@ -118,11 +118,11 @@ class Scoreboard2Player : AppCompatActivity() {
         firstNumber = intent.getStringExtra("Number of Starts").toString()
 
         if (firstNumber.isEmpty()) {
-            binding.oyuncu1AnlikSkor.text = "0000"
-            binding.oyuncu2AnlikSkor.text = "0000"
+            binding.scoreBoard2PlayerPlayer1InstantScoreText.text = "0000"
+            binding.scoreBoard2PlayerPlayer2InstantScoreText.text = "0000"
         } else {
-            binding.oyuncu1AnlikSkor.text = firstNumber
-            binding.oyuncu2AnlikSkor.text = firstNumber
+            binding.scoreBoard2PlayerPlayer1InstantScoreText.text = firstNumber
+            binding.scoreBoard2PlayerPlayer2InstantScoreText.text = firstNumber
         }
 
 
@@ -137,7 +137,7 @@ class Scoreboard2Player : AppCompatActivity() {
         scoreList2Player = ArrayList()
 
         //set recyclerView
-        recyclerView = findViewById(R.id.puanTablosu_recyclerView)
+        recyclerView = findViewById(R.id.scoreBoard2Player_recyclerView)
 
         //set adapter
         scoreAdapter2Player = ScoreAdapter2Player(scoreList2Player)
@@ -152,22 +152,22 @@ class Scoreboard2Player : AppCompatActivity() {
 
 
         //set addScore dialog
-        binding.skorEkleButton.setOnClickListener { addScore() }
+        binding.scoreBoard2PlayerAddScoreButton.setOnClickListener { addScore() }
 
         //set scoreboard dialog
-        binding.skorTablosuButton.setOnClickListener { scoreboard() }
+        binding.scoreBoard2PlayerScoreboardButton.setOnClickListener { scoreboard() }
 
         //on back pressed turn main menu
-        binding.backButton.setOnClickListener { exitMainMenu() }
+        binding.scoreBoard2PlayerBackButton.setOnClickListener { exitMainMenu() }
 
         //exit game
-        binding.oyunuBitirButton.setOnClickListener { saveExit() }
+        binding.scoreBoard2PlayerFinishGameButton.setOnClickListener { saveExit() }
 
         //dice roller
-        binding.diceIcon.setOnClickListener { diceRoller() }
+        binding.scoreBoard2PlayerDiceIcon.setOnClickListener { diceRoller() }
 
         //calculator
-        binding.calculatorIcon.setOnClickListener { openCalculator() }
+        binding.scoreBoard2PlayerCalculatorIcon.setOnClickListener { openCalculator() }
     }
 
 
@@ -320,20 +320,25 @@ class Scoreboard2Player : AppCompatActivity() {
 
                     gameNumber++
 
-                    binding.gameNumberText.text = "$gameNumber. ${getString(R.string.round_text)}"
+                    binding.scoreBoard2PlayerRoundNumberText.text =
+                        "$gameNumber. ${getString(R.string.round_text)}"
 
                     scoreCount++
 
                     //instant score
-                    val exInstantScore1 = binding.oyuncu1AnlikSkor.text.toString()
-                    val exInstantScore2 = binding.oyuncu2AnlikSkor.text.toString()
+                    val exInstantScore1 =
+                        binding.scoreBoard2PlayerPlayer1InstantScoreText.text.toString()
+                    val exInstantScore2 =
+                        binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString()
 
                     //sum entered score and instant score
                     val resultInstantScore1 = newInstantScore1Multiply + exInstantScore1.toInt()
                     val resultInstantScore2 = newInstantScore2Multiply + exInstantScore2.toInt()
 
-                    binding.oyuncu1AnlikSkor.text = resultInstantScore1.toString()
-                    binding.oyuncu2AnlikSkor.text = resultInstantScore2.toString()
+                    binding.scoreBoard2PlayerPlayer1InstantScoreText.text =
+                        resultInstantScore1.toString()
+                    binding.scoreBoard2PlayerPlayer2InstantScoreText.text =
+                        resultInstantScore2.toString()
 
                     scoreAdapter2Player.notifyDataSetChanged()
 
@@ -359,27 +364,34 @@ class Scoreboard2Player : AppCompatActivity() {
 
                     gameNumber++
 
-                    binding.gameNumberText.text = "$gameNumber. ${getString(R.string.round_text)}"
+                    binding.scoreBoard2PlayerRoundNumberText.text =
+                        "$gameNumber. ${getString(R.string.round_text)}"
 
                     scoreCount++
 
                     //instant score
-                    val exInstantScore1 = binding.oyuncu1AnlikSkor.text.toString()
-                    val exInstantScore2 = binding.oyuncu2AnlikSkor.text.toString()
+                    val exInstantScore1 =
+                        binding.scoreBoard2PlayerPlayer1InstantScoreText.text.toString()
+                    val exInstantScore2 =
+                        binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString()
 
                     //sum entered score and instant score
                     val resultInstantScore1 = exInstantScore1.toInt() - newInstantScore1Multiply
                     val resultInstantScore2 = exInstantScore2.toInt() - newInstantScore2Multiply
 
-                    binding.oyuncu1AnlikSkor.text = resultInstantScore1.toString()
-                    binding.oyuncu2AnlikSkor.text = resultInstantScore2.toString()
+                    binding.scoreBoard2PlayerPlayer1InstantScoreText.text =
+                        resultInstantScore1.toString()
+                    binding.scoreBoard2PlayerPlayer2InstantScoreText.text =
+                        resultInstantScore2.toString()
 
                     scoreAdapter2Player.notifyDataSetChanged()
 
                 }
 
-                val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
-                val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
+                val score1 =
+                    binding.scoreBoard2PlayerPlayer1InstantScoreText.text.toString().toInt()
+                val score2 =
+                    binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString().toInt()
 
                 if (gameType == "Deduct from the number") {
                     if (score1 <= 0 || score2 <= 0) {
@@ -413,8 +425,8 @@ class Scoreboard2Player : AppCompatActivity() {
         val player1ScoreText = view.findViewById<TextView>(R.id.oyuncu1Skor_textView)
         val player2ScoreText = view.findViewById<TextView>(R.id.oyuncu2Skor_textView)
 
-        val player1TotalScore = binding.oyuncu1AnlikSkor.text.toString()
-        val player2TotalScore = binding.oyuncu2AnlikSkor.text.toString()
+        val player1TotalScore = binding.scoreBoard2PlayerPlayer1InstantScoreText.text.toString()
+        val player2TotalScore = binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString()
 
         player1ScoreText.text = player1TotalScore
         player2ScoreText.text = player2TotalScore
@@ -468,8 +480,8 @@ class Scoreboard2Player : AppCompatActivity() {
         val player1ScoreText = view.findViewById<TextView>(R.id.oyuncu1Skor_textView)
         val player2ScoreText = view.findViewById<TextView>(R.id.oyuncu2Skor_textView)
 
-        val player1TotalScore = binding.oyuncu1AnlikSkor.text.toString()
-        val player2TotalScore = binding.oyuncu2AnlikSkor.text.toString()
+        val player1TotalScore = binding.scoreBoard2PlayerPlayer1InstantScoreText.text.toString()
+        val player2TotalScore = binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString()
 
         player1ScoreText.text = player1TotalScore
         player2ScoreText.text = player2TotalScore
@@ -557,8 +569,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
             if (gameType == "Add Sore") {
 
-                val totalScore1 = binding.oyuncu1AnlikSkor.text.toString()
-                val totalScore2 = binding.oyuncu2AnlikSkor.text.toString()
+                val totalScore1 = binding.scoreBoard2PlayerPlayer1InstantScoreText.text.toString()
+                val totalScore2 = binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString()
 
                 AlertDialog.Builder(this, R.style.CustomAlertDialog)
                     .setTitle(R.string.delete_round_text)
@@ -575,7 +587,7 @@ class Scoreboard2Player : AppCompatActivity() {
 
                             gameNumber--
 
-                            binding.gameNumberText.text =
+                            binding.scoreBoard2PlayerRoundNumberText.text =
                                 "$gameNumber. ${getString(R.string.round_text)}"
 
                             val resultScore1 =
@@ -583,8 +595,10 @@ class Scoreboard2Player : AppCompatActivity() {
                             val resultScore2 =
                                 totalScore2.toInt() - scoreList2Player[position].player2_score.toInt()
 
-                            binding.oyuncu1AnlikSkor.text = resultScore1.toString()
-                            binding.oyuncu2AnlikSkor.text = resultScore2.toString()
+                            binding.scoreBoard2PlayerPlayer1InstantScoreText.text =
+                                resultScore1.toString()
+                            binding.scoreBoard2PlayerPlayer2InstantScoreText.text =
+                                resultScore2.toString()
 
                             scoreList2Player.removeAt(position)
 
@@ -592,8 +606,12 @@ class Scoreboard2Player : AppCompatActivity() {
 
                             scoreAdapter2Player.notifyDataSetChanged()
 
-                            val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
-                            val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
+                            val score1 =
+                                binding.scoreBoard2PlayerPlayer1InstantScoreText.text.toString()
+                                    .toInt()
+                            val score2 =
+                                binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString()
+                                    .toInt()
 
                             if (gameType == "Deduct from the number") {
                                 if (score1 <= 0 || score2 <= 0) {
@@ -612,8 +630,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
             } else {
 
-                val totalScore1 = binding.oyuncu1AnlikSkor.text.toString()
-                val totalScore2 = binding.oyuncu2AnlikSkor.text.toString()
+                val totalScore1 = binding.scoreBoard2PlayerPlayer1InstantScoreText.text.toString()
+                val totalScore2 = binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString()
 
                 AlertDialog.Builder(this, R.style.CustomAlertDialog)
                     .setTitle(R.string.delete_round_text)
@@ -630,7 +648,7 @@ class Scoreboard2Player : AppCompatActivity() {
 
                             gameNumber--
 
-                            binding.gameNumberText.text =
+                            binding.scoreBoard2PlayerRoundNumberText.text =
                                 "$gameNumber. ${getString(R.string.round_text)}."
 
                             val resultScore1 =
@@ -638,8 +656,10 @@ class Scoreboard2Player : AppCompatActivity() {
                             val resultScore2 =
                                 totalScore2.toInt() + scoreList2Player[position].player2_score.toInt()
 
-                            binding.oyuncu1AnlikSkor.text = resultScore1.toString()
-                            binding.oyuncu2AnlikSkor.text = resultScore2.toString()
+                            binding.scoreBoard2PlayerPlayer1InstantScoreText.text =
+                                resultScore1.toString()
+                            binding.scoreBoard2PlayerPlayer2InstantScoreText.text =
+                                resultScore2.toString()
 
                             scoreList2Player.removeAt(position)
 
@@ -647,8 +667,12 @@ class Scoreboard2Player : AppCompatActivity() {
 
                             scoreAdapter2Player.notifyDataSetChanged()
 
-                            val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
-                            val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
+                            val score1 =
+                                binding.scoreBoard2PlayerPlayer1InstantScoreText.text.toString()
+                                    .toInt()
+                            val score2 =
+                                binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString()
+                                    .toInt()
 
                             if (gameType == "Deduct from the number") {
                                 if (score1 <= 0 || score2 <= 0) {
@@ -704,7 +728,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
 
         //set game number
-        val gameNumberText = view.findViewById<TextView>(R.id.scoreDetail_selectedScoreGameNumber_textView)
+        val gameNumberText =
+            view.findViewById<TextView>(R.id.scoreDetail_selectedScoreGameNumber_textView)
 
         gameNumberText.text =
             "${scoreList2Player[position].gameNumber}. ${getString(R.string.round_text)}"
@@ -1054,13 +1079,16 @@ class Scoreboard2Player : AppCompatActivity() {
                     scoreList2Player[position].multiplyNumber = multiplyNumber
                     scoreList2Player[position].color = color
 
-                    binding.gameNumberText.text = "$gameNumber. ${getString(R.string.round_text)}"
+                    binding.scoreBoard2PlayerRoundNumberText.text =
+                        "$gameNumber. ${getString(R.string.round_text)}"
 
                     scoreCount++
 
                     //instant score
-                    val exInstantScore1 = binding.oyuncu1AnlikSkor.text.toString()
-                    val exInstantScore2 = binding.oyuncu2AnlikSkor.text.toString()
+                    val exInstantScore1 =
+                        binding.scoreBoard2PlayerPlayer1InstantScoreText.text.toString()
+                    val exInstantScore2 =
+                        binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString()
 
                     //sum entered score and instant score
                     val resultOldInstantScore1 = exInstantScore1.toInt() - selectedScore1.toInt()
@@ -1069,8 +1097,10 @@ class Scoreboard2Player : AppCompatActivity() {
                     val resultNewInstantScore1 = resultOldInstantScore1 + newInstantScore1Multiply
                     val resultNewInstantScore2 = resultOldInstantScore2 + newInstantScore2Multiply
 
-                    binding.oyuncu1AnlikSkor.text = resultNewInstantScore1.toString()
-                    binding.oyuncu2AnlikSkor.text = resultNewInstantScore2.toString()
+                    binding.scoreBoard2PlayerPlayer1InstantScoreText.text =
+                        resultNewInstantScore1.toString()
+                    binding.scoreBoard2PlayerPlayer2InstantScoreText.text =
+                        resultNewInstantScore2.toString()
 
                     scoreAdapter2Player.notifyDataSetChanged()
 
@@ -1090,13 +1120,16 @@ class Scoreboard2Player : AppCompatActivity() {
                     scoreList2Player[position].multiplyNumber = multiplyNumber
                     scoreList2Player[position].color = color
 
-                    binding.gameNumberText.text = "$gameNumber. ${getString(R.string.round_text)}"
+                    binding.scoreBoard2PlayerRoundNumberText.text =
+                        "$gameNumber. ${getString(R.string.round_text)}"
 
                     scoreCount++
 
                     //instant score
-                    val exInstantScore1 = binding.oyuncu1AnlikSkor.text.toString()
-                    val exInstantScore2 = binding.oyuncu2AnlikSkor.text.toString()
+                    val exInstantScore1 =
+                        binding.scoreBoard2PlayerPlayer1InstantScoreText.text.toString()
+                    val exInstantScore2 =
+                        binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString()
 
                     //sum entered score and instant score
                     val resultOldInstantScore1 = exInstantScore1.toInt() + selectedScore1.toInt()
@@ -1105,15 +1138,19 @@ class Scoreboard2Player : AppCompatActivity() {
                     val resultNewInstantScore1 = resultOldInstantScore1 - newInstantScore1Multiply
                     val resultNewInstantScore2 = resultOldInstantScore2 - newInstantScore2Multiply
 
-                    binding.oyuncu1AnlikSkor.text = resultNewInstantScore1.toString()
-                    binding.oyuncu2AnlikSkor.text = resultNewInstantScore2.toString()
+                    binding.scoreBoard2PlayerPlayer1InstantScoreText.text =
+                        resultNewInstantScore1.toString()
+                    binding.scoreBoard2PlayerPlayer2InstantScoreText.text =
+                        resultNewInstantScore2.toString()
 
                     scoreAdapter2Player.notifyDataSetChanged()
 
                 }
 
-                val score1 = binding.oyuncu1AnlikSkor.text.toString().toInt()
-                val score2 = binding.oyuncu2AnlikSkor.text.toString().toInt()
+                val score1 =
+                    binding.scoreBoard2PlayerPlayer1InstantScoreText.text.toString().toInt()
+                val score2 =
+                    binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString().toInt()
 
                 if (gameType == "Deduct from the number") {
                     if (score1 <= 0 || score2 <= 0) {

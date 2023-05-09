@@ -1,4 +1,4 @@
-package com.mahmutalperenunal.okeypuantablosu.mainmenu
+package com.mahmutalperenunal.okeypuantablosu.activity
 
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
@@ -28,7 +28,6 @@ import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityMainMenuBinding
-import com.mahmutalperenunal.okeypuantablosu.teamoperations.TeamOperations
 
 class MainMenu : AppCompatActivity() {
 

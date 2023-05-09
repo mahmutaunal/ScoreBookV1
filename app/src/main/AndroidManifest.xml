@@ -19,56 +19,56 @@
         android:theme="@style/Theme.OkeyPuanTablosu"
         tools:targetApi="33">
         <activity
-            android:name=".calculator.Calculator"
+            android:name=".activity.Calculator"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".teamoperations.TeamOperations"
+            android:name=".activity.TeamOperations"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".scoreboard.Scoreboard4Player"
+            android:name=".activity.scoreboard.Scoreboard4Player"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".scoreboard.Scoreboard3Player"
+            android:name=".activity.scoreboard.Scoreboard3Player"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".scoreboard.Scoreboard2Player"
+            android:name=".activity.scoreboard.Scoreboard2Player"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".diceroller.DiceRoller"
+            android:name=".activity.DiceRoller"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".mainmenu.MainMenu"
+            android:name=".activity.MainMenu"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SplashScreen"
+            android:name=".activity.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
