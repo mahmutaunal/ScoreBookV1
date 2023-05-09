@@ -496,12 +496,12 @@ class Scoreboard4Player : AppCompatActivity() {
 
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
-        val winnerTeam = view.findViewById<TextView>(R.id.kazananOyuncular_text)
+        val winnerTeam = view.findViewById<TextView>(R.id.scoreboard4Player_winnerPlayer_text)
 
-        val player1ScoreText = view.findViewById<TextView>(R.id.oyuncu1Skor_textView)
-        val player2ScoreText = view.findViewById<TextView>(R.id.oyuncu2Skor_textView)
-        val player3ScoreText = view.findViewById<TextView>(R.id.oyuncu3Skor_textView)
-        val player4ScoreText = view.findViewById<TextView>(R.id.oyuncu4Skor_textView)
+        val player1ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player1Score_textView)
+        val player2ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player2Score_textView)
+        val player3ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player3Score_textView)
+        val player4ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player4Score_textView)
 
         val player1TotalScore = binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
         val player2TotalScore = binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
@@ -514,13 +514,13 @@ class Scoreboard4Player : AppCompatActivity() {
         player4ScoreText.text = player4TotalScore
 
         val player1ScoreboardNameText =
-            view.findViewById<TextView>(R.id.oyuncu1SkorTabloAd_textView)
+            view.findViewById<TextView>(R.id.scoreboard4Player_player1Name_textView)
         val player2ScoreboardNameText =
-            view.findViewById<TextView>(R.id.oyuncu2SkorTabloAd_textView)
+            view.findViewById<TextView>(R.id.scoreboard4Player_player2Name_textView)
         val player3ScoreboardNameText =
-            view.findViewById<TextView>(R.id.oyuncu3SkorTabloAd_textView)
+            view.findViewById<TextView>(R.id.scoreboard4Player_player3Name_textView)
         val player4ScoreboardNameText =
-            view.findViewById<TextView>(R.id.oyuncu4SkorTabloAd_textView)
+            view.findViewById<TextView>(R.id.scoreboard4Player_player4Name_textView)
 
         player1ScoreboardNameText.text = player1Name
         player2ScoreboardNameText.text = player2Name
@@ -573,12 +573,12 @@ class Scoreboard4Player : AppCompatActivity() {
 
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
-        val winnerTeam = view.findViewById<TextView>(R.id.kazananOyuncular_text)
+        val winnerTeam = view.findViewById<TextView>(R.id.scoreboard4Player_winnerPlayer_text)
 
-        val player1ScoreText = view.findViewById<TextView>(R.id.oyuncu1Skor_textView)
-        val player2ScoreText = view.findViewById<TextView>(R.id.oyuncu2Skor_textView)
-        val player3ScoreText = view.findViewById<TextView>(R.id.oyuncu3Skor_textView)
-        val player4ScoreText = view.findViewById<TextView>(R.id.oyuncu4Skor_textView)
+        val player1ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player1Score_textView)
+        val player2ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player2Score_textView)
+        val player3ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player3Score_textView)
+        val player4ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player4Score_textView)
 
         val player1TotalScore = binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
         val player2TotalScore = binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
@@ -591,13 +591,13 @@ class Scoreboard4Player : AppCompatActivity() {
         player4ScoreText.text = player4TotalScore
 
         val player1ScoreboardNameText =
-            view.findViewById<TextView>(R.id.oyuncu1SkorTabloAd_textView)
+            view.findViewById<TextView>(R.id.scoreboard4Player_player1Name_textView)
         val player2ScoreboardNameText =
-            view.findViewById<TextView>(R.id.oyuncu2SkorTabloAd_textView)
+            view.findViewById<TextView>(R.id.scoreboard4Player_player2Name_textView)
         val player3ScoreboardNameText =
-            view.findViewById<TextView>(R.id.oyuncu3SkorTabloAd_textView)
+            view.findViewById<TextView>(R.id.scoreboard4Player_player3Name_textView)
         val player4ScoreboardNameText =
-            view.findViewById<TextView>(R.id.oyuncu4SkorTabloAd_textView)
+            view.findViewById<TextView>(R.id.scoreboard4Player_player4Name_textView)
 
         player1ScoreboardNameText.text = player1Name
         player2ScoreboardNameText.text = player2Name

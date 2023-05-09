@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/comfortaa"
-                android:text="@string/skor_detay_title"
+                android:text="@string/score_detail_title"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:text="@string/cizgi_text"
+                android:text="@string/line_text"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textStyle="bold" />
@@ -86,7 +86,7 @@
                 android:maxLines="1"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="@string/oyuncu1_text"
+                android:text="@string/player1_text"
                 android:textAlignment="textEnd"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp" />
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:text="@string/cizgi_text"
+                android:text="@string/line_text"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary" />
 
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/comfortaa"
-                android:text="@string/skor_text"
+                android:text="@string/zero_score_text"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp" />
@@ -144,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/comfortaa"
-                android:text="@string/skor_text"
+                android:text="@string/zero_score_text"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp" />
@@ -172,7 +172,7 @@
                 android:maxLines="1"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="@string/oyuncu2_text"
+                android:text="@string/player2_text"
                 android:textAlignment="textEnd"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp" />
@@ -182,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:text="@string/cizgi_text"
+                android:text="@string/line_text"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary" />
 
@@ -192,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/comfortaa"
-                android:text="@string/skor_text"
+                android:text="@string/zero_score_text"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp" />
@@ -230,7 +230,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/comfortaa"
-                android:text="@string/skor_text"
+                android:text="@string/zero_score_text"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp" />
@@ -258,7 +258,7 @@
                 android:maxLines="1"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="@string/oyuncu3_text"
+                android:text="@string/player3_text"
                 android:textAlignment="textEnd"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp" />
@@ -268,7 +268,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:text="@string/cizgi_text"
+                android:text="@string/line_text"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary" />
 
@@ -278,7 +278,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/comfortaa"
-                android:text="@string/skor_text"
+                android:text="@string/zero_score_text"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp" />
@@ -316,7 +316,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/comfortaa"
-                android:text="@string/skor_text"
+                android:text="@string/zero_score_text"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp" />
@@ -345,7 +345,7 @@
                 android:maxLines="1"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="@string/oyuncu4_text"
+                android:text="@string/player4_text"
                 android:textAlignment="textEnd"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp" />
@@ -355,7 +355,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:text="@string/cizgi_text"
+                android:text="@string/line_text"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary" />
 
@@ -365,7 +365,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/comfortaa"
-                android:text="@string/skor_text"
+                android:text="@string/zero_score_text"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp" />
@@ -403,7 +403,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/comfortaa"
-                android:text="@string/skor_text"
+                android:text="@string/zero_score_text"
                 android:textAlignment="center"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20sp" />

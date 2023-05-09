@@ -80,7 +80,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
                 android:fontFamily="@font/comfortaa"
-                android:text="@string/yeniOyun_button"
+                android:text="@string/newGame_text"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="14sp"
                 android:textStyle="bold"
