@@ -178,7 +178,7 @@ class MainMenu : AppCompatActivity() {
     private fun changeAppTheme() {
         AlertDialog.Builder(this, R.style.CustomAlertDialog)
             .setTitle(R.string.app_theme_text)
-            .setMessage("${R.string.app_theme_description_text} \n\n${R.string.current_theme_text} $themeName")
+            .setMessage("${getString(R.string.app_theme_description_text)} \n\n${getString(R.string.current_theme_text)} $themeName")
             .setPositiveButton(
                 R.string.light_text
             ) { _: DialogInterface?, _: Int ->

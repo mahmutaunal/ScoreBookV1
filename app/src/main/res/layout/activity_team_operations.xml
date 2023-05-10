@@ -359,7 +359,7 @@
                                 android:checked="true"
                                 android:fontFamily="@font/comfortaa"
                                 android:minHeight="48dp"
-                                android:text="@string/add_score_text"
+                                android:text="@string/add_score_team_operations_text"
                                 android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="14sp" />
 

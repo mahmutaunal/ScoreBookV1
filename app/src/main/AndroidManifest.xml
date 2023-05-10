@@ -16,7 +16,7 @@
         android:roundIcon="@drawable/logo"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OkeyPuanTablosu"
+        android:theme="@style/Theme.SkorDefteri"
         tools:targetApi="33">
         <activity
             android:name=".activity.Calculator"

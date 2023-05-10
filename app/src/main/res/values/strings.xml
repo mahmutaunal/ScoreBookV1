@@ -34,6 +34,7 @@
     <string name="add_score_title">Skor Ekle</string>
     <string name="scoreboard_title">Puan Tablosu</string>
     <string name="roll_dice_again_text">Yeniden At</string>
+    <string name="again_text">Yeniden At</string>
     <string name="text">/</string>
     <string name="gameNumber_text">1. El</string>
     <string name="number_text">1</string>
@@ -47,13 +48,14 @@
     <string name="value_editText">Değer</string>
     <string name="player_type_text">Oyuncu Şekli</string>
     <string name="deduct_from_number_text">Sayıdan Düş</string>
+    <string name="add_score_team_operations_text">Sayı Ekle</string>
     <string name="add_score_text">Sayı Ekle</string>
     <string name="number_of_starts_text">Başlangıç Sayısı</string>
     <string name="score_detail_title">Skor Detay</string>
     <string name="cross_text">X</string>
     <string name="equal_text">=</string>
-    <string name="delete_text">SİL</string>
-    <string name="edit_text">DÜZENLE</string>
+    <string name="delete_text">Sil</string>
+    <string name="edit_text">Düzenle</string>
     <string name="info_text">Bilgilendirme</string>
     <string name="info_description_text">Bu uygulama ile herhangi bir okey oyunundaki puan tablonuzu tutabilirsiniz ve daha sonra bakmak veya devam etmek için kaydedebilirsiniz.</string>
     <string name="rate_text">Derecelendir</string>
