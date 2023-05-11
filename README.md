@@ -1,6 +1,6 @@
 # Skor Defteri - Android App
 
-<img src="/readme/ic_logo.png" align="left"
+<img src="/readme/logo.png" align="left"
 width="200" hspace="10" vspace="10">
 
 Skor Defteri is an application that allows the points kept in the okey game to be stored in the application. 
@@ -35,30 +35,57 @@ The android app lets you:
 
 ## Screenshots
 
-[<img src="/readme/Screenshot_20221111_105411.png" align="center"
+[<img src="/readme/eng/Screenshot_20230510_093138.png" align="center"
 width="200"
-    hspace="10" vspace="10">](/readme/Screenshot_20221111_105411.png)
-[<img src="/readme/Screenshot_20221111_105446.png" align="left"
+    hspace="10" vspace="10">](/readme/eng/Screenshot_20230510_093138.png)
+[<img src="/readme/eng/Screenshot_20230510_093150.png" align="left"
 width="200"
-    hspace="10" vspace="10">](/readme/Screenshot_20221111_105446.png)
-[<img src="/readme/Screenshot_20221111_105539.png" align="center"
+    hspace="10" vspace="10">](/readme/eng/Screenshot_20230510_093150.png)
+[<img src="/readme/eng/Screenshot_20230510_093805.png" align="center"
 width="200"
-    hspace="10" vspace="10">](/readme/Screenshot_20221111_105539.png)
-[<img src="/readme/Screenshot_20221111_105553.png" align="left"
+    hspace="10" vspace="10">](/readme/eng/Screenshot_20230510_093805.png)
+[<img src="/readme/eng/Screenshot_20230510_093826.png" align="left"
 width="200"
-    hspace="10" vspace="10">](/readme/Screenshot_20221111_105553.png)
-[<img src="/readme/Screenshot_20221111_105603.png" align="center"
+    hspace="10" vspace="10">](/readme/eng/Screenshot_20230510_093826.png)
+[<img src="/readme/eng/Screenshot_20230510_093858.png" align="center"
 width="200"
-    hspace="10" vspace="10">](/readme/Screenshot_20221111_105603.png)
-[<img src="/readme/Screenshot_20221111_105618.png" align="left"
+    hspace="10" vspace="10">](/readme/eng/Screenshot_20230510_093858.png)
+[<img src="/readme/eng/Screenshot_20230510_094318.png" align="left"
 width="200"
-    hspace="10" vspace="10">](/readme/Screenshot_20221111_105618.png)
-[<img src="/readme/Screenshot_20221111_105634.png" align="center"
+    hspace="10" vspace="10">](/readme/eng/Screenshot_20230510_094318.png)
+[<img src="/readme/eng/Screenshot_20230510_094331.png" align="center"
 width="200"
-    hspace="10" vspace="10">](/readme/Screenshot_20221111_105634.png)
-[<img src="/readme/Screenshot_20221111_105648.png" align="left"
+    hspace="10" vspace="10">](/readme/eng/Screenshot_20230510_094331.png)
+[<img src="/readme/eng/Screenshot_20230510_094346.png" align="left"
 width="200"
-    hspace="10" vspace="10">](/readme/Screenshot_20221111_105648.png)
+    hspace="10" vspace="10">](/readme/eng/Screenshot_20230510_094346.png)
+[<img src="/readme/eng/Screenshot_20230510_094402.png" align="left"
+width="200"
+    hspace="10" vspace="10">](/readme/eng/Screenshot_20230510_094402.png)
+[<img src="/readme/eng/Screenshot_20230510_094435.png" align="left"
+width="200"
+    hspace="10" vspace="10">](/readme/eng/Screenshot_20230510_094435.png)
+[<img src="/readme/eng/Screenshot_20230510_095016.png" align="left"
+width="200"
+    hspace="10" vspace="10">](/readme/eng/Screenshot_20230510_095016.png)
+[<img src="/readme/eng/Screenshot_20230510_094610.png" align="left"
+width="200"
+    hspace="10" vspace="10">](/readme/eng/Screenshot_20230510_094610.png)
+    
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
 
 ## Permissions
 
