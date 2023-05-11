@@ -12,10 +12,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
 import com.mahmutalperenunal.okeypuantablosu.R
-import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityTeamOperationsBinding
 import com.mahmutalperenunal.okeypuantablosu.activity.scoreboard.Scoreboard2Player
 import com.mahmutalperenunal.okeypuantablosu.activity.scoreboard.Scoreboard3Player
 import com.mahmutalperenunal.okeypuantablosu.activity.scoreboard.Scoreboard4Player
+import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityTeamOperationsBinding
 
 class TeamOperations : AppCompatActivity() {
 
@@ -61,11 +61,12 @@ class TeamOperations : AppCompatActivity() {
         //set first number
         firstNumber = binding.teamOperationsNumberOfStartsEditText
 
-        playerNumberVisibility()
         playerNumber()
-        teamDeterminationByPlayerType()
         playerType()
         gameType()
+
+        setPlayerNumberRadioButtonsClickable()
+        setPlayerTypeRadioButtonsClickable()
 
         //navigate Scoreboard Activity with number of player
         binding.teamOperationsStartButton.setOnClickListener { controlUsernames() }
@@ -233,10 +234,14 @@ class TeamOperations : AppCompatActivity() {
         val yellowEditText = view.findViewById<EditText>(R.id.addColorValue_yellow_editText)
         val blackEditText = view.findViewById<EditText>(R.id.addColorValue_black_editText)
 
-        val redEditTextLayout = view.findViewById<TextInputLayout>(R.id.addColorValue_red_editTextLayout)
-        val blueEditTextLayout = view.findViewById<TextInputLayout>(R.id.addColorValue_blue_editTextLayout)
-        val yellowEditTextLayout = view.findViewById<TextInputLayout>(R.id.addColorValue_yellow_editTextLayout)
-        val blackEditTextLayout = view.findViewById<TextInputLayout>(R.id.addColorValue_black_editTextLayout)
+        val redEditTextLayout =
+            view.findViewById<TextInputLayout>(R.id.addColorValue_red_editTextLayout)
+        val blueEditTextLayout =
+            view.findViewById<TextInputLayout>(R.id.addColorValue_blue_editTextLayout)
+        val yellowEditTextLayout =
+            view.findViewById<TextInputLayout>(R.id.addColorValue_yellow_editTextLayout)
+        val blackEditTextLayout =
+            view.findViewById<TextInputLayout>(R.id.addColorValue_black_editTextLayout)
 
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
@@ -482,35 +487,8 @@ class TeamOperations : AppCompatActivity() {
     }
 
 
-    //change edittext visibility
-    private fun playerNumberVisibility() {
-
-        binding.teamOperations2PlayerRadioButton.setOnClickListener {
-            binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.GONE
-            binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
-
-            binding.teamOperationsMultipleRadioButton.visibility = View.GONE
-        }
-
-        binding.teamOperations3PlayerRadioButton.setOnClickListener {
-            binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
-            binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
-
-            binding.teamOperationsMultipleRadioButton.visibility = View.GONE
-        }
-
-        binding.teamOperations4PlayerRadioButton.setOnClickListener {
-            binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
-            binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.VISIBLE
-
-            binding.teamOperationsMultipleRadioButton.visibility = View.VISIBLE
-        }
-    }
-
-
     //control of game type
     private fun playerType(): String {
-
         return if (binding.teamOperationsSingleRadioButton.isChecked) {
             "Single"
         } else {
@@ -519,26 +497,162 @@ class TeamOperations : AppCompatActivity() {
     }
 
 
-    //change hint font and visibility
-    private fun teamDeterminationByPlayerType() {
+    //set clickable radio buttons
+    private fun setPlayerNumberRadioButtonsClickable() {
 
-        binding.teamOperationsSingleRadioButton.setOnClickListener {
+        binding.teamOperations2PlayerRadioButton.setOnClickListener {
             binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
             binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
-            binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
-            binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
+
+            binding.teamOperations2PlayerRadioButton.isClickable = false
+            binding.teamOperations3PlayerRadioButton.isClickable = true
+            binding.teamOperations4PlayerRadioButton.isClickable = true
+
+            binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.GONE
+            binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
+
+            binding.teamOperationsMultipleRadioButton.visibility = View.GONE
+
+            binding.teamOperationsSingleRadioButton.isChecked = true
+            binding.teamOperationsMultipleRadioButton.isChecked = false
+
+            playerNumber()
+        }
+
+        binding.teamOperations3PlayerRadioButton.setOnClickListener {
+            binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
+            binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
+            binding.teamOperationsPlayer3NameEditTextLayout.hint = getString(R.string.player3_text)
+
+            binding.teamOperations2PlayerRadioButton.isClickable = true
+            binding.teamOperations3PlayerRadioButton.isClickable = false
+            binding.teamOperations4PlayerRadioButton.isClickable = true
+
             binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
-            binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.VISIBLE
+            binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
+
+            binding.teamOperationsMultipleRadioButton.visibility = View.GONE
+
+            binding.teamOperationsSingleRadioButton.isChecked = true
+            binding.teamOperationsMultipleRadioButton.isChecked = false
+
+            playerNumber()
+        }
+
+        binding.teamOperations4PlayerRadioButton.setOnClickListener {
+            binding.teamOperations2PlayerRadioButton.isClickable = true
+            binding.teamOperations3PlayerRadioButton.isClickable = true
+            binding.teamOperations4PlayerRadioButton.isClickable = false
+
+            if (playerType() == "Single"){
+                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
+                binding.teamOperationsPlayer3NameEditTextLayout.hint = getString(R.string.player3_text)
+                binding.teamOperationsPlayer4NameEditTextLayout.hint = getString(R.string.player4_text)
+
+                binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.VISIBLE
+
+                binding.teamOperationsMultipleRadioButton.visibility = View.VISIBLE
+
+                binding.teamOperationsSingleRadioButton.isChecked = true
+                binding.teamOperationsMultipleRadioButton.isChecked = false
+            } else {
+                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.team1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.team2_text)
+
+                binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.GONE
+                binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
+
+                binding.teamOperationsMultipleRadioButton.visibility = View.VISIBLE
+
+                binding.teamOperationsSingleRadioButton.isChecked = false
+                binding.teamOperationsMultipleRadioButton.isChecked = true
+            }
+
+            playerNumber()
+        }
+
+    }
+
+    private fun setPlayerTypeRadioButtonsClickable() {
+
+        binding.teamOperationsSingleRadioButton.setOnClickListener {
+            binding.teamOperationsSingleRadioButton.isClickable = false
+            binding.teamOperationsMultipleRadioButton.isClickable = true
+
+            if (playerNumber() == 2) {
+
+                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
+                binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.GONE
+                binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
+
+            } else if (playerNumber() == 3) {
+
+                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
+                binding.teamOperationsPlayer3NameEditTextLayout.hint = getString(R.string.player3_text)
+                binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
+
+            } else {
+
+                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
+                binding.teamOperationsPlayer3NameEditTextLayout.hint = getString(R.string.player3_text)
+                binding.teamOperationsPlayer4NameEditTextLayout.hint = getString(R.string.player4_text)
+                binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.VISIBLE
+
+            }
+
+            playerType()
         }
 
         binding.teamOperationsMultipleRadioButton.setOnClickListener {
-            binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.team1_text)
-            binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.team2_text)
-            binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
-            binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
-            binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.GONE
-            binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
+            binding.teamOperationsSingleRadioButton.isClickable = true
+            binding.teamOperationsMultipleRadioButton.isClickable = false
+
+            if (playerNumber() == 2) {
+
+                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
+                binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.GONE
+                binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
+
+            } else if (playerNumber() == 3) {
+
+                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
+                binding.teamOperationsPlayer3NameEditTextLayout.hint = getString(R.string.player3_text)
+                binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
+
+            } else {
+
+                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.team1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.team2_text)
+                binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
+                binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.GONE
+                binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
+
+            }
+
+            playerType()
         }
+
     }
 
 

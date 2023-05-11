@@ -108,7 +108,6 @@ class MainMenu : AppCompatActivity() {
         //info about app
         binding.mainMenuInfoIcon.setOnClickListener { infoApp() }
 
-
         //change dark and light mode with button click
         binding.mainMenuDarkModeIcon.setOnClickListener { changeAppTheme() }
     }
@@ -118,10 +117,11 @@ class MainMenu : AppCompatActivity() {
     private fun checkLastTheme() {
         themeCode = sharedPreferencesTheme.getInt("theme", 0)
 
-        when (themeCode) {
-            -1 -> themeName = getString(R.string.system_theme_text)
-            1 -> themeName = getString(R.string.light_text)
-            2 -> themeName = getString(R.string.dark_text)
+        themeName = when (themeCode) {
+            -1 -> getString(R.string.system_theme_text)
+            1 -> getString(R.string.light_text)
+            2 -> getString(R.string.dark_text)
+            else -> getString(R.string.system_theme_text)
         }
     }
 

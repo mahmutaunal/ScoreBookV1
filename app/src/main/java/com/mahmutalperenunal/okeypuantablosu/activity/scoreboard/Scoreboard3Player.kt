@@ -100,8 +100,8 @@ class Scoreboard3Player : AppCompatActivity() {
 
         //player name
         player1Name = intent.getStringExtra("Player-1 Name").toString()
-        player2Name = intent.getStringExtra("PLayer-2 Name").toString()
-        player3Name = intent.getStringExtra("PLayer-3 Name").toString()
+        player2Name = intent.getStringExtra("Player-2 Name").toString()
+        player3Name = intent.getStringExtra("Player-3 Name").toString()
 
         binding.scoreBoard3PlayerPlayer1NameText.text = player1Name
         binding.scoreBoard3PlayerPlayer2NameText.text = player2Name
