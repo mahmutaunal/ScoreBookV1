@@ -735,6 +735,10 @@ class Scoreboard4Player : AppCompatActivity() {
 
                             scoreCount--
 
+                            for (i in position until scoreList4Player.size) {
+                                scoreList4Player[i].gameNumber = i + 1
+                            }
+
                             scoreAdapter4Player.notifyDataSetChanged()
 
                             val score1 =
@@ -812,6 +816,10 @@ class Scoreboard4Player : AppCompatActivity() {
                             scoreList4Player.removeAt(position)
 
                             scoreCount--
+
+                            for (i in position until scoreList4Player.size) {
+                                scoreList4Player[i].gameNumber = i + 1
+                            }
 
                             scoreAdapter4Player.notifyDataSetChanged()
 

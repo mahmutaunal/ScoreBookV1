@@ -567,7 +567,7 @@ class Scoreboard2Player : AppCompatActivity() {
             Toast.makeText(this, R.string.no_round_to_delete_text, Toast.LENGTH_SHORT).show()
         } else {
 
-            if (gameType == "Add Sore") {
+            if (gameType == "Add Score") {
 
                 val totalScore1 = binding.scoreBoard2PlayerPlayer1InstantScoreText.text.toString()
                 val totalScore2 = binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString()
@@ -603,6 +603,10 @@ class Scoreboard2Player : AppCompatActivity() {
                             scoreList2Player.removeAt(position)
 
                             scoreCount--
+
+                            for (i in position until scoreList2Player.size) {
+                                scoreList2Player[i].gameNumber = i + 1
+                            }
 
                             scoreAdapter2Player.notifyDataSetChanged()
 
@@ -664,6 +668,10 @@ class Scoreboard2Player : AppCompatActivity() {
                             scoreList2Player.removeAt(position)
 
                             scoreCount--
+
+                            for (i in position until scoreList2Player.size) {
+                                scoreList2Player[i].gameNumber = i + 1
+                            }
 
                             scoreAdapter2Player.notifyDataSetChanged()
 
@@ -1079,6 +1087,8 @@ class Scoreboard2Player : AppCompatActivity() {
                     scoreList2Player[position].multiplyNumber = multiplyNumber
                     scoreList2Player[position].color = color
 
+                    scoreAdapter2Player.notifyDataSetChanged()
+
                     binding.scoreBoard2PlayerRoundNumberText.text =
                         "$gameNumber. ${getString(R.string.round_text)}"
 
@@ -1119,6 +1129,8 @@ class Scoreboard2Player : AppCompatActivity() {
                     scoreList2Player[position].gameNumber = selectedGameNumber
                     scoreList2Player[position].multiplyNumber = multiplyNumber
                     scoreList2Player[position].color = color
+
+                    scoreAdapter2Player.notifyDataSetChanged()
 
                     binding.scoreBoard2PlayerRoundNumberText.text =
                         "$gameNumber. ${getString(R.string.round_text)}"

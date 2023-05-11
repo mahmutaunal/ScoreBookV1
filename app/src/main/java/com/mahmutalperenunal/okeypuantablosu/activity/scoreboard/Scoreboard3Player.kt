@@ -458,9 +458,12 @@ class Scoreboard3Player : AppCompatActivity() {
 
         val winnerTeam = view.findViewById<TextView>(R.id.scoreboard3Player_winnerPlayer_text)
 
-        val player1ScoreText = view.findViewById<TextView>(R.id.scoreboard3Player_player1Score_textView)
-        val player2ScoreText = view.findViewById<TextView>(R.id.scoreboard3Player_player2Score_textView)
-        val player3ScoreText = view.findViewById<TextView>(R.id.scoreboard3Player_player3Score_textView)
+        val player1ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard3Player_player1Score_textView)
+        val player2ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard3Player_player2Score_textView)
+        val player3ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard3Player_player3Score_textView)
 
         val player1TotalScore = binding.scoreBoard3PlayerPlayer1InstantScoreText.text.toString()
         val player2TotalScore = binding.scoreBoard3PlayerPlayer2InstantScoreText.text.toString()
@@ -524,9 +527,12 @@ class Scoreboard3Player : AppCompatActivity() {
 
         val winnerTeam = view.findViewById<TextView>(R.id.scoreboard3Player_winnerPlayer_text)
 
-        val player1ScoreText = view.findViewById<TextView>(R.id.scoreboard3Player_player1Score_textView)
-        val player2ScoreText = view.findViewById<TextView>(R.id.scoreboard3Player_player2Score_textView)
-        val player3ScoreText = view.findViewById<TextView>(R.id.scoreboard3Player_player3Score_textView)
+        val player1ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard3Player_player1Score_textView)
+        val player2ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard3Player_player2Score_textView)
+        val player3ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard3Player_player3Score_textView)
 
         val player1TotalScore = binding.scoreBoard3PlayerPlayer1InstantScoreText.text.toString()
         val player2TotalScore = binding.scoreBoard3PlayerPlayer2InstantScoreText.text.toString()
@@ -667,6 +673,10 @@ class Scoreboard3Player : AppCompatActivity() {
 
                             scoreCount--
 
+                            for (i in position until scoreList3Player.size) {
+                                scoreList3Player[i].gameNumber = i + 1
+                            }
+
                             scoreAdapter3Player.notifyDataSetChanged()
 
                             val score1 =
@@ -735,6 +745,10 @@ class Scoreboard3Player : AppCompatActivity() {
                             scoreList3Player.removeAt(position)
 
                             scoreCount--
+
+                            for (i in position until scoreList3Player.size) {
+                                scoreList3Player[i].gameNumber = i + 1
+                            }
 
                             scoreAdapter3Player.notifyDataSetChanged()
 
