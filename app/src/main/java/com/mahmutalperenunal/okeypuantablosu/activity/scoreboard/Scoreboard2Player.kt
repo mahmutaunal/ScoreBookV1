@@ -775,10 +775,10 @@ class Scoreboard2Player : AppCompatActivity() {
 
         when (scoreList2Player[position].color) {
             "White" -> {
-                colorValue1.setTextColor(getColor(R.color.siyah_tas_color))
-                colorValue2.setTextColor(getColor(R.color.siyah_tas_color))
+                colorValue1.setTextColor(getColor(R.color.black_color))
+                colorValue2.setTextColor(getColor(R.color.black_color))
 
-                color.setCardBackgroundColor(getColor(R.color.skor_detay_beyaz_tas_color))
+                color.setCardBackgroundColor(getColor(R.color.white_color))
                 color.visibility = View.GONE
             }
 
@@ -804,10 +804,10 @@ class Scoreboard2Player : AppCompatActivity() {
             }
 
             "Black" -> {
-                colorValue1.setTextColor(getColor(R.color.siyah_tas_color))
-                colorValue2.setTextColor(getColor(R.color.siyah_tas_color))
+                colorValue1.setTextColor(getColor(R.color.black_color))
+                colorValue2.setTextColor(getColor(R.color.black_color))
 
-                color.setCardBackgroundColor(getColor(R.color.siyah_tas_color))
+                color.setCardBackgroundColor(getColor(R.color.black_color))
             }
         }
 

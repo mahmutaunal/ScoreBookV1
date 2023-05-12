@@ -22,7 +22,8 @@
     <color name="text_color">#FF000000</color>
     <color name="calculator_color">#F1F1F1</color>
     <color name="color_value_color">#FFFFFFFF</color>
-    <color name="siyah_tas_color">#FF000000</color>
-    <color name="skor_detay_beyaz_tas_color">#FFFFFFFF</color>
+    <color name="black_color">#FF000000</color>
+    <color name="white_color">#FFFFFFFF</color>
     <color name="cardview_background_color">#FFFFFFFF</color>
+    <color name="no_color">#FEFEFE</color>
 </resources>

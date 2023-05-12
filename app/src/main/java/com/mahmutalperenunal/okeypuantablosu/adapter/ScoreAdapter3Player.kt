@@ -87,7 +87,7 @@ class ScoreAdapter3Player(private val scoreList3Player: ArrayList<ScoreData3Play
         holder.number.text = newList.gameNumber.toString()
 
         when (newList.color) {
-            "White" -> holder.colorBackground.visibility = View.GONE
+            "White" -> holder.colorBackground.setCardBackgroundColor(Color.TRANSPARENT)
             "Red" -> holder.colorBackground.setCardBackgroundColor(Color.RED)
             "Blue" -> holder.colorBackground.setCardBackgroundColor(Color.BLUE)
             "Yellow" -> holder.colorBackground.setCardBackgroundColor(Color.YELLOW)

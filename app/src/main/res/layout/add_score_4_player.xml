@@ -78,7 +78,7 @@
                     android:id="@+id/addScore4Player_black_radioButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/siyah_tas_color"
+                    android:buttonTint="@color/black_color"
                     android:minHeight="48dp"
                     android:text="@string/black_text" />
 
