@@ -76,7 +76,7 @@ class Scoreboard4Player : AppCompatActivity() {
 
     private lateinit var sharedPreferencesTheme: SharedPreferences
 
-    private var winType: String = "Highest Score"
+    private var winType: String = "Lowest Score"
 
 
     @SuppressLint("SetTextI18n", "SourceLockedOrientationActivity")
@@ -503,10 +503,14 @@ class Scoreboard4Player : AppCompatActivity() {
 
         val winnerTeam = view.findViewById<TextView>(R.id.scoreboard4Player_winnerPlayer_text)
 
-        val player1ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player1Score_textView)
-        val player2ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player2Score_textView)
-        val player3ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player3Score_textView)
-        val player4ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player4Score_textView)
+        val player1ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard4Player_player1Score_textView)
+        val player2ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard4Player_player2Score_textView)
+        val player3ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard4Player_player3Score_textView)
+        val player4ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard4Player_player4Score_textView)
 
         val player1TotalScore = binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
         val player2TotalScore = binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
@@ -538,26 +542,54 @@ class Scoreboard4Player : AppCompatActivity() {
         val player3Score = player3TotalScore.toInt()
         val player4Score = player4TotalScore.toInt()
 
-        when {
-            ((player1Score < player2Score) && (player1Score < player3Score) && (player1Score < player4Score)) -> {
-                winnerTeam.text = "$player1Name ${getString(R.string.ahead_text)}."
+        if (winType == "Lowest Score") {
+
+            when {
+                ((player1Score < player2Score) && (player1Score < player3Score) && (player1Score < player4Score)) -> {
+                    winnerTeam.text = "$player1Name ${getString(R.string.ahead_text)}."
+                }
+
+                ((player2Score < player1Score) && (player2Score < player3Score) && (player2Score < player4Score)) -> {
+                    winnerTeam.text = "$player2Name ${getString(R.string.ahead_text)}."
+                }
+
+                ((player3Score < player1Score) && (player3Score < player2Score) && (player3Score < player4Score)) -> {
+                    winnerTeam.text = "$player3Name ${getString(R.string.ahead_text)}."
+                }
+
+                ((player4Score < player1Score) && (player4Score < player2Score) && (player4Score < player3Score)) -> {
+                    winnerTeam.text = "$player4Name ${getString(R.string.ahead_text)}."
+                }
+
+                else -> {
+                    winnerTeam.text = getString(R.string.tie_text)
+                }
             }
 
-            ((player2Score < player1Score) && (player2Score < player3Score) && (player2Score < player4Score)) -> {
-                winnerTeam.text = "$player2Name ${getString(R.string.ahead_text)}."
+        } else {
+
+            when {
+                ((player1Score > player2Score) && (player1Score > player3Score) && (player1Score > player4Score)) -> {
+                    winnerTeam.text = "$player1Name ${getString(R.string.ahead_text)}."
+                }
+
+                ((player2Score > player1Score) && (player2Score > player3Score) && (player2Score > player4Score)) -> {
+                    winnerTeam.text = "$player2Name ${getString(R.string.ahead_text)}."
+                }
+
+                ((player3Score > player1Score) && (player3Score > player2Score) && (player3Score > player4Score)) -> {
+                    winnerTeam.text = "$player3Name ${getString(R.string.ahead_text)}."
+                }
+
+                ((player4Score > player1Score) && (player4Score > player2Score) && (player4Score > player3Score)) -> {
+                    winnerTeam.text = "$player4Name ${getString(R.string.ahead_text)}."
+                }
+
+                else -> {
+                    winnerTeam.text = getString(R.string.tie_text)
+                }
             }
 
-            ((player3Score < player1Score) && (player3Score < player2Score) && (player3Score < player4Score)) -> {
-                winnerTeam.text = "$player3Name ${getString(R.string.ahead_text)}."
-            }
-
-            ((player4Score < player1Score) && (player4Score < player2Score) && (player4Score < player3Score)) -> {
-                winnerTeam.text = "$player4Name ${getString(R.string.ahead_text)}."
-            }
-
-            else -> {
-                winnerTeam.text = getString(R.string.tie_text)
-            }
         }
 
         addDialog.setView(view)
@@ -580,10 +612,14 @@ class Scoreboard4Player : AppCompatActivity() {
 
         val winnerTeam = view.findViewById<TextView>(R.id.scoreboard4Player_winnerPlayer_text)
 
-        val player1ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player1Score_textView)
-        val player2ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player2Score_textView)
-        val player3ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player3Score_textView)
-        val player4ScoreText = view.findViewById<TextView>(R.id.scoreboard4Player_player4Score_textView)
+        val player1ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard4Player_player1Score_textView)
+        val player2ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard4Player_player2Score_textView)
+        val player3ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard4Player_player3Score_textView)
+        val player4ScoreText =
+            view.findViewById<TextView>(R.id.scoreboard4Player_player4Score_textView)
 
         val player1TotalScore = binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
         val player2TotalScore = binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
@@ -615,26 +651,54 @@ class Scoreboard4Player : AppCompatActivity() {
         val player3Score = player3TotalScore.toInt()
         val player4Score = player4TotalScore.toInt()
 
-        when {
-            ((player1Score < player2Score) && (player1Score < player3Score) && (player1Score < player4Score)) -> {
-                winnerTeam.text = "$player1Name ${getString(R.string.ahead_text)}."
+        if (winType == "Lowest Score") {
+
+            when {
+                ((player1Score < player2Score) && (player1Score < player3Score) && (player1Score < player4Score)) -> {
+                    winnerTeam.text = "$player1Name ${getString(R.string.won_text)}."
+                }
+
+                ((player2Score < player1Score) && (player2Score < player3Score) && (player2Score < player4Score)) -> {
+                    winnerTeam.text = "$player2Name ${getString(R.string.won_text)}."
+                }
+
+                ((player3Score < player1Score) && (player3Score < player2Score) && (player3Score < player4Score)) -> {
+                    winnerTeam.text = "$player3Name ${getString(R.string.won_text)}."
+                }
+
+                ((player4Score < player1Score) && (player4Score < player2Score) && (player4Score < player3Score)) -> {
+                    winnerTeam.text = "$player4Name ${getString(R.string.won_text)}."
+                }
+
+                else -> {
+                    winnerTeam.text = getString(R.string.tie_text)
+                }
             }
 
-            ((player2Score < player1Score) && (player2Score < player3Score) && (player2Score < player4Score)) -> {
-                winnerTeam.text = "$player2Name ${getString(R.string.ahead_text)}."
+        } else {
+
+            when {
+                ((player1Score > player2Score) && (player1Score > player3Score) && (player1Score > player4Score)) -> {
+                    winnerTeam.text = "$player1Name ${getString(R.string.won_text)}."
+                }
+
+                ((player2Score > player1Score) && (player2Score > player3Score) && (player2Score > player4Score)) -> {
+                    winnerTeam.text = "$player2Name ${getString(R.string.won_text)}."
+                }
+
+                ((player3Score > player1Score) && (player3Score > player2Score) && (player3Score > player4Score)) -> {
+                    winnerTeam.text = "$player3Name ${getString(R.string.won_text)}."
+                }
+
+                ((player4Score > player1Score) && (player4Score > player2Score) && (player4Score > player3Score)) -> {
+                    winnerTeam.text = "$player4Name ${getString(R.string.won_text)}."
+                }
+
+                else -> {
+                    winnerTeam.text = getString(R.string.tie_text)
+                }
             }
 
-            ((player3Score < player1Score) && (player3Score < player2Score) && (player3Score < player4Score)) -> {
-                winnerTeam.text = "$player3Name ${getString(R.string.ahead_text)}."
-            }
-
-            ((player4Score < player1Score) && (player4Score < player2Score) && (player4Score < player3Score)) -> {
-                winnerTeam.text = "$player4Name ${getString(R.string.ahead_text)}."
-            }
-
-            else -> {
-                winnerTeam.text = getString(R.string.tie_text)
-            }
         }
 
         addDialog.setView(view)

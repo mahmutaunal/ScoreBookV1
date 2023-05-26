@@ -73,7 +73,7 @@ class Scoreboard3Player : AppCompatActivity() {
 
     private lateinit var sharedPreferencesTheme: SharedPreferences
 
-    private var winType: String = "Highest Score"
+    private var winType: String = "Lowest Score"
 
 
     @SuppressLint("SetTextI18n", "SourceLockedOrientationActivity")
@@ -494,22 +494,46 @@ class Scoreboard3Player : AppCompatActivity() {
         val player2Score = player2TotalScore.toInt()
         val player3Score = player3TotalScore.toInt()
 
-        when {
-            ((player1Score < player2Score) && (player1Score < player3Score)) -> {
-                winnerTeam.text = "$player1Name ${getString(R.string.ahead_text)}."
+        if (winType == "Lowest Score") {
+
+            when {
+                ((player1Score < player2Score) && (player1Score < player3Score)) -> {
+                    winnerTeam.text = "$player1Name ${getString(R.string.ahead_text)}."
+                }
+
+                ((player2Score < player1Score) && (player2Score < player3Score)) -> {
+                    winnerTeam.text = "$player2Name ${getString(R.string.ahead_text)}."
+                }
+
+                ((player3Score < player1Score) && (player3Score < player2Score)) -> {
+                    winnerTeam.text = "$player3Name ${getString(R.string.ahead_text)}."
+                }
+
+                else -> {
+                    winnerTeam.text = getString(R.string.tie_text)
+                }
             }
 
-            ((player2Score < player1Score) && (player2Score < player3Score)) -> {
-                winnerTeam.text = "$player2Name ${getString(R.string.ahead_text)}."
+        } else {
+
+            when {
+                ((player1Score > player2Score) && (player1Score > player3Score)) -> {
+                    winnerTeam.text = "$player1Name ${getString(R.string.ahead_text)}."
+                }
+
+                ((player2Score > player1Score) && (player2Score > player3Score)) -> {
+                    winnerTeam.text = "$player2Name ${getString(R.string.ahead_text)}."
+                }
+
+                ((player3Score > player1Score) && (player3Score > player2Score)) -> {
+                    winnerTeam.text = "$player3Name ${getString(R.string.ahead_text)}."
+                }
+
+                else -> {
+                    winnerTeam.text = getString(R.string.tie_text)
+                }
             }
 
-            ((player3Score < player1Score) && (player3Score < player2Score)) -> {
-                winnerTeam.text = "$player3Name ${getString(R.string.ahead_text)}."
-            }
-
-            else -> {
-                winnerTeam.text = getString(R.string.tie_text)
-            }
         }
 
         addDialog.setView(view)
@@ -563,22 +587,46 @@ class Scoreboard3Player : AppCompatActivity() {
         val player2Score = player2TotalScore.toInt()
         val player3Score = player3TotalScore.toInt()
 
-        when {
-            ((player1Score < player2Score) && (player1Score < player3Score)) -> {
-                winnerTeam.text = "$player1Name ${getString(R.string.won_text)}."
+        if (winType == "Lowest Score") {
+
+            when {
+                ((player1Score < player2Score) && (player1Score < player3Score)) -> {
+                    winnerTeam.text = "$player1Name ${getString(R.string.won_text)}."
+                }
+
+                ((player2Score < player1Score) && (player2Score < player3Score)) -> {
+                    winnerTeam.text = "$player2Name ${getString(R.string.won_text)}."
+                }
+
+                ((player3Score < player1Score) && (player3Score < player2Score)) -> {
+                    winnerTeam.text = "$player3Name ${getString(R.string.won_text)}."
+                }
+
+                else -> {
+                    winnerTeam.text = getString(R.string.tie_text)
+                }
             }
 
-            ((player2Score < player1Score) && (player2Score < player3Score)) -> {
-                winnerTeam.text = "$player2Name ${getString(R.string.won_text)}."
+        } else {
+
+            when {
+                ((player1Score > player2Score) && (player1Score > player3Score)) -> {
+                    winnerTeam.text = "$player1Name ${getString(R.string.won_text)}."
+                }
+
+                ((player2Score > player1Score) && (player2Score > player3Score)) -> {
+                    winnerTeam.text = "$player2Name ${getString(R.string.won_text)}."
+                }
+
+                ((player3Score > player1Score) && (player3Score > player2Score)) -> {
+                    winnerTeam.text = "$player3Name ${getString(R.string.won_text)}."
+                }
+
+                else -> {
+                    winnerTeam.text = getString(R.string.tie_text)
+                }
             }
 
-            ((player3Score < player1Score) && (player3Score < player2Score)) -> {
-                winnerTeam.text = "$player3Name ${getString(R.string.won_text)}."
-            }
-
-            else -> {
-                winnerTeam.text = getString(R.string.tie_text)
-            }
         }
 
         addDialog.setView(view)

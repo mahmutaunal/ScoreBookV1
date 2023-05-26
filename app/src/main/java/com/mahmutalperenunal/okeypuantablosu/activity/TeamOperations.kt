@@ -39,7 +39,7 @@ class TeamOperations : AppCompatActivity() {
 
     private var firstNumber: EditText? = null
 
-    private var winType: String = "Highest Score"
+    private var winType: String = "Lowest Score"
 
 
     @SuppressLint("VisibleForTests", "SourceLockedOrientationActivity")
@@ -728,7 +728,7 @@ class TeamOperations : AppCompatActivity() {
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
                 .setTitle(R.string.info_text)
                 .setMessage(R.string.info_number_of_player_text)
-                .setPositiveButton(R.string.cancel_text) { dialog, _ -> dialog.dismiss() }
+                .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
                 .create()
                 .show()
 
@@ -739,7 +739,7 @@ class TeamOperations : AppCompatActivity() {
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
                 .setTitle(R.string.info_text)
                 .setMessage(R.string.info_player_type_text)
-                .setPositiveButton(R.string.cancel_text) { dialog, _ -> dialog.dismiss() }
+                .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
                 .create()
                 .show()
 
@@ -750,7 +750,7 @@ class TeamOperations : AppCompatActivity() {
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
                 .setTitle(R.string.info_text)
                 .setMessage(R.string.info_game_type_text)
-                .setPositiveButton(R.string.cancel_text) { dialog, _ -> dialog.dismiss() }
+                .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
                 .create()
                 .show()
 
@@ -761,7 +761,7 @@ class TeamOperations : AppCompatActivity() {
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
                 .setTitle(R.string.info_text)
                 .setMessage(R.string.info_win_type_text)
-                .setPositiveButton(R.string.cancel_text) { dialog, _ -> dialog.dismiss() }
+                .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
                 .create()
                 .show()
 

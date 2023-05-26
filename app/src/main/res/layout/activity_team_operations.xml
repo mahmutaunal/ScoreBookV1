@@ -413,7 +413,7 @@
                         android:layout_marginBottom="10dp"
                         android:hint="@string/number_of_starts_text"
                         android:importantForAutofill="no"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         app:boxBackgroundColor="@color/edittext_color"
                         app:boxStrokeColor="@color/teal_200"
                         app:endIconMode="clear_text"
