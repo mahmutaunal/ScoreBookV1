@@ -98,4 +98,16 @@
     <string name="finish_game_text">Oyunu Bitir</string>
     <string name="finish_game_description_text">Oyunu bitirmek istediğinize emin misiniz?</string>
     <string name="back_text">Geri Dön</string>
+    <string name="playerNumber_text2">Oyuncu \nSayısı</string>
+    <string name="player_type_text2">Oyuncu \nŞekli</string>
+    <string name="gameType_text2">Oyun \nTürü</string>
+    <string name="deduct_from_number_text2">Sayıdan \nDüş</string>
+    <string name="add_score_team_operations_text2">Sayı \nEkle</string>
+    <string name="highest_score_text">En Yüksek \nPuan</string>
+    <string name="lowest_score_text">En Düşük \nPuan</string>
+    <string name="winType_text">Kazanma \nŞekli</string>
+    <string name="info_number_of_player_text">1\'den 4\'e kadar oyuncu seçenekleri.</string>
+    <string name="info_player_type_text">Tekli veya eşli oynama seçenekleri.</string>
+    <string name="info_game_type_text">0\'dan başlayarak oynama veya belirli bir sayı belirleyerek o sayıdan düşme şeklinde oynama seçenekleri.</string>
+    <string name="info_win_type_text">Oyun sonunda en yüksek veya en düşük skora sahip oyuncunun kazanma seçenekleri.</string>
 </resources>

@@ -211,16 +211,26 @@
                         android:id="@+id/teamOperations_numberOfPlayer_linearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/teamOperations_numberOfPlayer_imageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/ic_info"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/comfortaa"
-                            android:text="@string/playerNumber_text"
+                            android:text="@string/playerNumber_text2"
+                            android:textAlignment="center"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="14sp" />
 
@@ -228,6 +238,7 @@
                             android:id="@+id/teamOperations_numberOfPlayer_radioGroup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:orientation="horizontal">
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
@@ -272,16 +283,26 @@
                         android:id="@+id/teamOperations_playerType_linearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/teamOperations_playerType_imageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/ic_info"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/comfortaa"
-                            android:text="@string/player_type_text"
+                            android:text="@string/player_type_text2"
+                            android:textAlignment="center"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="14sp" />
 
@@ -289,6 +310,7 @@
                             android:id="@+id/teamOperations_playerType_radioGroup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:orientation="horizontal">
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
@@ -322,15 +344,26 @@
                         android:id="@+id/teamOperations_gameType_linearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/teamOperations_gameType_imageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/ic_info"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/comfortaa"
-                            android:text="@string/gameType_text"
+                            android:text="@string/gameType_text2"
+                            android:textAlignment="center"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="14sp" />
 
@@ -338,6 +371,7 @@
                             android:id="@+id/teamOperations_gameType_radioGroup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:orientation="horizontal">
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
@@ -347,7 +381,8 @@
                                 android:layout_marginStart="10dp"
                                 android:fontFamily="@font/comfortaa"
                                 android:minHeight="48dp"
-                                android:text="@string/deduct_from_number_text"
+                                android:text="@string/deduct_from_number_text2"
+                                android:textAlignment="center"
                                 android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="14sp" />
 
@@ -359,7 +394,8 @@
                                 android:checked="true"
                                 android:fontFamily="@font/comfortaa"
                                 android:minHeight="48dp"
-                                android:text="@string/add_score_team_operations_text"
+                                android:text="@string/add_score_team_operations_text2"
+                                android:textAlignment="center"
                                 android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="14sp" />
 
@@ -377,7 +413,7 @@
                         android:layout_marginBottom="10dp"
                         android:hint="@string/number_of_starts_text"
                         android:importantForAutofill="no"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         app:boxBackgroundColor="@color/edittext_color"
                         app:boxStrokeColor="@color/teal_200"
                         app:endIconMode="clear_text"
@@ -394,6 +430,69 @@
                             tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/teamOperations_winType_linearLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/teamOperations_winType_imageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/ic_info"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/comfortaa"
+                            android:text="@string/winType_text"
+                            android:textAlignment="center"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp" />
+
+                        <RadioGroup
+                            android:id="@+id/teamOperations_winType_radioGroup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/teamOperations_highestScore_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/comfortaa"
+                                android:minHeight="48dp"
+                                android:text="@string/highest_score_text"
+                                android:textAlignment="center"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="14sp" />
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/teamOperations_lowestScore_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:checked="true"
+                                android:fontFamily="@font/comfortaa"
+                                android:minHeight="48dp"
+                                android:text="@string/lowest_score_text"
+                                android:textAlignment="center"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="14sp" />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

@@ -74,6 +74,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
     private lateinit var sharedPreferencesTheme: SharedPreferences
 
+    private var winType: String = "Highest Number"
+
 
     @SuppressLint("SetTextI18n", "VisibleForTests", "SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,6 +126,9 @@ class Scoreboard2Player : AppCompatActivity() {
             binding.scoreBoard2PlayerPlayer1InstantScoreText.text = firstNumber
             binding.scoreBoard2PlayerPlayer2InstantScoreText.text = firstNumber
         }
+
+        //get win type
+        winType = intent.getStringExtra("Win Type").toString()
 
 
         //get click count

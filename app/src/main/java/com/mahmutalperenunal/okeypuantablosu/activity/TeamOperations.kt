@@ -39,6 +39,8 @@ class TeamOperations : AppCompatActivity() {
 
     private var firstNumber: EditText? = null
 
+    private var winType: String = "Highest Score"
+
 
     @SuppressLint("VisibleForTests", "SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +66,9 @@ class TeamOperations : AppCompatActivity() {
         playerNumber()
         playerType()
         gameType()
+        setWinType()
+
+        setInfo()
 
         setPlayerNumberRadioButtonsClickable()
         setPlayerTypeRadioButtonsClickable()
@@ -353,6 +358,9 @@ class TeamOperations : AppCompatActivity() {
                     intentScoreboard2.putExtra("Game Type", gameType)
                     intentScoreboard2.putExtra("Number of Starts", firstNumber!!.text.toString())
 
+                    //send win type
+                    intentScoreboard2.putExtra("Win Type", winType)
+
                     startActivity(intentScoreboard2)
                     finish()
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
@@ -391,6 +399,9 @@ class TeamOperations : AppCompatActivity() {
                     //send game type and first number
                     intentScoreboard3.putExtra("Game Type", gameType)
                     intentScoreboard3.putExtra("Number of Starts", firstNumber!!.text.toString())
+
+                    //send win type
+                    intentScoreboard3.putExtra("Win Type", winType)
 
                     startActivity(intentScoreboard3)
                     finish()
@@ -435,6 +446,9 @@ class TeamOperations : AppCompatActivity() {
                             firstNumber!!.text.toString()
                         )
 
+                        //send win type
+                        intentScoreboard2.putExtra("Win Type", winType)
+
                         startActivity(intentScoreboard2)
                         finish()
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
@@ -462,6 +476,9 @@ class TeamOperations : AppCompatActivity() {
                             "Number of Starts",
                             firstNumber!!.text.toString()
                         )
+
+                        //send win type
+                        intentScoreboard4.putExtra("Win Type", winType)
 
                         startActivity(intentScoreboard4)
                         finish()
@@ -544,11 +561,15 @@ class TeamOperations : AppCompatActivity() {
             binding.teamOperations3PlayerRadioButton.isClickable = true
             binding.teamOperations4PlayerRadioButton.isClickable = false
 
-            if (playerType() == "Single"){
-                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
-                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
-                binding.teamOperationsPlayer3NameEditTextLayout.hint = getString(R.string.player3_text)
-                binding.teamOperationsPlayer4NameEditTextLayout.hint = getString(R.string.player4_text)
+            if (playerType() == "Single") {
+                binding.teamOperationsPlayer1NameEditTextLayout.hint =
+                    getString(R.string.player1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint =
+                    getString(R.string.player2_text)
+                binding.teamOperationsPlayer3NameEditTextLayout.hint =
+                    getString(R.string.player3_text)
+                binding.teamOperationsPlayer4NameEditTextLayout.hint =
+                    getString(R.string.player4_text)
 
                 binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
                 binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.VISIBLE
@@ -558,8 +579,10 @@ class TeamOperations : AppCompatActivity() {
                 binding.teamOperationsSingleRadioButton.isChecked = true
                 binding.teamOperationsMultipleRadioButton.isChecked = false
             } else {
-                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.team1_text)
-                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.team2_text)
+                binding.teamOperationsPlayer1NameEditTextLayout.hint =
+                    getString(R.string.team1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint =
+                    getString(R.string.team2_text)
 
                 binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.GONE
                 binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
@@ -583,8 +606,10 @@ class TeamOperations : AppCompatActivity() {
 
             if (playerNumber() == 2) {
 
-                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
-                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
+                binding.teamOperationsPlayer1NameEditTextLayout.hint =
+                    getString(R.string.player1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint =
+                    getString(R.string.player2_text)
                 binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
                 binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
                 binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.GONE
@@ -592,9 +617,12 @@ class TeamOperations : AppCompatActivity() {
 
             } else if (playerNumber() == 3) {
 
-                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
-                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
-                binding.teamOperationsPlayer3NameEditTextLayout.hint = getString(R.string.player3_text)
+                binding.teamOperationsPlayer1NameEditTextLayout.hint =
+                    getString(R.string.player1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint =
+                    getString(R.string.player2_text)
+                binding.teamOperationsPlayer3NameEditTextLayout.hint =
+                    getString(R.string.player3_text)
                 binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
                 binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
                 binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
@@ -602,10 +630,14 @@ class TeamOperations : AppCompatActivity() {
 
             } else {
 
-                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
-                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
-                binding.teamOperationsPlayer3NameEditTextLayout.hint = getString(R.string.player3_text)
-                binding.teamOperationsPlayer4NameEditTextLayout.hint = getString(R.string.player4_text)
+                binding.teamOperationsPlayer1NameEditTextLayout.hint =
+                    getString(R.string.player1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint =
+                    getString(R.string.player2_text)
+                binding.teamOperationsPlayer3NameEditTextLayout.hint =
+                    getString(R.string.player3_text)
+                binding.teamOperationsPlayer4NameEditTextLayout.hint =
+                    getString(R.string.player4_text)
                 binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
                 binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
                 binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
@@ -622,8 +654,10 @@ class TeamOperations : AppCompatActivity() {
 
             if (playerNumber() == 2) {
 
-                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
-                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
+                binding.teamOperationsPlayer1NameEditTextLayout.hint =
+                    getString(R.string.player1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint =
+                    getString(R.string.player2_text)
                 binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
                 binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
                 binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.GONE
@@ -631,9 +665,12 @@ class TeamOperations : AppCompatActivity() {
 
             } else if (playerNumber() == 3) {
 
-                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.player1_text)
-                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.player2_text)
-                binding.teamOperationsPlayer3NameEditTextLayout.hint = getString(R.string.player3_text)
+                binding.teamOperationsPlayer1NameEditTextLayout.hint =
+                    getString(R.string.player1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint =
+                    getString(R.string.player2_text)
+                binding.teamOperationsPlayer3NameEditTextLayout.hint =
+                    getString(R.string.player3_text)
                 binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
                 binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
                 binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.VISIBLE
@@ -641,8 +678,10 @@ class TeamOperations : AppCompatActivity() {
 
             } else {
 
-                binding.teamOperationsPlayer1NameEditTextLayout.hint = getString(R.string.team1_text)
-                binding.teamOperationsPlayer2NameEditTextLayout.hint = getString(R.string.team2_text)
+                binding.teamOperationsPlayer1NameEditTextLayout.hint =
+                    getString(R.string.team1_text)
+                binding.teamOperationsPlayer2NameEditTextLayout.hint =
+                    getString(R.string.team2_text)
                 binding.teamOperationsPlayer1NameEditTextLayout.visibility = View.VISIBLE
                 binding.teamOperationsPlayer2NameEditTextLayout.visibility = View.VISIBLE
                 binding.teamOperationsPlayer3NameEditTextLayout.visibility = View.GONE
@@ -670,6 +709,64 @@ class TeamOperations : AppCompatActivity() {
             binding.teamOperationsNumberOfStartsEditTextLayout.visibility = View.GONE
             firstNumber!!.setText("0000")
         }
+    }
+
+
+    //set win type
+    private fun setWinType() {
+        binding.teamOperationsHighestScoreRadioButton.setOnClickListener {
+            winType = "Highest Score"
+        }
+        binding.teamOperationsLowestScoreRadioButton.setOnClickListener { winType = "Lowest Score" }
+    }
+
+    //set information for options
+    private fun setInfo() {
+
+        binding.teamOperationsNumberOfPlayerImageView.setOnClickListener {
+
+            AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                .setTitle(R.string.info_text)
+                .setMessage(R.string.info_number_of_player_text)
+                .setPositiveButton(R.string.cancel_text) { dialog, _ -> dialog.dismiss() }
+                .create()
+                .show()
+
+        }
+
+        binding.teamOperationsPlayerTypeImageView.setOnClickListener {
+
+            AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                .setTitle(R.string.info_text)
+                .setMessage(R.string.info_player_type_text)
+                .setPositiveButton(R.string.cancel_text) { dialog, _ -> dialog.dismiss() }
+                .create()
+                .show()
+
+        }
+
+        binding.teamOperationsGameTypeImageView.setOnClickListener {
+
+            AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                .setTitle(R.string.info_text)
+                .setMessage(R.string.info_game_type_text)
+                .setPositiveButton(R.string.cancel_text) { dialog, _ -> dialog.dismiss() }
+                .create()
+                .show()
+
+        }
+
+        binding.teamOperationsWinTypeImageView.setOnClickListener {
+
+            AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                .setTitle(R.string.info_text)
+                .setMessage(R.string.info_win_type_text)
+                .setPositiveButton(R.string.cancel_text) { dialog, _ -> dialog.dismiss() }
+                .create()
+                .show()
+
+        }
+
     }
 
 

@@ -98,4 +98,16 @@
     <string name="finish_game_text">Finish Game</string>
     <string name="finish_game_description_text">Are you sure you want to finish the game?</string>
     <string name="back_text">Back</string>
+    <string name="playerNumber_text2">Number of \nPlayer</string>
+    <string name="player_type_text2">Player \nType</string>
+    <string name="gameType_text2">Game \nType</string>
+    <string name="deduct_from_number_text2">Deduct \nNumber</string>
+    <string name="add_score_team_operations_text2">Add \nScore</string>
+    <string name="highest_score_text">Highest \nScore</string>
+    <string name="lowest_score_text">Lowest \nScore</string>
+    <string name="winType_text">Win \nType</string>
+    <string name="info_number_of_player_text">Player options from 1 to 4 players.</string>
+    <string name="info_player_type_text">Single or multiple play options.</string>
+    <string name="info_game_type_text">Options to play starting from 0 or to drop from that number by specifying a certain number.</string>
+    <string name="info_win_type_text">Winning options for the player with the highest or lowest score at the end of the game.</string>
 </resources>
