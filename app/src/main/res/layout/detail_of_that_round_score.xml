@@ -112,6 +112,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/scoreDetail_multiplyLogoPlayer1_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -131,6 +132,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/scoreDetail_equalLogoPlayer1_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -198,6 +200,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/scoreDetail_multiplyLogoPlayer2_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -217,6 +220,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/scoreDetail_equalLogoPlayer2_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -284,6 +288,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/scoreDetail_multiplyLogoPlayer3_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -303,6 +308,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/scoreDetail_equalLogoPlayer3_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -371,6 +377,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/scoreDetail_multiplyLogoPlayer4_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -390,6 +397,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/scoreDetail_equalLogoPlayer4_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

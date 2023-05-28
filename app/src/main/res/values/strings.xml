@@ -8,11 +8,11 @@
     <string name="player2_name">Oyuncu-2 Adı</string>
     <string name="player3_name">Oyuncu-3 Adı</string>
     <string name="player4_name">Oyuncu-4 Adı</string>
-    <string name="playerNumber_text">Oyuncu Sayısı:</string>
+    <string name="playerNumber_text">Oyuncu Sayısı</string>
     <string name="twoPlayer_text">2</string>
     <string name="threePlayer_text">3</string>
     <string name="fourPlayer_text">4</string>
-    <string name="gameType_text">Oyun Türü:</string>
+    <string name="gameType_text">Oyun Türü</string>
     <string name="single_text">Tekli</string>
     <string name="multiple_text">Eşli</string>
     <string name="scoreboard_text">Puan Tablosu</string>
@@ -110,4 +110,5 @@
     <string name="info_player_type_text">Tekli veya eşli oynama seçenekleri.</string>
     <string name="info_game_type_text">0\'dan başlayarak oynama veya belirli bir sayı belirleyerek o sayıdan düşme şeklinde oynama seçenekleri.</string>
     <string name="info_win_type_text">Oyun sonunda en yüksek veya en düşük skora sahip oyuncunun kazanma seçenekleri.</string>
+    <string name="winType_text2">Kazanma Şekli</string>
 </resources>

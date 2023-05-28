@@ -8,11 +8,11 @@
     <string name="player2_name">Player-2 Name</string>
     <string name="player3_name">Player-3 Name</string>
     <string name="player4_name">Player-4 Name</string>
-    <string name="playerNumber_text">Number of Players:</string>
+    <string name="playerNumber_text">Number of Players</string>
     <string name="twoPlayer_text">2</string>
     <string name="threePlayer_text">3</string>
     <string name="fourPlayer_text">4</string>
-    <string name="gameType_text">Game Type:</string>
+    <string name="gameType_text">Game Type</string>
     <string name="single_text">Single</string>
     <string name="multiple_text">Multiple</string>
     <string name="scoreboard_text">Scoreboard</string>
@@ -110,4 +110,5 @@
     <string name="info_player_type_text">Single or multiple play options.</string>
     <string name="info_game_type_text">Options to play starting from 0 or to drop from that number by specifying a certain number.</string>
     <string name="info_win_type_text">Winning options for the player with the highest or lowest score at the end of the game.</string>
+    <string name="winType_text2">Win Type</string>
 </resources>

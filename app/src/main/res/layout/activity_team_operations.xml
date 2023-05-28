@@ -232,7 +232,8 @@
                             android:text="@string/playerNumber_text2"
                             android:textAlignment="center"
                             android:textColor="?android:attr/textColorPrimary"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            tools:ignore="TextContrastCheck" />
 
                         <RadioGroup
                             android:id="@+id/teamOperations_numberOfPlayer_radioGroup"
@@ -384,7 +385,8 @@
                                 android:text="@string/deduct_from_number_text2"
                                 android:textAlignment="center"
                                 android:textColor="?android:attr/textColorPrimary"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                tools:ignore="TextContrastCheck" />
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
                                 android:id="@+id/teamOperations_addScore_radioButton"
@@ -488,7 +490,8 @@
                                 android:text="@string/lowest_score_text"
                                 android:textAlignment="center"
                                 android:textColor="?android:attr/textColorPrimary"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                tools:ignore="TextContrastCheck" />
 
                         </RadioGroup>
 
@@ -504,7 +507,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="40dp"
                 android:fontFamily="@font/comfortaa"
                 android:text="@string/start_text"
                 android:textColor="?android:attr/textColorPrimary"

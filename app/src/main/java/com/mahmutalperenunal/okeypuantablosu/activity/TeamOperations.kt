@@ -173,54 +173,94 @@ class TeamOperations : AppCompatActivity() {
 
         } else if (playerNumber() == 4) {
 
-            if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
-                binding.teamOperationsPlayer1NameEditTextLayout.error =
-                    getString(R.string.compulsory_text)
-                Toast.makeText(
-                    applicationContext,
-                    R.string.enter_player_name_text,
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
-                binding.teamOperationsPlayer2NameEditTextLayout.error =
-                    getString(R.string.compulsory_text)
-                Toast.makeText(
-                    applicationContext,
-                    R.string.enter_player_name_text,
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else if (binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
-                binding.teamOperationsPlayer3NameEditTextLayout.error =
-                    getString(R.string.compulsory_text)
-                Toast.makeText(
-                    applicationContext,
-                    R.string.enter_player_name_text,
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else if (binding.teamOperationsPlayer4NameEditText.text!!.isEmpty()) {
-                binding.teamOperationsPlayer4NameEditTextLayout.error =
-                    getString(R.string.compulsory_text)
-                Toast.makeText(
-                    applicationContext,
-                    R.string.enter_player_name_text,
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                if (gameType == "Deduct from the number") {
-                    if (firstNumber!!.text.toString() == "") {
-                        binding.teamOperationsNumberOfStartsEditTextLayout.error =
-                            getString(R.string.compulsory_text)
-                        Toast.makeText(
-                            applicationContext,
-                            R.string.enter_player_name_text,
-                            Toast.LENGTH_SHORT
-                        ).show()
+            if (playerType() == "Single") {
+
+                if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+                    binding.teamOperationsPlayer1NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+                    binding.teamOperationsPlayer2NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else if (binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
+                    binding.teamOperationsPlayer3NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else if (binding.teamOperationsPlayer4NameEditText.text!!.isEmpty()) {
+                    binding.teamOperationsPlayer4NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    if (gameType == "Deduct from the number") {
+                        if (firstNumber!!.text.toString() == "") {
+                            binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_player_name_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            setColorValue()
+                        }
                     } else {
                         setColorValue()
                     }
-                } else {
-                    setColorValue()
                 }
+
+            } else {
+
+                if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+                    binding.teamOperationsPlayer1NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+                    binding.teamOperationsPlayer2NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    if (gameType == "Deduct from the number") {
+                        if (firstNumber!!.text.toString() == "") {
+                            binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_player_name_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            setColorValue()
+                        }
+                    } else {
+                        setColorValue()
+                    }
+                }
+
             }
 
         }
@@ -413,47 +453,18 @@ class TeamOperations : AppCompatActivity() {
 
         } else if (playerNumber() == 4) {
 
-            //player name must be entered
-            if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty() || binding.teamOperationsPlayer2NameEditText.text!!.isEmpty() || binding.teamOperationsPlayer3NameEditText.text!!.isEmpty() || binding.teamOperationsPlayer4NameEditText.text!!.isEmpty()) {
-                Toast.makeText(
-                    applicationContext,
-                    R.string.enter_player_name_text,
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
+            if (playerType() == "Single") {
 
-                if (isColorsValueEntered) {
+                //player name must be entered
+                if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty() || binding.teamOperationsPlayer2NameEditText.text!!.isEmpty() || binding.teamOperationsPlayer3NameEditText.text!!.isEmpty() || binding.teamOperationsPlayer4NameEditText.text!!.isEmpty()) {
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
 
-                    if (playerType() == "Multiple") {
-
-                        //send game name to ScoreboardActivity
-                        intentScoreboard2.putExtra("Game Name", gameName!!.text.toString())
-
-                        //send player names to ScoreboardActivity
-                        intentScoreboard2.putExtra("Player-1 Name", player1Name!!.text.toString())
-                        intentScoreboard2.putExtra("Player-2 Name", player2Name!!.text.toString())
-
-                        //send colors value to ScoreboardActivity
-                        intentScoreboard2.putExtra("Red Value", redValue)
-                        intentScoreboard2.putExtra("Blue Value", blueValue)
-                        intentScoreboard2.putExtra("Yellow Value", yellowValue)
-                        intentScoreboard2.putExtra("Black Value", blackValue)
-
-                        //send game type and first number
-                        intentScoreboard2.putExtra("Game Type", gameType)
-                        intentScoreboard2.putExtra(
-                            "Number of Starts",
-                            firstNumber!!.text.toString()
-                        )
-
-                        //send win type
-                        intentScoreboard2.putExtra("Win Type", winType)
-
-                        startActivity(intentScoreboard2)
-                        finish()
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-
-                    } else {
+                    if (isColorsValueEntered) {
 
                         //send game name to ScoreboardActivity
                         intentScoreboard4.putExtra("Game Name", gameName!!.text.toString())
@@ -487,6 +498,36 @@ class TeamOperations : AppCompatActivity() {
                     }
 
                 }
+
+            } else {
+
+                //send game name to ScoreboardActivity
+                intentScoreboard2.putExtra("Game Name", gameName!!.text.toString())
+
+                //send player names to ScoreboardActivity
+                intentScoreboard2.putExtra("Player-1 Name", player1Name!!.text.toString())
+                intentScoreboard2.putExtra("Player-2 Name", player2Name!!.text.toString())
+
+                //send colors value to ScoreboardActivity
+                intentScoreboard2.putExtra("Red Value", redValue)
+                intentScoreboard2.putExtra("Blue Value", blueValue)
+                intentScoreboard2.putExtra("Yellow Value", yellowValue)
+                intentScoreboard2.putExtra("Black Value", blackValue)
+
+                //send game type and first number
+                intentScoreboard2.putExtra("Game Type", gameType)
+                intentScoreboard2.putExtra(
+                    "Number of Starts",
+                    firstNumber!!.text.toString()
+                )
+
+                //send win type
+                intentScoreboard2.putExtra("Win Type", winType)
+
+                startActivity(intentScoreboard2)
+                finish()
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+
             }
 
         }
@@ -575,9 +616,6 @@ class TeamOperations : AppCompatActivity() {
                 binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.VISIBLE
 
                 binding.teamOperationsMultipleRadioButton.visibility = View.VISIBLE
-
-                binding.teamOperationsSingleRadioButton.isChecked = true
-                binding.teamOperationsMultipleRadioButton.isChecked = false
             } else {
                 binding.teamOperationsPlayer1NameEditTextLayout.hint =
                     getString(R.string.team1_text)
@@ -588,9 +626,6 @@ class TeamOperations : AppCompatActivity() {
                 binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
 
                 binding.teamOperationsMultipleRadioButton.visibility = View.VISIBLE
-
-                binding.teamOperationsSingleRadioButton.isChecked = false
-                binding.teamOperationsMultipleRadioButton.isChecked = true
             }
 
             playerNumber()
@@ -606,6 +641,9 @@ class TeamOperations : AppCompatActivity() {
 
             if (playerNumber() == 2) {
 
+                binding.teamOperationsSingleRadioButton.isClickable = false
+                binding.teamOperationsMultipleRadioButton.isClickable = true
+
                 binding.teamOperationsPlayer1NameEditTextLayout.hint =
                     getString(R.string.player1_text)
                 binding.teamOperationsPlayer2NameEditTextLayout.hint =
@@ -616,6 +654,9 @@ class TeamOperations : AppCompatActivity() {
                 binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
 
             } else if (playerNumber() == 3) {
+
+                binding.teamOperationsSingleRadioButton.isClickable = false
+                binding.teamOperationsMultipleRadioButton.isClickable = true
 
                 binding.teamOperationsPlayer1NameEditTextLayout.hint =
                     getString(R.string.player1_text)
@@ -629,6 +670,9 @@ class TeamOperations : AppCompatActivity() {
                 binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
 
             } else {
+
+                binding.teamOperationsSingleRadioButton.isClickable = false
+                binding.teamOperationsMultipleRadioButton.isClickable = true
 
                 binding.teamOperationsPlayer1NameEditTextLayout.hint =
                     getString(R.string.player1_text)
@@ -654,6 +698,9 @@ class TeamOperations : AppCompatActivity() {
 
             if (playerNumber() == 2) {
 
+                binding.teamOperationsSingleRadioButton.isClickable = true
+                binding.teamOperationsMultipleRadioButton.isClickable = false
+
                 binding.teamOperationsPlayer1NameEditTextLayout.hint =
                     getString(R.string.player1_text)
                 binding.teamOperationsPlayer2NameEditTextLayout.hint =
@@ -664,6 +711,9 @@ class TeamOperations : AppCompatActivity() {
                 binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
 
             } else if (playerNumber() == 3) {
+
+                binding.teamOperationsSingleRadioButton.isClickable = true
+                binding.teamOperationsMultipleRadioButton.isClickable = false
 
                 binding.teamOperationsPlayer1NameEditTextLayout.hint =
                     getString(R.string.player1_text)
@@ -677,6 +727,9 @@ class TeamOperations : AppCompatActivity() {
                 binding.teamOperationsPlayer4NameEditTextLayout.visibility = View.GONE
 
             } else {
+
+                binding.teamOperationsSingleRadioButton.isClickable = true
+                binding.teamOperationsMultipleRadioButton.isClickable = false
 
                 binding.teamOperationsPlayer1NameEditTextLayout.hint =
                     getString(R.string.team1_text)
@@ -726,7 +779,7 @@ class TeamOperations : AppCompatActivity() {
         binding.teamOperationsNumberOfPlayerImageView.setOnClickListener {
 
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                .setTitle(R.string.info_text)
+                .setTitle(R.string.playerNumber_text)
                 .setMessage(R.string.info_number_of_player_text)
                 .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
                 .create()
@@ -737,7 +790,7 @@ class TeamOperations : AppCompatActivity() {
         binding.teamOperationsPlayerTypeImageView.setOnClickListener {
 
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                .setTitle(R.string.info_text)
+                .setTitle(R.string.player_type_text)
                 .setMessage(R.string.info_player_type_text)
                 .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
                 .create()
@@ -748,7 +801,7 @@ class TeamOperations : AppCompatActivity() {
         binding.teamOperationsGameTypeImageView.setOnClickListener {
 
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                .setTitle(R.string.info_text)
+                .setTitle(R.string.gameType_text)
                 .setMessage(R.string.info_game_type_text)
                 .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
                 .create()
@@ -759,7 +812,7 @@ class TeamOperations : AppCompatActivity() {
         binding.teamOperationsWinTypeImageView.setOnClickListener {
 
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                .setTitle(R.string.info_text)
+                .setTitle(R.string.winType_text2)
                 .setMessage(R.string.info_win_type_text)
                 .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
                 .create()

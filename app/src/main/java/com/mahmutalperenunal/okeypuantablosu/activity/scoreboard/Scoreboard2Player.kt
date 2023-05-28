@@ -813,6 +813,20 @@ class Scoreboard2Player : AppCompatActivity() {
         firstScore2Text.text = firstScore2.toString()
 
 
+        //set multiply logo
+        val player1MultiplyLogo =
+            view.findViewById<TextView>(R.id.scoreDetail_multiplyLogoPlayer1_textView)
+        val player2MultiplyLogo =
+            view.findViewById<TextView>(R.id.scoreDetail_multiplyLogoPlayer2_textView)
+
+
+        //set equal logo
+        val player1EqualLogo =
+            view.findViewById<TextView>(R.id.scoreDetail_equalLogoPlayer1_textView)
+        val player2EqualLogo =
+            view.findViewById<TextView>(R.id.scoreDetail_equalLogoPlayer2_textView)
+
+
         //set colors and colors value
         val color = view.findViewById<CardView>(R.id.scoreDetail_selectedRoundColor)
 
@@ -870,6 +884,42 @@ class Scoreboard2Player : AppCompatActivity() {
 
         lastScore1.text = result1.toString()
         lastScore2.text = result2.toString()
+
+
+        //set visibility
+        if (redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1) {
+
+            color.visibility = View.GONE
+
+            player1MultiplyLogo.visibility = View.GONE
+            player2MultiplyLogo.visibility = View.GONE
+
+            colorValue1.visibility = View.GONE
+            colorValue2.visibility = View.GONE
+
+            player1EqualLogo.visibility = View.GONE
+            player2EqualLogo.visibility = View.GONE
+
+            lastScore1.visibility = View.GONE
+            lastScore2.visibility = View.GONE
+
+        } else {
+
+            color.visibility = View.VISIBLE
+
+            player1MultiplyLogo.visibility = View.VISIBLE
+            player2MultiplyLogo.visibility = View.VISIBLE
+
+            colorValue1.visibility = View.VISIBLE
+            colorValue2.visibility = View.VISIBLE
+
+            player1EqualLogo.visibility = View.VISIBLE
+            player2EqualLogo.visibility = View.VISIBLE
+
+            lastScore1.visibility = View.VISIBLE
+            lastScore2.visibility = View.VISIBLE
+
+        }
 
 
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
@@ -1241,7 +1291,7 @@ class Scoreboard2Player : AppCompatActivity() {
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
                 .setTitle(R.string.exit_text)
                 .setMessage(R.string.exit_description_text)
-                .setPositiveButton(R.string.exit_without_save_text) { dialog, _ ->
+                .setPositiveButton(R.string.exit_text) { dialog, _ ->
                     startActivity(intentMain)
                     finish()
                     overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)

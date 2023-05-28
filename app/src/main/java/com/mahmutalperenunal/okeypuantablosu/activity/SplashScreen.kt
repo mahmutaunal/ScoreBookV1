@@ -65,7 +65,14 @@ class SplashScreen : AppCompatActivity() {
             -1 -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM //-1
             1 -> AppCompatDelegate.MODE_NIGHT_NO //1
             2 -> AppCompatDelegate.MODE_NIGHT_YES //2
-            else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM //-1
+            else -> {
+                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q) {
+                    AppCompatDelegate.MODE_NIGHT_NO //1
+                } else {
+                    AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM //-1
+                }
+            }
+
         }
 
         Log.d("App Theme", "theme:$appTheme")

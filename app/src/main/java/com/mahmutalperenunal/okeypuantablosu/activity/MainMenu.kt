@@ -121,7 +121,13 @@ class MainMenu : AppCompatActivity() {
             -1 -> getString(R.string.system_theme_text)
             1 -> getString(R.string.light_text)
             2 -> getString(R.string.dark_text)
-            else -> getString(R.string.system_theme_text)
+            else -> {
+                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q) {
+                    getString(R.string.light_text)
+                } else {
+                    getString(R.string.system_theme_text)
+                }
+            }
         }
     }
 
@@ -176,37 +182,68 @@ class MainMenu : AppCompatActivity() {
 
     //change app theme
     private fun changeAppTheme() {
-        AlertDialog.Builder(this, R.style.CustomAlertDialog)
-            .setTitle(R.string.app_theme_text)
-            .setMessage("${getString(R.string.app_theme_description_text)} \n\n${getString(R.string.current_theme_text)} $themeName")
-            .setPositiveButton(
-                R.string.light_text
-            ) { _: DialogInterface?, _: Int ->
-                AppCompatDelegate.setDefaultNightMode(
-                    AppCompatDelegate.MODE_NIGHT_NO
-                )
-                editorTheme.putInt("theme", 1)
-                editorTheme.apply()
-            }
-            .setNegativeButton(
-                R.string.dark_text
-            ) { _: DialogInterface?, _: Int ->
-                AppCompatDelegate.setDefaultNightMode(
-                    AppCompatDelegate.MODE_NIGHT_YES
-                )
-                editorTheme.putInt("theme", 2)
-                editorTheme.apply()
-            }
-            .setNeutralButton(
-                R.string.system_theme_text
-            ) { _: DialogInterface?, _: Int ->
-                AppCompatDelegate.setDefaultNightMode(
-                    AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-                )
-                editorTheme.putInt("theme", -1)
-                editorTheme.apply()
-            }
-            .show()
+
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q) {
+
+            AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                .setTitle(R.string.app_theme_text)
+                .setMessage("${getString(R.string.app_theme_description_text)} \n\n${getString(R.string.current_theme_text)} $themeName")
+                .setPositiveButton(
+                    R.string.light_text
+                ) { _: DialogInterface?, _: Int ->
+                    AppCompatDelegate.setDefaultNightMode(
+                        AppCompatDelegate.MODE_NIGHT_NO
+                    )
+                    editorTheme.putInt("theme", 1)
+                    editorTheme.apply()
+                }
+                .setNegativeButton(
+                    R.string.dark_text
+                ) { _: DialogInterface?, _: Int ->
+                    AppCompatDelegate.setDefaultNightMode(
+                        AppCompatDelegate.MODE_NIGHT_YES
+                    )
+                    editorTheme.putInt("theme", 2)
+                    editorTheme.apply()
+                }
+                .show()
+
+        } else {
+
+            AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                .setTitle(R.string.app_theme_text)
+                .setMessage("${getString(R.string.app_theme_description_text)} \n\n${getString(R.string.current_theme_text)} $themeName")
+                .setPositiveButton(
+                    R.string.light_text
+                ) { _: DialogInterface?, _: Int ->
+                    AppCompatDelegate.setDefaultNightMode(
+                        AppCompatDelegate.MODE_NIGHT_NO
+                    )
+                    editorTheme.putInt("theme", 1)
+                    editorTheme.apply()
+                }
+                .setNegativeButton(
+                    R.string.dark_text
+                ) { _: DialogInterface?, _: Int ->
+                    AppCompatDelegate.setDefaultNightMode(
+                        AppCompatDelegate.MODE_NIGHT_YES
+                    )
+                    editorTheme.putInt("theme", 2)
+                    editorTheme.apply()
+                }
+                .setNeutralButton(
+                    R.string.system_theme_text
+                ) { _: DialogInterface?, _: Int ->
+                    AppCompatDelegate.setDefaultNightMode(
+                        AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                    )
+                    editorTheme.putInt("theme", -1)
+                    editorTheme.apply()
+                }
+                .show()
+
+        }
+
     }
 
 
