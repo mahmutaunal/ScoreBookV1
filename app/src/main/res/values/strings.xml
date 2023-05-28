@@ -111,4 +111,8 @@
     <string name="info_game_type_text">0\'dan başlayarak oynama veya belirli bir sayı belirleyerek o sayıdan düşme şeklinde oynama seçenekleri.</string>
     <string name="info_win_type_text">Oyun sonunda en yüksek veya en düşük skora sahip oyuncunun kazanma seçenekleri.</string>
     <string name="winType_text2">Kazanma Şekli</string>
+    <string name="app_language_text">Uygulama Dili</string>
+    <string name="app_language_description_text">Uygulama dilini seçiniz.</string>
+    <string name="tr_text">Türkçe</string>
+    <string name="eng_text">İngilizce</string>
 </resources>

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -18,8 +19,11 @@ class SplashScreen : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
 
     private lateinit var sharedPreferencesTheme: SharedPreferences
+    private lateinit var sharedPreferencesLanguage: SharedPreferences
 
     private var theme: Int? = null
+
+    private var language: String? = null
 
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -31,10 +35,13 @@ class SplashScreen : AppCompatActivity() {
         //set screen orientation to portrait
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        //get last theme
+        //get last theme and last language
         sharedPreferencesTheme = getSharedPreferences("appTheme", MODE_PRIVATE)
+        sharedPreferencesLanguage = getSharedPreferences("appLanguage", MODE_PRIVATE)
 
         checkTheme()
+
+        checkLanguage()
 
         timer()
     }
@@ -77,6 +84,40 @@ class SplashScreen : AppCompatActivity() {
 
         Log.d("App Theme", "theme:$appTheme")
         AppCompatDelegate.setDefaultNightMode(appTheme)
+    }
+
+
+    private fun checkLanguage() {
+        language = sharedPreferencesLanguage.getString("language", null)
+
+        when (language) {
+            "tr" -> {
+                val locale = Locale("tr")
+                Locale.setDefault(locale)
+
+                val configuration = Configuration()
+                configuration.locale = locale
+
+                baseContext.resources.updateConfiguration(
+                    configuration,
+                    baseContext.resources.displayMetrics
+                )
+            }
+
+            "en" -> {
+                val locale = Locale("en")
+                Locale.setDefault(locale)
+
+                val configuration = Configuration()
+                configuration.locale = locale
+
+                baseContext.resources.updateConfiguration(
+                    configuration,
+                    baseContext.resources.displayMetrics
+                )
+            }
+        }
+
     }
 
 }

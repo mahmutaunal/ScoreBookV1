@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -28,14 +29,18 @@ import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityMainMenuBinding
+import java.util.Locale
+
 
 class MainMenu : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainMenuBinding
 
     private lateinit var sharedPreferencesTheme: SharedPreferences
+    private lateinit var sharedPreferencesLanguage: SharedPreferences
 
     private lateinit var editorTheme: SharedPreferences.Editor
+    private lateinit var editorLanguage: SharedPreferences.Editor
 
     private lateinit var appUpdateManager: AppUpdateManager
 
@@ -65,6 +70,10 @@ class MainMenu : AppCompatActivity() {
         //dark and night mode
         sharedPreferencesTheme = getSharedPreferences("appTheme", MODE_PRIVATE)
         editorTheme = sharedPreferencesTheme.edit()
+
+        //language
+        sharedPreferencesLanguage = getSharedPreferences("appLanguage", MODE_PRIVATE)
+        editorLanguage = sharedPreferencesLanguage.edit()
 
         //review manager
         activateReviewInfo()
@@ -109,7 +118,63 @@ class MainMenu : AppCompatActivity() {
         binding.mainMenuInfoIcon.setOnClickListener { infoApp() }
 
         //change dark and light mode with button click
-        binding.mainMenuDarkModeIcon.setOnClickListener { changeAppTheme() }
+        binding.mainMenuAppThemeIcon.setOnClickListener { changeAppTheme() }
+
+        //change app language
+        binding.mainMenuAppLanguageIcon.setOnClickListener { changeAppLanguage() }
+    }
+
+
+    //change app language
+    private fun changeAppLanguage() {
+
+        AlertDialog.Builder(this, R.style.CustomAlertDialog)
+            .setTitle(R.string.app_language_text)
+            .setMessage(getString(R.string.app_language_description_text))
+            .setPositiveButton(
+                R.string.tr_text
+            ) { _: DialogInterface?, _: Int ->
+
+                val locale = Locale("tr")
+                Locale.setDefault(locale)
+
+                val configuration = Configuration()
+                configuration.locale = locale
+
+                baseContext.resources.updateConfiguration(
+                    configuration,
+                    baseContext.resources.displayMetrics
+                )
+
+                editorLanguage.putString("language", "tr")
+                editorLanguage.apply()
+
+                recreate()
+
+            }
+            .setNegativeButton(
+                R.string.eng_text
+            ) { _: DialogInterface?, _: Int ->
+
+                val locale = Locale("en")
+                Locale.setDefault(locale)
+
+                val configuration = Configuration()
+                configuration.locale = locale
+
+                baseContext.resources.updateConfiguration(
+                    configuration,
+                    baseContext.resources.displayMetrics
+                )
+
+                editorLanguage.putString("language", "en")
+                editorLanguage.apply()
+
+                recreate()
+
+            }
+            .show()
+
     }
 
 

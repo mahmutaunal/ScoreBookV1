@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Skor Defteri</string>
+    <string name="app_name">Score Book</string>
     <string name="newGame_button">New Game</string>
     <string name="pastGames_button">Saved Games</string>
     <string name="newGame_text">New Game</string>
@@ -111,4 +111,8 @@
     <string name="info_game_type_text">Options to play starting from 0 or to drop from that number by specifying a certain number.</string>
     <string name="info_win_type_text">Winning options for the player with the highest or lowest score at the end of the game.</string>
     <string name="winType_text2">Win Type</string>
+    <string name="app_language_text">App Language</string>
+    <string name="app_language_description_text">Please choose app language.</string>
+    <string name="tr_text">Turkish</string>
+    <string name="eng_text">English</string>
 </resources>
