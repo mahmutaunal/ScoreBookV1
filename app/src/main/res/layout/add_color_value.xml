@@ -130,7 +130,8 @@
                         android:text="@string/black_text"
                         android:textAlignment="textEnd"
                         android:textColor="?android:attr/textColorPrimary"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        tools:ignore="TextContrastCheck" />
 
                 </LinearLayout>
 
@@ -160,6 +161,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
                             android:inputType="numberSigned"
+                            android:maxLength="3"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textColorHint="?android:attr/textColorPrimary"
                             tools:ignore="TextContrastCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
@@ -185,6 +187,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
                             android:inputType="numberSigned"
+                            android:maxLength="3"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textColorHint="?android:attr/textColorPrimary"
                             tools:ignore="TextContrastCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
@@ -210,6 +213,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
                             android:inputType="numberSigned"
+                            android:maxLength="3"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textColorHint="?android:attr/textColorPrimary"
                             tools:ignore="TextContrastCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
@@ -235,6 +239,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
                             android:inputType="numberSigned"
+                            android:maxLength="3"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textColorHint="?android:attr/textColorPrimary"
                             tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />

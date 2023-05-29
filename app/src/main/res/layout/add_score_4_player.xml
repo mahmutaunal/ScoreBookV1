@@ -136,6 +136,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
                             android:inputType="numberSigned"
+                            android:maxLength="4"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textColorHint="?android:attr/textColorPrimary"
                             tools:ignore="TextContrastCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
@@ -188,6 +189,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
                             android:inputType="numberSigned"
+                            android:maxLength="4"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textColorHint="?android:attr/textColorPrimary"
                             tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
@@ -241,6 +243,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
                             android:inputType="numberSigned"
+                            android:maxLength="4"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textColorHint="?android:attr/textColorPrimary"
                             tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
@@ -294,6 +297,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
                             android:inputType="numberSigned"
+                            android:maxLength="4"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textColorHint="?android:attr/textColorPrimary"
                             tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />

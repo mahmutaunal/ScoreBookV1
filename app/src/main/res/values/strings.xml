@@ -103,8 +103,8 @@
     <string name="gameType_text2">Oyun \nTürü</string>
     <string name="deduct_from_number_text2">Sayıdan \nDüş</string>
     <string name="add_score_team_operations_text2">Sayı \nEkle</string>
-    <string name="highest_score_text">En Yüksek \nPuan</string>
-    <string name="lowest_score_text">En Düşük \nPuan</string>
+    <string name="highest_score_text">Yüksek \nPuan</string>
+    <string name="lowest_score_text">Düşük \nPuan</string>
     <string name="winType_text">Kazanma \nŞekli</string>
     <string name="info_number_of_player_text">1\'den 4\'e kadar oyuncu seçenekleri.</string>
     <string name="info_player_type_text">Tekli veya eşli oynama seçenekleri.</string>

@@ -81,7 +81,6 @@ class TeamOperations : AppCompatActivity() {
         binding.teamOperationsBackButton.setOnClickListener {
             val intentMain = Intent(applicationContext, MainMenu::class.java)
             startActivity(intentMain)
-            finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
