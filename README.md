@@ -1,13 +1,13 @@
-# Skor Defteri - Android App
+# Score Book - Android App
 
 <img src="/readme/logo.png" align="left"
 width="200" hspace="10" vspace="10">
 
-Skor Defteri is an application that allows the points kept in the okey game to be stored in the application. 
-Skor Defteri is free.
-No registration is required to use the Skor Defteri application.
+Score Book is an application that allows the points kept in the okey game to be stored in the application. 
+Score Book is free.
+No registration is required to use the Score Book application.
 
-Skor Defteri is available on the Google Play Store.
+Score Book is available on the Google Play Store.
 
 <p align="left">
 <a href="https://play.google.com/store/apps/details?id=com.mahmutalperenunal.okeypuantablosu">
@@ -18,7 +18,7 @@ Skor Defteri is available on the Google Play Store.
 
 ## About
 
-Skor Defteri application allows up to 4 players to be played in pairs and singles in addition or deduction types. Optionally, it allows assigning values ​​for each color and keeps the scores multiplied by the value of the selected color while keeping the scores. It allows editing or deleting the score of any hand entered.
+Score Book application allows up to 4 players to be played in pairs and singles in addition or deduction types. Optionally, it allows assigning values ​​for each color and keeps the scores multiplied by the value of the selected color while keeping the scores. It allows editing or deleting the score of any hand entered.
 
 In addition to the application, there are dice rolling and calculator features.
 
