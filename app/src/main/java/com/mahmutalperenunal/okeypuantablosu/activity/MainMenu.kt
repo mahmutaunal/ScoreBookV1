@@ -24,13 +24,9 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
-import com.google.android.play.core.review.ReviewInfo
-import com.google.android.play.core.review.ReviewManager
-import com.google.android.play.core.review.ReviewManagerFactory
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityMainMenuBinding
 import java.util.Locale
-
 
 class MainMenu : AppCompatActivity() {
 
@@ -43,9 +39,6 @@ class MainMenu : AppCompatActivity() {
     private lateinit var editorLanguage: SharedPreferences.Editor
 
     private lateinit var appUpdateManager: AppUpdateManager
-
-    private lateinit var reviewInfo: ReviewInfo
-    private lateinit var reviewManager: ReviewManager
 
     private val UPDATE_CODE = 22
 
@@ -74,9 +67,6 @@ class MainMenu : AppCompatActivity() {
         //language
         sharedPreferencesLanguage = getSharedPreferences("appLanguage", MODE_PRIVATE)
         editorLanguage = sharedPreferencesLanguage.edit()
-
-        //review manager
-        activateReviewInfo()
 
         //check last theme
         checkLastTheme()
@@ -211,13 +201,7 @@ class MainMenu : AppCompatActivity() {
         AlertDialog.Builder(this, R.style.CustomAlertDialog)
             .setTitle(R.string.info_text)
             .setMessage(R.string.info_description_text)
-            .setPositiveButton(R.string.rate_text) { dialog, _ ->
-
-                startReviewFlow()
-
-                dialog.dismiss()
-            }
-            .setNegativeButton(R.string.developer_text) { dialog, _ ->
+            .setPositiveButton(R.string.developer_text) { dialog, _ ->
 
                 try {
                     startActivity(
@@ -312,31 +296,6 @@ class MainMenu : AppCompatActivity() {
     }
 
 
-    //app review
-    private fun activateReviewInfo() {
-        reviewManager = ReviewManagerFactory.create(this)
-        val managerInfoTask: com.google.android.play.core.tasks.Task<ReviewInfo> =
-            reviewManager.requestReviewFlow()
-        managerInfoTask.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                reviewInfo = task.result
-            }
-        }
-    }
-
-    private fun startReviewFlow() {
-        val flow: com.google.android.play.core.tasks.Task<Void> =
-            reviewManager.launchReviewFlow(this, reviewInfo)
-        flow.addOnCompleteListener {
-            Toast.makeText(
-                this,
-                R.string.rate_completed_text,
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
-
-
     // Create a listener to track request state updates.
     private val listener = InstallStateUpdatedListener { state ->
         // (Optional) Provide a download progress bar.
@@ -406,6 +365,5 @@ class MainMenu : AppCompatActivity() {
         a.addCategory(Intent.CATEGORY_HOME)
         a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(a)
-        finish()
     }
 }

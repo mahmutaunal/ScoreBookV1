@@ -56,11 +56,11 @@ class SplashScreen : AppCompatActivity() {
 
         val startActivityTimer = timerTask {
             startActivity(intent)
+            finish()
         }
 
         val timer = Timer()
         timer.schedule(startActivityTimer, 1000)
-
     }
 
 
@@ -117,7 +117,6 @@ class SplashScreen : AppCompatActivity() {
                 )
             }
         }
-
     }
 
 }
