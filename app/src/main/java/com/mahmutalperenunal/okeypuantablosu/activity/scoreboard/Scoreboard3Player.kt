@@ -77,6 +77,8 @@ class Scoreboard3Player : AppCompatActivity() {
 
     private var winType: String = "Lowest Score"
 
+    private var targetScore: String? = null
+
 
     @SuppressLint("SetTextI18n", "SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,9 +119,10 @@ class Scoreboard3Player : AppCompatActivity() {
         yellowValue = intent.getIntExtra("Yellow Value", 0)
         blackValue = intent.getIntExtra("Black Value", 0)
 
-        //get game type and first number
+        //get game type, first number and target score
         gameType = intent.getStringExtra("Game Type").toString()
         firstNumber = intent.getStringExtra("Number of Starts").toString()
+        targetScore = intent.getStringExtra("Target Score").toString()
 
         if (firstNumber.isEmpty()) {
             binding.scoreBoard3PlayerPlayer1InstantScoreText.text = "0"
@@ -450,9 +453,31 @@ class Scoreboard3Player : AppCompatActivity() {
                     binding.scoreBoard3PlayerPlayer3InstantScoreText.text.toString().toInt()
 
                 if (gameType == "Deduct from the number") {
+
                     if (score1 <= 0 || score2 <= 0 || score3 <= 0) {
                         winnerTeam()
                     }
+
+                    if (targetScore != null) {
+                        if (score1 <= targetScore.toString()
+                                .toInt() || score2 <= targetScore.toString()
+                                .toInt() || score3 <= targetScore.toString().toInt()
+                        ) {
+                            winnerTeam()
+                        }
+                    }
+
+                } else {
+
+                    if (targetScore != null) {
+                        if (score1 >= targetScore.toString()
+                                .toInt() || score2 >= targetScore.toString()
+                                .toInt() || score3 >= targetScore.toString().toInt()
+                        ) {
+                            winnerTeam()
+                        }
+                    }
+
                 }
 
                 dialog.dismiss()
@@ -1457,9 +1482,31 @@ class Scoreboard3Player : AppCompatActivity() {
                     binding.scoreBoard3PlayerPlayer3InstantScoreText.text.toString().toInt()
 
                 if (gameType == "Deduct from the number") {
+
                     if (score1 <= 0 || score2 <= 0 || score3 <= 0) {
                         winnerTeam()
                     }
+
+                    if (targetScore != null) {
+                        if (score1 <= targetScore.toString()
+                                .toInt() || score2 <= targetScore.toString()
+                                .toInt() || score3 <= targetScore.toString().toInt()
+                        ) {
+                            winnerTeam()
+                        }
+                    }
+
+                } else {
+
+                    if (targetScore != null) {
+                        if (score1 >= targetScore.toString()
+                                .toInt() || score2 >= targetScore.toString()
+                                .toInt() || score3 >= targetScore.toString().toInt()
+                        ) {
+                            winnerTeam()
+                        }
+                    }
+
                 }
 
                 dialog.dismiss()

@@ -116,4 +116,13 @@
     <string name="app_language_description_text">Uygulama dilini seçiniz.</string>
     <string name="tr_text">Türkçe</string>
     <string name="eng_text">İngilizce</string>
+    <string name="finishGame_text">Oyunu \nBitirince</string>
+    <string name="reachScore_text">Skora \nUlaşınca</string>
+    <string name="finishType_text">Bitirme \nŞekli</string>
+    <string name="target_score_text">Hedef Skor</string>
+    <string name="finishType_text2">Bitirme Şekli</string>
+    <string name="info_finish_type_text">Oyunun belirlenen skora ulaşılınca otomtik olarak bitmesini veya elle oyunu bitir seçeneği seçilerek oyunun bitirilmesini sağlayan seçenek.</string>
+    <string name="enter_first_number_text">Lütfen Başlangıç Skoru Girin!</string>
+    <string name="enter_target_score_text">Lütfen Hedef Skor Girin!</string>
+    <string name="target_and_first_number_error_description_text">Hedef skoru başlangıç sayısından daha fazla veya başlangıç sayısına eşit olamaz!</string>
 </resources>

@@ -78,6 +78,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
     private var winType: String = "Lowest Number"
 
+    private var targetScore: String? = null
+
 
     @SuppressLint("SetTextI18n", "VisibleForTests", "SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,9 +119,10 @@ class Scoreboard2Player : AppCompatActivity() {
         yellowValue = intent.getIntExtra("Yellow Value", 0)
         blackValue = intent.getIntExtra("Black Value", 0)
 
-        //get game type and first number
+        //get game type, first number and target score
         gameType = intent.getStringExtra("Game Type").toString()
         firstNumber = intent.getStringExtra("Number of Starts").toString()
+        targetScore = intent.getStringExtra("Target Score").toString()
 
         if (firstNumber.isEmpty()) {
             binding.scoreBoard2PlayerPlayer1InstantScoreText.text = "0"
@@ -304,16 +307,12 @@ class Scoreboard2Player : AppCompatActivity() {
             if (player1Score!!.text.isEmpty()) {
                 player1Score!!.error = getString(R.string.compulsory_text)
                 Toast.makeText(
-                    applicationContext,
-                    R.string.enter_all_scores_text,
-                    Toast.LENGTH_SHORT
+                    applicationContext, R.string.enter_all_scores_text, Toast.LENGTH_SHORT
                 ).show()
             } else if (player2Score!!.text.isEmpty()) {
                 player2Score!!.error = getString(R.string.compulsory_text)
                 Toast.makeText(
-                    applicationContext,
-                    R.string.enter_all_scores_text,
-                    Toast.LENGTH_SHORT
+                    applicationContext, R.string.enter_all_scores_text, Toast.LENGTH_SHORT
                 ).show()
             } else {
 
@@ -415,9 +414,29 @@ class Scoreboard2Player : AppCompatActivity() {
                     binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString().toInt()
 
                 if (gameType == "Deduct from the number") {
+
                     if (score1 <= 0 || score2 <= 0) {
                         winnerTeam()
                     }
+
+                    if (targetScore != null) {
+                        if (score1 <= targetScore.toString()
+                                .toInt() || score2 <= targetScore.toString().toInt()
+                        ) {
+                            winnerTeam()
+                        }
+                    }
+
+                } else {
+
+                    if (targetScore != null) {
+                        if (score1 >= targetScore.toString()
+                                .toInt() || score2 >= targetScore.toString().toInt()
+                        ) {
+                            winnerTeam()
+                        }
+                    }
+
                 }
 
                 dialog.dismiss()
@@ -643,9 +662,7 @@ class Scoreboard2Player : AppCompatActivity() {
                     .setPositiveButton(R.string.delete_text) { dialog, _ ->
                         if (scoreCount <= -1) {
                             Toast.makeText(
-                                this,
-                                R.string.no_round_to_delete_text,
-                                Toast.LENGTH_SHORT
+                                this, R.string.no_round_to_delete_text, Toast.LENGTH_SHORT
                             ).show()
                             dialog.dismiss()
                         } else {
@@ -690,12 +707,9 @@ class Scoreboard2Player : AppCompatActivity() {
 
                             dialog.dismiss()
                         }
-                    }
-                    .setNegativeButton(R.string.cancel_text) { dialog, _ ->
+                    }.setNegativeButton(R.string.cancel_text) { dialog, _ ->
                         dialog.dismiss()
-                    }
-                    .create()
-                    .show()
+                    }.create().show()
 
             } else {
 
@@ -708,9 +722,7 @@ class Scoreboard2Player : AppCompatActivity() {
                     .setPositiveButton(R.string.delete_text) { dialog, _ ->
                         if (scoreCount <= -1) {
                             Toast.makeText(
-                                this,
-                                R.string.no_round_to_delete_text,
-                                Toast.LENGTH_SHORT
+                                this, R.string.no_round_to_delete_text, Toast.LENGTH_SHORT
                             ).show()
                             dialog.dismiss()
                         } else {
@@ -755,13 +767,9 @@ class Scoreboard2Player : AppCompatActivity() {
 
                             dialog.dismiss()
                         }
-                    }
-                    .setNegativeButton(R.string.cancel_text) { dialog, _ ->
+                    }.setNegativeButton(R.string.cancel_text) { dialog, _ ->
                         dialog.dismiss()
-                    }
-                    .setCancelable(false)
-                    .create()
-                    .show()
+                    }.setCancelable(false).create().show()
 
             }
 
@@ -1197,16 +1205,12 @@ class Scoreboard2Player : AppCompatActivity() {
             if (player1Score!!.text.isEmpty()) {
                 player1Score.error = getString(R.string.compulsory_text)
                 Toast.makeText(
-                    applicationContext,
-                    R.string.enter_all_scores_text,
-                    Toast.LENGTH_SHORT
+                    applicationContext, R.string.enter_all_scores_text, Toast.LENGTH_SHORT
                 ).show()
             } else if (player2Score!!.text.isEmpty()) {
                 player2Score.error = getString(R.string.compulsory_text)
                 Toast.makeText(
-                    applicationContext,
-                    R.string.enter_all_scores_text,
-                    Toast.LENGTH_SHORT
+                    applicationContext, R.string.enter_all_scores_text, Toast.LENGTH_SHORT
                 ).show()
             } else {
 
@@ -1306,9 +1310,29 @@ class Scoreboard2Player : AppCompatActivity() {
                     binding.scoreBoard2PlayerPlayer2InstantScoreText.text.toString().toInt()
 
                 if (gameType == "Deduct from the number") {
+
                     if (score1 <= 0 || score2 <= 0) {
                         winnerTeam()
                     }
+
+                    if (targetScore != null) {
+                        if (score1 <= targetScore.toString()
+                                .toInt() || score2 <= targetScore.toString().toInt()
+                        ) {
+                            winnerTeam()
+                        }
+                    }
+
+                } else {
+
+                    if (targetScore != null) {
+                        if (score1 >= targetScore.toString()
+                                .toInt() || score2 >= targetScore.toString().toInt()
+                        ) {
+                            winnerTeam()
+                        }
+                    }
+
                 }
 
                 dialog.dismiss()
@@ -1330,8 +1354,7 @@ class Scoreboard2Player : AppCompatActivity() {
 
             val intentMain = Intent(applicationContext, MainMenu::class.java)
 
-            AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                .setTitle(R.string.exit_text)
+            AlertDialog.Builder(this, R.style.CustomAlertDialog).setTitle(R.string.exit_text)
                 .setMessage(R.string.exit_description_text)
                 .setPositiveButton(R.string.exit_text) { dialog, _ ->
                     startActivity(intentMain)
@@ -1339,13 +1362,9 @@ class Scoreboard2Player : AppCompatActivity() {
                     overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
                     dialog.dismiss()
-                }
-                .setNegativeButton(R.string.cancel_text) { dialog, _ ->
+                }.setNegativeButton(R.string.cancel_text) { dialog, _ ->
                     dialog.dismiss()
-                }
-                .setCancelable(false)
-                .create()
-                .show()
+                }.setCancelable(false).create().show()
 
         }
 
@@ -1354,19 +1373,14 @@ class Scoreboard2Player : AppCompatActivity() {
 
     //save & exit
     private fun saveExit() {
-        AlertDialog.Builder(this, R.style.CustomAlertDialog)
-            .setTitle(R.string.finish_game_text)
+        AlertDialog.Builder(this, R.style.CustomAlertDialog).setTitle(R.string.finish_game_text)
             .setMessage(R.string.finish_game_description_text)
             .setPositiveButton(R.string.finish_game_text) { dialog, _ ->
                 winnerTeam()
                 dialog.dismiss()
-            }
-            .setNegativeButton(R.string.cancel_text) { dialog, _ ->
+            }.setNegativeButton(R.string.cancel_text) { dialog, _ ->
                 dialog.dismiss()
-            }
-            .setCancelable(false)
-            .create()
-            .show()
+            }.setCancelable(false).create().show()
     }
 
 
@@ -1376,8 +1390,7 @@ class Scoreboard2Player : AppCompatActivity() {
 
         if (!isSelected) {
 
-            AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                .setTitle(R.string.exit_text)
+            AlertDialog.Builder(this, R.style.CustomAlertDialog).setTitle(R.string.exit_text)
                 .setMessage(R.string.exit_description_text)
                 .setPositiveButton(R.string.exit_text) { dialog, _ ->
 
@@ -1387,13 +1400,9 @@ class Scoreboard2Player : AppCompatActivity() {
                     overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
                     dialog.dismiss()
-                }
-                .setNegativeButton(R.string.cancel_text) { dialog, _ ->
+                }.setNegativeButton(R.string.cancel_text) { dialog, _ ->
                     dialog.dismiss()
-                }
-                .setCancelable(false)
-                .create()
-                .show()
+                }.setCancelable(false).create().show()
 
         }
 

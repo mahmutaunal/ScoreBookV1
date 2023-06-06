@@ -41,6 +41,10 @@ class TeamOperations : AppCompatActivity() {
 
     private var winType: String = "Lowest Score"
 
+    private var finishType: String = "Finish Game"
+
+    private var targetScore: EditText? = null
+
 
     @SuppressLint("VisibleForTests", "SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,9 +67,13 @@ class TeamOperations : AppCompatActivity() {
         //set first number
         firstNumber = binding.teamOperationsNumberOfStartsEditText
 
+        //set target score
+        targetScore = binding.teamOperationsTargetScoreEditText
+
         playerNumber()
         playerType()
         gameType()
+        setFinishType()
         setWinType()
 
         setInfo()
@@ -74,7 +82,7 @@ class TeamOperations : AppCompatActivity() {
         setPlayerTypeRadioButtonsClickable()
 
         //navigate Scoreboard Activity with number of player
-        binding.teamOperationsStartButton.setOnClickListener { controlUsernames() }
+        binding.teamOperationsStartButton.setOnClickListener { controlTargetScoreAndFirstNumber() }
 
 
         //on back pressed turn back to main menu
@@ -82,6 +90,50 @@ class TeamOperations : AppCompatActivity() {
             val intentMain = Intent(applicationContext, MainMenu::class.java)
             startActivity(intentMain)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        }
+
+    }
+
+
+    //check target score and first number
+    private fun controlTargetScoreAndFirstNumber() {
+
+        if (gameType == "Deduct from the number") {
+
+            if (targetScore!!.text.toString().toInt() >= firstNumber!!.text.toString().toInt()) {
+
+                binding.teamOperationsTargetScoreEditTextLayout.error =
+                    getString(R.string.error_text)
+                binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                    getString(R.string.error_text)
+
+                AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                    .setTitle(R.string.error_text)
+                    .setMessage(R.string.target_and_first_number_error_description_text)
+                    .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
+                    .setCancelable(false)
+                    .create()
+                    .show()
+
+            } else {
+                controlUsernames()
+            }
+
+        } else {
+
+            if (finishType == "Reach Score") {
+
+                if (targetScore!!.text.toString().toInt() <= 0) {
+                    binding.teamOperationsTargetScoreEditTextLayout.error =
+                        getString(R.string.error_text)
+                } else {
+                    controlUsernames()
+                }
+
+            } else {
+                controlUsernames()
+            }
+
         }
 
     }
@@ -119,7 +171,21 @@ class TeamOperations : AppCompatActivity() {
                             getString(R.string.compulsory_text)
                         Toast.makeText(
                             applicationContext,
-                            R.string.enter_player_name_text,
+                            R.string.enter_first_number_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
+                if (finishType == "Reach Score") {
+
+                    if (targetScore!!.text.toString() == "") {
+                        binding.teamOperationsTargetScoreEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_target_score_text,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -153,7 +219,21 @@ class TeamOperations : AppCompatActivity() {
                             getString(R.string.compulsory_text)
                         Toast.makeText(
                             applicationContext,
-                            R.string.enter_player_name_text,
+                            R.string.enter_first_number_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
+                if (finishType == "Reach Score") {
+
+                    if (targetScore!!.text.toString() == "") {
+                        binding.teamOperationsTargetScoreEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_target_score_text,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -170,13 +250,57 @@ class TeamOperations : AppCompatActivity() {
                             getString(R.string.compulsory_text)
                         Toast.makeText(
                             applicationContext,
-                            R.string.enter_player_name_text,
+                            R.string.enter_first_number_text,
                             Toast.LENGTH_SHORT
                         ).show()
 
-                    } else { setColorValue() }
+                    } else {
 
-                } else { setColorValue() }
+                        if (finishType == "Reach Score") {
+
+                            if (targetScore!!.text.toString() == "") {
+
+                                binding.teamOperationsTargetScoreEditTextLayout.error =
+                                    getString(R.string.compulsory_text)
+                                Toast.makeText(
+                                    applicationContext,
+                                    R.string.enter_target_score_text,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                            } else {
+                                setColorValue()
+                            }
+
+                        } else {
+                            setColorValue()
+                        }
+
+                    }
+
+                } else {
+
+                    if (finishType == "Reach Score") {
+
+                        if (targetScore!!.text.toString() == "") {
+
+                            binding.teamOperationsTargetScoreEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_target_score_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                        } else {
+                            setColorValue()
+                        }
+
+                    } else {
+                        setColorValue()
+                    }
+
+                }
 
             }
 
@@ -219,7 +343,21 @@ class TeamOperations : AppCompatActivity() {
                             getString(R.string.compulsory_text)
                         Toast.makeText(
                             applicationContext,
-                            R.string.enter_player_name_text,
+                            R.string.enter_first_number_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
+                if (finishType == "Reach Score") {
+
+                    if (targetScore!!.text.toString() == "") {
+                        binding.teamOperationsTargetScoreEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_target_score_text,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -263,7 +401,21 @@ class TeamOperations : AppCompatActivity() {
                             getString(R.string.compulsory_text)
                         Toast.makeText(
                             applicationContext,
-                            R.string.enter_player_name_text,
+                            R.string.enter_first_number_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
+                if (finishType == "Reach Score") {
+
+                    if (targetScore!!.text.toString() == "") {
+                        binding.teamOperationsTargetScoreEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_target_score_text,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -307,7 +459,21 @@ class TeamOperations : AppCompatActivity() {
                             getString(R.string.compulsory_text)
                         Toast.makeText(
                             applicationContext,
-                            R.string.enter_player_name_text,
+                            R.string.enter_first_number_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
+                if (finishType == "Reach Score") {
+
+                    if (targetScore!!.text.toString() == "") {
+                        binding.teamOperationsTargetScoreEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_target_score_text,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -324,13 +490,56 @@ class TeamOperations : AppCompatActivity() {
                             getString(R.string.compulsory_text)
                         Toast.makeText(
                             applicationContext,
-                            R.string.enter_player_name_text,
+                            R.string.enter_first_number_text,
                             Toast.LENGTH_SHORT
                         ).show()
 
-                    } else { setColorValue() }
+                    } else {
 
-                } else { setColorValue() }
+                        if (finishType == "Reach Score") {
+
+                            if (targetScore!!.text.toString() == "") {
+
+                                binding.teamOperationsTargetScoreEditTextLayout.error =
+                                    getString(R.string.compulsory_text)
+                                Toast.makeText(
+                                    applicationContext,
+                                    R.string.enter_target_score_text,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                            } else {
+                                setColorValue()
+                            }
+
+                        } else {
+                            setColorValue()
+                        }
+                    }
+
+                } else {
+
+                    if (finishType == "Reach Score") {
+
+                        if (targetScore!!.text.toString() == "") {
+
+                            binding.teamOperationsTargetScoreEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_target_score_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                        } else {
+                            setColorValue()
+                        }
+
+                    } else {
+                        setColorValue()
+                    }
+
+                }
 
             }
 
@@ -385,7 +594,21 @@ class TeamOperations : AppCompatActivity() {
                                 getString(R.string.compulsory_text)
                             Toast.makeText(
                                 applicationContext,
-                                R.string.enter_player_name_text,
+                                R.string.enter_first_number_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+
+                    if (finishType == "Reach Score") {
+
+                        if (targetScore!!.text.toString() == "") {
+                            binding.teamOperationsTargetScoreEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_target_score_text,
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -439,7 +662,21 @@ class TeamOperations : AppCompatActivity() {
                                 getString(R.string.compulsory_text)
                             Toast.makeText(
                                 applicationContext,
-                                R.string.enter_player_name_text,
+                                R.string.enter_first_number_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+
+                    if (finishType == "Reach Score") {
+
+                        if (targetScore!!.text.toString() == "") {
+                            binding.teamOperationsTargetScoreEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_target_score_text,
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -493,7 +730,21 @@ class TeamOperations : AppCompatActivity() {
                                 getString(R.string.compulsory_text)
                             Toast.makeText(
                                 applicationContext,
-                                R.string.enter_player_name_text,
+                                R.string.enter_first_number_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+
+                    if (finishType == "Reach Score") {
+
+                        if (targetScore!!.text.toString() == "") {
+                            binding.teamOperationsTargetScoreEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_target_score_text,
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -547,7 +798,21 @@ class TeamOperations : AppCompatActivity() {
                                 getString(R.string.compulsory_text)
                             Toast.makeText(
                                 applicationContext,
-                                R.string.enter_player_name_text,
+                                R.string.enter_first_number_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+
+                    if (finishType == "Reach Score") {
+
+                        if (targetScore!!.text.toString() == "") {
+                            binding.teamOperationsTargetScoreEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_target_score_text,
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -564,13 +829,56 @@ class TeamOperations : AppCompatActivity() {
                                 getString(R.string.compulsory_text)
                             Toast.makeText(
                                 applicationContext,
-                                R.string.enter_player_name_text,
+                                R.string.enter_first_number_text,
                                 Toast.LENGTH_SHORT
                             ).show()
 
-                        } else { setColorValue() }
+                        } else {
 
-                    } else { setColorValue() }
+                            if (finishType == "Reach Score") {
+
+                                if (targetScore!!.text.toString() == "") {
+
+                                    binding.teamOperationsTargetScoreEditTextLayout.error =
+                                        getString(R.string.compulsory_text)
+                                    Toast.makeText(
+                                        applicationContext,
+                                        R.string.enter_target_score_text,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                } else {
+                                    setColorValue()
+                                }
+
+                            } else {
+                                setColorValue()
+                            }
+                        }
+
+                    } else {
+
+                        if (finishType == "Reach Score") {
+
+                            if (targetScore!!.text.toString() == "") {
+
+                                binding.teamOperationsTargetScoreEditTextLayout.error =
+                                    getString(R.string.compulsory_text)
+                                Toast.makeText(
+                                    applicationContext,
+                                    R.string.enter_target_score_text,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                            } else {
+                                setColorValue()
+                            }
+
+                        } else {
+                            setColorValue()
+                        }
+
+                    }
 
                 }
 
@@ -603,7 +911,21 @@ class TeamOperations : AppCompatActivity() {
                                 getString(R.string.compulsory_text)
                             Toast.makeText(
                                 applicationContext,
-                                R.string.enter_player_name_text,
+                                R.string.enter_first_number_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+
+                    if (finishType == "Reach Score") {
+
+                        if (targetScore!!.text.toString() == "") {
+                            binding.teamOperationsTargetScoreEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_target_score_text,
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -637,7 +959,21 @@ class TeamOperations : AppCompatActivity() {
                                 getString(R.string.compulsory_text)
                             Toast.makeText(
                                 applicationContext,
-                                R.string.enter_player_name_text,
+                                R.string.enter_first_number_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+
+                    if (finishType == "Reach Score") {
+
+                        if (targetScore!!.text.toString() == "") {
+                            binding.teamOperationsTargetScoreEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_target_score_text,
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -654,19 +990,63 @@ class TeamOperations : AppCompatActivity() {
                                 getString(R.string.compulsory_text)
                             Toast.makeText(
                                 applicationContext,
-                                R.string.enter_player_name_text,
+                                R.string.enter_first_number_text,
                                 Toast.LENGTH_SHORT
                             ).show()
 
-                        } else { setColorValue() }
+                        } else {
 
-                    } else { setColorValue() }
+                            if (finishType == "Reach Score") {
+
+                                if (targetScore!!.text.toString() == "") {
+
+                                    binding.teamOperationsTargetScoreEditTextLayout.error =
+                                        getString(R.string.compulsory_text)
+                                    Toast.makeText(
+                                        applicationContext,
+                                        R.string.enter_target_score_text,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                } else {
+                                    setColorValue()
+                                }
+
+                            } else {
+                                setColorValue()
+                            }
+                        }
+
+                    } else {
+
+                        if (finishType == "Reach Score") {
+
+                            if (targetScore!!.text.toString() == "") {
+
+                                binding.teamOperationsTargetScoreEditTextLayout.error =
+                                    getString(R.string.compulsory_text)
+                                Toast.makeText(
+                                    applicationContext,
+                                    R.string.enter_target_score_text,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                            } else {
+                                setColorValue()
+                            }
+
+                        } else {
+                            setColorValue()
+                        }
+
+                    }
 
                 }
 
             }
 
         }
+
     }
 
 
@@ -797,9 +1177,10 @@ class TeamOperations : AppCompatActivity() {
                     intentScoreboard2.putExtra("Yellow Value", yellowValue)
                     intentScoreboard2.putExtra("Black Value", blackValue)
 
-                    //send game type and first number
+                    //send game type, first number and target score
                     intentScoreboard2.putExtra("Game Type", gameType)
                     intentScoreboard2.putExtra("Number of Starts", firstNumber!!.text.toString())
+                    intentScoreboard2.putExtra("Target Score", targetScore!!.text.toString())
 
                     //send win type
                     intentScoreboard2.putExtra("Win Type", winType)
@@ -839,9 +1220,10 @@ class TeamOperations : AppCompatActivity() {
                     intentScoreboard3.putExtra("Yellow Value", yellowValue)
                     intentScoreboard3.putExtra("Black Value", blackValue)
 
-                    //send game type and first number
+                    //send game type, first number and target score
                     intentScoreboard3.putExtra("Game Type", gameType)
                     intentScoreboard3.putExtra("Number of Starts", firstNumber!!.text.toString())
+                    intentScoreboard3.putExtra("Target Score", targetScore!!.text.toString())
 
                     //send win type
                     intentScoreboard3.putExtra("Win Type", winType)
@@ -884,12 +1266,13 @@ class TeamOperations : AppCompatActivity() {
                         intentScoreboard4.putExtra("Yellow Value", yellowValue)
                         intentScoreboard4.putExtra("Black Value", blackValue)
 
-                        //send game type and first number
+                        //send game type, first number and target score
                         intentScoreboard4.putExtra("Game Type", gameType)
                         intentScoreboard4.putExtra(
                             "Number of Starts",
                             firstNumber!!.text.toString()
                         )
+                        intentScoreboard4.putExtra("Target Score", targetScore!!.text.toString())
 
                         //send win type
                         intentScoreboard4.putExtra("Win Type", winType)
@@ -917,12 +1300,13 @@ class TeamOperations : AppCompatActivity() {
                 intentScoreboard2.putExtra("Yellow Value", yellowValue)
                 intentScoreboard2.putExtra("Black Value", blackValue)
 
-                //send game type and first number
+                //send game type, first number and target score
                 intentScoreboard2.putExtra("Game Type", gameType)
                 intentScoreboard2.putExtra(
                     "Number of Starts",
                     firstNumber!!.text.toString()
                 )
+                intentScoreboard2.putExtra("Target Score", targetScore!!.text.toString())
 
                 //send win type
                 intentScoreboard2.putExtra("Win Type", winType)
@@ -1163,7 +1547,7 @@ class TeamOperations : AppCompatActivity() {
         binding.teamOperationsAddScoreRadioButton.setOnClickListener {
             gameType = "Add Score"
             binding.teamOperationsNumberOfStartsEditTextLayout.visibility = View.GONE
-            firstNumber!!.setText("0000")
+            firstNumber!!.setText("0")
         }
     }
 
@@ -1175,6 +1559,22 @@ class TeamOperations : AppCompatActivity() {
         }
         binding.teamOperationsLowestScoreRadioButton.setOnClickListener { winType = "Lowest Score" }
     }
+
+
+    //set finish type
+    private fun setFinishType() {
+        binding.teamOperationsFinishTypeFinishGameRadioButton.setOnClickListener {
+            finishType = "Finish Game"
+            binding.teamOperationsTargetScoreEditTextLayout.visibility = View.GONE
+            targetScore!!.text = null
+        }
+        binding.teamOperationsFinishTypeReachScoreRadioButton.setOnClickListener {
+            finishType = "Reach Score"
+            binding.teamOperationsTargetScoreEditTextLayout.visibility = View.VISIBLE
+            targetScore!!.setText("")
+        }
+    }
+
 
     //set information for options
     private fun setInfo() {
@@ -1206,6 +1606,17 @@ class TeamOperations : AppCompatActivity() {
             AlertDialog.Builder(this, R.style.CustomAlertDialog)
                 .setTitle(R.string.gameType_text)
                 .setMessage(R.string.info_game_type_text)
+                .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
+                .create()
+                .show()
+
+        }
+
+        binding.teamOperationsFinishTypeImageView.setOnClickListener {
+
+            AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                .setTitle(R.string.finishType_text2)
+                .setMessage(R.string.info_finish_type_text)
                 .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
                 .create()
                 .show()
