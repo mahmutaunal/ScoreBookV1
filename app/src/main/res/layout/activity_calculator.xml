@@ -59,7 +59,6 @@
         android:layout_above="@id/buttons_layout"
         android:layout_margin="16dp"
         android:layout_marginEnd="16dp"
-        android:text="0"
         android:textAlignment="textEnd"
         android:textColor="@color/blue"
         android:textSize="42sp"
@@ -358,10 +357,11 @@
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 android:layout_margin="12dp"
-                android:backgroundTint="#FF9800"
+                android:backgroundTint="#00A6FF"
                 android:text="="
                 android:textColor="@color/white"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 app:cornerRadius="36dp"
                 tools:ignore="TextContrastCheck" />
 

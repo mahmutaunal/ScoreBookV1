@@ -32,6 +32,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:orientation="horizontal">
@@ -85,16 +86,16 @@
             </RadioGroup>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="center"
                 android:layout_marginStart="20dp"
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="end"
                     android:orientation="horizontal">
 
                     <TextView
@@ -121,7 +122,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_gravity="end"
                         android:layout_marginStart="20dp"
                         android:hint="@string/score_editText"
                         android:importantForAutofill="no"
@@ -146,9 +147,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="end"
                     android:orientation="horizontal">
 
                     <TextView
@@ -175,7 +176,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_gravity="end"
                         android:layout_marginStart="20dp"
                         android:hint="@string/score_editText"
                         android:importantForAutofill="no"
@@ -200,9 +201,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="end"
                     android:orientation="horizontal">
 
                     <TextView
@@ -229,7 +230,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_gravity="end"
                         android:layout_marginStart="20dp"
                         android:hint="@string/score_editText"
                         android:importantForAutofill="no"
@@ -259,7 +260,6 @@
                 android:id="@+id/addScore3Player_cross_linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:orientation="vertical"
@@ -270,7 +270,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="48dp"
                     android:fontFamily="@font/comfortaa"
                     android:text="X"
                     android:textColor="?android:attr/textColorPrimary"
@@ -281,7 +281,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="40dp"
                     android:fontFamily="@font/comfortaa"
                     android:text="X"
                     android:textColor="?android:attr/textColorPrimary"
@@ -292,7 +292,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="35dp"
                     android:fontFamily="@font/comfortaa"
                     android:text="X"
                     android:textColor="?android:attr/textColorPrimary"
@@ -304,7 +304,6 @@
                 android:id="@+id/addScore3Player_multiply_linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:layout_marginStart="5dp"
                 android:orientation="vertical"
                 android:visibility="gone">
@@ -314,7 +313,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="43dp"
                     android:fontFamily="@font/comfortaa"
                     android:text="1"
                     android:textColor="?android:attr/textColorPrimary"
@@ -325,7 +324,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="35dp"
                     android:fontFamily="@font/comfortaa"
                     android:text="1"
                     android:textColor="?android:attr/textColorPrimary"
@@ -336,7 +335,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="29dp"
                     android:fontFamily="@font/comfortaa"
                     android:text="1"
                     android:textColor="?android:attr/textColorPrimary"

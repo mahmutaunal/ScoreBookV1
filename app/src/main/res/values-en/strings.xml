@@ -4,6 +4,7 @@
     <string name="pastGames_button">Saved Games</string>
     <string name="newGame_text">New Game</string>
     <string name="gameName_text">Game Name</string>
+    <string name="gameName_text2">Game Name (Optional)</string>
     <string name="player1_name">Player-1 Name</string>
     <string name="player2_name">Player-2 Name</string>
     <string name="player3_name">Player-3 Name</string>
@@ -23,7 +24,7 @@
     <string name="scoreboard_text2">Score \nBoard</string>
     <string name="add_score_text2">Add \nScore</string>
     <string name="finish_game_text2">Finish \nGame</string>
-    <string name="zero_score_text">0000</string>
+    <string name="zero_score_text">0</string>
     <string name="score_editText">Score</string>
     <string name="scoreboard_bottom_menu">Scoreboard</string>
     <string name="add_score_bottom_menu">Add Score</string>

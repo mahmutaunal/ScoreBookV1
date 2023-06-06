@@ -89,11 +89,29 @@ class ScoreAdapter4Player(private val scoreList4Player: ArrayList<ScoreData4Play
         holder.number.text = newList.gameNumber.toString()
 
         when (newList.color) {
-            "White" -> holder.colorBackground.setCardBackgroundColor(Color.TRANSPARENT)
-            "Red" -> holder.colorBackground.setCardBackgroundColor(Color.RED)
-            "Blue" -> holder.colorBackground.setCardBackgroundColor(Color.BLUE)
-            "Yellow" -> holder.colorBackground.setCardBackgroundColor(Color.YELLOW)
-            "Black" -> holder.colorBackground.setCardBackgroundColor(Color.BLACK)
+            "White" -> {
+                holder.colorBackground.visibility = View.GONE
+            }
+
+            "Red" -> {
+                holder.colorBackground.visibility = View.VISIBLE
+                holder.colorBackground.setCardBackgroundColor(Color.RED)
+            }
+
+            "Blue" -> {
+                holder.colorBackground.visibility = View.VISIBLE
+                holder.colorBackground.setCardBackgroundColor(Color.BLUE)
+            }
+
+            "Yellow" -> {
+                holder.colorBackground.visibility = View.VISIBLE
+                holder.colorBackground.setCardBackgroundColor(Color.YELLOW)
+            }
+
+            "Black" -> {
+                holder.colorBackground.visibility = View.VISIBLE
+                holder.colorBackground.setCardBackgroundColor(Color.BLACK)
+            }
         }
     }
 

@@ -75,12 +75,12 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="20dp"
-                        android:hint="@string/gameName_text"
+                        android:hint="@string/gameName_text2"
                         android:importantForAutofill="no"
                         app:boxBackgroundColor="@color/edittext_color"
                         app:boxStrokeColor="@color/teal_200"
                         app:counterEnabled="true"
-                        app:counterMaxLength="10"
+                        app:counterMaxLength="50"
                         app:endIconMode="clear_text"
                         app:hintTextColor="@color/teal_200"
                         app:startIconDrawable="@drawable/ic_game">
@@ -91,7 +91,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"
                             android:inputType="textCapSentences"
-                            android:maxLength="10"
+                            android:maxLength="50"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="14sp"
                             tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />

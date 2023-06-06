@@ -29,9 +29,10 @@
 
         <TextView
             android:id="@+id/scoreboard2Player_player1Name_textView"
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa"
+            android:maxWidth="150dp"
             android:text="@string/player1_text"
             android:textAlignment="textEnd"
             android:textColor="?android:attr/textColorPrimary"
@@ -49,12 +50,13 @@
 
         <TextView
             android:id="@+id/scoreboard2Player_player1Score_textView"
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/comfortaa"
+            android:maxWidth="100dp"
             android:text="@string/zero_score_text"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="20sp" />
 
@@ -70,9 +72,10 @@
 
         <TextView
             android:id="@+id/scoreboard2Player_player2Name_textView"
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa"
+            android:maxWidth="150dp"
             android:text="@string/player2_text"
             android:textAlignment="textEnd"
             android:textColor="?android:attr/textColorPrimary"
@@ -90,12 +93,13 @@
 
         <TextView
             android:id="@+id/scoreboard2Player_player2Score_textView"
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/comfortaa"
+            android:maxWidth="70dp"
             android:text="@string/zero_score_text"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="20sp" />
 

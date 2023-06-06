@@ -65,9 +65,11 @@ class Scoreboard4Player : AppCompatActivity() {
     private var yellowValue: Int = 0
     private var blackValue: Int = 0
 
+    private var colorValue: Boolean = true
+
     private var gameType: String = "Add Score"
 
-    private var firstNumber: String = "0000"
+    private var firstNumber: String = "0"
 
     private var firstScore1: Int = 1
     private var firstScore2: Int = 1
@@ -124,10 +126,10 @@ class Scoreboard4Player : AppCompatActivity() {
         firstNumber = intent.getStringExtra("Number of Starts").toString()
 
         if (firstNumber.isEmpty()) {
-            binding.scoreBoard4PlayerPlayer1InstantScoreText.text = "0000"
-            binding.scoreBoard4PlayerPlayer2InstantScoreText.text = "0000"
-            binding.scoreBoard4PlayerPlayer3InstantScoreText.text = "0000"
-            binding.scoreBoard4PlayerPlayer4InstantScoreText.text = "0000"
+            binding.scoreBoard4PlayerPlayer1InstantScoreText.text = "0"
+            binding.scoreBoard4PlayerPlayer2InstantScoreText.text = "0"
+            binding.scoreBoard4PlayerPlayer3InstantScoreText.text = "0"
+            binding.scoreBoard4PlayerPlayer4InstantScoreText.text = "0"
         } else {
             binding.scoreBoard4PlayerPlayer1InstantScoreText.text = firstNumber
             binding.scoreBoard4PlayerPlayer2InstantScoreText.text = firstNumber
@@ -195,6 +197,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
         color = "White"
 
+        colorValue = true
+
         //set playerScore view
         player1Score = view.findViewById(R.id.addScore4Player_player1Score_editText)
         player2Score = view.findViewById(R.id.addScore4Player_player2Score_editText)
@@ -237,6 +241,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
             multiplyNumber = 1
 
+            colorValue = true
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
@@ -250,6 +256,8 @@ class Scoreboard4Player : AppCompatActivity() {
             multiply.visibility = View.VISIBLE
 
             multiplyNumber = redValue
+
+            colorValue = false
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -265,6 +273,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
             multiplyNumber = blueValue
 
+            colorValue = false
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
@@ -279,6 +289,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
             multiplyNumber = yellowValue
 
+            colorValue = false
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
@@ -292,6 +304,8 @@ class Scoreboard4Player : AppCompatActivity() {
             multiply.visibility = View.VISIBLE
 
             multiplyNumber = blackValue
+
+            colorValue = false
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -365,6 +379,7 @@ class Scoreboard4Player : AppCompatActivity() {
                             gameNumber,
                             multiplyNumber,
                             color,
+                            colorValue,
                             false
                         )
                     )
@@ -425,6 +440,7 @@ class Scoreboard4Player : AppCompatActivity() {
                             gameNumber,
                             multiplyNumber,
                             color,
+                            colorValue,
                             false
                         )
                     )
@@ -917,6 +933,7 @@ class Scoreboard4Player : AppCompatActivity() {
                     .setNegativeButton(R.string.cancel_text) { dialog, _ ->
                         dialog.dismiss()
                     }
+                    .setCancelable(false)
                     .create()
                     .show()
 
@@ -1101,7 +1118,7 @@ class Scoreboard4Player : AppCompatActivity() {
 
 
         //set visibility
-        if (redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1) {
+        if ((redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1) || scoreList4Player[position].colorValue) {
 
             color.visibility = View.GONE
 
@@ -1236,6 +1253,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
                 multiplyNumber = 1
 
+                colorValue = true
+
                 cross.visibility = View.GONE
                 multiply.visibility = View.GONE
 
@@ -1255,6 +1274,8 @@ class Scoreboard4Player : AppCompatActivity() {
                 blackButton.isChecked = false
 
                 multiplyNumber = redValue
+
+                colorValue = false
 
                 cross.visibility = View.VISIBLE
                 multiply.visibility = View.VISIBLE
@@ -1276,6 +1297,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
                 multiplyNumber = blueValue
 
+                colorValue = false
+
                 cross.visibility = View.VISIBLE
                 multiply.visibility = View.VISIBLE
 
@@ -1295,6 +1318,8 @@ class Scoreboard4Player : AppCompatActivity() {
                 blackButton.isChecked = false
 
                 multiplyNumber = yellowValue
+
+                colorValue = false
 
                 cross.visibility = View.VISIBLE
                 multiply.visibility = View.VISIBLE
@@ -1316,6 +1341,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
                 multiplyNumber = blackValue
 
+                colorValue = false
+
                 cross.visibility = View.VISIBLE
                 multiply.visibility = View.VISIBLE
 
@@ -1336,6 +1363,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
             multiplyNumber = 1
 
+            colorValue = true
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
@@ -1349,6 +1378,8 @@ class Scoreboard4Player : AppCompatActivity() {
             multiply.visibility = View.VISIBLE
 
             multiplyNumber = redValue
+
+            colorValue = false
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -1364,6 +1395,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
             multiplyNumber = blueValue
 
+            colorValue = false
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
@@ -1377,6 +1410,8 @@ class Scoreboard4Player : AppCompatActivity() {
             multiply.visibility = View.VISIBLE
 
             multiplyNumber = yellowValue
+
+            colorValue = false
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -1392,6 +1427,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
             multiplyNumber = blackValue
 
+            colorValue = false
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
@@ -1405,10 +1442,15 @@ class Scoreboard4Player : AppCompatActivity() {
         player3Text.text = player3Name
         player4Text.text = player4Name
 
-        player1Score.setText(selectedScore1)
-        player2Score.setText(selectedScore2)
-        player3Score.setText(selectedScore3)
-        player4Score.setText(selectedScore4)
+        val player1ScoreWithoutMultiply = selectedScore1.toInt() / multiplyNumber
+        val player2ScoreWithoutMultiply = selectedScore2.toInt() / multiplyNumber
+        val player3ScoreWithoutMultiply = selectedScore3.toInt() / multiplyNumber
+        val player4ScoreWithoutMultiply = selectedScore4.toInt() / multiplyNumber
+
+        player1Score.setText(player1ScoreWithoutMultiply.toString())
+        player2Score.setText(player2ScoreWithoutMultiply.toString())
+        player3Score.setText(player3ScoreWithoutMultiply.toString())
+        player4Score.setText(player4ScoreWithoutMultiply.toString())
 
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
@@ -1467,6 +1509,7 @@ class Scoreboard4Player : AppCompatActivity() {
                     scoreList4Player[position].gameNumber = selectedGameNumber
                     scoreList4Player[position].multiplyNumber = multiplyNumber
                     scoreList4Player[position].color = color
+                    scoreList4Player[position].colorValue = colorValue
 
                     binding.scoreBoard4PlayerRoundNumberText.text =
                         "$gameNumber. ${getString(R.string.round_text)}"
@@ -1526,6 +1569,7 @@ class Scoreboard4Player : AppCompatActivity() {
                     scoreList4Player[position].gameNumber = selectedGameNumber
                     scoreList4Player[position].multiplyNumber = multiplyNumber
                     scoreList4Player[position].color = color
+                    scoreList4Player[position].colorValue = colorValue
 
                     binding.scoreBoard4PlayerRoundNumberText.text =
                         "$gameNumber. ${getString(R.string.round_text)}"
@@ -1633,7 +1677,7 @@ class Scoreboard4Player : AppCompatActivity() {
                 winnerTeam()
                 dialog.dismiss()
             }
-            .setNegativeButton(R.string.back_text) { dialog, _ ->
+            .setNegativeButton(R.string.cancel_text) { dialog, _ ->
                 dialog.dismiss()
             }
             .setCancelable(false)

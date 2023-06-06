@@ -65,9 +65,11 @@ class Scoreboard2Player : AppCompatActivity() {
     private var yellowValue: Int = 0
     private var blackValue: Int = 0
 
+    private var colorValue: Boolean = true
+
     private var gameType: String = "Add Score"
 
-    private var firstNumber: String = "0000"
+    private var firstNumber: String = "0"
 
     private var firstScore1: Int = 1
     private var firstScore2: Int = 1
@@ -120,8 +122,8 @@ class Scoreboard2Player : AppCompatActivity() {
         firstNumber = intent.getStringExtra("Number of Starts").toString()
 
         if (firstNumber.isEmpty()) {
-            binding.scoreBoard2PlayerPlayer1InstantScoreText.text = "0000"
-            binding.scoreBoard2PlayerPlayer2InstantScoreText.text = "0000"
+            binding.scoreBoard2PlayerPlayer1InstantScoreText.text = "0"
+            binding.scoreBoard2PlayerPlayer2InstantScoreText.text = "0"
         } else {
             binding.scoreBoard2PlayerPlayer1InstantScoreText.text = firstNumber
             binding.scoreBoard2PlayerPlayer2InstantScoreText.text = firstNumber
@@ -187,6 +189,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
         color = "White"
 
+        colorValue = true
+
         //set playerScore view
         player1Score = view.findViewById(R.id.addScore2Player_player1Score_editText)
         player2Score = view.findViewById(R.id.addScore2Player_player2Score_editText)
@@ -223,6 +227,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
             multiplyNumber = 1
 
+            colorValue = true
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
 
@@ -234,6 +240,8 @@ class Scoreboard2Player : AppCompatActivity() {
             multiply.visibility = View.VISIBLE
 
             multiplyNumber = redValue
+
+            colorValue = false
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -247,6 +255,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
             multiplyNumber = blueValue
 
+            colorValue = false
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
 
@@ -259,6 +269,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
             multiplyNumber = yellowValue
 
+            colorValue = false
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
 
@@ -270,6 +282,8 @@ class Scoreboard2Player : AppCompatActivity() {
             multiply.visibility = View.VISIBLE
 
             multiplyNumber = blackValue
+
+            colorValue = false
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -319,6 +333,7 @@ class Scoreboard2Player : AppCompatActivity() {
                             gameNumber,
                             multiplyNumber,
                             color,
+                            colorValue,
                             false
                         )
                     )
@@ -363,6 +378,7 @@ class Scoreboard2Player : AppCompatActivity() {
                             gameNumber,
                             multiplyNumber,
                             color,
+                            colorValue,
                             false
                         )
                     )
@@ -743,6 +759,7 @@ class Scoreboard2Player : AppCompatActivity() {
                     .setNegativeButton(R.string.cancel_text) { dialog, _ ->
                         dialog.dismiss()
                     }
+                    .setCancelable(false)
                     .create()
                     .show()
 
@@ -887,7 +904,7 @@ class Scoreboard2Player : AppCompatActivity() {
 
 
         //set visibility
-        if (redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1) {
+        if ((redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1) || scoreList2Player[position].colorValue) {
 
             color.visibility = View.GONE
 
@@ -997,6 +1014,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
                 multiplyNumber = 1
 
+                colorValue = true
+
                 cross.visibility = View.GONE
                 multiply.visibility = View.GONE
 
@@ -1014,6 +1033,8 @@ class Scoreboard2Player : AppCompatActivity() {
                 blackButton.isChecked = false
 
                 multiplyNumber = redValue
+
+                colorValue = false
 
                 cross.visibility = View.VISIBLE
                 multiply.visibility = View.VISIBLE
@@ -1033,6 +1054,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
                 multiplyNumber = blueValue
 
+                colorValue = false
+
                 cross.visibility = View.VISIBLE
                 multiply.visibility = View.VISIBLE
 
@@ -1050,6 +1073,8 @@ class Scoreboard2Player : AppCompatActivity() {
                 blackButton.isChecked = false
 
                 multiplyNumber = yellowValue
+
+                colorValue = false
 
                 cross.visibility = View.VISIBLE
                 multiply.visibility = View.VISIBLE
@@ -1069,6 +1094,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
                 multiplyNumber = blackValue
 
+                colorValue = false
+
                 cross.visibility = View.VISIBLE
                 multiply.visibility = View.VISIBLE
 
@@ -1087,6 +1114,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
             multiplyNumber = 1
 
+            colorValue = true
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
 
@@ -1098,6 +1127,8 @@ class Scoreboard2Player : AppCompatActivity() {
             multiply.visibility = View.VISIBLE
 
             multiplyNumber = redValue
+
+            colorValue = false
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -1111,6 +1142,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
             multiplyNumber = blueValue
 
+            colorValue = false
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
 
@@ -1122,6 +1155,8 @@ class Scoreboard2Player : AppCompatActivity() {
             multiply.visibility = View.VISIBLE
 
             multiplyNumber = yellowValue
+
+            colorValue = false
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -1135,6 +1170,8 @@ class Scoreboard2Player : AppCompatActivity() {
 
             multiplyNumber = blackValue
 
+            colorValue = false
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
 
@@ -1144,8 +1181,11 @@ class Scoreboard2Player : AppCompatActivity() {
         player1Text.text = player1Name
         player2Text.text = player2Name
 
-        player1Score.setText(selectedScore1)
-        player2Score.setText(selectedScore2)
+        val player1ScoreWithoutMultiply = selectedScore1.toInt() / multiplyNumber
+        val player2ScoreWithoutMultiply = selectedScore2.toInt() / multiplyNumber
+
+        player1Score.setText(player1ScoreWithoutMultiply.toString())
+        player2Score.setText(player2ScoreWithoutMultiply.toString())
 
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
@@ -1185,6 +1225,7 @@ class Scoreboard2Player : AppCompatActivity() {
                     scoreList2Player[position].gameNumber = selectedGameNumber
                     scoreList2Player[position].multiplyNumber = multiplyNumber
                     scoreList2Player[position].color = color
+                    scoreList2Player[position].colorValue = colorValue
 
                     scoreAdapter2Player.notifyDataSetChanged()
 
@@ -1228,6 +1269,7 @@ class Scoreboard2Player : AppCompatActivity() {
                     scoreList2Player[position].gameNumber = selectedGameNumber
                     scoreList2Player[position].multiplyNumber = multiplyNumber
                     scoreList2Player[position].color = color
+                    scoreList2Player[position].colorValue = colorValue
 
                     scoreAdapter2Player.notifyDataSetChanged()
 
@@ -1319,7 +1361,7 @@ class Scoreboard2Player : AppCompatActivity() {
                 winnerTeam()
                 dialog.dismiss()
             }
-            .setNegativeButton(R.string.back_text) { dialog, _ ->
+            .setNegativeButton(R.string.cancel_text) { dialog, _ ->
                 dialog.dismiss()
             }
             .setCancelable(false)

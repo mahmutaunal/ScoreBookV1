@@ -93,6 +93,7 @@ class TeamOperations : AppCompatActivity() {
         if (playerNumber() == 2) {
 
             if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+
                 binding.teamOperationsPlayer1NameEditTextLayout.error =
                     getString(R.string.compulsory_text)
                 Toast.makeText(
@@ -100,16 +101,19 @@ class TeamOperations : AppCompatActivity() {
                     R.string.enter_player_name_text,
                     Toast.LENGTH_SHORT
                 ).show()
-            } else if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
-                binding.teamOperationsPlayer2NameEditTextLayout.error =
-                    getString(R.string.compulsory_text)
-                Toast.makeText(
-                    applicationContext,
-                    R.string.enter_player_name_text,
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
+
+                if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+                    binding.teamOperationsPlayer2NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
                 if (gameType == "Deduct from the number") {
+
                     if (firstNumber!!.text.toString() == "") {
                         binding.teamOperationsNumberOfStartsEditTextLayout.error =
                             getString(R.string.compulsory_text)
@@ -118,25 +122,12 @@ class TeamOperations : AppCompatActivity() {
                             R.string.enter_player_name_text,
                             Toast.LENGTH_SHORT
                         ).show()
-                    } else {
-                        setColorValue()
                     }
-                } else {
-                    setColorValue()
+
                 }
-            }
 
-        } else if (playerNumber() == 3) {
-
-            if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
-                binding.teamOperationsPlayer1NameEditTextLayout.error =
-                    getString(R.string.compulsory_text)
-                Toast.makeText(
-                    applicationContext,
-                    R.string.enter_player_name_text,
-                    Toast.LENGTH_SHORT
-                ).show()
             } else if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+
                 binding.teamOperationsPlayer2NameEditTextLayout.error =
                     getString(R.string.compulsory_text)
                 Toast.makeText(
@@ -144,35 +135,6 @@ class TeamOperations : AppCompatActivity() {
                     R.string.enter_player_name_text,
                     Toast.LENGTH_SHORT
                 ).show()
-            } else if (binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
-                binding.teamOperationsPlayer3NameEditTextLayout.error =
-                    getString(R.string.compulsory_text)
-                Toast.makeText(
-                    applicationContext,
-                    R.string.enter_player_name_text,
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                if (gameType == "Deduct from the number") {
-                    if (firstNumber!!.text.toString() == "") {
-                        binding.teamOperationsNumberOfStartsEditTextLayout.error =
-                            getString(R.string.compulsory_text)
-                        Toast.makeText(
-                            applicationContext,
-                            R.string.enter_player_name_text,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        setColorValue()
-                    }
-                } else {
-                    setColorValue()
-                }
-            }
-
-        } else if (playerNumber() == 4) {
-
-            if (playerType() == "Single") {
 
                 if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
                     binding.teamOperationsPlayer1NameEditTextLayout.error =
@@ -182,7 +144,55 @@ class TeamOperations : AppCompatActivity() {
                         R.string.enter_player_name_text,
                         Toast.LENGTH_SHORT
                     ).show()
-                } else if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+                }
+
+                if (gameType == "Deduct from the number") {
+
+                    if (firstNumber!!.text.toString() == "") {
+                        binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
+            } else {
+
+                if (gameType == "Deduct from the number") {
+
+                    if (firstNumber!!.text.toString() == "") {
+
+                        binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    } else { setColorValue() }
+
+                } else { setColorValue() }
+
+            }
+
+        } else if (playerNumber() == 3) {
+
+            if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+
+                binding.teamOperationsPlayer1NameEditTextLayout.error =
+                    getString(R.string.compulsory_text)
+                Toast.makeText(
+                    applicationContext,
+                    R.string.enter_player_name_text,
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
                     binding.teamOperationsPlayer2NameEditTextLayout.error =
                         getString(R.string.compulsory_text)
                     Toast.makeText(
@@ -190,7 +200,9 @@ class TeamOperations : AppCompatActivity() {
                         R.string.enter_player_name_text,
                         Toast.LENGTH_SHORT
                     ).show()
-                } else if (binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
+                }
+
+                if (binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
                     binding.teamOperationsPlayer3NameEditTextLayout.error =
                         getString(R.string.compulsory_text)
                     Toast.makeText(
@@ -198,33 +210,31 @@ class TeamOperations : AppCompatActivity() {
                         R.string.enter_player_name_text,
                         Toast.LENGTH_SHORT
                     ).show()
-                } else if (binding.teamOperationsPlayer4NameEditText.text!!.isEmpty()) {
-                    binding.teamOperationsPlayer4NameEditTextLayout.error =
-                        getString(R.string.compulsory_text)
-                    Toast.makeText(
-                        applicationContext,
-                        R.string.enter_player_name_text,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    if (gameType == "Deduct from the number") {
-                        if (firstNumber!!.text.toString() == "") {
-                            binding.teamOperationsNumberOfStartsEditTextLayout.error =
-                                getString(R.string.compulsory_text)
-                            Toast.makeText(
-                                applicationContext,
-                                R.string.enter_player_name_text,
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            setColorValue()
-                        }
-                    } else {
-                        setColorValue()
-                    }
                 }
 
-            } else {
+                if (gameType == "Deduct from the number") {
+
+                    if (firstNumber!!.text.toString() == "") {
+                        binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
+            } else if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+
+                binding.teamOperationsPlayer2NameEditTextLayout.error =
+                    getString(R.string.compulsory_text)
+                Toast.makeText(
+                    applicationContext,
+                    R.string.enter_player_name_text,
+                    Toast.LENGTH_SHORT
+                ).show()
 
                 if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
                     binding.teamOperationsPlayer1NameEditTextLayout.error =
@@ -234,7 +244,53 @@ class TeamOperations : AppCompatActivity() {
                         R.string.enter_player_name_text,
                         Toast.LENGTH_SHORT
                     ).show()
-                } else if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+                }
+
+                if (binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
+                    binding.teamOperationsPlayer3NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                if (gameType == "Deduct from the number") {
+
+                    if (firstNumber!!.text.toString() == "") {
+                        binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
+            } else if (binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
+
+                binding.teamOperationsPlayer3NameEditTextLayout.error =
+                    getString(R.string.compulsory_text)
+                Toast.makeText(
+                    applicationContext,
+                    R.string.enter_player_name_text,
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+                    binding.teamOperationsPlayer1NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
                     binding.teamOperationsPlayer2NameEditTextLayout.error =
                         getString(R.string.compulsory_text)
                     Toast.makeText(
@@ -242,8 +298,88 @@ class TeamOperations : AppCompatActivity() {
                         R.string.enter_player_name_text,
                         Toast.LENGTH_SHORT
                     ).show()
-                } else {
+                }
+
+                if (gameType == "Deduct from the number") {
+
+                    if (firstNumber!!.text.toString() == "") {
+                        binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
+            } else {
+
+                if (gameType == "Deduct from the number") {
+
+                    if (firstNumber!!.text.toString() == "") {
+
+                        binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    } else { setColorValue() }
+
+                } else { setColorValue() }
+
+            }
+
+        } else if (playerNumber() == 4) {
+
+            if (playerType() == "Single") {
+
+                if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+
+                    binding.teamOperationsPlayer1NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer2NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if (binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer3NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if (binding.teamOperationsPlayer4NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer4NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
                     if (gameType == "Deduct from the number") {
+
                         if (firstNumber!!.text.toString() == "") {
                             binding.teamOperationsNumberOfStartsEditTextLayout.error =
                                 getString(R.string.compulsory_text)
@@ -252,12 +388,280 @@ class TeamOperations : AppCompatActivity() {
                                 R.string.enter_player_name_text,
                                 Toast.LENGTH_SHORT
                             ).show()
-                        } else {
-                            setColorValue()
                         }
-                    } else {
-                        setColorValue()
+
                     }
+
+                } else if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+
+                    binding.teamOperationsPlayer2NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer1NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if (binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer3NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if (binding.teamOperationsPlayer4NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer4NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if (gameType == "Deduct from the number") {
+
+                        if (firstNumber!!.text.toString() == "") {
+                            binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_player_name_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+
+                } else if (binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
+
+                    binding.teamOperationsPlayer3NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer1NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer2NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if (binding.teamOperationsPlayer4NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer4NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if (gameType == "Deduct from the number") {
+
+                        if (firstNumber!!.text.toString() == "") {
+                            binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_player_name_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+
+                } else if (binding.teamOperationsPlayer4NameEditText.text!!.isEmpty()) {
+
+                    binding.teamOperationsPlayer4NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer1NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer2NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if (binding.teamOperationsPlayer3NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer3NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if (gameType == "Deduct from the number") {
+
+                        if (firstNumber!!.text.toString() == "") {
+                            binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_player_name_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+
+                } else {
+
+                    if (gameType == "Deduct from the number") {
+
+                        if (firstNumber!!.text.toString() == "") {
+
+                            binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_player_name_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                        } else { setColorValue() }
+
+                    } else { setColorValue() }
+
+                }
+
+            } else {
+
+                if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+
+                    binding.teamOperationsPlayer1NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer2NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if (gameType == "Deduct from the number") {
+
+                        if (firstNumber!!.text.toString() == "") {
+                            binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_player_name_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+
+                } else if (binding.teamOperationsPlayer2NameEditText.text!!.isEmpty()) {
+
+                    binding.teamOperationsPlayer2NameEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.enter_player_name_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    if (binding.teamOperationsPlayer1NameEditText.text!!.isEmpty()) {
+                        binding.teamOperationsPlayer1NameEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.enter_player_name_text,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if (gameType == "Deduct from the number") {
+
+                        if (firstNumber!!.text.toString() == "") {
+                            binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_player_name_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+
+                } else {
+
+                    if (gameType == "Deduct from the number") {
+
+                        if (firstNumber!!.text.toString() == "") {
+
+                            binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+                            Toast.makeText(
+                                applicationContext,
+                                R.string.enter_player_name_text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                        } else { setColorValue() }
+
+                    } else { setColorValue() }
+
                 }
 
             }

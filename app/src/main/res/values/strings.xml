@@ -4,6 +4,7 @@
     <string name="pastGames_button">Kaydedilen Oyunlar</string>
     <string name="newGame_text">Yeni Oyun</string>
     <string name="gameName_text">Oyun İsmi</string>
+    <string name="gameName_text2">Oyun İsmi (İsteğe Bağlı)</string>
     <string name="player1_name">Oyuncu-1 Adı</string>
     <string name="player2_name">Oyuncu-2 Adı</string>
     <string name="player3_name">Oyuncu-3 Adı</string>
@@ -23,7 +24,7 @@
     <string name="scoreboard_text2">Puan \nTablosu</string>
     <string name="add_score_text2">Skor \nEkle</string>
     <string name="finish_game_text2">Oyunu \nBitir</string>
-    <string name="zero_score_text">0000</string>
+    <string name="zero_score_text">0</string>
     <string name="score_editText">Skor</string>
     <string name="scoreboard_bottom_menu">Skor Tablosu</string>
     <string name="add_score_bottom_menu">Puan Ekle</string>

@@ -9,5 +9,6 @@ data class ScoreData4Player(
     var gameNumber: Int,
     var multiplyNumber: Int,
     var color: String,
+    var colorValue: Boolean,
     var isSelected: Boolean
 )
