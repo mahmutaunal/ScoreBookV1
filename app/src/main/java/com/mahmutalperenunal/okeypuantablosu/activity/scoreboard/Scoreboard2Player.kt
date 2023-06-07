@@ -419,7 +419,7 @@ class Scoreboard2Player : AppCompatActivity() {
                         winnerTeam()
                     }
 
-                    if (targetScore != null) {
+                    if (targetScore!!.isNotEmpty()) {
                         if (score1 <= targetScore.toString()
                                 .toInt() || score2 <= targetScore.toString().toInt()
                         ) {
@@ -429,7 +429,7 @@ class Scoreboard2Player : AppCompatActivity() {
 
                 } else {
 
-                    if (targetScore != null) {
+                    if (targetScore!!.isNotEmpty()) {
                         if (score1 >= targetScore.toString()
                                 .toInt() || score2 >= targetScore.toString().toInt()
                         ) {
@@ -1315,7 +1315,7 @@ class Scoreboard2Player : AppCompatActivity() {
                         winnerTeam()
                     }
 
-                    if (targetScore != null) {
+                    if (targetScore!!.isNotEmpty()) {
                         if (score1 <= targetScore.toString()
                                 .toInt() || score2 <= targetScore.toString().toInt()
                         ) {
@@ -1325,7 +1325,7 @@ class Scoreboard2Player : AppCompatActivity() {
 
                 } else {
 
-                    if (targetScore != null) {
+                    if (targetScore!!.isNotEmpty()) {
                         if (score1 >= targetScore.toString()
                                 .toInt() || score2 >= targetScore.toString().toInt()
                         ) {

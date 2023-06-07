@@ -10,6 +10,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.textfield.TextInputLayout
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.activity.scoreboard.Scoreboard2Player
@@ -54,6 +56,11 @@ class TeamOperations : AppCompatActivity() {
 
         //set screen orientation to portrait
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        //set admob banner
+        MobileAds.initialize(this) {}
+        val adRequest = AdRequest.Builder().build()
+        binding.teamOperationsAdView.loadAd(adRequest)
 
         //set player names
         player1Name = binding.teamOperationsPlayer1NameEditText
@@ -100,34 +107,54 @@ class TeamOperations : AppCompatActivity() {
 
         if (gameType == "Deduct from the number") {
 
-            if (targetScore!!.text.toString().toInt() >= firstNumber!!.text.toString().toInt()) {
+            if (firstNumber!!.text.toString().isEmpty()) {
 
-                binding.teamOperationsTargetScoreEditTextLayout.error =
-                    getString(R.string.error_text)
                 binding.teamOperationsNumberOfStartsEditTextLayout.error =
-                    getString(R.string.error_text)
-
-                AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                    .setTitle(R.string.error_text)
-                    .setMessage(R.string.target_and_first_number_error_description_text)
-                    .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
-                    .setCancelable(false)
-                    .create()
-                    .show()
+                    getString(R.string.compulsory_text)
 
             } else {
-                controlUsernames()
+
+                if (targetScore!!.text.toString().toInt() >= firstNumber!!.text.toString()
+                        .toInt()
+                ) {
+
+                    binding.teamOperationsTargetScoreEditTextLayout.error =
+                        getString(R.string.error_text)
+                    binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                        getString(R.string.error_text)
+
+                    AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                        .setTitle(R.string.error_text)
+                        .setMessage(R.string.target_and_first_number_error_description_text)
+                        .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
+                        .setCancelable(false)
+                        .create()
+                        .show()
+
+                } else {
+                    controlUsernames()
+                }
+
             }
 
         } else {
 
             if (finishType == "Reach Score") {
 
-                if (targetScore!!.text.toString().toInt() <= 0) {
+                if (targetScore!!.text.toString().isEmpty()) {
+
                     binding.teamOperationsTargetScoreEditTextLayout.error =
-                        getString(R.string.error_text)
+                        getString(R.string.compulsory_text)
+
                 } else {
-                    controlUsernames()
+
+                    if (targetScore!!.text.toString().toInt() <= 0) {
+                        binding.teamOperationsTargetScoreEditTextLayout.error =
+                            getString(R.string.error_text)
+                    } else {
+                        controlUsernames()
+                    }
+
                 }
 
             } else {

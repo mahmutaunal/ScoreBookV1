@@ -620,7 +620,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="70dp"
                 android:fontFamily="@font/comfortaa"
                 android:text="@string/start_text"
                 android:textColor="?android:attr/textColorPrimary"
@@ -634,5 +634,15 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/teamOperations_adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-5963947262278027/1072179297"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
