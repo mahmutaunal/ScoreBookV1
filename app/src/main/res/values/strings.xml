@@ -125,4 +125,7 @@
     <string name="enter_first_number_text">Lütfen Başlangıç Skoru Girin!</string>
     <string name="enter_target_score_text">Lütfen Hedef Skor Girin!</string>
     <string name="target_and_first_number_error_description_text">Hedef skoru başlangıç sayısından daha fazla veya başlangıç sayısına eşit olamaz!</string>
+    <string name="update_text">Güncelle</string>
+    <string name="update_available_text">Güncelleme Mecvut</string>
+    <string name="update_available_description_text">Uygulamanın en son sürümündeki yenilikleri kullanabilmek için lütfen uygulamayı güncelleyin.</string>
 </resources>

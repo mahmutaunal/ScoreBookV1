@@ -9,24 +9,20 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.appupdate.AppUpdateOptions
-import com.google.android.play.core.install.InstallStateUpdatedListener
-import com.google.android.play.core.install.model.AppUpdateType
-import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
+import com.google.android.play.core.tasks.Task
 import com.mahmutalperenunal.okeypuantablosu.R
 import com.mahmutalperenunal.okeypuantablosu.databinding.ActivityMainMenuBinding
 import java.util.Locale
+
 
 class MainMenu : AppCompatActivity() {
 
@@ -38,9 +34,8 @@ class MainMenu : AppCompatActivity() {
     private lateinit var editorTheme: SharedPreferences.Editor
     private lateinit var editorLanguage: SharedPreferences.Editor
 
-    private lateinit var appUpdateManager: AppUpdateManager
-
-    private val UPDATE_CODE = 22
+    private var manager: AppUpdateManager? = null
+    private var task: Task<AppUpdateInfo>? = null
 
     private var themeCode: Int = 0
     private var themeName: String = ""
@@ -71,35 +66,8 @@ class MainMenu : AppCompatActivity() {
         //check last theme
         checkLastTheme()
 
-        //set app update manager
-        appUpdateManager = AppUpdateManagerFactory.create(this)
-
-        // Returns an intent object that you use to check for an update.
-        val appUpdateInfoTask = appUpdateManager.appUpdateInfo
-
-        // Checks whether the platform allows the specified type of update,
-        // and current version staleness.
-        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                && appUpdateInfo.updatePriority() >= 4
-                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)
-            ) {
-                // Request the update.
-                appUpdateManager.startUpdateFlowForResult(
-                    // Pass the intent that is returned by 'getAppUpdateInfo()'.
-                    appUpdateInfo,
-                    // The current activity making the update request.
-                    this,
-                    AppUpdateOptions.newBuilder(AppUpdateType.FLEXIBLE)
-                        .setAllowAssetPackDeletion(true)
-                        .build(),
-                    UPDATE_CODE
-                )
-            }
-        }
-
-        // Before starting an update, register a listener for updates.
-        appUpdateManager.registerListener(listener)
+        //check app update
+        checkAppUpdate()
 
         //navigate TeamOperations Activity
         binding.mainMenuNewGameButton.setOnClickListener { startNewGame() }
@@ -182,6 +150,44 @@ class MainMenu : AppCompatActivity() {
                 } else {
                     getString(R.string.system_theme_text)
                 }
+            }
+        }
+    }
+
+
+    //check app update
+    private fun checkAppUpdate() {
+        manager = AppUpdateManagerFactory.create(this)
+        task = manager!!.appUpdateInfo
+        task!!.addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
+
+                AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                    .setTitle(R.string.update_available_text)
+                    .setMessage(R.string.update_available_description_text)
+                    .setPositiveButton(R.string.update_text) { dialog, _ ->
+
+                        try {
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            val uri = Uri.parse("market://details?id=$packageName")
+                            intent.data = uri
+                            intent.setPackage("com.android.vending")
+                            startActivity(intent)
+                        } catch (e: ActivityNotFoundException) {
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            val uri = Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
+                            intent.data = uri
+                            startActivity(intent)
+                        }
+
+                        dialog.dismiss()
+                    }
+                    .setNeutralButton(R.string.cancel_text) { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .create()
+                    .show()
+
             }
         }
     }
@@ -292,68 +298,6 @@ class MainMenu : AppCompatActivity() {
 
         }
 
-    }
-
-
-    // Create a listener to track request state updates.
-    private val listener = InstallStateUpdatedListener { state ->
-        // (Optional) Provide a download progress bar.
-        if (state.installStatus() == InstallStatus.DOWNLOADED) {
-            // After the update is downloaded, show a notification
-            // and request user confirmation to restart the app.
-            popupSnackbarForCompleteUpdate()
-        }
-        // Log state or install the update.
-    }
-
-
-    // Displays the snackbar notification and call to action.
-    private fun popupSnackbarForCompleteUpdate() {
-        Snackbar.make(
-            findViewById(android.R.id.content),
-            R.string.update_downloaded_text,
-            Snackbar.LENGTH_INDEFINITE
-        ).apply {
-            setAction(R.string.restart_text) { appUpdateManager.completeUpdate() }
-            setActionTextColor(resources.getColor(R.color.teal_200))
-            show()
-        }
-    }
-
-    override fun onStop() {
-        appUpdateManager.registerListener { listener }
-        super.onStop()
-    }
-
-    // Checks that the update is not stalled during 'onResume()'.
-    // However, you should execute this check at all app entry points.
-    override fun onResume() {
-        super.onResume()
-
-        appUpdateManager
-            .appUpdateInfo
-            .addOnSuccessListener { appUpdateInfo ->
-                // If the update is downloaded but not installed,
-                // notify the user to complete the update.
-                if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
-                    popupSnackbarForCompleteUpdate()
-                }
-            }
-    }
-
-
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == UPDATE_CODE) {
-            if (resultCode != RESULT_OK) {
-                Log.e("MY_APP", "Update flow failed! Result code: $resultCode")
-                // If the update is cancelled or fails,
-                // you can request to start the update again.
-                Toast.makeText(applicationContext, R.string.cancel_update_text, Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
     }
 
 
