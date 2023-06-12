@@ -133,6 +133,28 @@
                         android:textSize="16sp"
                         tools:ignore="TextContrastCheck" />
 
+                    <TextView
+                        android:id="@+id/addColorValue_fake_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/comfortaa"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLength="11"
+                        android:maxLines="1"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:text="@string/fake_text"
+                        android:textAlignment="textEnd"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="16sp"
+                        tools:ignore="TextContrastCheck" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -235,6 +257,32 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/addColorValue_black_editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa"
+                            android:inputType="numberSigned"
+                            android:maxLength="3"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textColorHint="?android:attr/textColorPrimary"
+                            tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/addColorValue_fake_editTextLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="@string/value_editText"
+                        android:importantForAutofill="no"
+                        app:boxBackgroundColor="@color/edittext_color"
+                        app:boxStrokeColor="@color/teal_200"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/teal_200">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/addColorValue_fake_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa"

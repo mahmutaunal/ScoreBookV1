@@ -175,7 +175,8 @@ class MainMenu : AppCompatActivity() {
                             startActivity(intent)
                         } catch (e: ActivityNotFoundException) {
                             val intent = Intent(Intent.ACTION_VIEW)
-                            val uri = Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
+                            val uri =
+                                Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
                             intent.data = uri
                             startActivity(intent)
                         }

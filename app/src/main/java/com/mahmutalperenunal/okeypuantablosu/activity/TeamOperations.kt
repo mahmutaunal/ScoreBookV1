@@ -34,6 +34,7 @@ class TeamOperations : AppCompatActivity() {
     private var blueValue: Int = 0
     private var yellowValue: Int = 0
     private var blackValue: Int = 0
+    private var fakeValue: Int = 0
 
     private var isColorsValueEntered: Boolean = false
 
@@ -1088,6 +1089,7 @@ class TeamOperations : AppCompatActivity() {
         val blueEditText = view.findViewById<EditText>(R.id.addColorValue_blue_editText)
         val yellowEditText = view.findViewById<EditText>(R.id.addColorValue_yellow_editText)
         val blackEditText = view.findViewById<EditText>(R.id.addColorValue_black_editText)
+        val fakeEditText = view.findViewById<EditText>(R.id.addColorValue_fake_editText)
 
         val redEditTextLayout =
             view.findViewById<TextInputLayout>(R.id.addColorValue_red_editTextLayout)
@@ -1097,6 +1099,8 @@ class TeamOperations : AppCompatActivity() {
             view.findViewById<TextInputLayout>(R.id.addColorValue_yellow_editTextLayout)
         val blackEditTextLayout =
             view.findViewById<TextInputLayout>(R.id.addColorValue_black_editTextLayout)
+        val fakeEditTextLayout =
+            view.findViewById<TextInputLayout>(R.id.addColorValue_fake_editTextLayout)
 
         val addDialog = AlertDialog.Builder(this, R.style.CustomAlertDialog)
 
@@ -1132,12 +1136,20 @@ class TeamOperations : AppCompatActivity() {
                     .show()
                 isColorsValueEntered = false
 
+            } else if (fakeEditText.text.isEmpty()) {
+
+                fakeEditTextLayout.error = getString(R.string.compulsory_text)
+                Toast.makeText(applicationContext, R.string.enter_color_values, Toast.LENGTH_SHORT)
+                    .show()
+                isColorsValueEntered = false
+
             } else {
 
                 redValue = redEditText.text.toString().toInt()
                 blueValue = blueEditText.text.toString().toInt()
                 yellowValue = yellowEditText.text.toString().toInt()
                 blackValue = blackEditText.text.toString().toInt()
+                fakeValue = fakeEditText.text.toString().toInt()
 
                 isColorsValueEntered = true
 
@@ -1153,6 +1165,7 @@ class TeamOperations : AppCompatActivity() {
             blueValue = 1
             yellowValue = 1
             blackValue = 1
+            fakeValue = 1
 
             isColorsValueEntered = true
 
@@ -1203,6 +1216,7 @@ class TeamOperations : AppCompatActivity() {
                     intentScoreboard2.putExtra("Blue Value", blueValue)
                     intentScoreboard2.putExtra("Yellow Value", yellowValue)
                     intentScoreboard2.putExtra("Black Value", blackValue)
+                    intentScoreboard2.putExtra("Fake Value", fakeValue)
 
                     //send game type, first number and target score
                     intentScoreboard2.putExtra("Game Type", gameType)
@@ -1246,6 +1260,7 @@ class TeamOperations : AppCompatActivity() {
                     intentScoreboard3.putExtra("Blue Value", blueValue)
                     intentScoreboard3.putExtra("Yellow Value", yellowValue)
                     intentScoreboard3.putExtra("Black Value", blackValue)
+                    intentScoreboard3.putExtra("Fake Value", fakeValue)
 
                     //send game type, first number and target score
                     intentScoreboard3.putExtra("Game Type", gameType)
@@ -1292,6 +1307,7 @@ class TeamOperations : AppCompatActivity() {
                         intentScoreboard4.putExtra("Blue Value", blueValue)
                         intentScoreboard4.putExtra("Yellow Value", yellowValue)
                         intentScoreboard4.putExtra("Black Value", blackValue)
+                        intentScoreboard4.putExtra("Fake Value", fakeValue)
 
                         //send game type, first number and target score
                         intentScoreboard4.putExtra("Game Type", gameType)
@@ -1326,6 +1342,7 @@ class TeamOperations : AppCompatActivity() {
                 intentScoreboard2.putExtra("Blue Value", blueValue)
                 intentScoreboard2.putExtra("Yellow Value", yellowValue)
                 intentScoreboard2.putExtra("Black Value", blackValue)
+                intentScoreboard2.putExtra("Fake Value", fakeValue)
 
                 //send game type, first number and target score
                 intentScoreboard2.putExtra("Game Type", gameType)

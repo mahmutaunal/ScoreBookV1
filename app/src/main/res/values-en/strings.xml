@@ -125,7 +125,8 @@
     <string name="enter_first_number_text">Please Enter Starting Score!</string>
     <string name="enter_target_score_text">Please Enter Target Score!</string>
     <string name="target_and_first_number_error_description_text">The target score cannot be more than or equal to the number of starts!</string>
-    <string name="update_text">Güncelle</string>
-    <string name="update_available_text">Güncelleme Mecvut</string>
-    <string name="update_available_description_text">Uygulamanın en son sürümündeki yenilikleri kullanabilmek için lütfen uygulamayı güncelleyin.</string>
+    <string name="update_text">Update</string>
+    <string name="update_available_text">Update Available</string>
+    <string name="update_available_description_text">Please update the app to be able to use what is new in the latest version of the app.</string>
+    <string name="fake_text">Fake</string>
 </resources>

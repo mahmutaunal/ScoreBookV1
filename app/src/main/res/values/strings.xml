@@ -128,4 +128,5 @@
     <string name="update_text">Güncelle</string>
     <string name="update_available_text">Güncelleme Mecvut</string>
     <string name="update_available_description_text">Uygulamanın en son sürümündeki yenilikleri kullanabilmek için lütfen uygulamayı güncelleyin.</string>
+    <string name="fake_text">Sahte</string>
 </resources>

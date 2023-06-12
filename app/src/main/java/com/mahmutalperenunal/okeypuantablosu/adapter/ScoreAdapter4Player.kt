@@ -112,6 +112,11 @@ class ScoreAdapter4Player(private val scoreList4Player: ArrayList<ScoreData4Play
                 holder.colorBackground.visibility = View.VISIBLE
                 holder.colorBackground.setCardBackgroundColor(Color.BLACK)
             }
+
+            "Fake" -> {
+                holder.colorBackground.visibility = View.VISIBLE
+                holder.colorBackground.setCardBackgroundColor(Color.GRAY)
+            }
         }
     }
 

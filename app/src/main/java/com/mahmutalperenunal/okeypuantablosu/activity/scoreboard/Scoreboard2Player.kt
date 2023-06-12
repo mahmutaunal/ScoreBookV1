@@ -64,6 +64,7 @@ class Scoreboard2Player : AppCompatActivity() {
     private var blueValue: Int = 0
     private var yellowValue: Int = 0
     private var blackValue: Int = 0
+    private var fakeValue: Int = 0
 
     private var colorValue: Boolean = true
 
@@ -118,6 +119,7 @@ class Scoreboard2Player : AppCompatActivity() {
         blueValue = intent.getIntExtra("Blue Value", 0)
         yellowValue = intent.getIntExtra("Yellow Value", 0)
         blackValue = intent.getIntExtra("Black Value", 0)
+        fakeValue = intent.getIntExtra("Fake Value", 0)
 
         //get game type, first number and target score
         gameType = intent.getStringExtra("Game Type").toString()
@@ -185,14 +187,14 @@ class Scoreboard2Player : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged", "SetTextI18n", "InflateParams")
     private fun addScore() {
 
-        multiplyNumber = 1
-
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.add_score_2_player, null)
 
         color = "White"
 
         colorValue = true
+
+        multiplyNumber = 1
 
         //set playerScore view
         player1Score = view.findViewById(R.id.addScore2Player_player1Score_editText)
@@ -210,11 +212,11 @@ class Scoreboard2Player : AppCompatActivity() {
         }
 
         //set colors
-        val noColorButton = view.findViewById<RadioButton>(R.id.addScore2Player_noColor_radioButton)
         val redButton = view.findViewById<RadioButton>(R.id.addScore2Player_red_radioButton)
         val blueButton = view.findViewById<RadioButton>(R.id.addScore2Player_blue_radioButton)
         val yellowButton = view.findViewById<RadioButton>(R.id.addScore2Player_yellow_radioButton)
         val blackButton = view.findViewById<RadioButton>(R.id.addScore2Player_black_radioButton)
+        val fakeButton = view.findViewById<RadioButton>(R.id.addScore2Player_fake_radioButton)
 
         //set multiply
         val cross = view.findViewById<LinearLayout>(R.id.addScore2Player_cross_linearLayout)
@@ -222,21 +224,6 @@ class Scoreboard2Player : AppCompatActivity() {
 
         val multiply1 = view.findViewById<TextView>(R.id.addScore2Player_multiplyPlayer1_text)
         val multiply2 = view.findViewById<TextView>(R.id.addScore2Player_multiplyPlayer2_text)
-
-        //set visibility
-        noColorButton.setOnClickListener {
-            cross.visibility = View.GONE
-            multiply.visibility = View.GONE
-
-            multiplyNumber = 1
-
-            colorValue = true
-
-            multiply1.text = multiplyNumber.toString()
-            multiply2.text = multiplyNumber.toString()
-
-            color = "White"
-        }
 
         redButton.setOnClickListener {
             cross.visibility = View.VISIBLE
@@ -292,6 +279,20 @@ class Scoreboard2Player : AppCompatActivity() {
             multiply2.text = multiplyNumber.toString()
 
             color = "Black"
+        }
+
+        fakeButton.setOnClickListener {
+            cross.visibility = View.VISIBLE
+            multiply.visibility = View.VISIBLE
+
+            multiplyNumber = fakeValue
+
+            colorValue = false
+
+            multiply1.text = multiplyNumber.toString()
+            multiply2.text = multiplyNumber.toString()
+
+            color = "Fake"
         }
 
         player1Text.text = player1Name
@@ -862,14 +863,6 @@ class Scoreboard2Player : AppCompatActivity() {
         colorValue2.text = scoreList2Player[position].multiplyNumber.toString()
 
         when (scoreList2Player[position].color) {
-            "White" -> {
-                colorValue1.setTextColor(getColor(R.color.black_color))
-                colorValue2.setTextColor(getColor(R.color.black_color))
-
-                color.setCardBackgroundColor(getColor(R.color.white_color))
-                color.visibility = View.GONE
-            }
-
             "Red" -> {
                 colorValue1.setTextColor(getColor(R.color.red))
                 colorValue2.setTextColor(getColor(R.color.red))
@@ -897,6 +890,13 @@ class Scoreboard2Player : AppCompatActivity() {
 
                 color.setCardBackgroundColor(getColor(R.color.black_color))
             }
+
+            "Fake" -> {
+                colorValue1.setTextColor(getColor(R.color.light_gray))
+                colorValue2.setTextColor(getColor(R.color.light_gray))
+
+                color.setCardBackgroundColor(getColor(R.color.light_gray))
+            }
         }
 
 
@@ -912,7 +912,7 @@ class Scoreboard2Player : AppCompatActivity() {
 
 
         //set visibility
-        if ((redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1) || scoreList2Player[position].colorValue) {
+        if ((redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1 && fakeValue == 1) || scoreList2Player[position].colorValue) {
 
             color.visibility = View.GONE
 
@@ -993,16 +993,16 @@ class Scoreboard2Player : AppCompatActivity() {
         //set colors layout visibility
         val colorLayout = view.findViewById<RadioGroup>(R.id.addScore2Player_colors_radioGroup)
 
-        if (redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1) {
+        if (redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1 && fakeValue == 1) {
             colorLayout.visibility = View.GONE
         }
 
         //set colors
-        val noColorButton = view.findViewById<RadioButton>(R.id.addScore2Player_noColor_radioButton)
         val redButton = view.findViewById<RadioButton>(R.id.addScore2Player_red_radioButton)
         val blueButton = view.findViewById<RadioButton>(R.id.addScore2Player_blue_radioButton)
         val yellowButton = view.findViewById<RadioButton>(R.id.addScore2Player_yellow_radioButton)
         val blackButton = view.findViewById<RadioButton>(R.id.addScore2Player_black_radioButton)
+        val fakeButton = view.findViewById<RadioButton>(R.id.addScore2Player_fake_radioButton)
 
         //set multiply
         val cross = view.findViewById<LinearLayout>(R.id.addScore2Player_cross_linearLayout)
@@ -1013,32 +1013,13 @@ class Scoreboard2Player : AppCompatActivity() {
 
         //set last color
         when (scoreList2Player[position].color) {
-            "White" -> {
-                noColorButton.isChecked = true
-                redButton.isChecked = false
-                blueButton.isChecked = false
-                yellowButton.isChecked = false
-                blackButton.isChecked = false
-
-                multiplyNumber = 1
-
-                colorValue = true
-
-                cross.visibility = View.GONE
-                multiply.visibility = View.GONE
-
-                multiply1.text = multiplyNumber.toString()
-                multiply2.text = multiplyNumber.toString()
-
-                color = "White"
-            }
 
             "Red" -> {
                 redButton.isChecked = true
-                noColorButton.isChecked = false
                 blueButton.isChecked = false
                 yellowButton.isChecked = false
                 blackButton.isChecked = false
+                fakeButton.isChecked = false
 
                 multiplyNumber = redValue
 
@@ -1055,10 +1036,10 @@ class Scoreboard2Player : AppCompatActivity() {
 
             "Blue" -> {
                 blueButton.isChecked = true
-                noColorButton.isChecked = false
                 redButton.isChecked = false
                 yellowButton.isChecked = false
                 blackButton.isChecked = false
+                fakeButton.isChecked = false
 
                 multiplyNumber = blueValue
 
@@ -1075,10 +1056,10 @@ class Scoreboard2Player : AppCompatActivity() {
 
             "Yellow" -> {
                 yellowButton.isChecked = true
-                noColorButton.isChecked = false
                 redButton.isChecked = false
                 blueButton.isChecked = false
                 blackButton.isChecked = false
+                fakeButton.isChecked = false
 
                 multiplyNumber = yellowValue
 
@@ -1095,10 +1076,10 @@ class Scoreboard2Player : AppCompatActivity() {
 
             "Black" -> {
                 blackButton.isChecked = true
-                noColorButton.isChecked = false
                 redButton.isChecked = false
                 blueButton.isChecked = false
                 yellowButton.isChecked = false
+                fakeButton.isChecked = false
 
                 multiplyNumber = blackValue
 
@@ -1113,23 +1094,29 @@ class Scoreboard2Player : AppCompatActivity() {
                 color = "Black"
             }
 
+            "Fake" -> {
+                fakeButton.isChecked = true
+                blackButton.isChecked = false
+                redButton.isChecked = false
+                blueButton.isChecked = false
+                yellowButton.isChecked = false
+
+                multiplyNumber = fakeValue
+
+                colorValue = false
+
+                cross.visibility = View.VISIBLE
+                multiply.visibility = View.VISIBLE
+
+                multiply1.text = multiplyNumber.toString()
+                multiply2.text = multiplyNumber.toString()
+
+                color = "Fake"
+            }
+
         }
 
         //set visibility
-        noColorButton.setOnClickListener {
-            cross.visibility = View.GONE
-            multiply.visibility = View.GONE
-
-            multiplyNumber = 1
-
-            colorValue = true
-
-            multiply1.text = multiplyNumber.toString()
-            multiply2.text = multiplyNumber.toString()
-
-            color = "White"
-        }
-
         redButton.setOnClickListener {
             cross.visibility = View.VISIBLE
             multiply.visibility = View.VISIBLE
@@ -1184,6 +1171,20 @@ class Scoreboard2Player : AppCompatActivity() {
             multiply2.text = multiplyNumber.toString()
 
             color = "Black"
+        }
+
+        fakeButton.setOnClickListener {
+            cross.visibility = View.VISIBLE
+            multiply.visibility = View.VISIBLE
+
+            multiplyNumber = fakeValue
+
+            colorValue = false
+
+            multiply1.text = multiplyNumber.toString()
+            multiply2.text = multiplyNumber.toString()
+
+            color = "Fake"
         }
 
         player1Text.text = player1Name
