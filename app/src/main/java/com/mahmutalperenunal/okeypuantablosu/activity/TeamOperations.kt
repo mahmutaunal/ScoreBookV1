@@ -1145,17 +1145,28 @@ class TeamOperations : AppCompatActivity() {
 
             } else {
 
-                redValue = redEditText.text.toString().toInt()
-                blueValue = blueEditText.text.toString().toInt()
-                yellowValue = yellowEditText.text.toString().toInt()
-                blackValue = blackEditText.text.toString().toInt()
-                fakeValue = fakeEditText.text.toString().toInt()
+                if (redEditText.text.toString() == "0" || blueEditText.text.toString() == "0" || yellowEditText.text.toString() == "0" || blackEditText.text.toString() == "0" || fakeEditText.text.toString() == "0") {
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.zero_color_value_error_text,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    isColorsValueEntered = false
+                } else {
 
-                isColorsValueEntered = true
+                    redValue = redEditText.text.toString().toInt()
+                    blueValue = blueEditText.text.toString().toInt()
+                    yellowValue = yellowEditText.text.toString().toInt()
+                    blackValue = blackEditText.text.toString().toInt()
+                    fakeValue = fakeEditText.text.toString().toInt()
 
-                startGame()
+                    isColorsValueEntered = true
 
-                dialog.dismiss()
+                    startGame()
+
+                    dialog.dismiss()
+
+                }
             }
         }
         addDialog.setNegativeButton(
@@ -1176,7 +1187,7 @@ class TeamOperations : AppCompatActivity() {
         addDialog.setNeutralButton(
             R.string.cancel_text
         ) { dialog, _ ->
-            isColorsValueEntered = true
+            isColorsValueEntered = false
             dialog.dismiss()
         }
         addDialog.setCancelable(false)

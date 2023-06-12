@@ -66,6 +66,8 @@ class Scoreboard4Player : AppCompatActivity() {
     private var blackValue: Int = 0
     private var fakeValue: Int = 0
 
+    private var colorValueEntered: Boolean = false
+
     private var colorValue: Boolean = true
 
     private var gameType: String = "Add Score"
@@ -198,11 +200,9 @@ class Scoreboard4Player : AppCompatActivity() {
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.add_score_4_player, null)
 
-        color = "White"
-
-        colorValue = true
-
         multiplyNumber = 1
+
+        colorValueEntered = false
 
         //set playerScore view
         player1Score = view.findViewById(R.id.addScore4Player_player1Score_editText)
@@ -219,7 +219,7 @@ class Scoreboard4Player : AppCompatActivity() {
         //set colors layout visibility
         val colorLayout = view.findViewById<RadioGroup>(R.id.addScore4Player_colors_radioGroup)
 
-        if (redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1) {
+        if (redValue == 1 && blueValue == 1 && yellowValue == 1 && blackValue == 1 && fakeValue == 1) {
             colorLayout.visibility = View.GONE
         }
 
@@ -248,6 +248,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
             colorValue = false
 
+            colorValueEntered = true
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
@@ -263,6 +265,8 @@ class Scoreboard4Player : AppCompatActivity() {
             multiplyNumber = blueValue
 
             colorValue = false
+
+            colorValueEntered = true
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -280,6 +284,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
             colorValue = false
 
+            colorValueEntered = true
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
@@ -296,6 +302,8 @@ class Scoreboard4Player : AppCompatActivity() {
 
             colorValue = false
 
+            colorValueEntered = true
+
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
             multiply3.text = multiplyNumber.toString()
@@ -311,6 +319,8 @@ class Scoreboard4Player : AppCompatActivity() {
             multiplyNumber = fakeValue
 
             colorValue = false
+
+            colorValueEntered = true
 
             multiply1.text = multiplyNumber.toString()
             multiply2.text = multiplyNumber.toString()
@@ -362,127 +372,275 @@ class Scoreboard4Player : AppCompatActivity() {
                 ).show()
             } else {
 
-                if (gameType == "Add Score") {
+                if (!colorValueEntered) {
+                    Toast.makeText(
+                        applicationContext, R.string.select_color_text, Toast.LENGTH_SHORT
+                    ).show()
 
-                    //entered scores to arraylist
-                    val newInstantScore1 = player1Score!!.text.toString()
-                    val newInstantScore2 = player2Score!!.text.toString()
-                    val newInstantScore3 = player3Score!!.text.toString()
-                    val newInstantScore4 = player4Score!!.text.toString()
+                    if ((redValue != 1 && blueValue != 1 && yellowValue != 1 && blackValue != 1 && fakeValue != 1)) {
+                        Toast.makeText(
+                            applicationContext, R.string.select_color_text, Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
 
-                    val newInstantScore1Multiply = newInstantScore1.toInt() * multiplyNumber
-                    val newInstantScore2Multiply = newInstantScore2.toInt() * multiplyNumber
-                    val newInstantScore3Multiply = newInstantScore3.toInt() * multiplyNumber
-                    val newInstantScore4Multiply = newInstantScore4.toInt() * multiplyNumber
+                        if (gameType == "Add Score") {
 
-                    scoreList4Player.add(
-                        ScoreData4Player(
-                            newInstantScore1Multiply.toString(),
-                            newInstantScore2Multiply.toString(),
-                            newInstantScore3Multiply.toString(),
-                            newInstantScore4Multiply.toString(),
-                            gameNumber,
-                            multiplyNumber,
-                            color,
-                            colorValue,
-                            false
-                        )
-                    )
+                            //entered scores to arraylist
+                            val newInstantScore1 = player1Score!!.text.toString()
+                            val newInstantScore2 = player2Score!!.text.toString()
+                            val newInstantScore3 = player3Score!!.text.toString()
+                            val newInstantScore4 = player4Score!!.text.toString()
 
-                    gameNumber++
+                            val newInstantScore1Multiply = newInstantScore1.toInt() * multiplyNumber
+                            val newInstantScore2Multiply = newInstantScore2.toInt() * multiplyNumber
+                            val newInstantScore3Multiply = newInstantScore3.toInt() * multiplyNumber
+                            val newInstantScore4Multiply = newInstantScore4.toInt() * multiplyNumber
 
-                    binding.scoreBoard4PlayerRoundNumberText.text =
-                        "$gameNumber. ${getString(R.string.round_text)}"
+                            scoreList4Player.add(
+                                ScoreData4Player(
+                                    newInstantScore1Multiply.toString(),
+                                    newInstantScore2Multiply.toString(),
+                                    newInstantScore3Multiply.toString(),
+                                    newInstantScore4Multiply.toString(),
+                                    gameNumber,
+                                    multiplyNumber,
+                                    color,
+                                    colorValue,
+                                    false
+                                )
+                            )
 
-                    scoreCount++
+                            gameNumber++
 
-                    //instant scores
-                    val exInstantScore1 =
-                        binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
-                    val exInstantScore2 =
-                        binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
-                    val exInstantScore3 =
-                        binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
-                    val exInstantScore4 =
-                        binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
+                            binding.scoreBoard4PlayerRoundNumberText.text =
+                                "$gameNumber. ${getString(R.string.round_text)}"
 
-                    //sum of entered scores and instant scores
-                    val resultInstantScore1 = newInstantScore1Multiply + exInstantScore1.toInt()
-                    val resultInstantScore2 = newInstantScore2Multiply + exInstantScore2.toInt()
-                    val resultInstantScore3 = newInstantScore3Multiply + exInstantScore3.toInt()
-                    val resultInstantScore4 = newInstantScore4Multiply + exInstantScore4.toInt()
+                            scoreCount++
 
-                    binding.scoreBoard4PlayerPlayer1InstantScoreText.text =
-                        resultInstantScore1.toString()
-                    binding.scoreBoard4PlayerPlayer2InstantScoreText.text =
-                        resultInstantScore2.toString()
-                    binding.scoreBoard4PlayerPlayer3InstantScoreText.text =
-                        resultInstantScore3.toString()
-                    binding.scoreBoard4PlayerPlayer4InstantScoreText.text =
-                        resultInstantScore4.toString()
+                            //instant scores
+                            val exInstantScore1 =
+                                binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+                            val exInstantScore2 =
+                                binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+                            val exInstantScore3 =
+                                binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+                            val exInstantScore4 =
+                                binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
 
-                    scoreAdapter4Player.notifyDataSetChanged()
+                            //sum of entered scores and instant scores
+                            val resultInstantScore1 =
+                                newInstantScore1Multiply + exInstantScore1.toInt()
+                            val resultInstantScore2 =
+                                newInstantScore2Multiply + exInstantScore2.toInt()
+                            val resultInstantScore3 =
+                                newInstantScore3Multiply + exInstantScore3.toInt()
+                            val resultInstantScore4 =
+                                newInstantScore4Multiply + exInstantScore4.toInt()
 
+                            binding.scoreBoard4PlayerPlayer1InstantScoreText.text =
+                                resultInstantScore1.toString()
+                            binding.scoreBoard4PlayerPlayer2InstantScoreText.text =
+                                resultInstantScore2.toString()
+                            binding.scoreBoard4PlayerPlayer3InstantScoreText.text =
+                                resultInstantScore3.toString()
+                            binding.scoreBoard4PlayerPlayer4InstantScoreText.text =
+                                resultInstantScore4.toString()
+
+                            scoreAdapter4Player.notifyDataSetChanged()
+
+                        } else {
+
+                            //entered scores to arraylist
+                            val newInstantScore1 = player1Score!!.text.toString()
+                            val newInstantScore2 = player2Score!!.text.toString()
+                            val newInstantScore3 = player3Score!!.text.toString()
+                            val newInstantScore4 = player4Score!!.text.toString()
+
+                            val newInstantScore1Multiply = newInstantScore1.toInt() * multiplyNumber
+                            val newInstantScore2Multiply = newInstantScore2.toInt() * multiplyNumber
+                            val newInstantScore3Multiply = newInstantScore3.toInt() * multiplyNumber
+                            val newInstantScore4Multiply = newInstantScore4.toInt() * multiplyNumber
+
+                            scoreList4Player.add(
+                                ScoreData4Player(
+                                    newInstantScore1Multiply.toString(),
+                                    newInstantScore2Multiply.toString(),
+                                    newInstantScore3Multiply.toString(),
+                                    newInstantScore4Multiply.toString(),
+                                    gameNumber,
+                                    multiplyNumber,
+                                    color,
+                                    colorValue,
+                                    false
+                                )
+                            )
+
+                            gameNumber++
+
+                            binding.scoreBoard4PlayerRoundNumberText.text =
+                                "$gameNumber. ${getString(R.string.round_text)}"
+
+                            scoreCount++
+
+                            //instant scores
+                            val exInstantScore1 =
+                                binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+                            val exInstantScore2 =
+                                binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+                            val exInstantScore3 =
+                                binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+                            val exInstantScore4 =
+                                binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
+
+                            //sum of entered scores and instant scores
+                            val resultInstantScore1 =
+                                exInstantScore1.toInt() - newInstantScore1Multiply
+                            val resultInstantScore2 =
+                                exInstantScore2.toInt() - newInstantScore2Multiply
+                            val resultInstantScore3 =
+                                exInstantScore3.toInt() - newInstantScore3Multiply
+                            val resultInstantScore4 =
+                                exInstantScore4.toInt() - newInstantScore4Multiply
+
+                            binding.scoreBoard4PlayerPlayer1InstantScoreText.text =
+                                resultInstantScore1.toString()
+                            binding.scoreBoard4PlayerPlayer2InstantScoreText.text =
+                                resultInstantScore2.toString()
+                            binding.scoreBoard4PlayerPlayer3InstantScoreText.text =
+                                resultInstantScore3.toString()
+                            binding.scoreBoard4PlayerPlayer4InstantScoreText.text =
+                                resultInstantScore4.toString()
+
+                            scoreAdapter4Player.notifyDataSetChanged()
+
+                        }
+
+                    }
                 } else {
 
-                    //entered scores to arraylist
-                    val newInstantScore1 = player1Score!!.text.toString()
-                    val newInstantScore2 = player2Score!!.text.toString()
-                    val newInstantScore3 = player3Score!!.text.toString()
-                    val newInstantScore4 = player4Score!!.text.toString()
+                    if (gameType == "Add Score") {
 
-                    val newInstantScore1Multiply = newInstantScore1.toInt() * multiplyNumber
-                    val newInstantScore2Multiply = newInstantScore2.toInt() * multiplyNumber
-                    val newInstantScore3Multiply = newInstantScore3.toInt() * multiplyNumber
-                    val newInstantScore4Multiply = newInstantScore4.toInt() * multiplyNumber
+                        //entered scores to arraylist
+                        val newInstantScore1 = player1Score!!.text.toString()
+                        val newInstantScore2 = player2Score!!.text.toString()
+                        val newInstantScore3 = player3Score!!.text.toString()
+                        val newInstantScore4 = player4Score!!.text.toString()
 
-                    scoreList4Player.add(
-                        ScoreData4Player(
-                            newInstantScore1Multiply.toString(),
-                            newInstantScore2Multiply.toString(),
-                            newInstantScore3Multiply.toString(),
-                            newInstantScore4Multiply.toString(),
-                            gameNumber,
-                            multiplyNumber,
-                            color,
-                            colorValue,
-                            false
+                        val newInstantScore1Multiply = newInstantScore1.toInt() * multiplyNumber
+                        val newInstantScore2Multiply = newInstantScore2.toInt() * multiplyNumber
+                        val newInstantScore3Multiply = newInstantScore3.toInt() * multiplyNumber
+                        val newInstantScore4Multiply = newInstantScore4.toInt() * multiplyNumber
+
+                        scoreList4Player.add(
+                            ScoreData4Player(
+                                newInstantScore1Multiply.toString(),
+                                newInstantScore2Multiply.toString(),
+                                newInstantScore3Multiply.toString(),
+                                newInstantScore4Multiply.toString(),
+                                gameNumber,
+                                multiplyNumber,
+                                color,
+                                colorValue,
+                                false
+                            )
                         )
-                    )
 
-                    gameNumber++
+                        gameNumber++
 
-                    binding.scoreBoard4PlayerRoundNumberText.text =
-                        "$gameNumber. ${getString(R.string.round_text)}"
+                        binding.scoreBoard4PlayerRoundNumberText.text =
+                            "$gameNumber. ${getString(R.string.round_text)}"
 
-                    scoreCount++
+                        scoreCount++
 
-                    //instant scores
-                    val exInstantScore1 =
-                        binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
-                    val exInstantScore2 =
-                        binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
-                    val exInstantScore3 =
-                        binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
-                    val exInstantScore4 =
-                        binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
+                        //instant scores
+                        val exInstantScore1 =
+                            binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+                        val exInstantScore2 =
+                            binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+                        val exInstantScore3 =
+                            binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+                        val exInstantScore4 =
+                            binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
 
-                    //sum of entered scores and instant scores
-                    val resultInstantScore1 = exInstantScore1.toInt() - newInstantScore1Multiply
-                    val resultInstantScore2 = exInstantScore2.toInt() - newInstantScore2Multiply
-                    val resultInstantScore3 = exInstantScore3.toInt() - newInstantScore3Multiply
-                    val resultInstantScore4 = exInstantScore4.toInt() - newInstantScore4Multiply
+                        //sum of entered scores and instant scores
+                        val resultInstantScore1 = newInstantScore1Multiply + exInstantScore1.toInt()
+                        val resultInstantScore2 = newInstantScore2Multiply + exInstantScore2.toInt()
+                        val resultInstantScore3 = newInstantScore3Multiply + exInstantScore3.toInt()
+                        val resultInstantScore4 = newInstantScore4Multiply + exInstantScore4.toInt()
 
-                    binding.scoreBoard4PlayerPlayer1InstantScoreText.text =
-                        resultInstantScore1.toString()
-                    binding.scoreBoard4PlayerPlayer2InstantScoreText.text =
-                        resultInstantScore2.toString()
-                    binding.scoreBoard4PlayerPlayer3InstantScoreText.text =
-                        resultInstantScore3.toString()
-                    binding.scoreBoard4PlayerPlayer4InstantScoreText.text =
-                        resultInstantScore4.toString()
+                        binding.scoreBoard4PlayerPlayer1InstantScoreText.text =
+                            resultInstantScore1.toString()
+                        binding.scoreBoard4PlayerPlayer2InstantScoreText.text =
+                            resultInstantScore2.toString()
+                        binding.scoreBoard4PlayerPlayer3InstantScoreText.text =
+                            resultInstantScore3.toString()
+                        binding.scoreBoard4PlayerPlayer4InstantScoreText.text =
+                            resultInstantScore4.toString()
 
-                    scoreAdapter4Player.notifyDataSetChanged()
+                        scoreAdapter4Player.notifyDataSetChanged()
+
+                    } else {
+
+                        //entered scores to arraylist
+                        val newInstantScore1 = player1Score!!.text.toString()
+                        val newInstantScore2 = player2Score!!.text.toString()
+                        val newInstantScore3 = player3Score!!.text.toString()
+                        val newInstantScore4 = player4Score!!.text.toString()
+
+                        val newInstantScore1Multiply = newInstantScore1.toInt() * multiplyNumber
+                        val newInstantScore2Multiply = newInstantScore2.toInt() * multiplyNumber
+                        val newInstantScore3Multiply = newInstantScore3.toInt() * multiplyNumber
+                        val newInstantScore4Multiply = newInstantScore4.toInt() * multiplyNumber
+
+                        scoreList4Player.add(
+                            ScoreData4Player(
+                                newInstantScore1Multiply.toString(),
+                                newInstantScore2Multiply.toString(),
+                                newInstantScore3Multiply.toString(),
+                                newInstantScore4Multiply.toString(),
+                                gameNumber,
+                                multiplyNumber,
+                                color,
+                                colorValue,
+                                false
+                            )
+                        )
+
+                        gameNumber++
+
+                        binding.scoreBoard4PlayerRoundNumberText.text =
+                            "$gameNumber. ${getString(R.string.round_text)}"
+
+                        scoreCount++
+
+                        //instant scores
+                        val exInstantScore1 =
+                            binding.scoreBoard4PlayerPlayer1InstantScoreText.text.toString()
+                        val exInstantScore2 =
+                            binding.scoreBoard4PlayerPlayer2InstantScoreText.text.toString()
+                        val exInstantScore3 =
+                            binding.scoreBoard4PlayerPlayer3InstantScoreText.text.toString()
+                        val exInstantScore4 =
+                            binding.scoreBoard4PlayerPlayer4InstantScoreText.text.toString()
+
+                        //sum of entered scores and instant scores
+                        val resultInstantScore1 = exInstantScore1.toInt() - newInstantScore1Multiply
+                        val resultInstantScore2 = exInstantScore2.toInt() - newInstantScore2Multiply
+                        val resultInstantScore3 = exInstantScore3.toInt() - newInstantScore3Multiply
+                        val resultInstantScore4 = exInstantScore4.toInt() - newInstantScore4Multiply
+
+                        binding.scoreBoard4PlayerPlayer1InstantScoreText.text =
+                            resultInstantScore1.toString()
+                        binding.scoreBoard4PlayerPlayer2InstantScoreText.text =
+                            resultInstantScore2.toString()
+                        binding.scoreBoard4PlayerPlayer3InstantScoreText.text =
+                            resultInstantScore3.toString()
+                        binding.scoreBoard4PlayerPlayer4InstantScoreText.text =
+                            resultInstantScore4.toString()
+
+                        scoreAdapter4Player.notifyDataSetChanged()
+
+                    }
 
                 }
 

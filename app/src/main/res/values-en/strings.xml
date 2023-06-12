@@ -129,4 +129,6 @@
     <string name="update_available_text">Update Available</string>
     <string name="update_available_description_text">Please update the app to be able to use what is new in the latest version of the app.</string>
     <string name="fake_text">Fake</string>
+    <string name="select_color_text">Please Choose Color!</string>
+    <string name="zero_color_value_error_text">Color Value Cannot Be 0!</string>
 </resources>

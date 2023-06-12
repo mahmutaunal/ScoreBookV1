@@ -129,4 +129,6 @@
     <string name="update_available_text">Güncelleme Mecvut</string>
     <string name="update_available_description_text">Uygulamanın en son sürümündeki yenilikleri kullanabilmek için lütfen uygulamayı güncelleyin.</string>
     <string name="fake_text">Sahte</string>
+    <string name="select_color_text">Lütfen Renk Seçiniz!</string>
+    <string name="zero_color_value_error_text">Renk Değeri 0 Olamaz!</string>
 </resources>
