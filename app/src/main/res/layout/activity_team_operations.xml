@@ -489,11 +489,11 @@
                                 android:id="@+id/teamOperations_finishType_finishGame_radioButton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
+                                android:layout_marginStart="5dp"
                                 android:checked="true"
                                 android:fontFamily="@font/comfortaa"
                                 android:minHeight="48dp"
-                                android:text="@string/finishGame_text"
+                                android:text="@string/manual_text"
                                 android:textAlignment="center"
                                 android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="14sp" />
@@ -502,7 +502,7 @@
                                 android:id="@+id/teamOperations_finishType_reachScore_radioButton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
+                                android:layout_marginStart="5dp"
                                 android:fontFamily="@font/comfortaa"
                                 android:minHeight="48dp"
                                 android:text="@string/reachScore_text"
@@ -510,6 +510,19 @@
                                 android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="14sp"
                                 tools:ignore="TextContrastCheck" />
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/teamOperations_finishType_reachRound_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:fontFamily="@font/comfortaa"
+                                android:minHeight="48dp"
+                                android:text="@string/reachRound_text"
+                                android:textAlignment="center"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="14sp"
+                                tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
                         </RadioGroup>
 
@@ -540,6 +553,37 @@
                             android:fontFamily="@font/comfortaa"
                             android:inputType="number"
                             android:maxLength="6"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/teamOperations_targetRound_editTextLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:hint="@string/target_round_text"
+                        android:importantForAutofill="no"
+                        android:visibility="gone"
+                        app:boxBackgroundColor="@color/edittext_color"
+                        app:boxStrokeColor="@color/teal_200"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="3"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/teal_200">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/teamOperations_targetRound_editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa"
+                            android:inputType="number"
+                            android:maxLength="3"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="14sp"
                             tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />

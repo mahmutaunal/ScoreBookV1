@@ -76,11 +76,10 @@ class Scoreboard3Player : AppCompatActivity() {
     private var firstScore2: Int = 1
     private var firstScore3: Int = 1
 
-    private lateinit var sharedPreferencesTheme: SharedPreferences
-
     private var winType: String = "Lowest Score"
 
     private var targetScore: String? = null
+    private var targetRound: String? = null
 
 
     @SuppressLint("SetTextI18n", "SourceLockedOrientationActivity")
@@ -127,6 +126,7 @@ class Scoreboard3Player : AppCompatActivity() {
         gameType = intent.getStringExtra("Game Type").toString()
         firstNumber = intent.getStringExtra("Number of Starts").toString()
         targetScore = intent.getStringExtra("Target Score").toString()
+        targetRound = intent.getStringExtra("Target Round").toString()
 
         if (firstNumber.isEmpty()) {
             binding.scoreBoard3PlayerPlayer1InstantScoreText.text = "0"
@@ -144,9 +144,6 @@ class Scoreboard3Player : AppCompatActivity() {
 
         //get click count
         sharedPreferences = getSharedPreferences("clickCount3Player", Context.MODE_PRIVATE)
-
-        //get theme
-        sharedPreferencesTheme = getSharedPreferences("appTheme", MODE_PRIVATE)
 
 
         //set list
@@ -609,6 +606,12 @@ class Scoreboard3Player : AppCompatActivity() {
                         }
                     }
 
+                    if (targetRound!!.isNotEmpty()) {
+                        if ((gameNumber - 1) == targetRound.toString().toInt()) {
+                            winnerTeam()
+                        }
+                    }
+
                 } else {
 
                     if (targetScore!!.isNotEmpty()) {
@@ -620,6 +623,21 @@ class Scoreboard3Player : AppCompatActivity() {
                         }
                     }
 
+                    if (targetRound!!.isNotEmpty()) {
+                        if ((gameNumber - 1) == targetRound.toString().toInt()) {
+                            winnerTeam()
+                        }
+                    }
+
+                }
+
+                if (targetRound!!.isNotEmpty()) {
+                    if (((targetRound.toString()
+                            .toInt() - (gameNumber - 1)) <= 3) && (targetRound.toString()
+                            .toInt() - (gameNumber - 1)) != 0
+                    ) {
+                        setGameAlmostOverDialog()
+                    }
                 }
 
                 dialog.dismiss()
@@ -632,6 +650,27 @@ class Scoreboard3Player : AppCompatActivity() {
         addDialog.setCancelable(false)
         addDialog.create()
         addDialog.show()
+    }
+
+
+    //set the game is almost over dialog
+    private fun setGameAlmostOverDialog() {
+        AlertDialog.Builder(this, R.style.CustomAlertDialog)
+            .setTitle(
+                getString(R.string.game_almost_over_text) + " ${
+                    (targetRound.toString().toInt() - (gameNumber - 1))
+                } " + getString(R.string.round_text)
+            )
+            .setMessage(
+                getString(R.string.game_almost_over_description_text) + ": ${
+                    (targetRound.toString().toInt() - (gameNumber - 1))
+                }"
+            )
+            .setPositiveButton(R.string.ok_text) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
     }
 
 
@@ -731,6 +770,9 @@ class Scoreboard3Player : AppCompatActivity() {
     //scoreboard for winner team
     @SuppressLint("NotifyDataSetChanged", "CutPasteId", "SetTextI18n")
     private fun winnerTeam() {
+
+        Toast.makeText(applicationContext, R.string.game_is_finished_text, Toast.LENGTH_SHORT)
+            .show()
 
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.scoreboard_3_player, null)
@@ -926,9 +968,41 @@ class Scoreboard3Player : AppCompatActivity() {
                                     .toInt()
 
                             if (gameType == "Deduct from the number") {
+
                                 if (score1 <= 0 || score2 <= 0 || score3 <= 0) {
                                     winnerTeam()
                                 }
+
+                                if (targetScore!!.isNotEmpty()) {
+                                    if (score1 <= targetScore.toString()
+                                            .toInt() || score2 <= targetScore.toString().toInt()
+                                    ) {
+                                        winnerTeam()
+                                    }
+                                }
+
+                                if (targetRound!!.isNotEmpty()) {
+                                    if (gameNumber == targetRound.toString().toInt()) {
+                                        winnerTeam()
+                                    }
+                                }
+
+                            } else {
+
+                                if (targetScore!!.isNotEmpty()) {
+                                    if (score1 <= targetScore.toString()
+                                            .toInt() || score2 <= targetScore.toString().toInt()
+                                    ) {
+                                        winnerTeam()
+                                    }
+                                }
+
+                                if (targetRound!!.isNotEmpty()) {
+                                    if (gameNumber == targetRound.toString().toInt()) {
+                                        winnerTeam()
+                                    }
+                                }
+
                             }
 
                             dialog.dismiss()
@@ -999,9 +1073,43 @@ class Scoreboard3Player : AppCompatActivity() {
                                     .toInt()
 
                             if (gameType == "Deduct from the number") {
+
                                 if (score1 <= 0 || score2 <= 0 || score3 <= 0) {
                                     winnerTeam()
                                 }
+
+                                if (targetScore!!.isNotEmpty()) {
+                                    if (score1 <= targetScore.toString()
+                                            .toInt() || score2 <= targetScore.toString()
+                                            .toInt() || score3 <= targetScore.toString().toInt()
+                                    ) {
+                                        winnerTeam()
+                                    }
+                                }
+
+                                if (targetRound!!.isNotEmpty()) {
+                                    if ((gameNumber - 1) == targetRound.toString().toInt()) {
+                                        winnerTeam()
+                                    }
+                                }
+
+                            } else {
+
+                                if (targetScore!!.isNotEmpty()) {
+                                    if (score1 <= targetScore.toString()
+                                            .toInt() || score2 <= targetScore.toString()
+                                            .toInt() || score3 <= targetScore.toString().toInt()
+                                    ) {
+                                        winnerTeam()
+                                    }
+                                }
+
+                                if (targetRound!!.isNotEmpty()) {
+                                    if ((gameNumber - 1) == targetRound.toString().toInt()) {
+                                        winnerTeam()
+                                    }
+                                }
+
                             }
 
                             dialog.dismiss()
@@ -1637,6 +1745,12 @@ class Scoreboard3Player : AppCompatActivity() {
                         }
                     }
 
+                    if (targetRound!!.isNotEmpty()) {
+                        if ((gameNumber - 1) == targetRound.toString().toInt()) {
+                            winnerTeam()
+                        }
+                    }
+
                 } else {
 
                     if (targetScore!!.isNotEmpty()) {
@@ -1644,6 +1758,12 @@ class Scoreboard3Player : AppCompatActivity() {
                                 .toInt() || score2 >= targetScore.toString()
                                 .toInt() || score3 >= targetScore.toString().toInt()
                         ) {
+                            winnerTeam()
+                        }
+                    }
+
+                    if (targetRound!!.isNotEmpty()) {
+                        if ((gameNumber - 1) == targetRound.toString().toInt()) {
                             winnerTeam()
                         }
                     }

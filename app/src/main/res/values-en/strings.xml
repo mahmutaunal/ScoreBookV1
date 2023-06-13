@@ -117,11 +117,11 @@
     <string name="tr_text">Turkish</string>
     <string name="eng_text">English</string>
     <string name="finishGame_text">Finish \nGame</string>
-    <string name="reachScore_text">Reach \nScore</string>
+    <string name="reachScore_text">Score</string>
     <string name="finishType_text">Finish \nType</string>
     <string name="target_score_text">Target Score</string>
     <string name="finishType_text2">Finish Type</string>
-    <string name="info_finish_type_text">The option that allows the game to end automatically when the specified score is reached, or to end the game manually by selecting the end game option.</string>
+    <string name="info_finish_type_text">Options to finish the game manually, automatically when reaching the specified target score, or automatically when the specified target round is reached.</string>
     <string name="enter_first_number_text">Please Enter Starting Score!</string>
     <string name="enter_target_score_text">Please Enter Target Score!</string>
     <string name="target_and_first_number_error_description_text">The target score cannot be more than or equal to the number of starts!</string>
@@ -131,4 +131,10 @@
     <string name="fake_text">Fake</string>
     <string name="select_color_text">Please Choose Color!</string>
     <string name="zero_color_value_error_text">Color Value Cannot Be 0!</string>
+    <string name="target_round_text">Target Round</string>
+    <string name="manual_text">Manual</string>
+    <string name="reachRound_text">Round</string>
+    <string name="game_is_finished_text">Game Complete!</string>
+    <string name="game_almost_over_description_text">Number of rounds left to end of the game</string>
+    <string name="game_almost_over_text">Last</string>
 </resources>

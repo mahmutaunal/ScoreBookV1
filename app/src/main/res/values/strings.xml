@@ -117,11 +117,11 @@
     <string name="tr_text">Türkçe</string>
     <string name="eng_text">İngilizce</string>
     <string name="finishGame_text">Oyunu \nBitirince</string>
-    <string name="reachScore_text">Skora \nUlaşınca</string>
+    <string name="reachScore_text">Skor</string>
     <string name="finishType_text">Bitirme \nŞekli</string>
     <string name="target_score_text">Hedef Skor</string>
     <string name="finishType_text2">Bitirme Şekli</string>
-    <string name="info_finish_type_text">Oyunun belirlenen skora ulaşılınca otomtik olarak bitmesini veya elle oyunu bitir seçeneği seçilerek oyunun bitirilmesini sağlayan seçenek.</string>
+    <string name="info_finish_type_text">Oyunu elle manuel olarak bitirme, belirlenen hedef skora ulaşınca otomatik olarak bitirme veya belirlenen el sayısına ulaşınca otomatik olarak bitirme seçenekleri.</string>
     <string name="enter_first_number_text">Lütfen Başlangıç Skoru Girin!</string>
     <string name="enter_target_score_text">Lütfen Hedef Skor Girin!</string>
     <string name="target_and_first_number_error_description_text">Hedef skoru başlangıç sayısından daha fazla veya başlangıç sayısına eşit olamaz!</string>
@@ -131,4 +131,10 @@
     <string name="fake_text">Sahte</string>
     <string name="select_color_text">Lütfen Renk Seçiniz!</string>
     <string name="zero_color_value_error_text">Renk Değeri 0 Olamaz!</string>
+    <string name="target_round_text">Hedef El Sayısı</string>
+    <string name="manual_text">Manuel</string>
+    <string name="reachRound_text">El</string>
+    <string name="game_is_finished_text">Oyun Tamamlandı!</string>
+    <string name="game_almost_over_description_text">Oyunun bitmesine kalan el sayısı</string>
+    <string name="game_almost_over_text">Son</string>
 </resources>

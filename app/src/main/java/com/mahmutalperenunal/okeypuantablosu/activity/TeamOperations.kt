@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.textfield.TextInputLayout
@@ -40,13 +41,14 @@ class TeamOperations : AppCompatActivity() {
 
     private var gameType: String = "Add Score"
 
-    private var firstNumber: EditText? = null
-
     private var winType: String = "Lowest Score"
 
     private var finishType: String = "Finish Game"
 
+    private var firstNumber: EditText? = null
+
     private var targetScore: EditText? = null
+    private var targetRound: EditText? = null
 
 
     @SuppressLint("VisibleForTests", "SourceLockedOrientationActivity")
@@ -77,6 +79,9 @@ class TeamOperations : AppCompatActivity() {
 
         //set target score
         targetScore = binding.teamOperationsTargetScoreEditText
+
+        //set target round
+        targetRound = binding.teamOperationsTargetRoundEditText
 
         playerNumber()
         playerType()
@@ -115,22 +120,70 @@ class TeamOperations : AppCompatActivity() {
 
             } else {
 
-                if (targetScore!!.text.toString().toInt() >= firstNumber!!.text.toString()
-                        .toInt()
-                ) {
+                if (gameType == "Reach Score") {
 
-                    binding.teamOperationsTargetScoreEditTextLayout.error =
-                        getString(R.string.error_text)
-                    binding.teamOperationsNumberOfStartsEditTextLayout.error =
-                        getString(R.string.error_text)
+                    if (binding.teamOperationsTargetRoundEditTextLayout.isVisible && targetScore!!.text.toString()
+                            .isEmpty()
+                    ) {
 
-                    AlertDialog.Builder(this, R.style.CustomAlertDialog)
-                        .setTitle(R.string.error_text)
-                        .setMessage(R.string.target_and_first_number_error_description_text)
-                        .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
-                        .setCancelable(false)
-                        .create()
-                        .show()
+                        binding.teamOperationsTargetScoreEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+
+                    } else {
+
+                        if (targetScore!!.text.toString().toInt() >= firstNumber!!.text.toString()
+                                .toInt()
+                        ) {
+
+                            binding.teamOperationsTargetScoreEditTextLayout.error =
+                                getString(R.string.error_text)
+                            binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                                getString(R.string.error_text)
+
+                            AlertDialog.Builder(this, R.style.CustomAlertDialog)
+                                .setTitle(R.string.error_text)
+                                .setMessage(R.string.target_and_first_number_error_description_text)
+                                .setPositiveButton(R.string.ok_text) { dialog, _ -> dialog.dismiss() }
+                                .setCancelable(false)
+                                .create()
+                                .show()
+
+                        } else {
+                            controlUsernames()
+                        }
+
+                    }
+
+                } else if (gameType == "Reach Round") {
+
+                    if (binding.teamOperationsTargetRoundEditTextLayout.isVisible && targetScore!!.text.toString()
+                            .isEmpty()
+                    ) {
+
+                        binding.teamOperationsTargetScoreEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+
+                    } else {
+
+                        if (binding.teamOperationsNumberOfStartsEditTextLayout.isVisible && firstNumber!!.text.toString()
+                                .isEmpty()
+                        ) {
+
+                            binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                                getString(R.string.compulsory_text)
+
+                        } else {
+
+                            if (targetScore!!.text.toString().toInt() <= 0) {
+                                binding.teamOperationsTargetScoreEditTextLayout.error =
+                                    getString(R.string.error_text)
+                            } else {
+                                controlUsernames()
+                            }
+
+                        }
+
+                    }
 
                 } else {
                     controlUsernames()
@@ -149,11 +202,51 @@ class TeamOperations : AppCompatActivity() {
 
                 } else {
 
-                    if (targetScore!!.text.toString().toInt() <= 0) {
-                        binding.teamOperationsTargetScoreEditTextLayout.error =
-                            getString(R.string.error_text)
+                    if (binding.teamOperationsNumberOfStartsEditTextLayout.isVisible && firstNumber!!.text.toString()
+                            .isEmpty()
+                    ) {
+
+                        binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+
                     } else {
-                        controlUsernames()
+
+                        if (targetScore!!.text.toString().toInt() <= 0) {
+                            binding.teamOperationsTargetScoreEditTextLayout.error =
+                                getString(R.string.error_text)
+                        } else {
+                            controlUsernames()
+                        }
+
+                    }
+
+                }
+
+            } else if (finishType == "Reach Round") {
+
+                if (targetRound!!.text.toString().isEmpty()) {
+
+                    binding.teamOperationsTargetRoundEditTextLayout.error =
+                        getString(R.string.compulsory_text)
+
+                } else {
+
+                    if (binding.teamOperationsNumberOfStartsEditTextLayout.isVisible && firstNumber!!.text.toString()
+                            .isEmpty()
+                    ) {
+
+                        binding.teamOperationsNumberOfStartsEditTextLayout.error =
+                            getString(R.string.compulsory_text)
+
+                    } else {
+
+                        if (targetRound!!.text.toString().toInt() <= 0) {
+                            binding.teamOperationsTargetScoreEditTextLayout.error =
+                                getString(R.string.error_text)
+                        } else {
+                            controlUsernames()
+                        }
+
                     }
 
                 }
@@ -1233,6 +1326,7 @@ class TeamOperations : AppCompatActivity() {
                     intentScoreboard2.putExtra("Game Type", gameType)
                     intentScoreboard2.putExtra("Number of Starts", firstNumber!!.text.toString())
                     intentScoreboard2.putExtra("Target Score", targetScore!!.text.toString())
+                    intentScoreboard2.putExtra("Target Round", targetRound!!.text.toString())
 
                     //send win type
                     intentScoreboard2.putExtra("Win Type", winType)
@@ -1277,6 +1371,7 @@ class TeamOperations : AppCompatActivity() {
                     intentScoreboard3.putExtra("Game Type", gameType)
                     intentScoreboard3.putExtra("Number of Starts", firstNumber!!.text.toString())
                     intentScoreboard3.putExtra("Target Score", targetScore!!.text.toString())
+                    intentScoreboard3.putExtra("Target Round", targetRound!!.text.toString())
 
                     //send win type
                     intentScoreboard3.putExtra("Win Type", winType)
@@ -1327,6 +1422,7 @@ class TeamOperations : AppCompatActivity() {
                             firstNumber!!.text.toString()
                         )
                         intentScoreboard4.putExtra("Target Score", targetScore!!.text.toString())
+                        intentScoreboard4.putExtra("Target Round", targetRound!!.text.toString())
 
                         //send win type
                         intentScoreboard4.putExtra("Win Type", winType)
@@ -1355,13 +1451,14 @@ class TeamOperations : AppCompatActivity() {
                 intentScoreboard2.putExtra("Black Value", blackValue)
                 intentScoreboard2.putExtra("Fake Value", fakeValue)
 
-                //send game type, first number and target score
+                //send game type, first number, target score and target round
                 intentScoreboard2.putExtra("Game Type", gameType)
                 intentScoreboard2.putExtra(
                     "Number of Starts",
                     firstNumber!!.text.toString()
                 )
                 intentScoreboard2.putExtra("Target Score", targetScore!!.text.toString())
+                intentScoreboard2.putExtra("Target Round", targetRound!!.text.toString())
 
                 //send win type
                 intentScoreboard2.putExtra("Win Type", winType)
@@ -1621,12 +1718,23 @@ class TeamOperations : AppCompatActivity() {
         binding.teamOperationsFinishTypeFinishGameRadioButton.setOnClickListener {
             finishType = "Finish Game"
             binding.teamOperationsTargetScoreEditTextLayout.visibility = View.GONE
+            binding.teamOperationsTargetRoundEditTextLayout.visibility = View.GONE
             targetScore!!.text = null
+            targetRound!!.text = null
         }
         binding.teamOperationsFinishTypeReachScoreRadioButton.setOnClickListener {
             finishType = "Reach Score"
             binding.teamOperationsTargetScoreEditTextLayout.visibility = View.VISIBLE
+            binding.teamOperationsTargetRoundEditTextLayout.visibility = View.GONE
             targetScore!!.setText("")
+            targetRound!!.text = null
+        }
+        binding.teamOperationsFinishTypeReachRoundRadioButton.setOnClickListener {
+            finishType = "Reach Round"
+            binding.teamOperationsTargetRoundEditTextLayout.visibility = View.VISIBLE
+            binding.teamOperationsTargetScoreEditTextLayout.visibility = View.GONE
+            targetRound!!.setText("")
+            targetScore!!.text = null
         }
     }
 
