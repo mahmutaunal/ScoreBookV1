@@ -15,8 +15,8 @@ android {
         applicationId "com.mahmutalperenunal.okeypuantablosu"
         minSdk 27
         targetSdk 33
-        versionCode 18
-        versionName "2.5.1"
+        versionCode 19
+        versionName "2.6.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

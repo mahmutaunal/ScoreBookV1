@@ -183,7 +183,7 @@ class MainMenu : AppCompatActivity() {
 
                         dialog.dismiss()
                     }
-                    .setNeutralButton(R.string.cancel_text) { dialog, _ ->
+                    .setNegativeButton(R.string.cancel_text) { dialog, _ ->
                         dialog.dismiss()
                     }
                     .create()
